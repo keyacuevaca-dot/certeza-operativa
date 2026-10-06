@@ -86,15 +86,18 @@
   .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
 
   /* Logo: recorte del archivo + OPERATIVA con la misma serif (Crimson Pro Bold, la más cercana) */
-  .lockup { --s: .164; --k: 1.25; display: grid; grid-template-columns: auto auto; align-items: center; justify-content: start; column-gap: calc(var(--s) * 60px); width: max-content; text-decoration: none; flex: none; }
+  /* Geometría (px de la imagen original 2000x917): símbolo x308-628 y250-508; CERTEZA x690-1695 y300-492.
+     El símbolo mide lo mismo que el bloque CERTEZA + placa OPERATIVA, así que queda cuadrado y centrado. */
+  .lockup { --s: .164; --k: 1.186; --op-bg: #111111; --op-fg: #f3efe6; display: grid; grid-template-columns: auto auto; align-items: center; justify-content: start; column-gap: calc(var(--s) * 62px); width: max-content; text-decoration: none; flex: none; }
   .lockup img { position: absolute; max-width: none; height: auto; filter: url(#logo-alpha); }
-  .lockup .sym { position: relative; display: block; overflow: hidden; width: calc(var(--s) * var(--k) * 340px); height: calc(var(--s) * var(--k) * 280px); margin-top: calc(var(--s) * 24px); }
-  .lockup .sym img { width: calc(var(--s) * var(--k) * 2000px); left: calc(var(--s) * var(--k) * -300px); top: calc(var(--s) * var(--k) * -240px); }
-  .lockup .wm { position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1010px); height: calc(var(--s) * 210px); }
-  .lockup .wm img { width: calc(var(--s) * 2000px); left: calc(var(--s) * -690px); top: calc(var(--s) * -290px); }
-  .lockup .tg { --t: calc(var(--s) * 1.068); grid-column: 1 / -1; position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1495px); height: calc(var(--t) * 90px); margin-top: calc(var(--t) * 26px); padding-bottom: 2px; }
-  .lockup .tg img { width: calc(var(--t) * 2000px); left: calc(var(--t) * -300px); top: calc(var(--t) * -592px); }
-  .lockup .op { display: flex; justify-content: space-between; margin: calc(var(--s) * 2px) 0 0; width: calc(var(--s) * 1005px); font-family: var(--serif); font-weight: 700; font-size: calc(var(--s) * 150px); line-height: 1; color: #eef0f3; text-rendering: geometricPrecision; }
+  .lockup .sym { position: relative; display: block; overflow: hidden; width: calc(var(--s) * var(--k) * 320px); height: calc(var(--s) * var(--k) * 258px); }
+  .lockup .sym img { width: calc(var(--s) * var(--k) * 2000px); left: calc(var(--s) * var(--k) * -308px); top: calc(var(--s) * var(--k) * -250px); }
+  .lockup .txt { display: block; }
+  .lockup .wm { position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1005px); height: calc(var(--s) * 192px); }
+  .lockup .wm img { width: calc(var(--s) * 2000px); left: calc(var(--s) * -690px); top: calc(var(--s) * -300px); }
+  .lockup .tg { --t: calc(var(--s) * 1.045); grid-column: 1 / -1; position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1447px); height: calc(var(--t) * 90px); margin-top: calc(var(--t) * 30px); padding-bottom: 2px; }
+  .lockup .tg img { width: calc(var(--t) * 2000px); left: calc(var(--t) * -308px); top: calc(var(--t) * -592px); }
+  .lockup .op { display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; margin: calc(var(--s) * 14px) 0 0; width: calc(var(--s) * 1005px); height: calc(var(--s) * 100px); padding: 0 calc(var(--s) * 28px); background: var(--op-bg); color: var(--op-fg); font-family: var(--serif); font-weight: 700; font-size: calc(var(--s) * 76px); line-height: 1; text-rendering: geometricPrecision; }
   .lockup .op i { font-style: normal; }
   .lockup.big { --s: .3; }
 
