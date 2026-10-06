@@ -310,15 +310,13 @@
   .fam .tag { margin-bottom: 16px; }
   .fam p { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.1; color: var(--fg); }
 
-  /* Preguntas */
-  .faq { max-width: 860px; }
-  .faq details { border-top: 1.5px solid var(--line-p); }
-  .faq details:last-child { border-bottom: 1.5px solid var(--line-p); }
-  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-family: var(--serif); font-weight: 700; font-size: 29px; line-height: 1.1; color: var(--ink); min-height: 48px; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: "+"; font-family: var(--sans); font-weight: 400; color: var(--accent-ink); font-size: 32px; transition: transform .25s; }
-  .faq details[open] summary::after { transform: rotate(45deg); }
-  .faq details p { padding: 0 0 24px; max-width: 700px; font-size: 18px; color: var(--ink2); }
+  /* Preguntas: compactas, una o dos líneas cada una */
+  section.faq-s { padding: 44px 0 52px; }
+  .faq-s h2 { font-size: 24px; line-height: 1.1; margin-bottom: 18px; }
+  .faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; margin: 0; }
+  .faq > div { padding: 10px 0; border-top: 1px solid var(--line-p); }
+  .faq dt { font-weight: 700; font-size: 14px; line-height: 1.35; color: var(--ink); }
+  .faq dd { margin: 2px 0 0; font-size: 14px; line-height: 1.4; color: var(--ink2); }
 
   /* Contacto / pie */
   .phone { margin-top: 20px; font-size: 16px; }
@@ -363,7 +361,7 @@
     .pillar { padding: 18px; gap: 4px 14px; }
     .pillar .ic { width: 48px; height: 48px; }
     .piece { padding-left: 54px; }
-    .faq summary { font-size: 24px; }
+    .faq { grid-template-columns: minmax(0, 1fr); }
     .btn { width: 100%; }
     header .btn { width: auto; }
     .float.btn { width: auto; right: 14px; bottom: 14px; padding: 10px 18px; min-height: 44px; font-size: 14px; }
@@ -627,20 +625,17 @@
       </ul>
     </div>
   </section>
-  <section class="band-paper" id="preguntas" aria-labelledby="t-faq">
+  <section class="band-paper faq-s" id="preguntas" aria-labelledby="t-faq">
     <div class="wrap">
-      <div class="head-block reveal">
-        <p class="eyebrow">Preguntas frecuentes</p>
-        <h2 id="t-faq">Antes de escribirnos.</h2>
-      </div>
-      <div class="faq reveal">
-        <details><summary>¿Cuánto cuesta el Triaje?</summary><p>Nada. El Triaje y la Ficha no tienen costo. En un negocio micro dura como máximo 90 minutos; en uno pequeño, 2 horas, y en uno mediano, 3.</p></details>
-        <details><summary>¿Cuánto pagaré y cuándo?</summary><p>Antes de empezar recibes el precio cerrado, en pesos y con fechas. Se paga una parte al firmar y el saldo cuando aceptas la vista previa. El pago es por transferencia, con recibo.</p></details>
-        <details><summary>¿Tengo que cambiar todo lo que uso?</summary><p>No. Ordenamos lo que ya haces, en papel o en el celular, con un formato que tu equipo pueda usar. No operamos tu negocio ni nos quedamos con tu información.</p></details>
-        <details><summary>¿Me garantizan resultados?</summary><p>No prometemos lo que no podemos medir. Cada trabajo tiene un indicador que observamos contigo; se mide, no se garantiza.</p></details>
-        <details><summary>¿Qué pasa si decido parar?</summary><p>Pagas solo lo trabajado. La salida está escrita y a la vista desde el principio.</p></details>
-        <details><summary>¿Cómo sé cuándo termina un trabajo?</summary><p>Cuando tu equipo completa un ciclo sin nosotros. Un trabajo no está terminado hasta que lo usan solos.</p></details>
-      </div>
+      <h2 id="t-faq">Preguntas frecuentes</h2>
+      <dl class="faq">
+        <div><dt>¿Cuánto cuesta el Triaje?</dt><dd>No tiene costo, ni la Ficha. Dura hasta 90 min en micro, 2 h en pequeña.</dd></div>
+        <div><dt>¿Cuánto pago y cuándo?</dt><dd>Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.</dd></div>
+        <div><dt>¿Tengo que cambiar lo que uso?</dt><dd>No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.</dd></div>
+        <div><dt>¿Me garantizan resultados?</dt><dd>No prometemos lo que no se puede medir: cada trabajo tiene un indicador.</dd></div>
+        <div><dt>¿Y si decido parar?</dt><dd>Pagas solo lo trabajado.</dd></div>
+        <div><dt>¿Cuándo termina un trabajo?</dt><dd>Cuando tu equipo completa un ciclo sin nosotros.</dd></div>
+      </dl>
     </div>
   </section>
 
