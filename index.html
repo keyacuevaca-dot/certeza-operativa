@@ -1,294 +1,521 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX" data-theme="1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Certeza Operativa</title>
-<meta name="description" content="Consultoría para micro y pequeños negocios de Nayarit. Orden. Visibilidad. Control.">
+<title>Certeza Operativa · Orden, visibilidad y control para tu negocio</title>
+<meta name="description" content="Consultoría para micro y pequeños negocios de Nayarit. Elige las piezas que necesitas, estima tu precio al instante y empieza con un Triaje gratis.">
+<meta name="theme-color" content="#666666">
+<link rel="canonical" href="https://keyacuevaca-dot.github.io/certeza-operativa/">
+<link rel="icon" href="data:,">
+<link rel="preload" href="assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/Outfit-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Certeza Operativa · Orden. Visibilidad. Control.">
+<meta property="og:description" content="Consultoría para micro y pequeños negocios de Nayarit. Estima tu precio al instante. Triaje gratis.">
+<meta property="og:url" content="https://keyacuevaca-dot.github.io/certeza-operativa/">
+<meta property="og:image" content="https://keyacuevaca-dot.github.io/certeza-operativa/assets/logo-original.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Certeza Operativa","description":"Consultoría para micro y pequeños negocios de Nayarit: orden, visibilidad y control.","url":"https://keyacuevaca-dot.github.io/certeza-operativa/","image":"https://keyacuevaca-dot.github.io/certeza-operativa/assets/logo-original.webp","telephone":"+523114469363","areaServed":{"@type":"AdministrativeArea","name":"Nayarit, México"}}
+</script>
+<script>
+  document.documentElement.classList.add('js');
+  try { var t = new URLSearchParams(location.search).get('tema'); if (t === '1' || t === '2' || t === '3') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <style>
+  @font-face { font-family: "Crimson Pro"; src: url(assets/fonts/CrimsonPro-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
+  @font-face { font-family: Outfit; src: url(assets/fonts/Outfit-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Outfit; src: url(assets/fonts/Outfit-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
+
+  /* ===== Temas ===== (la base #666666 se mantiene en los tres) */
+  :root, [data-theme="1"] {   /* Grafito y marfil, con ámbar */
+    --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
+    --paper: #f4f1ea; --card: #ffffff; --line-p: #dad4c6;
+    --ink: #1f2428; --ink2: #4a5158;
+    --on-base: #faf7f0; --on-base2: #ece8df;
+    --accent: #f2b544; --accent-hov: #ffc965; --on-accent: #1a1a1a; --accent-ink: #8a4b00;
+    --dark-card: #2a2e33; --chart-a: #b86e00; --chart-hi: #b86e00;
+  }
+  [data-theme="2"] {          /* Marino y petróleo (precedente de tus documentos) */
+    --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
+    --paper: #edf2f6; --card: #ffffff; --line-p: #cbd6e0;
+    --ink: #14263f; --ink2: #3e4c60;
+    --on-base: #f7fafc; --on-base2: #e6edf2;
+    --accent: #5bcfc4; --accent-hov: #7de0d6; --on-accent: #0b1f33; --accent-ink: #0b6b63;
+    --dark-card: #14263f; --chart-a: #0f766e; --chart-hi: #0f766e;
+  }
+  [data-theme="3"] {          /* Monocromo editorial */
+    --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
+    --paper: #f1f1f1; --card: #ffffff; --line-p: #d6d6d6;
+    --ink: #161616; --ink2: #4a4a4a;
+    --on-base: #ffffff; --on-base2: #ececec;
+    --accent: #ffffff; --accent-hov: #e9e9e9; --on-accent: #161616; --accent-ink: #161616;
+    --dark-card: #1b1b1b; --chart-a: #161616; --chart-hi: #161616;
+  }
+
   :root {
-    --graphite: #202020;
-    --canvas: #ffffff;
-    --ash: #efefef;
-    --fog: #f5f5f5;
-    --ivory: #ebe6dd;
-    --steel: #4d4d4d;
-    --slate: #828282;
-    --mist: #e8e8e8;
-    --ember: #ff682c;
-    --brass: #816729;
-    --font-head: "Inter Tight", "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-body: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --gap: 20px;
-    --section: 80px;
+    --serif: "Crimson Pro", Georgia, "Times New Roman", serif;
+    --sans: Outfit, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --section: 108px;
+    /* Variables de cada franja (se redefinen por franja) */
+    --fg: var(--on-base); --fg2: var(--on-base2); --surface: rgba(255,255,255,.08); --surface-line: rgba(255,255,255,.26); --link: var(--on-base);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--canvas);
-    color: var(--graphite);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, .head {
-    font-family: var(--font-head);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { margin: 0; background: var(--base); color: var(--fg2); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; color: var(--fg); margin: 0; letter-spacing: -.005em; }
   p { margin: 0; }
-  a { color: inherit; }
+  a { color: var(--link); text-underline-offset: 4px; }
+  button { font: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .on-paper :focus-visible { outline-color: var(--ink); }
   .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--on-accent); padding: 10px 18px; border-radius: 10px; z-index: 100; }
+  .skip:focus { left: 8px; }
+
+  /* Franjas */
+  .band-base { background: var(--base); }
+  .band-paper { background: var(--paper); --fg: var(--ink); --fg2: var(--ink2); --surface: var(--card); --surface-line: var(--line-p); --link: var(--accent-ink); }
+  .band-deep { background: var(--deep); }
+  .band-deeper { background: var(--deeper); }
   section { padding: var(--section) 0; }
-  .band { background: var(--ash); }
 
-  /* Header */
-  header { padding: 16px 0; background: var(--graphite); color: #fff; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  /* El logo trae fondo oscuro: "lighten" lo funde con el fondo graphite y recorta el margen sobrante */
-  .brand { display: block; width: 190px; height: 38px; overflow: hidden; position: relative; flex: none; }
-  .brand img { position: absolute; width: 271px; height: auto; left: -41px; top: -33px; mix-blend-mode: lighten; max-width: none; }
-  nav.pill {
-    background: #2e2e2e;
-    border-radius: 200px;
-    padding: 8px 18px;
-    display: flex;
-    gap: 20px;
-    font-family: var(--font-head);
-    letter-spacing: -0.02em;
-  }
-  nav.pill a { text-decoration: none; padding: 2px 0; }
-  nav.pill a:hover { color: var(--mist); }
-  header .btn.primary { background: #fff; color: var(--graphite); border-color: #fff; }
-  header .btn:focus-visible, header a:focus-visible { outline-color: #fff; }
+  .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
 
-  /* Buttons: sharp corners, no shadow */
-  .btn {
-    display: inline-block;
-    font-family: var(--font-head);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    padding: 12px 20px;
-    border-radius: 0;
-    border: 1px solid var(--graphite);
-    text-decoration: none;
-    font-size: 16px;
-  }
-  .btn.primary { background: var(--graphite); color: #fff; }
-  .btn.ghost { background: transparent; color: var(--graphite); }
-  .btn:focus-visible, a:focus-visible { outline: 2px solid var(--graphite); outline-offset: 3px; }
+  /* Logo: recorte del archivo + OPERATIVA con la misma serif (Crimson Pro Bold, la más cercana) */
+  .lockup { --s: .164; display: block; width: calc(var(--s) * 1400px); text-decoration: none; flex: none; }
+  .lockup .mk { position: relative; display: block; width: 100%; height: calc(var(--s) * 280px); overflow: hidden; }
+  .lockup .mk img, .lockup .tg img { position: absolute; max-width: none; height: auto; width: calc(var(--s) * 2000px); left: calc(var(--s) * -300px); filter: url(#logo-alpha); }
+  .lockup .mk img { top: calc(var(--s) * -240px); }
+  .lockup .tg { position: relative; display: block; overflow: hidden; height: calc(var(--s) * 85px); margin-top: calc(var(--s) * 30px); }
+  .lockup .tg img { top: calc(var(--s) * -595px); }
+  .lockup .op { display: flex; justify-content: space-between; margin: calc(var(--s) * 22px) 0 0 calc(var(--s) * 390px); width: calc(var(--s) * 1005px); font-family: var(--serif); font-weight: 700; font-size: calc(var(--s) * 100px); line-height: 1; color: #eef0f3; }
+  .lockup .op i { font-style: normal; }
+  .lockup.big { --s: .3; }
+
+  /* Encabezado */
+  header { position: sticky; top: 0; z-index: 50; transition: background-color .3s, box-shadow .3s; }
+  header.stuck { background: rgba(102,102,102,.84); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(255,255,255,.2); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
+  nav { display: flex; align-items: center; gap: 26px; font-size: 16px; }
+  nav .links { display: flex; align-items: center; gap: 26px; }
+  nav .links a { color: var(--on-base); text-decoration: none; padding: 10px 0; position: relative; }
+  nav .links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform .25s; transform-origin: 0 50%; }
+  nav .links a:hover::after, nav .links a.on::after { transform: scaleX(1); }
+
+  /* Botones */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 13px 28px; border-radius: 12px; border: 1.5px solid transparent; font-family: var(--sans); font-weight: 700; font-size: 16px; line-height: 1.2; text-decoration: none; cursor: pointer; touch-action: manipulation; transition: background-color .2s, color .2s, transform .2s, border-color .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-hov); border-color: var(--accent-hov); }
+  .btn.ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+  .btn.ghost:hover { background: rgba(255,255,255,.12); }
+  .band-paper .btn.ghost:hover { background: rgba(0,0,0,.06); }
+  .band-paper .btn.primary { border-color: var(--ink); }
+  .btn.small { min-height: 44px; padding: 9px 22px; font-size: 15px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* Atmósfera de la portada */
+  .top { position: relative; overflow: hidden; }
+  .atmos { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); will-change: transform; }
+  .b1 { width: 780px; height: 780px; background: #7a7a7a; left: -280px; top: -220px; opacity: .8; }
+  .b2 { width: 560px; height: 560px; background: #595959; right: -200px; top: 100px; }
+  .b3 { width: 340px; height: 340px; background: var(--accent); right: 12%; top: 380px; opacity: .13; }
+  .top > header, .top > .hero { position: relative; z-index: 1; }
 
   /* Hero */
-  .hero { padding-top: 60px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
-  .eyebrow { font-family: var(--font-head); font-size: 13px; letter-spacing: -0.02em; color: var(--brass); margin-bottom: 16px; }
-  h1 { font-size: 66px; line-height: 0.95; letter-spacing: -1.32px; }
-  .lead { font-size: 18px; line-height: 1.4; color: var(--steel); margin: 24px 0 32px; max-width: 520px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  .u { text-decoration: underline; text-decoration-color: var(--ember); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .hero { padding: 36px 0 var(--section); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--fg2); margin-bottom: 24px; }
+  .eyebrow::before { content: ""; width: 30px; height: 3px; border-radius: 3px; background: var(--accent); flex: none; }
+  .band-paper .eyebrow::before { background: var(--accent-ink); }
+  h1 { font-size: clamp(56px, 11.5vw, 128px); line-height: .9; }
+  h1 a { color: inherit; text-decoration: none; display: block; width: fit-content; transition: color .2s, transform .3s; }
+  h1 a:hover { color: var(--accent); transform: translateX(8px); }
+  .lead { font-size: 21px; line-height: 1.5; max-width: 540px; margin: 28px 0 34px; color: var(--fg2); }
+  .lead em { font-style: normal; font-weight: 700; color: var(--fg); box-shadow: inset 0 -.34em 0 rgba(242,181,68,.45); }
+  [data-theme="2"] .lead em { box-shadow: inset 0 -.34em 0 rgba(91,207,196,.4); }
+  [data-theme="3"] .lead em { box-shadow: inset 0 -.12em 0 #fff; }
+  .facts { display: grid; grid-template-columns: repeat(4, auto); gap: 14px 30px; margin: 40px 0 0; padding: 0; justify-content: start; }
+  .facts div { display: flex; flex-direction: column; border-left: 2px solid var(--accent); padding-left: 14px; }
+  .facts dt { font-size: 13px; color: var(--fg2); order: 2; line-height: 1.3; max-width: 120px; }
+  .facts dd { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 42px; line-height: 1; color: var(--fg); }
 
-  /* Illustrative card */
-  .card-data { background: var(--ash); border-radius: 20px; padding: 32px; }
-  .card-data .head { font-size: 18px; margin-bottom: 4px; }
-  .card-data small { color: var(--steel); font-size: 13px; display: block; margin-bottom: 20px; }
-  .card-data svg { width: 100%; height: auto; display: block; background: #fff; border-radius: 12px; }
-  .legend { display: flex; gap: 20px; margin-top: 16px; font-size: 13px; color: var(--steel); }
-  .legend i { display: inline-block; width: 16px; height: 2px; vertical-align: middle; margin-right: 6px; }
+  /* Tarjetas */
+  .card { background: var(--surface); border: 1px solid var(--surface-line); border-radius: 16px; padding: 30px; }
+  .band-paper .card { box-shadow: 0 1px 2px rgba(31,36,40,.05), 0 8px 24px -12px rgba(31,36,40,.14); }
+  .tag { display: inline-block; border: 1.5px solid var(--fg2); color: var(--fg); border-radius: 60px; padding: 4px 13px; font-size: 13px; font-weight: 700; line-height: 1.3; }
 
-  /* Section heads */
-  h2 { font-size: 40px; line-height: 1.2; letter-spacing: -0.8px; margin-bottom: 20px; }
-  .sub { font-size: 18px; line-height: 1.4; color: var(--steel); max-width: 640px; }
-  .head-block { margin-bottom: 40px; }
+  /* Panel de gráficas (portada) */
+  .viz { --fg: var(--ink); --fg2: var(--ink2); --surface: var(--paper); --surface-line: transparent; --link: var(--accent-ink); padding: 24px 24px 18px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45); }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tabs button { background: transparent; color: var(--ink); border: 1.5px solid var(--line-p); border-radius: 10px; padding: 8px 18px; min-height: 44px; cursor: pointer; font-weight: 700; transition: background-color .2s, color .2s, border-color .2s; }
+  .tabs button:hover { border-color: var(--ink); }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .viz h3 { font-size: 28px; line-height: 1.1; }
+  .viz .cap { font-size: 14.5px; margin: 6px 0 14px; color: var(--ink2); }
+  .chartbox { background: var(--card); border: 1px solid var(--line-p); border-radius: 12px; padding: 12px 8px 4px; position: relative; }
+  .chartbox svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chartbox text { font-family: var(--sans); font-size: 12.5px; fill: var(--ink2); }
+  .chartbox .t-strong { fill: var(--ink); font-weight: 700; }
+  .chartbox .grid { stroke: rgba(31,36,40,.13); stroke-width: 1; }
+  .chartbox .axis { stroke: var(--ink2); stroke-width: 1.5; }
+  .chartbox .ca { fill: var(--chart-a); }
+  .chartbox .ca-s { stroke: var(--chart-a); }
+  .chartbox .cb { fill: rgba(31,36,40,.06); stroke: var(--ink); stroke-width: 2; }
+  .chartbox .chi { fill: rgba(184,110,0,.1); stroke: var(--chart-hi); stroke-width: 2; stroke-dasharray: 5 4; }
+  .chartbox .ring { stroke: var(--card); stroke-width: 2.5; }
+  .chartbox [data-tip] { cursor: pointer; }
+  .chartbox [data-tip]:hover { filter: brightness(1.12); }
+  .chartbox [data-tip]:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13.5px; margin: 12px 4px 2px; color: var(--ink2); }
+  .legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: -1px; margin-right: 7px; }
+  .legend i.a { background: var(--chart-a); }
+  .legend i.b { border: 2px solid var(--ink); background: transparent; }
+  .legend i.h { border: 2px dashed var(--chart-hi); background: transparent; }
+  .viz details { margin-top: 8px; font-size: 14px; }
+  .viz summary { cursor: pointer; color: var(--accent-ink); font-weight: 700; padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
+  .viz table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .viz th, .viz td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line-p); color: var(--ink); }
+  .viz th { color: var(--accent-ink); }
+  #tip { position: fixed; z-index: 90; pointer-events: none; background: var(--ink); color: #fff; border-radius: 8px; padding: 8px 12px; font-size: 13.5px; max-width: 240px; opacity: 0; transform: translateY(4px); transition: opacity .12s, transform .12s; }
+  #tip.on { opacity: 1; transform: none; }
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .draw.go { stroke-dashoffset: 0; transition: stroke-dashoffset 1.1s ease-out; }
+  .bar { transform-origin: 50% 100%; transform-box: fill-box; }
+  .grow .bar { animation: grow .7s ease-out both; }
+  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 
-  /* Pillars: asymmetric radius cards */
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
-  .card {
-    background: var(--ash);
-    border-radius: 6px 0 0 0;
-    padding: 40px;
+  h2 { font-size: clamp(40px, 6vw, 66px); line-height: 1; margin-bottom: 18px; }
+  .sub { font-size: 20px; line-height: 1.5; max-width: 700px; color: var(--fg2); }
+  .head-block { max-width: 780px; margin-bottom: 48px; }
+
+  /* Catálogo + estimador */
+  .cat-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: start; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .filters button { background: transparent; color: var(--ink); border: 1.5px solid var(--line-p); border-radius: 10px; padding: 8px 20px; min-height: 44px; cursor: pointer; font-weight: 700; transition: background-color .2s, color .2s, border-color .2s; }
+  .filters button:hover { border-color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pieces { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .piece { position: relative; display: block; background: var(--card); border: 1.5px solid var(--line-p); border-radius: 14px; padding: 20px 20px 18px 58px; cursor: pointer; transition: border-color .2s, background-color .2s, transform .25s, box-shadow .25s; }
+  .piece:hover { transform: translateY(-3px); border-color: var(--ink2); box-shadow: 0 12px 24px -14px rgba(31,36,40,.3); }
+  .piece input { position: absolute; left: 18px; top: 22px; width: 24px; height: 24px; accent-color: var(--ink); cursor: pointer; }
+  .piece:has(input:checked) { border-color: var(--ink); background: #fff8e8; box-shadow: inset 0 0 0 1px var(--ink); }
+  [data-theme="2"] .piece:has(input:checked) { background: #e6f6f4; }
+  [data-theme="3"] .piece:has(input:checked) { background: #ececec; }
+  .piece:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .piece .k { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12.5px; color: var(--accent-ink); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .piece .k span:last-child { text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--ink2); }
+  .piece b { display: block; font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1.1; color: var(--ink); margin: 6px 0 6px; }
+  .piece span.d { display: block; font-size: 15px; color: var(--ink2); line-height: 1.45; }
+  .piece[hidden] { display: none; }
+  .est { position: sticky; top: 96px; padding: 30px; background: var(--dark-card); border: 0; color: var(--on-base2); --fg: var(--on-base); --fg2: var(--on-base2); box-shadow: 0 24px 50px -22px rgba(0,0,0,.55); }
+  .est h3 { font-size: 34px; margin-bottom: 18px; color: var(--on-base); }
+  .est label { display: flex; justify-content: space-between; align-items: baseline; font-size: 15px; margin-bottom: 8px; }
+  .est output { font-family: var(--serif); font-weight: 700; font-size: 30px; color: #fff; line-height: 1; }
+  input[type=range] { width: 100%; height: 28px; accent-color: var(--accent); cursor: pointer; }
+  .size { display: flex; justify-content: space-between; font-size: 14px; margin: 4px 0 20px; gap: 10px; }
+  .size b { color: #fff; font-weight: 700; }
+  .stack-bar { display: flex; height: 14px; border-radius: 8px; overflow: hidden; gap: 2px; background: rgba(255,255,255,.12); margin: 6px 0 10px; }
+  .stack-bar i { display: block; height: 100%; width: 0; transition: width .5s ease; background: var(--accent); }
+  .stack-bar i:nth-child(2) { opacity: .66; }
+  .stack-bar i:nth-child(3) { opacity: .38; }
+  .brk { display: flex; justify-content: space-between; font-size: 13px; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .brk b { color: #fff; }
+  .price { border-top: 1px solid rgba(255,255,255,.22); padding-top: 16px; margin-top: 6px; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+  .price .l { font-size: 14px; }
+  .price strong { font-family: var(--serif); font-weight: 700; font-size: 56px; line-height: .95; color: var(--accent); }
+  [data-theme="3"] .price strong { color: #fff; }
+  .est .msg { font-size: 14px; min-height: 22px; margin: 10px 0 18px; }
+  .est .btn { width: 100%; }
+  .est .note { font-size: 13.5px; margin-top: 14px; color: var(--on-base2); }
+
+  /* Pasos */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .steps .card { padding: 34px; }
+  .steps h3 { font-size: 46px; line-height: 1; margin: 22px 0 14px; }
+
+  /* Diferencias */
+  .diff { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .diff .card { padding: 28px; }
+  .diff h3 { font-size: 30px; line-height: 1.05; margin-bottom: 10px; }
+  .diff .n { font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--accent-ink); display: block; margin-bottom: 22px; }
+
+  /* ¿Te suena? */
+  .fam { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .fam article { background: var(--surface); border: 1px solid var(--surface-line); border-radius: 16px; padding: 24px; transition: transform .25s, background-color .25s; }
+  .fam article:hover { transform: translateY(-4px); background: rgba(255,255,255,.14); }
+  .fam .tag { margin-bottom: 16px; }
+  .fam p { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.1; color: var(--fg); }
+
+  /* Preguntas */
+  .faq { max-width: 860px; }
+  .faq details { border-top: 1.5px solid var(--line-p); }
+  .faq details:last-child { border-bottom: 1.5px solid var(--line-p); }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-family: var(--serif); font-weight: 700; font-size: 29px; line-height: 1.1; color: var(--ink); min-height: 48px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: var(--sans); font-weight: 400; color: var(--accent-ink); font-size: 32px; transition: transform .25s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { padding: 0 0 24px; max-width: 700px; font-size: 18px; color: var(--ink2); }
+
+  /* Contacto / pie */
+  .phone { margin-top: 20px; font-size: 16px; }
+  .band-deep h2 em { font-style: normal; color: var(--accent); }
+  [data-theme="3"] .band-deep h2 em { color: #fff; }
+  footer { background: var(--deeper); color: var(--on-base2); padding: 8px 0 56px; font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 28px; border-top: 1px solid rgba(255,255,255,.2); padding-top: 40px; }
+  footer p + p { margin-top: 6px; }
+  .float { position: fixed; right: 20px; bottom: 20px; z-index: 40; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .3s, transform .3s; box-shadow: 0 10px 30px -8px rgba(0,0,0,.5); }
+  .float.on { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* Selector de tema (solo con ?probar) */
+  #probar { position: fixed; left: 12px; bottom: 12px; z-index: 95; background: #111; color: #fff; border-radius: 12px; padding: 10px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 13px; max-width: 360px; }
+  #probar button { background: #333; color: #fff; border: 1.5px solid #555; border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+  #probar button[aria-pressed="true"] { background: #fff; color: #111; }
+
+  /* Revelado */
+  .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 1000px) {
+    :root { --section: 72px; }
+    .hero .wrap, .cat-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .est { position: static; }
+    .steps { grid-template-columns: minmax(0, 1fr); }
+    .diff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fam { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    nav .links { display: none; }
+    .facts { grid-template-columns: repeat(2, auto); }
   }
-  .band .card { background: var(--canvas); }
-  .card .num { font-family: var(--font-head); font-size: 13px; color: var(--brass); margin-bottom: 40px; display: block; }
-  .card h3 { font-size: 32px; line-height: 1.19; letter-spacing: -0.64px; margin-bottom: 12px; }
-  .card p { color: var(--steel); }
-
-  /* Pricing */
-  .price-card { background: var(--ivory); border-radius: 6px 0 0 0; padding: 40px 40px 40px 60px; }
-  table { width: 100%; border-collapse: collapse; margin: 24px 0; }
-  th, td { text-align: left; padding: 16px 0; border-bottom: 1px solid #d9d3c7; }
-  th { font-family: var(--font-head); font-weight: 400; font-size: 13px; color: var(--brass); letter-spacing: -0.02em; }
-  td.amt { font-family: var(--font-head); font-size: 32px; letter-spacing: -0.64px; line-height: 1.1; }
-  .note { font-size: 14px; color: var(--steel); }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-
-  /* Principles */
-  ul.clean { list-style: none; margin: 0; padding: 0; }
-  ul.clean li { padding: 20px 0; border-bottom: 1px solid var(--mist); font-size: 18px; line-height: 1.35; }
-  ul.clean li:first-child { border-top: 1px solid var(--mist); }
-  ul.clean li b { font-family: var(--font-head); font-weight: 400; letter-spacing: -0.02em; }
-
-  /* Contact + footer */
-  .contact { background: var(--graphite); color: #fff; }
-  .contact .sub { color: #d6d6d6; }
-  .contact .btn.primary { background: #fff; color: var(--graphite); border-color: #fff; }
-  footer { padding: 32px 0; font-size: 13px; color: var(--steel); }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-
-  @media (max-width: 900px) {
-    :root { --section: 56px; }
-    .hero .wrap, .two { grid-template-columns: 1fr; gap: 40px; }
-    .grid3 { grid-template-columns: 1fr; }
-    h1 { font-size: 44px; letter-spacing: -0.88px; }
-    h2 { font-size: 32px; letter-spacing: -0.64px; }
-    nav.pill { display: none; }
-    .card, .price-card { padding: 28px; }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .lockup { --s: .14; }
+    .lockup.big { --s: .22; }
+    .pieces, .diff, .fam { grid-template-columns: minmax(0, 1fr); }
+    .lead, .sub { font-size: 18px; }
+    .card, .steps .card, .est, .viz { padding: 22px 20px; }
+    .piece { padding-left: 54px; }
+    .faq summary { font-size: 24px; }
+    .btn { width: 100%; }
+    header .btn { width: auto; }
+    .float.btn { width: auto; right: 14px; bottom: 14px; padding: 10px 18px; min-height: 44px; font-size: 14px; }
+    footer .wrap { flex-direction: column; align-items: flex-start; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .blob { transform: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .draw.go, .grow .bar, .btn, .piece, .fam article, h1 a, .stack-bar i { animation: none; transition: none; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="Certeza Operativa, inicio"><img src="assets/logo-original.webp" alt=""></a>
-    <nav class="pill" aria-label="Principal">
-      <a href="#que-hacemos">Qué hacemos</a>
-      <a href="#como-trabajamos">Cómo trabajamos</a>
-      <a href="#precios">Precios</a>
-      <a href="#principios">Principios</a>
-    </nav>
-    <a class="btn primary" href="#contacto">Contacto</a>
+<!-- Quita el fondo oscuro del logo (queda transparente) y deja el trazo claro -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="logo-alpha" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="0 0 0 0 0.93  0 0 0 0 0.94  0 0 0 0 0.95  1.3 1.3 1.3 0 -0.5"/>
+  </filter>
+</svg>
+
+<div class="progress" id="bar" aria-hidden="true"></div>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="tip" role="status" aria-live="polite"></div>
+
+<div class="top band-base">
+  <div class="atmos" aria-hidden="true">
+    <div class="blob b1" data-speed="0.12"></div>
+    <div class="blob b2" data-speed="-0.08"></div>
+    <div class="blob b3" data-speed="0.2"></div>
   </div>
-</header>
 
-<main id="inicio">
-  <section class="hero">
+  <header id="hdr">
     <div class="wrap">
+      <a class="lockup" href="#inicio" aria-label="Certeza Operativa, inicio">
+        <span class="mk"><img src="assets/logo-original.webp" alt="" width="2000" height="917" fetchpriority="high"></span>
+        <span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span>
+      </a>
+      <nav aria-label="Principal">
+        <span class="links">
+          <a href="#catalogo">Catálogo y precio</a>
+          <a href="#como-trabajamos">Cómo trabajamos</a>
+          <a href="#preguntas">Preguntas</a>
+        </span>
+        <a class="btn primary small" href="#contacto">Triaje gratis</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="wrap" id="contenido">
       <div>
-        <p class="eyebrow">Consultoría para micro y pequeños negocios · Nayarit</p>
-        <h1>Orden.<br>Visibilidad.<br>Control.</h1>
-        <p class="lead">Ayudamos a que el dueño sepa qué entra, qué sale y qué pasa en su negocio, con hojas y rutinas que su equipo usa solo. Todo problema es una <span class="u">oportunidad</span>.</p>
-        <div class="actions">
-          <a class="btn primary" href="#contacto">Pide tu Triaje gratis</a>
-          <a class="btn ghost" href="#como-trabajamos">Cómo trabajamos</a>
+        <p class="eyebrow reveal">Consultoría para micro y pequeños negocios · Nayarit</p>
+        <h1>
+          <a href="#catalogo" data-filter="orden" class="reveal" style="--d:.05s">Orden.</a>
+          <a href="#catalogo" data-filter="visibilidad" class="reveal" style="--d:.15s">Visibilidad.</a>
+          <a href="#catalogo" data-filter="control" class="reveal" style="--d:.25s">Control.</a>
+        </h1>
+        <p class="lead reveal" style="--d:.3s">Ayudamos a que el dueño sepa qué entra, qué sale y qué pasa en su negocio, con registros sencillos que su equipo usa solo. Todo problema es una <em>oportunidad</em>.</p>
+        <div class="actions reveal" style="--d:.4s">
+          <a class="btn primary" href="#catalogo">Arma y estima tu trabajo</a>
+          <a class="btn ghost" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Pide tu Triaje gratis</a>
         </div>
+        <dl class="facts reveal" style="--d:.5s">
+          <div><dt>Triaje y Ficha</dt><dd>$0</dd></div>
+          <div><dt>Piezas para armar tu trabajo</dt><dd data-to="13">13</dd></div>
+          <div><dt>Horas mínimas por Ticket</dt><dd data-to="5">5</dd></div>
+          <div><dt>Ficha, el mismo día</dt><dd data-to="1" data-suffix=" día">1 día</dd></div>
+        </dl>
       </div>
-      <div class="card-data" role="img" aria-label="Ilustración: dos líneas que se acercan, de un registro desordenado a uno cuadrado">
-        <p class="head">Del registro suelto al registro que cuadra</p>
-        <small>Ilustración. No son datos de ningún cliente.</small>
-        <svg viewBox="0 0 400 220" aria-hidden="true">
-          <g stroke="#e8e8e8" stroke-width="1">
-            <line x1="20" y1="40" x2="380" y2="40"/><line x1="20" y1="90" x2="380" y2="90"/>
-            <line x1="20" y1="140" x2="380" y2="140"/><line x1="20" y1="190" x2="380" y2="190"/>
-          </g>
-          <polyline fill="none" stroke="#816729" stroke-width="2" points="20,170 80,70 140,150 200,60 260,130 320,90 380,120"/>
-          <polyline fill="none" stroke="#ff682c" stroke-width="2" points="20,170 80,150 140,130 200,110 260,95 320,80 380,70"/>
-        </svg>
-        <div class="legend">
-          <span><i style="background:#816729"></i>Sin registro</span>
-          <span><i style="background:#ff682c"></i>Con registro</span>
+
+      <div class="card viz reveal" style="--d:.2s" id="viz">
+        <div class="tabs" role="tablist" aria-label="Qué vas a ver con CERTEZA">
+          <button role="tab" aria-selected="true" data-chart="orden">Orden</button>
+          <button role="tab" aria-selected="false" data-chart="visibilidad">Visibilidad</button>
+          <button role="tab" aria-selected="false" data-chart="control">Control</button>
         </div>
+        <h3 id="v-title"></h3>
+        <p class="cap" id="v-cap"></p>
+        <div class="chartbox" id="v-chart" role="img"></div>
+        <div class="legend" id="v-legend"></div>
+        <details><summary>Ver como tabla</summary><div id="v-table"></div></details>
       </div>
     </div>
   </section>
+</div>
 
-  <section id="que-hacemos" class="band">
+<main>
+  <section class="band-paper" id="catalogo" aria-labelledby="t-cat">
     <div class="wrap">
-      <div class="head-block">
-        <h2>Qué hacemos</h2>
-        <p class="sub">Instalamos y medimos. No operamos tu negocio: lo que dejamos instalado se queda contigo y lo usa tu equipo.</p>
+      <div class="head-block reveal">
+        <p class="eyebrow">Catálogo y precio</p>
+        <h2 id="t-cat">Elige lo que necesitas. Mira cuánto cuesta.</h2>
+        <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
       </div>
-      <div class="grid3">
-        <article class="card">
-          <span class="num">01</span>
-          <h3>Orden</h3>
-          <p>Un solo lugar para cobros, gastos, pedidos o inventario, con reglas simples de quién anota qué y cuándo.</p>
-        </article>
-        <article class="card">
-          <span class="num">02</span>
-          <h3>Visibilidad</h3>
-          <p>Cifras claras y al día para que decidas con evidencia y no de memoria.</p>
-        </article>
-        <article class="card">
-          <span class="num">03</span>
-          <h3>Control</h3>
-          <p>Rutinas de cierre y revisión que detectan a tiempo lo que no cuadra.</p>
-        </article>
+      <div class="cat-grid">
+        <div>
+          <div class="filters" role="group" aria-label="Filtrar por pilar">
+            <button type="button" data-f="todo" aria-pressed="true">Todo</button>
+            <button type="button" data-f="orden" aria-pressed="false">Orden</button>
+            <button type="button" data-f="visibilidad" aria-pressed="false">Visibilidad</button>
+            <button type="button" data-f="control" aria-pressed="false">Control</button>
+          </div>
+          <div class="pieces" id="pieces">
+            <label class="piece reveal" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label>
+            <label class="piece reveal" data-p="orden" data-h="2" data-a="1" data-n="Cotizador"><input type="checkbox"><span class="k"><span>Orden</span><span>2 h</span></span><b>Cotizador</b><span class="d">Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.</span></label>
+            <label class="piece reveal" data-p="orden" data-h="4" data-a="1" data-n="Procedimiento escrito"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Procedimiento escrito</b><span class="d">Mostrar cómo hacer la tarea sin depender de la memoria.</span></label>
+            <label class="piece reveal" data-p="orden" data-h="3" data-n="Quién hace qué"><input type="checkbox"><span class="k"><span>Orden</span><span>3 h</span></span><b>Quién hace qué</b><span class="d">Que cada pendiente tenga una persona responsable.</span></label>
+            <label class="piece reveal" data-p="orden" data-h="4" data-n="Expediente para el contador"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Expediente para el contador</b><span class="d">Tener juntos los documentos que necesita tu contador.</span></label>
+            <label class="piece reveal" data-p="visibilidad" data-h="2" data-a="1" data-n="Control de pedidos y cobros"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>2 h</span></span><b>Control de pedidos y cobros</b><span class="d">Saber qué se pidió, qué se entregó y cuánto falta cobrar.</span></label>
+            <label class="piece reveal" data-p="visibilidad" data-h="4" data-a="1" data-n="Registro diario desde el celular"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Registro diario desde el celular</b><span class="d">Guardar el dato antes de olvidarlo.</span></label>
+            <label class="piece reveal" data-p="visibilidad" data-h="4" data-a="1" data-n="Flujo a 30, 60 y 90 días"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Flujo a 30, 60 y 90 días</b><span class="d">Ver si el dinero alcanzaría en las próximas fechas.</span></label>
+            <label class="piece reveal" data-p="visibilidad" data-h="5" data-a="1" data-n="Tablero semanal"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Tablero semanal</b><span class="d">Ver lo más urgente sin leer todos los registros.</span></label>
+            <label class="piece reveal" data-p="visibilidad" data-h="5" data-a="1" data-n="Inventario y reorden"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Inventario y reorden</b><span class="d">Tener existencias visibles y pedir antes de quedarte sin producto.</span></label>
+            <label class="piece reveal" data-p="control" data-h="2" data-a="1" data-n="Agenda de cobranza"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Agenda de cobranza</b><span class="d">Saber a quién cobrar, cuánto y cuándo.</span></label>
+            <label class="piece reveal" data-p="control" data-h="4" data-n="Lo cobrado contra lo depositado"><input type="checkbox"><span class="k"><span>Control</span><span>4 h</span></span><b>Lo cobrado contra lo depositado</b><span class="d">Comprobar que lo que cobraste coincide con lo que entró al banco.</span></label>
+            <label class="piece reveal" data-p="control" data-h="2" data-a="1" data-n="Arqueo y cierre de caja"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Arqueo y cierre de caja</b><span class="d">Cerrar el día con la caja contada y comparada.</span></label>
+          </div>
+          <p style="margin-top:18px;font-size:14px">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
+        </div>
+
+        <aside class="card est" aria-labelledby="t-est">
+          <h3 id="t-est">Tu estimado</h3>
+          <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">$80,000</output></label>
+          <input type="range" id="ventas" min="20000" max="400000" step="5000" value="80000">
+          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 por hora</b></span></p>
+          <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
+          <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
+          <div class="price"><span class="l">Estimado<br><span id="hrs">0 h</span></span><strong id="precio">$0</strong></div>
+          <p class="msg" id="msg">Elige al menos una pieza.</p>
+          <a class="btn primary" id="wa" href="https://wa.me/523114469363">Enviar mi selección por WhatsApp</a>
+          <p class="note">Precios en pesos mexicanos, sin IVA. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
+        </aside>
       </div>
     </div>
   </section>
 
-  <section id="como-trabajamos">
+  <section class="band-base" id="como-trabajamos" aria-labelledby="t-como">
     <div class="wrap">
-      <div class="head-block">
-        <h2>Cómo trabajamos</h2>
-        <p class="sub">Tres pasos, cada uno con un entregable que puedes usar desde el primer día.</p>
+      <div class="head-block reveal">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2 id="t-como">Tres pasos. Cada uno deja algo que puedes usar.</h2>
       </div>
-      <div class="grid3">
-        <article class="card">
-          <span class="num">Paso 1 · Gratis</span>
-          <h3>Triaje</h3>
-          <p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p>
-        </article>
-        <article class="card">
-          <span class="num">Paso 2 · Mismo día</span>
-          <h3>Ficha</h3>
-          <p>Un PDF con el problema, dos o tres hechos, una acción gratuita que puedes hacer hoy y el siguiente paso con precio y fecha.</p>
-        </article>
-        <article class="card">
-          <span class="num">Paso 3</span>
-          <h3>Ticket</h3>
-          <p>Un trabajo con precio cerrado. Lo instalamos, tu equipo completa un ciclo solo y se da por entregado cuando lo usan sin nosotros.</p>
-        </article>
+      <div class="steps">
+        <article class="card reveal"><span class="tag">Paso 1 · Sin costo</span><h3>Triaje</h3><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></article>
+        <article class="card reveal" style="--d:.1s"><span class="tag">Paso 2 · El mismo día</span><h3>Ficha</h3><p>Un PDF con el problema, dos o tres hechos, una acción gratuita que puedes hacer hoy y el siguiente paso con precio y fecha.</p></article>
+        <article class="card reveal" style="--d:.2s"><span class="tag">Paso 3</span><h3>Ticket</h3><p>Un trabajo con precio cerrado. Lo instalamos, tu equipo completa un ciclo solo y se da por entregado cuando lo usan sin nosotros.</p></article>
       </div>
     </div>
   </section>
 
-  <section id="precios" class="band">
-    <div class="wrap two">
-      <div>
-        <h2>Precios del Ticket</h2>
-        <p class="sub">El precio se cierra antes de empezar: horas del trabajo por la tarifa según las ventas mensuales de tu negocio. Lo que pagas lo ves en pesos y fechas, antes de firmar.</p>
-      </div>
-      <div class="price-card">
-        <table>
-          <thead><tr><th scope="col">Tamaño</th><th scope="col">Ventas al mes</th><th scope="col">Tarifa por hora</th></tr></thead>
-          <tbody>
-            <tr><td>Micro</td><td>Menos de $100,000</td><td class="amt">$700</td></tr>
-            <tr><td>Pequeña</td><td>$100,000 a $250,000</td><td class="amt">$700</td></tr>
-            <tr><td>Mediana</td><td>Más de $250,000</td><td class="amt">$1,500</td></tr>
-          </tbody>
-        </table>
-        <p class="note">Precios en pesos mexicanos, sin IVA. Cada Ticket tiene un mínimo de 5 horas. Se paga una parte al firmar y el saldo al aceptar la vista previa. El Triaje y la Ficha no tienen costo.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="principios">
-    <div class="wrap two">
-      <div>
-        <h2>Cómo nos comprometemos</h2>
-        <p class="sub">Reglas que no se negocian.</p>
-      </div>
-      <ul class="clean">
-        <li><b>Evidencia antes que opinión.</b> Lo que tú nos cuentas lo marcamos como declarado, y lo que medimos, como medido.</li>
-        <li><b>Instalamos y medimos.</b> No operamos tu negocio ni nos quedamos con tus procesos.</li>
-        <li><b>Se entrega cuando lo usas solo.</b> Un trabajo no está terminado hasta que tu equipo lo hace sin ayuda.</li>
-        <li><b>Salida visible.</b> Si decides parar, pagas solo lo trabajado.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="contacto" class="contact">
+  <section class="band-paper" id="diferente" aria-labelledby="t-dif">
     <div class="wrap">
-      <h2>Agenda tu Triaje gratis</h2>
-      <p class="sub" style="margin-bottom:32px">Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
+      <div class="head-block reveal">
+        <p class="eyebrow">Por qué Certeza Operativa</p>
+        <h2 id="t-dif">Claro desde el primer día.</h2>
+      </div>
+      <div class="diff">
+        <article class="card reveal"><span class="n">01</span><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
+        <article class="card reveal" style="--d:.08s"><span class="n">02</span><h3>Empiezas gratis</h3><p>El Triaje y la Ficha no cuestan. Decides con información, no con una promesa.</p></article>
+        <article class="card reveal" style="--d:.16s"><span class="n">03</span><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos resultados que no podemos medir.</p></article>
+        <article class="card reveal" style="--d:.24s"><span class="n">04</span><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-deep" id="te-suena" aria-labelledby="t-suena">
+    <div class="wrap">
+      <div class="head-block reveal">
+        <p class="eyebrow">¿Te suena?</p>
+        <h2 id="t-suena">Un problema que reconoces. Un registro que lo ordena.</h2>
+        <p class="sub">Trabajamos con negocios de muchos giros. Estas son preguntas que escuchamos seguido.</p>
+      </div>
+      <div class="fam">
+        <article class="reveal"><span class="tag">Comercio con inventario</span><p>¿Qué tienes y qué necesitas comprar?</p></article>
+        <article class="reveal" style="--d:.05s"><span class="tag">Preparación y entrega inmediata</span><p>¿Cuánto cobras y cuánto gastas?</p></article>
+        <article class="reveal" style="--d:.1s"><span class="tag">Servicios por cita o turno</span><p>¿Se te cruzan las citas?</p></article>
+        <article class="reveal"><span class="tag">Diagnóstico y reparación</span><p>¿Qué reparación sigue y qué la detiene?</p></article>
+        <article class="reveal" style="--d:.05s"><span class="tag">Producción por encargo</span><p>¿Qué pedido toca entregar primero?</p></article>
+        <article class="reveal" style="--d:.1s"><span class="tag">Producción por lotes</span><p>¿Cuánto material se va en cada lote?</p></article>
+        <article class="reveal"><span class="tag">Trabajo por proyecto</span><p>¿Quién hace qué y para cuándo?</p></article>
+        <article class="reveal" style="--d:.05s"><span class="tag">Servicios recurrentes</span><p>¿Qué servicio toca y qué falta cobrar?</p></article>
+        <article class="reveal" style="--d:.1s"><span class="tag">Renta y uso temporal</span><p>¿Qué está rentado y cuándo vuelve?</p></article>
+        <article class="reveal"><span class="tag">Transporte y distribución</span><p>¿Qué falta entregar y a qué hora?</p></article>
+        <article class="reveal" style="--d:.05s"><span class="tag">Intermediación</span><p>¿Qué operación sigue y qué falta cobrar?</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-paper" id="preguntas" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div class="head-block reveal">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 id="t-faq">Antes de escribirnos.</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>¿Cuánto cuesta el Triaje?</summary><p>Nada. El Triaje y la Ficha no tienen costo. En un negocio micro dura como máximo 90 minutos; en uno pequeño, 2 horas, y en uno mediano, 3.</p></details>
+        <details><summary>¿Cuánto pagaré y cuándo?</summary><p>Antes de empezar recibes el precio cerrado, en pesos y con fechas. Se paga una parte al firmar y el saldo cuando aceptas la vista previa. El pago es por transferencia, con recibo.</p></details>
+        <details><summary>¿Tengo que cambiar todo lo que uso?</summary><p>No. Ordenamos lo que ya haces, en papel o en el celular, con un formato que tu equipo pueda usar. No operamos tu negocio ni nos quedamos con tu información.</p></details>
+        <details><summary>¿Me garantizan resultados?</summary><p>No prometemos lo que no podemos medir. Cada trabajo tiene un indicador que observamos contigo; se mide, no se garantiza.</p></details>
+        <details><summary>¿Qué pasa si decido parar?</summary><p>Pagas solo lo trabajado. La salida está escrita y a la vista desde el principio.</p></details>
+        <details><summary>¿Cómo sé cuándo termina un trabajo?</summary><p>Cuando tu equipo completa un ciclo sin nosotros. Un trabajo no está terminado hasta que lo usan solos.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-deep" id="contacto" aria-labelledby="t-contacto">
+    <div class="wrap">
+      <p class="eyebrow">Contacto</p>
+      <h2 id="t-contacto">Agenda tu <em>Triaje gratis</em>.</h2>
+      <p class="sub" style="margin-bottom:34px;max-width:560px">Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
       <div class="actions">
         <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Escríbenos por WhatsApp</a>
-        <a class="btn ghost" style="color:#fff;border-color:#fff" href="tel:+523114469363">+52 311 446 9363</a>
+        <a class="btn ghost" href="tel:+523114469363">Llamar al +52 311 446 9363</a>
+        <a class="btn ghost" id="share" href="#">Compartir esta página</a>
       </div>
     </div>
   </section>
@@ -296,10 +523,179 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Certeza Operativa · Nayarit, México</span>
-    <span>Aviso de privacidad: en preparación. Este sitio no recoge datos.</span>
+    <a class="lockup big" href="#inicio" aria-label="Certeza Operativa, volver al inicio">
+      <span class="mk"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span>
+      <span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span>
+      <span class="tg"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span>
+    </a>
+    <div>
+      <p>© 2026 Certeza Operativa · Nayarit, México</p>
+      <p>Aviso de privacidad: en preparación. Este sitio no recoge datos.</p>
+      <p>Tipografías Crimson Pro y Outfit, licencia SIL OFL.</p>
+    </div>
   </div>
 </footer>
 
+<a class="btn primary float" id="float" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Triaje gratis por WhatsApp</a>
+
+<script>
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var fmt = function (n) { return '$' + Math.round(n).toLocaleString('es-MX'); };
+
+  /* --- Al bajar: progreso, encabezado, botón flotante, parallax --- */
+  var bar = $('#bar'), hdr = $('#hdr'), fl = $('#float'), blobs = $$('.blob'), ticking = false;
+  function onScroll() {
+    var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+    hdr.classList.toggle('stuck', y > 20);
+    fl.classList.toggle('on', y > 700);
+    if (!reduce) blobs.forEach(function (b) { b.style.transform = 'translate3d(0,' + (y * parseFloat(b.dataset.speed)) + 'px,0)'; });
+    ticking = false;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* --- Revelado de elementos --- */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); setTimeout(function () { t.classList.remove('reveal', 'in'); }, 1500); } });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' }) : null;
+  $$('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  /* --- Contadores --- */
+  function count(el) {
+    var to = parseFloat(el.dataset.to), suf = el.dataset.suffix || '', t0 = null;
+    if (reduce) { el.textContent = to + suf; return; }
+    (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 900); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(step); })(performance.now());
+  }
+  if (io) { var co = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { count(e.target); co.unobserve(e.target); } }); }, { threshold: .6 }); $$('[data-to]').forEach(function (el) { el.textContent = '0' + (el.dataset.suffix || ''); co.observe(el); }); }
+
+  /* --- Navegación activa --- */
+  var links = $$('nav .links a');
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['catalogo', 'como-trabajamos', 'preguntas'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
+  }
+
+  /* --- Gráficas ilustrativas (SVG propio, sin librerías) --- */
+  var tip = $('#tip');
+  function showTip(el, x, y) { tip.textContent = el.getAttribute('data-tip'); tip.classList.add('on'); var w = tip.offsetWidth; tip.style.left = Math.max(8, Math.min(innerWidth - w - 8, x - w / 2)) + 'px'; tip.style.top = Math.max(8, y - tip.offsetHeight - 14) + 'px'; }
+  function hideTip() { tip.classList.remove('on'); }
+  var holder = $('#v-chart');
+  holder.addEventListener('pointerover', function (e) { var t = e.target.closest('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); });
+  holder.addEventListener('pointermove', function (e) { var t = e.target.closest('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); else hideTip(); });
+  holder.addEventListener('pointerleave', hideTip);
+  holder.addEventListener('focusin', function (e) { var t = e.target.closest('[data-tip]'); if (t) { var r = t.getBoundingClientRect(); showTip(t, r.left + r.width / 2, r.top); } });
+  holder.addEventListener('focusout', hideTip);
+
+  var CH = {
+    orden: { title: 'Pendientes sin responsable', cap: 'Ejemplo ilustrativo: cada semana, menos tareas sin dueño. No son datos de ningún cliente.', type: 'line', labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'], a: [9, 7, 6, 3, 1, 0], max: 10, unit: 'pendientes', name: 'Pendientes sin responsable', end: 'ninguno sin dueño' },
+    visibilidad: { title: 'Dinero previsto a 30, 60 y 90 días', cap: 'Ejemplo ilustrativo, en miles de pesos. Ves a tiempo cuándo podría faltar dinero.', type: 'bars', labels: ['Hoy', '30 días', '60 días', '90 días'], a: [18, 22, 15, 9], max: 25, min: 12, name: 'Saldo previsto' },
+    control: { title: 'Lo cobrado contra lo depositado', cap: 'Ejemplo ilustrativo, en miles de pesos por semana. La diferencia salta a la vista.', type: 'pair', labels: ['S1', 'S2', 'S3', 'S4'], a: [12, 14, 13, 15], b: [12, 14, 10, 15], max: 16, an: 'Cobrado', bn: 'Depositado' }
+  };
+  var cur = 'orden', M = { l: 38, r: 14, t: 18, b: 34 };
+  function grid(W, H, max, step) {
+    var s = '', iH = H - M.t - M.b;
+    for (var v = 0; v <= max; v += step) { var y = M.t + iH - v / max * iH; s += '<line class="grid" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (M.l - 8) + '" y="' + (y + 4) + '" text-anchor="end">' + v + '</text>'; }
+    return s;
+  }
+  function draw() {
+    var c = CH[cur], W = Math.max(280, holder.clientWidth - 16), H = Math.round(Math.min(300, W * .62)), iW = W - M.l - M.r, iH = H - M.t - M.b, n = c.labels.length, s = '', i;
+    var X = function (k) { return M.l + (k + .5) * iW / n; }, Y = function (v) { return M.t + iH - v / c.max * iH; };
+    s += grid(W, H, c.max, c.max <= 10 ? 5 : (c.max <= 16 ? 4 : 5));
+    for (i = 0; i < n; i++) s += '<text x="' + X(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + c.labels[i] + '</text>';
+    if (c.type === 'line') {
+      var pts = c.a.map(function (v, k) { return X(k) + ',' + Y(v); });
+      s += '<polyline class="draw ca-s" pathLength="1" points="' + pts.join(' ') + '" fill="none" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>';
+      c.a.forEach(function (v, k) { s += '<circle class="ca ring" data-tip="' + c.labels[k] + ': ' + v + ' ' + c.unit + '" tabindex="0" cx="' + X(k) + '" cy="' + Y(v) + '" r="6.5"/>'; });
+      s += '<text class="t-strong" x="' + (W - M.r) + '" y="' + (M.t + 16) + '" text-anchor="end">Meta: ' + c.end + '</text>';
+    } else if (c.type === 'bars') {
+      var bw = Math.min(54, iW / n * .56);
+      s += '<line class="axis" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + Y(c.min) + '" y2="' + Y(c.min) + '" stroke-dasharray="6 5"/><text x="' + (W - M.r) + '" y="' + (Y(c.min) - 7) + '" text-anchor="end">Lo mínimo que necesitas: $' + c.min + ' mil</text>';
+      c.a.forEach(function (v, k) {
+        var low = v < c.min, h = iH - (Y(v) - M.t);
+        s += '<rect class="bar ' + (low ? 'chi' : 'ca') + '" data-tip="' + c.labels[k] + ': $' + v + ' mil' + (low ? ' (por debajo del mínimo)' : '') + '" tabindex="0" x="' + (X(k) - bw / 2) + '" y="' + Y(v) + '" width="' + bw + '" height="' + h + '" rx="5"/><text class="t-strong" x="' + X(k) + '" y="' + (Y(v) - 8) + '" text-anchor="middle">$' + v + ' mil</text>';
+      });
+      s += '<text class="t-strong" x="' + X(3) + '" y="' + (Y(c.a[3]) + 22) + '" text-anchor="middle">▲ Aquí faltaría</text>';
+    } else {
+      var gw = iW / n, bw2 = Math.min(30, gw * .3);
+      c.a.forEach(function (v, k) {
+        var d = c.b[k], gap = v !== d;
+        s += '<rect class="bar ca" data-tip="' + c.labels[k] + ' · ' + c.an + ': $' + v + ' mil" tabindex="0" x="' + (X(k) - bw2 - 2) + '" y="' + Y(v) + '" width="' + bw2 + '" height="' + (iH - (Y(v) - M.t)) + '" rx="4"/>';
+        s += '<rect class="bar cb" data-tip="' + c.labels[k] + ' · ' + c.bn + ': $' + d + ' mil' + (gap ? ' (faltan $' + (v - d) + ' mil por explicar)' : '') + '" tabindex="0" x="' + (X(k) + 2) + '" y="' + Y(d) + '" width="' + bw2 + '" height="' + (iH - (Y(d) - M.t)) + '" rx="4"/>';
+        if (gap) s += '<text class="t-strong" x="' + X(k) + '" y="' + (Y(v) - 10) + '" text-anchor="middle">▲ No cuadra: $' + (v - d) + ' mil</text>';
+      });
+    }
+    holder.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" aria-hidden="true">' + s + '</svg>';
+    holder.setAttribute('aria-label', c.title + '. ' + c.cap);
+    $('#v-title').textContent = c.title; $('#v-cap').textContent = c.cap;
+    $('#v-legend').innerHTML = c.type === 'pair' ? '<span><i class="a"></i>' + c.an + '</span><span><i class="b"></i>' + c.bn + '</span>' : (c.type === 'bars' ? '<span><i class="a"></i>' + c.name + ' (miles de pesos)</span><span><i class="h"></i>Por debajo del mínimo</span>' : '<span><i class="a"></i>' + c.name + '</span>');
+    var rows = c.labels.map(function (l, k) { return '<tr><td>' + l + '</td><td>' + c.a[k] + '</td>' + (c.b ? '<td>' + c.b[k] + '</td>' : '') + '</tr>'; }).join('');
+    $('#v-table').innerHTML = '<table><thead><tr><th>Periodo</th><th>' + (c.an || c.name) + '</th>' + (c.b ? '<th>' + c.bn + '</th>' : '') + '</tr></thead><tbody>' + rows + '</tbody></table>';
+    var svg = $('svg', holder); holder.classList.remove('grow'); if (!reduce) { var ln = $('.draw', svg); requestAnimationFrame(function () { requestAnimationFrame(function () { if (ln) ln.classList.add('go'); holder.classList.add('grow'); }); }); } else { var l2 = $('.draw', svg); if (l2) l2.classList.add('go'); }
+  }
+  $$('#viz [role=tab]').forEach(function (b) {
+    b.addEventListener('click', function () { cur = b.dataset.chart; $$('#viz [role=tab]').forEach(function (o) { o.setAttribute('aria-selected', o === b); }); draw(); });
+  });
+  var rz;
+  draw();
+  addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(draw, 150); });
+
+  /* --- Catálogo + estimador --- */
+  var FACT = { micro: 1, pequena: 1.42, mediana: 2.5 }, RATE = { micro: 700, pequena: 700, mediana: 1500 }, NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' };
+  var pieces = $$('.piece'), rng = $('#ventas'), FL0 = { href: fl.href, text: fl.textContent };
+  function size(v) { return v < 100000 ? 'micro' : (v <= 250000 ? 'pequena' : 'mediana'); }
+  function range(v) { return v < 100000 ? 'menos de $100,000' : (v <= 250000 ? '$100,000 a $250,000' : 'más de $250,000'); }
+  function calc() {
+    var v = +rng.value, sz = size(v), f = FACT[sz], r = RATE[sz], per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
+    $('#ventasOut').textContent = fmt(v);
+    $('#tam').textContent = NAME[sz]; $('#tar').textContent = fmt(r) + ' por hora';
+    pieces.forEach(function (p) { if ($('input', p).checked) { per[p.dataset.p] += +p.dataset.h * f; if (p.dataset.a) adopt = true; sel.push(p.dataset.n); } });
+    var base = per.orden + per.visibilidad + per.control, tot = Math.round((base + (adopt ? .5 : 0)) * 4) / 4, billed = Math.max(5, tot), n = sel.length;
+    var show = function (x) { return (Math.round(x * 4) / 4).toString().replace('.', ',') + ' h'; };
+    ['orden', 'visibilidad', 'control'].forEach(function (k, i) { $('#h' + (i + 1)).textContent = show(per[k]); $('#s' + (i + 1)).style.width = (base > 0 ? per[k] / base * 100 : 0) + '%'; });
+    $('#hrs').textContent = n ? show(billed) + (adopt ? ' (incluye 0,5 h de adopción)' : '') : '0 h';
+    $('#precio').textContent = n ? fmt(billed * r) : '$0';
+    $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (tot < 5 ? 'El mínimo por Ticket es de 5 h: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega tras el Triaje.');
+    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' (sin IVA, ' + show(billed) + ').' : 'Quiero agendar un Triaje gratis.');
+    var link = 'https://wa.me/523114469363?text=' + encodeURIComponent(txt);
+    $('#wa').href = link;
+    fl.href = n ? link : FL0.href;
+    fl.textContent = n ? 'Estimado ' + fmt(billed * r) + ' · Enviar por WhatsApp' : FL0.text;
+  }
+  rng.addEventListener('input', calc);
+  $$('input', $('#pieces')).forEach(function (i) { i.addEventListener('change', calc); });
+  calc();
+
+  function filter(f) {
+    $$('.filters button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.f === f); });
+    pieces.forEach(function (p) { p.hidden = !(f === 'todo' || p.dataset.p === f); });
+  }
+  $$('.filters button').forEach(function (b) { b.addEventListener('click', function () { filter(b.dataset.f); }); });
+  $$('[data-filter]').forEach(function (a) { a.addEventListener('click', function () { filter(a.dataset.filter); }); });
+
+  /* --- Compartir --- */
+  $('#share').addEventListener('click', function (e) {
+    e.preventDefault();
+    var url = location.href.split('#')[0].split('?')[0], text = 'Certeza Operativa: orden, visibilidad y control para tu negocio. Estima tu precio al instante.';
+    if (navigator.share) { navigator.share({ title: 'Certeza Operativa', text: text, url: url }).catch(function () {}); }
+    else { open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener'); }
+  });
+
+  /* --- Selector de tema (solo con ?probar, para elegir la combinación) --- */
+  if (/[?&]probar/.test(location.search)) {
+    var pb = document.createElement('div'); pb.id = 'probar';
+    pb.innerHTML = '<button type="button" data-t="1">1 · Grafito, marfil, ámbar</button><button type="button" data-t="2">2 · Marino y petróleo</button><button type="button" data-t="3">3 · Monocromo</button>';
+    document.body.appendChild(pb);
+    var setT = function (t) { document.documentElement.dataset.theme = t; $$('#probar button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.t === t); }); draw(); };
+    $$('#probar button').forEach(function (b) { b.addEventListener('click', function () { setT(b.dataset.t); }); });
+    setT(document.documentElement.dataset.theme || '1');
+  }
+})();
+</script>
 </body>
 </html>
