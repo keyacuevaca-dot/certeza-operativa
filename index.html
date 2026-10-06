@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Certeza Operativa · Orden, visibilidad y control para tu negocio</title>
-<meta name="description" content="Consultoría para micro y pequeños negocios de Nayarit. Elige las piezas que necesitas, estima tu precio al instante y empieza con un Triaje gratis.">
+<meta name="description" content="Consultoría para micro y pequeños negocios de Nayarit. Elige las piezas que necesitas, estima tu precio al instante y empieza con un Triaje.">
 <meta name="theme-color" content="#666666">
 <link rel="canonical" href="https://keyacuevaca-dot.github.io/certeza-operativa/">
 <link rel="icon" href="data:,">
@@ -13,12 +13,12 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:title" content="Certeza Operativa · Orden. Visibilidad. Control.">
-<meta property="og:description" content="Consultoría para micro y pequeños negocios de Nayarit. Estima tu precio al instante. Triaje gratis.">
+<meta property="og:description" content="Consultoría para micro y pequeños negocios de Nayarit. Estima tu precio al instante. Triaje.">
 <meta property="og:url" content="https://keyacuevaca-dot.github.io/certeza-operativa/">
 <meta property="og:image" content="https://keyacuevaca-dot.github.io/certeza-operativa/assets/logo-original.webp">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Certeza Operativa","description":"Consultoría para micro y pequeños negocios de Nayarit: orden, visibilidad y control.","url":"https://keyacuevaca-dot.github.io/certeza-operativa/","image":"https://keyacuevaca-dot.github.io/certeza-operativa/assets/logo-original.webp","telephone":"+523114469363","areaServed":{"@type":"AdministrativeArea","name":"Nayarit, México"}}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Certeza Operativa","description":"Consultoría para micro y pequeños negocios de Nayarit: orden, visibilidad y control.","url":"https://keyacuevaca-dot.github.io/certeza-operativa/","image":"https://keyacuevaca-dot.github.io/certeza-operativa/assets/logo-original.webp","telephone":"+523114469363","areaServed":{"@type":"AdministrativeArea","name":"Nayarit, México"},"sameAs":["https://www.instagram.com/certezaoperativa/","https://www.facebook.com/profile.php?id=61594375394266"]}
 </script>
 <script>
   document.documentElement.classList.add('js');
@@ -240,16 +240,58 @@
   .est .btn { width: 100%; }
   .est .note { font-size: 13.5px; margin-top: 14px; color: var(--on-base2); }
 
-  /* Pasos */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .steps .card { padding: 34px; }
-  .steps h3 { font-size: 46px; line-height: 1; margin: 22px 0 14px; }
+  /* Siluetas (símbolos SVG reutilizables) */
+  .ic { display: block; width: 52px; height: 52px; fill: currentColor; flex: none; }
+  .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
-  /* Diferencias */
-  .diff { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .diff .card { padding: 28px; }
-  .diff h3 { font-size: 30px; line-height: 1.05; margin-bottom: 10px; }
-  .diff .n { font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--accent-ink); display: block; margin-bottom: 22px; }
+  /* Pilares: recuadros que abren sus piezas al tocarlos */
+  .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
+  .pillar { --ic-cut: var(--card); display: grid; grid-template-columns: auto 1fr auto; gap: 4px 18px; align-items: center; text-align: left; background: var(--card); color: var(--ink); border: 1.5px solid var(--line-p); border-radius: 16px; padding: 22px; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s, transform .25s; }
+  .pillar:hover { transform: translateY(-3px); border-color: var(--ink); }
+  .pillar .ic { grid-row: 1 / span 2; width: 58px; height: 58px; }
+  .pillar .pt { font-family: var(--serif); font-weight: 700; font-size: 32px; line-height: 1; }
+  .pillar .ps { grid-column: 2; font-size: 14px; color: var(--ink2); }
+  .pillar .chev { grid-row: 1 / span 2; grid-column: 3; font-size: 30px; line-height: 1; font-weight: 400; transition: transform .25s; }
+  .pillar[aria-selected="true"] { --ic-cut: var(--ink); background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pillar[aria-selected="true"] .ps { color: var(--paper); }
+  .pillar[aria-selected="true"] .chev { transform: rotate(45deg); }
+  .phint { padding: 30px; border: 1.5px dashed var(--line-p); border-radius: 14px; text-align: center; font-size: 17px; color: var(--ink2); }
+  .phint[hidden] { display: none; }
+
+  /* Pasos en pestañas que se desplazan */
+  .step-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .step-tabs button { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 22px 8px 10px; border-radius: 60px; border: 1.5px solid var(--surface-line); background: transparent; color: var(--fg); font-weight: 700; font-size: 17px; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s; }
+  .step-tabs button .num { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.16); font-family: var(--serif); font-size: 20px; }
+  .step-tabs button:hover { border-color: var(--fg); }
+  .step-tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .step-tabs button[aria-selected="true"] .num { background: var(--ink); color: var(--paper); }
+  .viewport { overflow: hidden; border-radius: 16px; }
+  .track { display: flex; transition: transform .55s cubic-bezier(.4, .1, .2, 1); will-change: transform; }
+  .slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 38px; }
+  .slide h3 { font-size: clamp(44px, 6vw, 68px); line-height: 1; margin: 14px 0 14px; }
+  .slide p.big { font-size: 20px; line-height: 1.5; max-width: 520px; }
+  .slide ul { list-style: none; margin: 0; padding: 0; }
+  .slide li { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--surface-line); font-size: 17px; line-height: 1.4; }
+  .slide li:last-child { border-bottom: 1px solid var(--surface-line); }
+  .slide li svg { width: 22px; height: 22px; margin-top: 2px; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  /* Por qué Certeza Operativa: franja oscura y siluetas serias */
+  .band-dark { background: #262626; --fg: #ffffff; --fg2: #e6e6e6; --surface: #313131; --surface-line: #4b4b4b; --link: #ffffff; color: var(--fg2); }
+  .band-dark .eyebrow::before { background: #8c8c8c; }
+  .diff { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .diff .card { padding: 26px; box-shadow: none; }
+  .diff .ic { width: 40px; height: 40px; color: #f1f1f1; --ic-cut: #313131; margin-bottom: 22px; }
+  .diff h3 { font-size: 28px; line-height: 1.05; margin-bottom: 10px; }
+
+  /* Redes */
+  .social { display: flex; gap: 12px; list-style: none; margin: 26px 0 0; padding: 0; flex-wrap: wrap; }
+  .social a { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid var(--fg); color: var(--fg); transition: background-color .2s, color .2s, transform .2s; }
+  .social a:hover { background: var(--fg); color: var(--deep); transform: translateY(-2px); }
+  .social svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .social svg .f { fill: currentColor; stroke: none; }
+  footer .social { margin-top: 18px; }
+  footer .social a { width: 44px; height: 44px; color: var(--on-base); border-color: rgba(255,255,255,.45); }
+  footer .social a:hover { background: #fff; color: var(--deeper); }
 
   /* ¿Te suena? */
   .fam { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -291,7 +333,8 @@
     :root { --section: 72px; }
     .hero .wrap, .cat-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .est { position: static; }
-    .steps { grid-template-columns: minmax(0, 1fr); }
+    .pillars { grid-template-columns: minmax(0, 1fr); }
+    .slide { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 26px 22px; }
     .diff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .fam { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     nav .links { display: none; }
@@ -303,7 +346,10 @@
     .lockup.big { --s: .22; }
     .pieces, .diff, .fam { grid-template-columns: minmax(0, 1fr); }
     .lead, .sub { font-size: 18px; }
-    .card, .steps .card, .est, .viz { padding: 22px 20px; }
+    .card, .est, .viz { padding: 22px 20px; }
+    .step-tabs button { flex: 1 1 auto; justify-content: center; padding-right: 14px; }
+    .pillar { padding: 18px; gap: 4px 14px; }
+    .pillar .ic { width: 48px; height: 48px; }
     .piece { padding-left: 54px; }
     .faq summary { font-size: 24px; }
     .btn { width: 100%; }
@@ -316,7 +362,7 @@
     .js .reveal { opacity: 1; transform: none; transition: none; }
     .blob { transform: none !important; }
     .draw { stroke-dashoffset: 0; }
-    .draw.go, .grow .bar, .btn, .piece, .fam article, h1 a, .stack-bar i { animation: none; transition: none; }
+    .draw.go, .grow .bar, .btn, .piece, .fam article, h1 a, .stack-bar i, .track, .pillar, .step-tabs button { animation: none; transition: none; }
   }
 </style>
 </head>
@@ -327,6 +373,34 @@
   <filter id="logo-alpha" color-interpolation-filters="sRGB">
     <feColorMatrix type="matrix" values="0 0 0 0 0.93  0 0 0 0 0.94  0 0 0 0 0.95  1.3 1.3 1.3 0 -0.5"/>
   </filter>
+</svg>
+
+<!-- Siluetas propias (sin librerías) -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-orden" viewBox="0 0 64 64">
+    <path d="M14 12h36a4 4 0 0 1 4 4v42a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/>
+    <path d="M23 4h18a3 3 0 0 1 3 3v8H20V7a3 3 0 0 1 3-3z"/>
+    <circle cx="32" cy="8.5" r="2" fill="var(--ic-cut)"/>
+    <rect x="16" y="21" width="32" height="35" rx="1.5" fill="var(--ic-cut)"/>
+    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 28.5l2.4 2.4 4.6-4.8M19.5 35.5l2.4 2.4 4.6-4.8M19.5 42.5l2.4 2.4 4.6-4.8M19.5 49.5l2.4 2.4 4.6-4.8"/></g>
+    <rect x="31" y="27.5" width="14" height="3" rx="1.5"/><rect x="31" y="34.5" width="14" height="3" rx="1.5"/><rect x="31" y="41.5" width="14" height="3" rx="1.5"/><rect x="31" y="48.5" width="14" height="3" rx="1.5"/>
+  </symbol>
+  <symbol id="i-vis" viewBox="0 0 64 64">
+    <path d="M2 32C9 20 20 13 32 13s23 7 30 19c-7 12-18 19-30 19S9 44 2 32z"/>
+    <circle cx="32" cy="32" r="12.5" fill="var(--ic-cut)"/><circle cx="32" cy="32" r="6.5"/>
+  </symbol>
+  <symbol id="i-ctl" viewBox="0 0 64 64">
+    <path d="M32 3l22 8v19c0 15-9 25-22 31C19 55 10 45 10 30V11z"/>
+    <path d="M22 32l8 8 14-16" fill="none" stroke="var(--ic-cut)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-tag" viewBox="0 0 64 64"><path d="M6 8h24l28 28-22 22L6 32z"/><circle cx="17" cy="19" r="4" fill="var(--ic-cut)"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 64 64"><path d="M11 4h5v57h-5z"/><path d="M16 7h38l-9 13 9 13H16z"/></symbol>
+  <symbol id="i-bars" viewBox="0 0 64 64"><rect x="8" y="32" width="12" height="26" rx="2"/><rect x="26" y="18" width="12" height="40" rx="2"/><rect x="44" y="5" width="12" height="53" rx="2"/><rect x="4" y="59" width="56" height="4" rx="2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 64 64"><path d="M32 3C20 3 11 12 11 24c0 16 21 36 21 36s21-20 21-36C53 12 44 3 32 3z"/><circle cx="32" cy="24" r="8" fill="var(--ic-cut)"/></symbol>
+  <symbol id="s-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle fill="currentColor" stroke="none" cx="17.3" cy="6.7" r="1.2"/></symbol>
+  <symbol id="s-fb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path fill="currentColor" stroke="none" d="M13.1 19.5v-6.6h2.3l.4-2.6h-2.7V8.7c0-.8.3-1.3 1.4-1.3h1.4V5.2c-.3 0-1.1-.1-2.1-.1-2.1 0-3.4 1.3-3.4 3.5v1.7H8.1v2.6h2.3v6.6z"/></symbol>
+  <symbol id="s-wa" viewBox="0 0 24 24"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.8 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8z"/><path fill="currentColor" stroke="none" d="M9.2 7.6c-.5.5-.9 1.5.1 3.1 1.1 1.8 3 3.3 4.9 3.9 1 .3 1.7-.2 1.9-.8l.1-.7-1.5-.8-.7.6c-1-.3-2.3-1.5-2.7-2.6l.6-.7-.7-1.6-.8-.4z"/></symbol>
+  <symbol id="s-tel" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.6 3.6h2.8l1.2 3.9-2 1.4c1 2.2 2.8 4 5 5l1.4-2 3.9 1.2v2.8c0 1.6-1.3 2.9-2.9 2.9C9.6 18.5 4.6 13.5 4.3 7.1c0-1.6.7-3.5 2.3-3.5z"/></symbol>
 </svg>
 
 <div class="progress" id="bar" aria-hidden="true"></div>
@@ -352,7 +426,7 @@
           <a href="#como-trabajamos">Cómo trabajamos</a>
           <a href="#preguntas">Preguntas</a>
         </span>
-        <a class="btn primary small" href="#contacto">Triaje gratis</a>
+        <a class="btn primary small" href="#contacto">Triaje</a>
       </nav>
     </div>
   </header>
@@ -369,7 +443,7 @@
         <p class="lead reveal" style="--d:.3s">Ayudamos a que el dueño sepa qué entra, qué sale y qué pasa en su negocio, con registros sencillos que su equipo usa solo. Todo problema es una <em>oportunidad</em>.</p>
         <div class="actions reveal" style="--d:.4s">
           <a class="btn primary" href="#catalogo">Arma y estima tu trabajo</a>
-          <a class="btn ghost" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Pide tu Triaje gratis</a>
+          <a class="btn ghost" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Pide tu Triaje</a>
         </div>
         <dl class="facts reveal" style="--d:.5s">
           <div><dt>Triaje y Ficha</dt><dd>$0</dd></div>
@@ -405,26 +479,26 @@
       </div>
       <div class="cat-grid">
         <div>
-          <div class="filters" role="group" aria-label="Filtrar por pilar">
-            <button type="button" data-f="todo" aria-pressed="true">Todo</button>
-            <button type="button" data-f="orden" aria-pressed="false">Orden</button>
-            <button type="button" data-f="visibilidad" aria-pressed="false">Visibilidad</button>
-            <button type="button" data-f="control" aria-pressed="false">Control</button>
+          <div class="pillars" role="tablist" aria-label="Elige un pilar para ver sus piezas">
+            <button type="button" role="tab" class="pillar" id="tab-orden" data-p="orden" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg><span class="pt">Orden</span><span class="chev" aria-hidden="true">+</span><span class="ps">Cada cosa en su lugar</span></button>
+            <button type="button" role="tab" class="pillar" id="tab-visibilidad" data-p="visibilidad" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg><span class="pt">Visibilidad</span><span class="chev" aria-hidden="true">+</span><span class="ps">Saber qué pasa, a tiempo</span></button>
+            <button type="button" role="tab" class="pillar" id="tab-control" data-p="control" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg><span class="pt">Control</span><span class="chev" aria-hidden="true">+</span><span class="ps">Que lo cobrado cuadre</span></button>
           </div>
-          <div class="pieces" id="pieces">
-            <label class="piece reveal" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label>
-            <label class="piece reveal" data-p="orden" data-h="2" data-a="1" data-n="Cotizador"><input type="checkbox"><span class="k"><span>Orden</span><span>2 h</span></span><b>Cotizador</b><span class="d">Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.</span></label>
-            <label class="piece reveal" data-p="orden" data-h="4" data-a="1" data-n="Procedimiento escrito"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Procedimiento escrito</b><span class="d">Mostrar cómo hacer la tarea sin depender de la memoria.</span></label>
-            <label class="piece reveal" data-p="orden" data-h="3" data-n="Quién hace qué"><input type="checkbox"><span class="k"><span>Orden</span><span>3 h</span></span><b>Quién hace qué</b><span class="d">Que cada pendiente tenga una persona responsable.</span></label>
-            <label class="piece reveal" data-p="orden" data-h="4" data-n="Expediente para el contador"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Expediente para el contador</b><span class="d">Tener juntos los documentos que necesita tu contador.</span></label>
-            <label class="piece reveal" data-p="visibilidad" data-h="2" data-a="1" data-n="Control de pedidos y cobros"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>2 h</span></span><b>Control de pedidos y cobros</b><span class="d">Saber qué se pidió, qué se entregó y cuánto falta cobrar.</span></label>
-            <label class="piece reveal" data-p="visibilidad" data-h="4" data-a="1" data-n="Registro diario desde el celular"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Registro diario desde el celular</b><span class="d">Guardar el dato antes de olvidarlo.</span></label>
-            <label class="piece reveal" data-p="visibilidad" data-h="4" data-a="1" data-n="Flujo a 30, 60 y 90 días"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Flujo a 30, 60 y 90 días</b><span class="d">Ver si el dinero alcanzaría en las próximas fechas.</span></label>
-            <label class="piece reveal" data-p="visibilidad" data-h="5" data-a="1" data-n="Tablero semanal"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Tablero semanal</b><span class="d">Ver lo más urgente sin leer todos los registros.</span></label>
-            <label class="piece reveal" data-p="visibilidad" data-h="5" data-a="1" data-n="Inventario y reorden"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Inventario y reorden</b><span class="d">Tener existencias visibles y pedir antes de quedarte sin producto.</span></label>
-            <label class="piece reveal" data-p="control" data-h="2" data-a="1" data-n="Agenda de cobranza"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Agenda de cobranza</b><span class="d">Saber a quién cobrar, cuánto y cuándo.</span></label>
-            <label class="piece reveal" data-p="control" data-h="4" data-n="Lo cobrado contra lo depositado"><input type="checkbox"><span class="k"><span>Control</span><span>4 h</span></span><b>Lo cobrado contra lo depositado</b><span class="d">Comprobar que lo que cobraste coincide con lo que entró al banco.</span></label>
-            <label class="piece reveal" data-p="control" data-h="2" data-a="1" data-n="Arqueo y cierre de caja"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Arqueo y cierre de caja</b><span class="d">Cerrar el día con la caja contada y comparada.</span></label>
+          <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
+          <div class="pieces" id="pieces" role="tabpanel" aria-live="polite">
+            <label class="piece" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label>
+            <label class="piece" data-p="orden" data-h="2" data-a="1" data-n="Cotizador"><input type="checkbox"><span class="k"><span>Orden</span><span>2 h</span></span><b>Cotizador</b><span class="d">Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.</span></label>
+            <label class="piece" data-p="orden" data-h="4" data-a="1" data-n="Procedimiento escrito"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Procedimiento escrito</b><span class="d">Mostrar cómo hacer la tarea sin depender de la memoria.</span></label>
+            <label class="piece" data-p="orden" data-h="3" data-n="Quién hace qué"><input type="checkbox"><span class="k"><span>Orden</span><span>3 h</span></span><b>Quién hace qué</b><span class="d">Que cada pendiente tenga una persona responsable.</span></label>
+            <label class="piece" data-p="orden" data-h="4" data-n="Expediente para el contador"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Expediente para el contador</b><span class="d">Tener juntos los documentos que necesita tu contador.</span></label>
+            <label class="piece" data-p="visibilidad" data-h="2" data-a="1" data-n="Control de pedidos y cobros"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>2 h</span></span><b>Control de pedidos y cobros</b><span class="d">Saber qué se pidió, qué se entregó y cuánto falta cobrar.</span></label>
+            <label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Registro diario desde el celular"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Registro diario desde el celular</b><span class="d">Guardar el dato antes de olvidarlo.</span></label>
+            <label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Flujo a 30, 60 y 90 días"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Flujo a 30, 60 y 90 días</b><span class="d">Ver si el dinero alcanzaría en las próximas fechas.</span></label>
+            <label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Tablero semanal"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Tablero semanal</b><span class="d">Ver lo más urgente sin leer todos los registros.</span></label>
+            <label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Inventario y reorden"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Inventario y reorden</b><span class="d">Tener existencias visibles y pedir antes de quedarte sin producto.</span></label>
+            <label class="piece" data-p="control" data-h="2" data-a="1" data-n="Agenda de cobranza"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Agenda de cobranza</b><span class="d">Saber a quién cobrar, cuánto y cuándo.</span></label>
+            <label class="piece" data-p="control" data-h="4" data-n="Lo cobrado contra lo depositado"><input type="checkbox"><span class="k"><span>Control</span><span>4 h</span></span><b>Lo cobrado contra lo depositado</b><span class="d">Comprobar que lo que cobraste coincide con lo que entró al banco.</span></label>
+            <label class="piece" data-p="control" data-h="2" data-a="1" data-n="Arqueo y cierre de caja"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Arqueo y cierre de caja</b><span class="d">Cerrar el día con la caja contada y comparada.</span></label>
           </div>
           <p style="margin-top:18px;font-size:14px">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
         </div>
@@ -452,25 +526,54 @@
         <p class="eyebrow">Cómo trabajamos</p>
         <h2 id="t-como">Tres pasos. Cada uno deja algo que puedes usar.</h2>
       </div>
-      <div class="steps">
-        <article class="card reveal"><span class="tag">Paso 1 · Sin costo</span><h3>Triaje</h3><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></article>
-        <article class="card reveal" style="--d:.1s"><span class="tag">Paso 2 · El mismo día</span><h3>Ficha</h3><p>Un PDF con el problema, dos o tres hechos, una acción gratuita que puedes hacer hoy y el siguiente paso con precio y fecha.</p></article>
-        <article class="card reveal" style="--d:.2s"><span class="tag">Paso 3</span><h3>Ticket</h3><p>Un trabajo con precio cerrado. Lo instalamos, tu equipo completa un ciclo solo y se da por entregado cuando lo usan sin nosotros.</p></article>
+      <div class="step-tabs" role="tablist" aria-label="Los tres pasos">
+        <button type="button" role="tab" id="st-0" aria-selected="true" aria-controls="sp-0" data-i="0"><span class="num">1</span>Triaje</button>
+        <button type="button" role="tab" id="st-1" aria-selected="false" aria-controls="sp-1" data-i="1" tabindex="-1"><span class="num">2</span>Ficha</button>
+        <button type="button" role="tab" id="st-2" aria-selected="false" aria-controls="sp-2" data-i="2" tabindex="-1"><span class="num">3</span>Ticket</button>
+      </div>
+      <div class="viewport">
+        <div class="track" id="track">
+          <article class="card slide" role="tabpanel" id="sp-0" aria-labelledby="st-0">
+            <div><span class="tag">Paso 1</span><h3>Triaje</h3><p class="big">Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></div>
+            <ul>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Doce preguntas sobre tu negocio</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Un caso real, de punta a punta</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sin costo para ti</li>
+            </ul>
+          </article>
+          <article class="card slide" role="tabpanel" id="sp-1" aria-labelledby="st-1">
+            <div><span class="tag">Paso 2 · El mismo día</span><h3>Ficha</h3><p class="big">Un PDF corto con lo que encontramos y lo que sigue. Lo lees en voz alta con nosotros y lo recibes ese mismo día.</p></div>
+            <ul>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>El problema, en tus palabras</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Dos o tres hechos</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Una acción que puedes hacer hoy</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>El siguiente paso, con precio y fecha</li>
+            </ul>
+          </article>
+          <article class="card slide" role="tabpanel" id="sp-2" aria-labelledby="st-2">
+            <div><span class="tag">Paso 3</span><h3>Ticket</h3><p class="big">Un trabajo con precio cerrado. Lo instalamos, tu equipo completa un ciclo solo y se da por entregado cuando lo usan sin nosotros.</p></div>
+            <ul>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Precio cerrado antes de empezar</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tu equipo lo usa solo</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Si decides parar, pagas solo lo trabajado</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="band-paper" id="diferente" aria-labelledby="t-dif">
+  <section class="band-dark" id="diferente" aria-labelledby="t-dif">
     <div class="wrap">
       <div class="head-block reveal">
         <p class="eyebrow">Por qué Certeza Operativa</p>
         <h2 id="t-dif">Claro desde el primer día.</h2>
       </div>
       <div class="diff">
-        <article class="card reveal"><span class="n">01</span><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
-        <article class="card reveal" style="--d:.08s"><span class="n">02</span><h3>Empiezas gratis</h3><p>El Triaje y la Ficha no cuestan. Decides con información, no con una promesa.</p></article>
-        <article class="card reveal" style="--d:.16s"><span class="n">03</span><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos resultados que no podemos medir.</p></article>
-        <article class="card reveal" style="--d:.24s"><span class="n">04</span><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
+        <article class="card reveal"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
+        <article class="card reveal" style="--d:.08s"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha no cuestan. Decides con información, no con una promesa.</p></article>
+        <article class="card reveal" style="--d:.16s"><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos resultados que no podemos medir.</p></article>
+        <article class="card reveal" style="--d:.24s"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
       </div>
     </div>
   </section>
@@ -518,13 +621,19 @@
   <section class="band-deep" id="contacto" aria-labelledby="t-contacto">
     <div class="wrap">
       <p class="eyebrow">Contacto</p>
-      <h2 id="t-contacto">Agenda tu <em>Triaje gratis</em>.</h2>
+      <h2 id="t-contacto">Agenda tu <em>Triaje</em>.</h2>
       <p class="sub" style="margin-bottom:34px;max-width:560px">Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
       <div class="actions">
-        <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Escríbenos por WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Escríbenos por WhatsApp</a>
         <a class="btn ghost" href="tel:+523114469363">Llamar al +52 311 446 9363</a>
         <a class="btn ghost" id="share" href="#">Compartir esta página</a>
       </div>
+      <ul class="social" aria-label="Redes y contacto">
+        <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
+        <li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li>
+        <li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamadas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li>
+      </ul>
     </div>
   </section>
 </main>
@@ -540,11 +649,17 @@
       <p>© 2026 Certeza Operativa · Nayarit, México</p>
       <p>Aviso de privacidad: en preparación. Este sitio no recoge datos.</p>
       <p>Tipografías Crimson Pro y Outfit, licencia SIL OFL.</p>
+      <ul class="social" aria-label="Redes y contacto">
+        <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
+        <li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li>
+        <li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamadas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li>
+      </ul>
     </div>
   </div>
 </footer>
 
-<a class="btn primary float" id="float" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20gratis%20para%20mi%20negocio.">Triaje gratis por WhatsApp</a>
+<a class="btn primary float" id="float" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Triaje por WhatsApp</a>
 
 <script>
 (function () {
@@ -680,7 +795,7 @@
     $('#precio').textContent = n ? fmt(billed * r) : '$0';
     $('#tot').textContent = n ? 'Total con IVA (16%): ' + fmt(billed * r * (1 + IVA)) : '';
     $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (tot < 5 ? 'El mínimo por Ticket es de 5 h: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega tras el Triaje.');
-    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' + IVA (' + show(billed) + ').' : 'Quiero agendar un Triaje gratis.');
+    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' + IVA (' + show(billed) + ').' : 'Quiero agendar un Triaje.');
     var link = WA + encodeURIComponent(txt);
     $('#wa').href = link;
     fl.href = n ? link : FL0.href;
@@ -690,12 +805,35 @@
   $$('input', $('#pieces')).forEach(function (i) { i.addEventListener('change', calc); });
   calc();
 
-  function filter(f) {
-    $$('.filters button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.f === f); });
-    pieces.forEach(function (p) { p.hidden = !(f === 'todo' || p.dataset.p === f); });
+  /* Pilares: tocar un recuadro abre sus piezas; tocarlo otra vez las cierra */
+  var openP = null;
+  function openPillar(p) {
+    openP = p;
+    $$('.pillar').forEach(function (b) { b.setAttribute('aria-selected', String(!!p && b.dataset.p === p)); });
+    pieces.forEach(function (x) { x.hidden = !p || x.dataset.p !== p; });
+    $('#phint').hidden = !!p;
+    if (p) $('#pieces').setAttribute('aria-labelledby', 'tab-' + p); else $('#pieces').removeAttribute('aria-labelledby');
   }
-  $$('.filters button').forEach(function (b) { b.addEventListener('click', function () { filter(b.dataset.f); }); });
-  $$('[data-filter]').forEach(function (a) { a.addEventListener('click', function () { filter(a.dataset.filter); }); });
+  $$('.pillar').forEach(function (b) { b.addEventListener('click', function () { openPillar(openP === b.dataset.p ? null : b.dataset.p); }); });
+  $$('[data-filter]').forEach(function (a) { a.addEventListener('click', function () { openPillar(a.dataset.filter); }); });
+  openPillar(null);
+
+  /* Pasos: pestañas que desplazan el contenido */
+  var stabs = $$('.step-tabs [role=tab]'), spanels = $$('.slide'), track = $('#track');
+  function goStep(i, focus) {
+    track.style.transform = 'translateX(' + (-100 * i) + '%)';
+    stabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+    spanels.forEach(function (s, k) { if (k === i) s.removeAttribute('inert'); else s.setAttribute('inert', ''); s.setAttribute('aria-hidden', String(k !== i)); });
+    if (focus) stabs[i].focus();
+  }
+  stabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { goStep(i); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowRight' ? 1 : (e.key === 'ArrowLeft' ? -1 : 0);
+      if (k) { e.preventDefault(); goStep((i + k + stabs.length) % stabs.length, true); }
+    });
+  });
+  goStep(0);
 
   /* --- Compartir --- */
   $('#share').addEventListener('click', function (e) {
