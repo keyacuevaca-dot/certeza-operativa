@@ -86,13 +86,15 @@
   .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
 
   /* Logo: recorte del archivo + OPERATIVA con la misma serif (Crimson Pro Bold, la más cercana) */
-  .lockup { --s: .164; display: block; width: calc(var(--s) * 1400px); text-decoration: none; flex: none; }
-  .lockup .mk { position: relative; display: block; width: 100%; height: calc(var(--s) * 280px); overflow: hidden; }
-  .lockup .mk img, .lockup .tg img { position: absolute; max-width: none; height: auto; width: calc(var(--s) * 2000px); left: calc(var(--s) * -300px); filter: url(#logo-alpha); }
-  .lockup .mk img { top: calc(var(--s) * -240px); }
-  .lockup .tg { position: relative; display: block; overflow: hidden; height: calc(var(--s) * 90px); margin-top: calc(var(--s) * 26px); padding-bottom: 2px; }
-  .lockup .tg img { top: calc(var(--s) * -592px); }
-  .lockup .op { display: flex; justify-content: space-between; margin: calc(var(--s) * 6px) 0 0 calc(var(--s) * 390px); width: calc(var(--s) * 1005px); font-family: var(--serif); font-weight: 700; font-size: calc(var(--s) * 150px); line-height: 1; color: #eef0f3; text-rendering: geometricPrecision; }
+  .lockup { --s: .164; --k: 1.25; display: grid; grid-template-columns: auto auto; align-items: center; justify-content: start; column-gap: calc(var(--s) * 60px); width: max-content; text-decoration: none; flex: none; }
+  .lockup img { position: absolute; max-width: none; height: auto; filter: url(#logo-alpha); }
+  .lockup .sym { position: relative; display: block; overflow: hidden; width: calc(var(--s) * var(--k) * 340px); height: calc(var(--s) * var(--k) * 280px); margin-top: calc(var(--s) * 24px); }
+  .lockup .sym img { width: calc(var(--s) * var(--k) * 2000px); left: calc(var(--s) * var(--k) * -300px); top: calc(var(--s) * var(--k) * -240px); }
+  .lockup .wm { position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1010px); height: calc(var(--s) * 210px); }
+  .lockup .wm img { width: calc(var(--s) * 2000px); left: calc(var(--s) * -690px); top: calc(var(--s) * -290px); }
+  .lockup .tg { --t: calc(var(--s) * 1.068); grid-column: 1 / -1; position: relative; display: block; overflow: hidden; width: calc(var(--s) * 1495px); height: calc(var(--t) * 90px); margin-top: calc(var(--t) * 26px); padding-bottom: 2px; }
+  .lockup .tg img { width: calc(var(--t) * 2000px); left: calc(var(--t) * -300px); top: calc(var(--t) * -592px); }
+  .lockup .op { display: flex; justify-content: space-between; margin: calc(var(--s) * 2px) 0 0; width: calc(var(--s) * 1005px); font-family: var(--serif); font-weight: 700; font-size: calc(var(--s) * 150px); line-height: 1; color: #eef0f3; text-rendering: geometricPrecision; }
   .lockup .op i { font-style: normal; }
   .lockup.big { --s: .3; }
 
@@ -338,8 +340,8 @@
   <header id="hdr">
     <div class="wrap">
       <a class="lockup" href="#inicio" aria-label="Certeza Operativa, inicio">
-        <span class="mk"><img src="assets/logo-original.webp" alt="" width="2000" height="917" fetchpriority="high"></span>
-        <span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span>
+        <span class="sym"><img src="assets/logo-original.webp" alt="" width="2000" height="917" fetchpriority="high"></span>
+        <span class="txt"><span class="wm"><img src="assets/logo-original.webp" alt="" width="2000" height="917"></span><span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span></span>
       </a>
       <nav aria-label="Principal">
         <span class="links">
@@ -527,8 +529,8 @@
 <footer>
   <div class="wrap">
     <a class="lockup big" href="#inicio" aria-label="Certeza Operativa, volver al inicio">
-      <span class="mk"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span>
-      <span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span>
+      <span class="sym"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span>
+      <span class="txt"><span class="wm"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span><span class="op" aria-hidden="true"><i>O</i><i>P</i><i>E</i><i>R</i><i>A</i><i>T</i><i>I</i><i>V</i><i>A</i></span></span>
       <span class="tg"><img src="assets/logo-original.webp" alt="" width="2000" height="917" loading="lazy"></span>
     </a>
     <div>
