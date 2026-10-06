@@ -283,6 +283,16 @@
   .diff .ic { width: 40px; height: 40px; color: #f1f1f1; --ic-cut: #313131; margin-bottom: 22px; }
   .diff h3 { font-size: 28px; line-height: 1.05; margin-bottom: 10px; }
 
+  /* ¿Cómo podemos ayudar?: situaciones que abren el pilar correspondiente */
+  .sits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .sit { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; text-align: left; background: var(--card); color: var(--ink); border: 1.5px solid var(--line-p); border-radius: 16px; padding: 22px; cursor: pointer; transition: transform .25s, border-color .25s, box-shadow .25s; min-width: 0; }
+  .sit:hover { transform: translateY(-3px); border-color: var(--ink); box-shadow: 0 14px 28px -16px rgba(31,36,40,.35); }
+  .sit .tag { border-color: var(--ink2); color: var(--ink); }
+  .sit .q { font-family: var(--serif); font-weight: 700; font-size: 26px; line-height: 1.1; color: var(--ink); }
+  .sit .go { margin-top: auto; font-size: 14px; font-weight: 700; color: var(--accent-ink); }
+  .sit .go i { font-style: normal; display: inline-block; transition: transform .25s; }
+  .sit:hover .go i { transform: translateX(4px); }
+
   /* Redes */
   .social { display: flex; gap: 12px; list-style: none; margin: 26px 0 0; padding: 0; flex-wrap: wrap; }
   .social a { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; border: 1.5px solid var(--fg); color: var(--fg); transition: background-color .2s, color .2s, transform .2s; }
@@ -334,6 +344,7 @@
     .hero .wrap, .cat-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .est { position: static; }
     .pillars { grid-template-columns: minmax(0, 1fr); }
+    .sits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .slide { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 26px 22px; }
     .diff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .fam { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -344,7 +355,8 @@
     body { font-size: 16px; }
     .lockup { --s: .14; }
     .lockup.big { --s: .22; }
-    .pieces, .diff, .fam { grid-template-columns: minmax(0, 1fr); }
+    .pieces, .diff, .fam, .sits { grid-template-columns: minmax(0, 1fr); }
+    .sit .q { font-size: 24px; }
     .lead, .sub { font-size: 18px; }
     .card, .est, .viz { padding: 22px 20px; }
     .step-tabs button { flex: 1 1 auto; justify-content: center; padding-right: 14px; }
@@ -472,18 +484,37 @@
 <main>
   <section class="band-paper" id="catalogo" aria-labelledby="t-cat">
     <div class="wrap">
-      <div class="head-block reveal">
-        <p class="eyebrow">Catálogo y precio</p>
-        <h2 id="t-cat">Elige lo que necesitas. Mira cuánto cuesta.</h2>
-        <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
+      <div class="head-block reveal" id="ayuda">
+        <p class="eyebrow">¿Cómo podemos ayudar?</p>
+        <h2 id="t-cat">Cuéntanos tu situación. Te mostramos las piezas.</h2>
+        <p class="sub">Trabajamos con negocios de muchos giros. Toca la pregunta que se parece a la tuya y abrimos las piezas que más ayudan; abajo armas tu trabajo y ves cuánto cuesta.</p>
       </div>
+      <div class="sits" id="sits">
+        <button type="button" class="sit" data-p="visibilidad"><span class="tag">Comercio con inventario</span><span class="q">¿Qué tienes y qué necesitas comprar?</span><span class="go">Abre Visibilidad <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="control"><span class="tag">Preparación y entrega inmediata</span><span class="q">¿Cuánto cobras y cuánto gastas?</span><span class="go">Abre Control <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="orden"><span class="tag">Servicios por cita o turno</span><span class="q">¿Se te cruzan las citas?</span><span class="go">Abre Orden <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="orden"><span class="tag">Diagnóstico y reparación</span><span class="q">¿Qué reparación sigue y qué la detiene?</span><span class="go">Abre Orden <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="visibilidad"><span class="tag">Producción por encargo</span><span class="q">¿Qué pedido toca entregar primero?</span><span class="go">Abre Visibilidad <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="visibilidad"><span class="tag">Producción por lotes</span><span class="q">¿Cuánto material se va en cada lote?</span><span class="go">Abre Visibilidad <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="orden"><span class="tag">Trabajo por proyecto</span><span class="q">¿Quién hace qué y para cuándo?</span><span class="go">Abre Orden <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="control"><span class="tag">Servicios recurrentes</span><span class="q">¿Qué servicio toca y qué falta cobrar?</span><span class="go">Abre Control <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="visibilidad"><span class="tag">Renta y uso temporal</span><span class="q">¿Qué está rentado y cuándo vuelve?</span><span class="go">Abre Visibilidad <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="visibilidad"><span class="tag">Transporte y distribución</span><span class="q">¿Qué falta entregar y a qué hora?</span><span class="go">Abre Visibilidad <i aria-hidden="true">→</i></span></button>
+        <button type="button" class="sit" data-p="control"><span class="tag">Intermediación</span><span class="q">¿Qué operación sigue y qué falta cobrar?</span><span class="go">Abre Control <i aria-hidden="true">→</i></span></button>
+      </div>
+      <div class="head-block reveal" id="cotizador" style="margin-top:84px">
+        <p class="eyebrow">Catálogo y precio</p>
+        <h2>Elige lo que necesitas. Mira cuánto cuesta.</h2>
+        <p class="sub">Toca Orden, Visibilidad o Control, marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
+      </div>
+<div class="pillars" role="tablist" aria-label="Elige un pilar para ver sus piezas">
+        <button type="button" role="tab" class="pillar" id="tab-orden" data-p="orden" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg><span class="pt">Orden</span><span class="chev" aria-hidden="true">+</span><span class="ps">Cada cosa en su lugar</span></button>
+        <button type="button" role="tab" class="pillar" id="tab-visibilidad" data-p="visibilidad" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg><span class="pt">Visibilidad</span><span class="chev" aria-hidden="true">+</span><span class="ps">Saber qué pasa, a tiempo</span></button>
+        <button type="button" role="tab" class="pillar" id="tab-control" data-p="control" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg><span class="pt">Control</span><span class="chev" aria-hidden="true">+</span><span class="ps">Que lo cobrado cuadre</span></button>
+      </div>
+
       <div class="cat-grid">
         <div>
-          <div class="pillars" role="tablist" aria-label="Elige un pilar para ver sus piezas">
-            <button type="button" role="tab" class="pillar" id="tab-orden" data-p="orden" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg><span class="pt">Orden</span><span class="chev" aria-hidden="true">+</span><span class="ps">Cada cosa en su lugar</span></button>
-            <button type="button" role="tab" class="pillar" id="tab-visibilidad" data-p="visibilidad" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg><span class="pt">Visibilidad</span><span class="chev" aria-hidden="true">+</span><span class="ps">Saber qué pasa, a tiempo</span></button>
-            <button type="button" role="tab" class="pillar" id="tab-control" data-p="control" aria-selected="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg><span class="pt">Control</span><span class="chev" aria-hidden="true">+</span><span class="ps">Que lo cobrado cuadre</span></button>
-          </div>
           <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
           <div class="pieces" id="pieces" role="tabpanel" aria-live="polite">
             <label class="piece" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label>
@@ -578,46 +609,6 @@
     </div>
   </section>
 
-  <section class="band-deep" id="te-suena" aria-labelledby="t-suena">
-    <div class="wrap">
-      <div class="head-block reveal">
-        <p class="eyebrow">¿Te suena?</p>
-        <h2 id="t-suena">Un problema que reconoces. Un registro que lo ordena.</h2>
-        <p class="sub">Trabajamos con negocios de muchos giros. Estas son preguntas que escuchamos seguido.</p>
-      </div>
-      <div class="fam">
-        <article class="reveal"><span class="tag">Comercio con inventario</span><p>¿Qué tienes y qué necesitas comprar?</p></article>
-        <article class="reveal" style="--d:.05s"><span class="tag">Preparación y entrega inmediata</span><p>¿Cuánto cobras y cuánto gastas?</p></article>
-        <article class="reveal" style="--d:.1s"><span class="tag">Servicios por cita o turno</span><p>¿Se te cruzan las citas?</p></article>
-        <article class="reveal"><span class="tag">Diagnóstico y reparación</span><p>¿Qué reparación sigue y qué la detiene?</p></article>
-        <article class="reveal" style="--d:.05s"><span class="tag">Producción por encargo</span><p>¿Qué pedido toca entregar primero?</p></article>
-        <article class="reveal" style="--d:.1s"><span class="tag">Producción por lotes</span><p>¿Cuánto material se va en cada lote?</p></article>
-        <article class="reveal"><span class="tag">Trabajo por proyecto</span><p>¿Quién hace qué y para cuándo?</p></article>
-        <article class="reveal" style="--d:.05s"><span class="tag">Servicios recurrentes</span><p>¿Qué servicio toca y qué falta cobrar?</p></article>
-        <article class="reveal" style="--d:.1s"><span class="tag">Renta y uso temporal</span><p>¿Qué está rentado y cuándo vuelve?</p></article>
-        <article class="reveal"><span class="tag">Transporte y distribución</span><p>¿Qué falta entregar y a qué hora?</p></article>
-        <article class="reveal" style="--d:.05s"><span class="tag">Intermediación</span><p>¿Qué operación sigue y qué falta cobrar?</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="band-paper" id="preguntas" aria-labelledby="t-faq">
-    <div class="wrap">
-      <div class="head-block reveal">
-        <p class="eyebrow">Preguntas frecuentes</p>
-        <h2 id="t-faq">Antes de escribirnos.</h2>
-      </div>
-      <div class="faq reveal">
-        <details><summary>¿Cuánto cuesta el Triaje?</summary><p>Nada. El Triaje y la Ficha no tienen costo. En un negocio micro dura como máximo 90 minutos; en uno pequeño, 2 horas, y en uno mediano, 3.</p></details>
-        <details><summary>¿Cuánto pagaré y cuándo?</summary><p>Antes de empezar recibes el precio cerrado, en pesos y con fechas. Se paga una parte al firmar y el saldo cuando aceptas la vista previa. El pago es por transferencia, con recibo.</p></details>
-        <details><summary>¿Tengo que cambiar todo lo que uso?</summary><p>No. Ordenamos lo que ya haces, en papel o en el celular, con un formato que tu equipo pueda usar. No operamos tu negocio ni nos quedamos con tu información.</p></details>
-        <details><summary>¿Me garantizan resultados?</summary><p>No prometemos lo que no podemos medir. Cada trabajo tiene un indicador que observamos contigo; se mide, no se garantiza.</p></details>
-        <details><summary>¿Qué pasa si decido parar?</summary><p>Pagas solo lo trabajado. La salida está escrita y a la vista desde el principio.</p></details>
-        <details><summary>¿Cómo sé cuándo termina un trabajo?</summary><p>Cuando tu equipo completa un ciclo sin nosotros. Un trabajo no está terminado hasta que lo usan solos.</p></details>
-      </div>
-    </div>
-  </section>
-
   <section class="band-deep" id="contacto" aria-labelledby="t-contacto">
     <div class="wrap">
       <p class="eyebrow">Contacto</p>
@@ -636,6 +627,23 @@
       </ul>
     </div>
   </section>
+  <section class="band-paper" id="preguntas" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div class="head-block reveal">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 id="t-faq">Antes de escribirnos.</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>¿Cuánto cuesta el Triaje?</summary><p>Nada. El Triaje y la Ficha no tienen costo. En un negocio micro dura como máximo 90 minutos; en uno pequeño, 2 horas, y en uno mediano, 3.</p></details>
+        <details><summary>¿Cuánto pagaré y cuándo?</summary><p>Antes de empezar recibes el precio cerrado, en pesos y con fechas. Se paga una parte al firmar y el saldo cuando aceptas la vista previa. El pago es por transferencia, con recibo.</p></details>
+        <details><summary>¿Tengo que cambiar todo lo que uso?</summary><p>No. Ordenamos lo que ya haces, en papel o en el celular, con un formato que tu equipo pueda usar. No operamos tu negocio ni nos quedamos con tu información.</p></details>
+        <details><summary>¿Me garantizan resultados?</summary><p>No prometemos lo que no podemos medir. Cada trabajo tiene un indicador que observamos contigo; se mide, no se garantiza.</p></details>
+        <details><summary>¿Qué pasa si decido parar?</summary><p>Pagas solo lo trabajado. La salida está escrita y a la vista desde el principio.</p></details>
+        <details><summary>¿Cómo sé cuándo termina un trabajo?</summary><p>Cuando tu equipo completa un ciclo sin nosotros. Un trabajo no está terminado hasta que lo usan solos.</p></details>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -647,8 +655,6 @@
     </a>
     <div>
       <p>© 2026 Certeza Operativa · Nayarit, México</p>
-      <p>Aviso de privacidad: en preparación. Este sitio no recoge datos.</p>
-      <p>Tipografías Crimson Pro y Outfit, licencia SIL OFL.</p>
       <ul class="social" aria-label="Redes y contacto">
         <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
         <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
@@ -816,6 +822,12 @@
   }
   $$('.pillar').forEach(function (b) { b.addEventListener('click', function () { openPillar(openP === b.dataset.p ? null : b.dataset.p); }); });
   $$('[data-filter]').forEach(function (a) { a.addEventListener('click', function () { openPillar(a.dataset.filter); }); });
+  $$('.sit').forEach(function (b) {
+    b.addEventListener('click', function () {
+      openPillar(b.dataset.p);
+      var t = $('#cotizador'); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
   openPillar(null);
 
   /* Pasos: pestañas que desplazan el contenido */
