@@ -135,8 +135,9 @@
   /* Hero */
   .hero { padding: 36px 0 var(--section); }
   .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
-  .eyebrow { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--fg2); margin-bottom: 24px; }
-  .eyebrow::before { content: ""; width: 30px; height: 3px; border-radius: 3px; background: var(--accent); flex: none; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; max-width: 100%; padding: 7px 16px 7px 12px; border: 1.5px solid rgba(255,255,255,.34); border-radius: 12px; background: rgba(255,255,255,.07); font-weight: 700; font-size: 12px; line-height: 1.3; letter-spacing: .16em; text-transform: uppercase; color: var(--fg2); margin-bottom: 24px; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 2px; transform: rotate(45deg); background: var(--accent); flex: none; }
+  .band-paper .eyebrow { border-color: rgba(31,36,40,.26); background: rgba(31,36,40,.05); }
   .band-paper .eyebrow::before { background: var(--accent-ink); }
   h1 { font-size: clamp(56px, 11.5vw, 128px); line-height: .9; }
   h1 a { color: inherit; text-decoration: none; display: block; width: fit-content; transition: color .2s, transform .3s; }
@@ -157,10 +158,11 @@
 
   /* Panel de gráficas (portada) */
   .viz { --fg: var(--ink); --fg2: var(--ink2); --surface: var(--paper); --surface-line: transparent; --link: var(--accent-ink); padding: 24px 24px 18px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45); }
-  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-  .tabs button { background: transparent; color: var(--ink); border: 1.5px solid var(--line-p); border-radius: 10px; padding: 8px 18px; min-height: 44px; cursor: pointer; font-weight: 700; transition: background-color .2s, color .2s, border-color .2s; }
-  .tabs button:hover { border-color: var(--ink); }
-  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .tabs { --track: color-mix(in srgb, var(--paper) 88%, #000); display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 5px; background: var(--track); border-radius: 14px; margin-bottom: 18px; }
+  .tabs button { --ic-cut: var(--track); display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--ink2); border: 0; border-radius: 10px; padding: 8px 6px; min-height: 48px; cursor: pointer; font-weight: 700; font-size: 15px; transition: background-color .25s, color .25s, box-shadow .25s; }
+  .tabs button .ic { width: 22px; height: 22px; }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-selected="true"] { --ic-cut: var(--card); background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(31,36,40,.2), 0 4px 10px -4px rgba(31,36,40,.25); }
   .viz h3 { font-size: 28px; line-height: 1.1; }
   .viz .cap { font-size: 14.5px; margin: 6px 0 14px; color: var(--ink2); }
   .chartbox { background: var(--card); border: 1px solid var(--line-p); border-radius: 12px; padding: 12px 8px 4px; position: relative; }
@@ -465,9 +467,9 @@
 
       <div class="card viz reveal" style="--d:.2s" id="viz">
         <div class="tabs" role="tablist" aria-label="Qué vas a ver con CERTEZA">
-          <button role="tab" aria-selected="true" data-chart="orden">Orden</button>
-          <button role="tab" aria-selected="false" data-chart="visibilidad">Visibilidad</button>
-          <button role="tab" aria-selected="false" data-chart="control">Control</button>
+          <button role="tab" aria-selected="true" data-chart="orden"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg>Orden</button>
+          <button role="tab" aria-selected="false" data-chart="visibilidad"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg>Visibilidad</button>
+          <button role="tab" aria-selected="false" data-chart="control"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg>Control</button>
         </div>
         <h3 id="v-title"></h3>
         <p class="cap" id="v-cap"></p>
@@ -620,8 +622,6 @@
       <ul class="social" aria-label="Redes y contacto">
         <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
         <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
-        <li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li>
-        <li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamadas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li>
       </ul>
     </div>
   </section>
