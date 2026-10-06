@@ -34,7 +34,7 @@
     --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
     --paper: #f4f1ea; --card: #ffffff; --line-p: #dad4c6;
     --ink: #1f2428; --ink2: #4a5158;
-    --on-base: #faf7f0; --on-base2: #ece8df;
+    --on-base: #ffffff; --on-base2: #f4f1e9;
     --accent: #f2b544; --accent-hov: #ffc965; --on-accent: #1a1a1a; --accent-ink: #8a4b00;
     --dark-card: #2a2e33; --chart-a: #b86e00; --chart-hi: #b86e00;
   }
@@ -42,7 +42,7 @@
     --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
     --paper: #edf2f6; --card: #ffffff; --line-p: #cbd6e0;
     --ink: #14263f; --ink2: #3e4c60;
-    --on-base: #f7fafc; --on-base2: #e6edf2;
+    --on-base: #ffffff; --on-base2: #f0f5f8;
     --accent: #5bcfc4; --accent-hov: #7de0d6; --on-accent: #0b1f33; --accent-ink: #0b6b63;
     --dark-card: #14263f; --chart-a: #0f766e; --chart-hi: #0f766e;
   }
@@ -50,7 +50,7 @@
     --base: #666666; --deep: #4d4d4d; --deeper: #3b3b3b;
     --paper: #f1f1f1; --card: #ffffff; --line-p: #d6d6d6;
     --ink: #161616; --ink2: #4a4a4a;
-    --on-base: #ffffff; --on-base2: #ececec;
+    --on-base: #ffffff; --on-base2: #f2f2f2;
     --accent: #ffffff; --accent-hov: #e9e9e9; --on-accent: #161616; --accent-ink: #161616;
     --dark-card: #1b1b1b; --chart-a: #161616; --chart-hi: #161616;
   }
@@ -76,10 +76,11 @@
   .skip:focus { left: 8px; }
 
   /* Franjas */
-  .band-base { background: var(--base); }
+  .band-base { background: var(--base); --surface: rgba(0,0,0,.2); --surface-line: rgba(255,255,255,.3); }
   .band-paper { background: var(--paper); --fg: var(--ink); --fg2: var(--ink2); --surface: var(--card); --surface-line: var(--line-p); --link: var(--accent-ink); }
   .band-deep { background: var(--deep); }
   .band-deeper { background: var(--deeper); }
+  .band-base, .band-paper, .band-deep, .band-deeper, .viz { color: var(--fg2); }
   section { padding: var(--section) 0; }
 
   .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
@@ -97,7 +98,7 @@
 
   /* Encabezado */
   header { position: sticky; top: 0; z-index: 50; transition: background-color .3s, box-shadow .3s; }
-  header.stuck { background: rgba(102,102,102,.84); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(255,255,255,.2); }
+  header.stuck { background: rgba(102,102,102,.97); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(255,255,255,.2); }
   header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
   nav { display: flex; align-items: center; gap: 26px; font-size: 16px; }
   nav .links { display: flex; align-items: center; gap: 26px; }
@@ -229,6 +230,7 @@
   .price .l { font-size: 14px; }
   .price strong { font-family: var(--serif); font-weight: 700; font-size: 56px; line-height: .95; color: var(--accent); }
   [data-theme="3"] .price strong { color: #fff; }
+  .est .tot { font-size: 14px; margin-top: 8px; min-height: 20px; color: var(--on-base2); }
   .est .msg { font-size: 14px; min-height: 22px; margin: 10px 0 18px; }
   .est .btn { width: 100%; }
   .est .note { font-size: 13.5px; margin-top: 14px; color: var(--on-base2); }
@@ -429,10 +431,11 @@
           <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 por hora</b></span></p>
           <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
           <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
-          <div class="price"><span class="l">Estimado<br><span id="hrs">0 h</span></span><strong id="precio">$0</strong></div>
+          <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="precio">$0</strong></div>
+          <p class="tot" id="tot"></p>
           <p class="msg" id="msg">Elige al menos una pieza.</p>
           <a class="btn primary" id="wa" href="https://wa.me/523114469363">Enviar mi selección por WhatsApp</a>
-          <p class="note">Precios en pesos mexicanos, sin IVA. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
+          <p class="note">Tarifas por hora: micro $700 + IVA y pequeña $1,400 + IVA. Empresas medianas, próximamente. Precios en pesos mexicanos. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
         </aside>
       </div>
     </div>
@@ -646,23 +649,34 @@
   addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(draw, 150); });
 
   /* --- Catálogo + estimador --- */
-  var FACT = { micro: 1, pequena: 1.42, mediana: 2.5 }, RATE = { micro: 700, pequena: 700, mediana: 1500 }, NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' };
+  var FACT = { micro: 1, pequena: 1, mediana: 1 }, RATE = { micro: 700, pequena: 1400, mediana: 0 }, NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' }, IVA = 0.16;
+  var WA = 'https://wa.me/523114469363?text=';
   var pieces = $$('.piece'), rng = $('#ventas'), FL0 = { href: fl.href, text: fl.textContent };
   function size(v) { return v < 100000 ? 'micro' : (v <= 250000 ? 'pequena' : 'mediana'); }
   function range(v) { return v < 100000 ? 'menos de $100,000' : (v <= 250000 ? '$100,000 a $250,000' : 'más de $250,000'); }
   function calc() {
     var v = +rng.value, sz = size(v), f = FACT[sz], r = RATE[sz], per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
     $('#ventasOut').textContent = fmt(v);
-    $('#tam').textContent = NAME[sz]; $('#tar').textContent = fmt(r) + ' por hora';
+    $('#tam').textContent = NAME[sz]; $('#tar').textContent = r ? fmt(r) + ' + IVA por hora' : 'próximamente';
+    if (!r) {
+      ['h1', 'h2', 'h3'].forEach(function (id) { $('#' + id).textContent = '—'; });
+      ['s1', 's2', 's3'].forEach(function (id) { $('#' + id).style.width = '0'; });
+      $('#hrs').textContent = '—'; $('#precio').textContent = '—'; $('#tot').textContent = '';
+      $('#msg').textContent = 'Por ahora atendemos negocios micro y pequeños, hasta $250,000 de ventas al mes. Escríbenos y te avisamos cuando abramos para empresas medianas.';
+      var lk = WA + encodeURIComponent('Hola, mi negocio vende más de $250,000 al mes. Avísenme cuando atiendan empresas medianas.');
+      $('#wa').href = lk; fl.href = lk; fl.textContent = FL0.text;
+      return;
+    }
     pieces.forEach(function (p) { if ($('input', p).checked) { per[p.dataset.p] += +p.dataset.h * f; if (p.dataset.a) adopt = true; sel.push(p.dataset.n); } });
     var base = per.orden + per.visibilidad + per.control, tot = Math.round((base + (adopt ? .5 : 0)) * 4) / 4, billed = Math.max(5, tot), n = sel.length;
     var show = function (x) { return (Math.round(x * 4) / 4).toString().replace('.', ',') + ' h'; };
     ['orden', 'visibilidad', 'control'].forEach(function (k, i) { $('#h' + (i + 1)).textContent = show(per[k]); $('#s' + (i + 1)).style.width = (base > 0 ? per[k] / base * 100 : 0) + '%'; });
     $('#hrs').textContent = n ? show(billed) + (adopt ? ' (incluye 0,5 h de adopción)' : '') : '0 h';
     $('#precio').textContent = n ? fmt(billed * r) : '$0';
+    $('#tot').textContent = n ? 'Total con IVA (16%): ' + fmt(billed * r * (1 + IVA)) : '';
     $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (tot < 5 ? 'El mínimo por Ticket es de 5 h: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega tras el Triaje.');
-    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' (sin IVA, ' + show(billed) + ').' : 'Quiero agendar un Triaje gratis.');
-    var link = 'https://wa.me/523114469363?text=' + encodeURIComponent(txt);
+    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' + IVA (' + show(billed) + ').' : 'Quiero agendar un Triaje gratis.');
+    var link = WA + encodeURIComponent(txt);
     $('#wa').href = link;
     fl.href = n ? link : FL0.href;
     fl.textContent = n ? 'Estimado ' + fmt(billed * r) + ' · Enviar por WhatsApp' : FL0.text;
