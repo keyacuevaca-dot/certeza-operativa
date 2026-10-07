@@ -6,6 +6,7 @@
 <title>Robles · Propuesta de sitio web (Paso 1)</title>
 <meta name="description" content="Propuesta revisable del sitio web de Comercializadora Robles: sistema visual, estructura de páginas, wireframes, datos pendientes y criterios de aceptación. Borrador; no es el sitio publicado.">
 <meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light">
 <style>
 /* ============ Tokens (propuesta de diseño, Ruta A) ============ */
@@ -24,7 +25,8 @@
   --font-body:Arial,"Helvetica Neue",Helvetica,system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:16px;-webkit-text-size-adjust:100%}
+@media (min-width:900px){html{scroll-padding-top:128px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;background:var(--blanco);color:var(--texto);font:400 16px/1.5 var(--font-body)}
 @media (min-width:768px){body{font-size:18px}}
@@ -42,7 +44,7 @@ h4{font-size:1.125rem;line-height:1.3}
 p{margin:0 0 var(--s2)}
 ul,ol{margin:0 0 var(--s2);padding-left:1.25rem}
 li{margin-bottom:4px}
-code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--gris);padding:1px 6px;border-radius:4px;overflow-wrap:anywhere}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--gris);padding:1px 6px;border-radius:4px;overflow-wrap:anywhere}
 .small{font-size:.875rem;color:var(--texto2)}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--azul);padding:12px 16px;border:3px solid var(--azul);z-index:100;font-weight:700}
 .skip:focus{left:8px}
@@ -81,13 +83,18 @@ main section:nth-of-type(even) .card{border-color:#B8C2CC}
 .callout>:last-child{margin-bottom:0}
 
 /* Etiquetas (nunca solo color: llevan texto) */
-.tag{display:inline-block;font:700 .75rem/1 var(--font-body);padding:5px 8px;border-radius:999px;border:2px solid;vertical-align:middle;color:var(--texto);white-space:nowrap}
+.tag{display:inline-block;font:700 .875rem/1.1 var(--font-body);padding:4px 8px;border-radius:999px;border:2px solid;vertical-align:middle;color:var(--texto);white-space:nowrap}
 .t-dato{background:#DCEBF5;border-color:var(--azul)}
 .t-prop{background:#FDE6BF;border-color:#B86A00}
 .t-hip{background:var(--gris);border-color:var(--texto2);border-style:dashed}
 .t-pend{background:#fff;border-color:var(--texto);border-style:dotted}
 .legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);list-style:none;padding:0;margin:var(--s2) 0 0}
 .legend li{margin:0;font-size:.875rem;display:flex;gap:8px;align-items:center}
+
+/* Sin JavaScript: solo se oculta lo que necesita JS */
+html:not(.js) .needs-js,html:not(.js) #wf-tabs,html:not(.js) .seg{display:none}
+.js .nojs-only{display:none}
+.nojs-only{margin-top:var(--s4)}
 
 /* Botones */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:10px;border:2px solid var(--azul);background:var(--naranja);color:var(--texto);font:700 1rem var(--font-body);text-decoration:none;cursor:pointer;text-align:center}
@@ -103,7 +110,8 @@ thead th{background:var(--azul);color:#fff;font-family:var(--font-head);font-wei
 tbody tr:last-child td{border-bottom:0}
 td ul{padding-left:1.1rem;margin:0}
 caption{text-align:left;padding:var(--s2);font-weight:700;caption-side:top}
-@media (max-width:760px){
+@media screen and (max-width:760px){
+  table.stack caption{display:block;width:100%}
   table.stack,table.stack tbody,table.stack tr,table.stack td{display:block;width:100%}
   table.stack thead{position:absolute;left:-9999px}
   table.stack tr{border-bottom:3px solid var(--azul);padding:8px 0}
@@ -144,7 +152,8 @@ textarea{min-height:96px}
 .tree .node .why{flex-basis:100%;font-size:.875rem;color:var(--texto2)}
 
 /* Wireframes */
-.seg{display:inline-flex;border:2px solid var(--azul);border-radius:10px;overflow:hidden;margin:0 var(--s1) var(--s1) 0;background:#fff}
+.seg{display:inline-flex;border:2px solid var(--azul);border-radius:10px;margin:0 var(--s1) var(--s1) 0;background:#fff}
+.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0}
 .seg button{border:0;background:#fff;color:var(--azul);font:700 .9375rem var(--font-body);padding:10px 14px;min-height:44px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--azul);color:#fff}
 [role=tablist]{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--s3)}
@@ -162,6 +171,7 @@ textarea{min-height:96px}
 .b.blue>.n{background:#fff;color:var(--azul)}
 .cols{display:grid;gap:8px;grid-template-columns:1fr}
 .cell{border:2px solid var(--borde);background:#fff;border-radius:8px;padding:8px;min-height:44px}
+.fake-btn.sec{background:#fff;color:var(--azul)}
 .fake-btn{display:inline-block;background:var(--naranja);color:var(--texto);font:700 13px/1 var(--font-body);padding:10px 12px;border-radius:8px;border:2px solid var(--azul);margin-top:6px}
 .ph{display:grid;place-items:center;background:repeating-linear-gradient(45deg,#E4E8EC,#E4E8EC 8px,#F2F4F6 8px,#F2F4F6 16px);border:2px dashed var(--texto2);border-radius:8px;min-height:90px;text-align:center;padding:8px;font-size:12.5px;color:var(--texto)}
 @container (min-width:640px){
@@ -173,9 +183,9 @@ textarea{min-height:96px}
 .hero-b{display:none}
 .wfwrap[data-ruta="B"] .hero-b{display:block}
 .wfwrap[data-ruta="B"] .hero-a-ph{display:none}
-.blocklist{counter-reset:bl;list-style:none;padding:0;margin-top:var(--s3)}
-.blocklist li{counter-increment:bl;display:grid;grid-template-columns:32px 1fr;gap:12px;margin-bottom:var(--s2)}
-.blocklist li::before{content:counter(bl);width:28px;height:28px;border-radius:50%;background:var(--azul);color:#fff;font:800 14px/28px var(--font-head);text-align:center}
+.blocklist{list-style:none;padding:0;margin-top:var(--s3)}
+.blocklist li{display:grid;grid-template-columns:44px 1fr;gap:12px;margin-bottom:var(--s2)}
+.blocklist li::before{content:attr(data-b);justify-self:start;min-width:28px;height:28px;padding:0 7px;border-radius:14px;background:var(--azul);color:#fff;font:800 14px/28px var(--font-head);text-align:center}
 
 /* Checklist */
 .chk{list-style:none;padding:0}
@@ -190,6 +200,7 @@ fieldset{border:1px solid var(--borde);border-radius:12px;padding:var(--s2) var(
 legend{font:800 1.0625rem var(--font-head);color:var(--azul);padding:0 8px}
 .opt{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;min-height:32px}
 .opt input{width:22px;height:22px;margin-top:3px;flex:none;accent-color:var(--azul)}
+.opt{overflow-wrap:anywhere;min-width:0}
 pre.out{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;border:2px solid var(--azul);border-radius:12px;padding:var(--s2);font:400 .9375rem/1.5 ui-monospace,Menlo,Consolas,monospace;margin:var(--s2) 0 0}
 
 footer.doc{background:var(--azul);color:#fff;padding:var(--s4) 0}
@@ -197,6 +208,7 @@ footer.doc a{color:#fff}
 footer.doc :focus-visible{outline-color:#fff}
 
 @media print{
+  .wfwrap,.wf,.card{break-inside:avoid}
   nav.toc,.seg,[role=tablist],.btn,.noprint{display:none!important}
   [role=tabpanel][hidden]{display:block!important}
   main section{padding:16px 0;break-inside:avoid-page}
@@ -211,12 +223,12 @@ footer.doc :focus-visible{outline-color:#fff}
   <div class="wrap">
     <p class="kicker">Paso 1 · Propuesta revisable · 7 de octubre de 2026</p>
     <h1>Sitio web de Comercializadora Robles</h1>
-    <p>Sistema visual, estructura de páginas, pestañas y subpestañas, wireframes por bloques, datos conocidos y pendientes, y criterios para aceptar el trabajo cuando se autorice construirlo.</p>
+    <p>Propuesta para revisar: sistema visual, estructura de páginas, pestañas y subpestañas, bocetos de cada página, datos conocidos y pendientes, y criterios para aceptar el trabajo. <b>Paso 1</b> es esta propuesta. <b>Paso 2</b>, construir el sitio, solo empieza con una autorización aparte.</p>
     <ul class="estado" aria-label="Estado del documento">
       <li><strong>Borrador.</strong> No es el sitio final.</li>
-      <li>No autoriza construcción ni publicación.</li>
-      <li>No se envió ningún mensaje.</li>
-      <li>Robles va primero; Certeza Operativa sigue.</li>
+      <li>No autoriza construir ni publicar.</li>
+      <li>No se contactó a nadie ni se envió ningún WhatsApp.</li>
+      <li>Contiene dirección y teléfono del negocio: el repositorio es público.</li>
     </ul>
   </div>
 </header>
@@ -228,32 +240,42 @@ footer.doc :focus-visible{outline-color:#fff}
     <li><a href="#negocio">Datos del negocio</a></li>
     <li><a href="#visual">Sistema visual</a></li>
     <li><a href="#mapa">Mapa del sitio</a></li>
-    <li><a href="#wireframes">Wireframes</a></li>
+    <li><a href="#wireframes">Bocetos</a></li>
     <li><a href="#whatsapp">Flujo WhatsApp</a></li>
     <li><a href="#mantenimiento">Mantenimiento</a></li>
     <li><a href="#fuentes">Fuentes</a></li>
     <li><a href="#aceptacion">Aceptación</a></li>
     <li><a href="#limites">Límites</a></li>
-    <li><a href="#decisiones">Tus decisiones</a></li>
+    <li class="needs-js"><a href="#decisiones">Tus decisiones</a></li>
   </ul>
 </nav>
 
 <main id="contenido">
+<noscript><div class="wrap"><p class="callout" style="margin-top:24px">Este documento funciona mejor con JavaScript activado (pestañas, probador de WhatsApp, lista de criterios y resumen de decisiones). Sin él se ve todo el contenido, pero esas herramientas no aparecen.</p></div></noscript>
 
 <!-- ======================= 1. RESUMEN ======================= -->
 <section id="resumen" aria-labelledby="h-resumen">
   <div class="wrap">
     <h2 id="h-resumen">Resumen y recomendación</h2>
-    <p class="lede">Recomiendo la <strong>Ruta A, catálogo claro</strong>: fondo blanco, azul de marca para encabezado, títulos y pie, y un solo botón naranja para cotizar por WhatsApp. La alternativa es la <strong>Ruta B</strong>: la misma identidad, con una fotografía real de la tienda o de la atención como protagonista del inicio.</p>
+    <p class="lede">Se recomienda la <strong>Ruta A, catálogo claro</strong>: fondo blanco, azul de marca para encabezado, títulos y pie, y el mismo botón naranja para las acciones que llevan a WhatsApp. La alternativa es la <strong>Ruta B</strong>: la misma identidad, con una fotografía real de la tienda o de la atención como protagonista del inicio.</p>
+
+    <h3>Cómo leer este documento</h3>
+    <p>Cada afirmación lleva una etiqueta que dice de dónde sale. Cuando una etiqueta de dato trae letras (U, MD, CDR), son su fuente:</p>
+    <ul class="legend">
+      <li><span class="tag t-dato">Dato</span> hecho con fuente (el encargo, el MD, el CDR o una referencia citada)</li>
+      <li><span class="tag t-prop">Propuesta</span> decisión de diseño o estructura, a revisar</li>
+      <li><span class="tag t-hip">Hipótesis</span> posibilidad que depende del inventario real</li>
+      <li><span class="tag t-pend">Pendiente</span> falta un dato o hay que comprobarlo</li>
+    </ul>
+    <p class="small" style="margin-top:16px;margin-bottom:var(--s3)">Fuentes abreviadas: <b>[U]</b> el encargo y el mensaje del usuario (7‑oct‑2026) · <b>[MD]</b> «10 · Contexto web y prompts (6‑oct)» · <b>[CDR]</b> archivo editable <code>ARCHIVOS_ROBLES.cdr</code> (metadatos, texto, paleta y miniatura) · <b>[CALC]</b> cálculo hecho para esta propuesta.</p>
 
     <div class="grid g2">
       <div class="card">
         <h3>Por qué la Ruta A primero</h3>
         <ul>
-          <li>No hace falta ninguna foto: en el paquete recibido no hay fotografías de la tienda ni de productos <span class="tag t-dato">Dato</span>.</li>
-          <li>El catálogo es lo que el visitante viene a buscar: tres líneas, productos y una forma obvia de preguntar el precio.</li>
-          <li>Con pocos productos al inicio, un catálogo ordenado se ve completo; una foto de portada débil, no.</li>
-          <li class="small">Es una inferencia mía a partir del paquete, no una decisión del cliente <span class="tag t-prop">Propuesta</span>.</li>
+          <li>Funciona sin fotos de la tienda: en lo leído del CDR (metadatos, textos y miniatura) no hay fotografías de la tienda ni de productos. Los mapas de bits del archivo no se revisaron uno por uno <span class="tag t-pend">Pendiente</span>.</li>
+          <li>El catálogo es lo que el visitante viene a buscar: las tres líneas, los productos y una forma obvia de preguntar el precio <span class="tag t-prop">Propuesta</span>.</li>
+          <li>Si al principio hubiera pocos productos (aún no hay inventario), un catálogo ordenado se ve completo; una foto de portada débil, no <span class="tag t-hip">Hipótesis</span>.</li>
         </ul>
       </div>
       <div class="card">
@@ -267,26 +289,19 @@ footer.doc :focus-visible{outline-color:#fff}
     </div>
 
     <div class="callout alert">
-      <p><strong>Qué necesito de ti para pasar al Paso 2 (solo lo indispensable):</strong></p>
+      <p><strong>Qué falta para cerrar el Paso 1 (solo lo indispensable):</strong></p>
       <ol>
         <li>Ruta A o B.</li>
         <li>Dominio principal (sección <a href="#dominios">Dominios</a>).</li>
-        <li>Dirección: Juárez 43 o 55, y el código postal 63830 o 63890.</li>
+        <li>Dirección: Juárez 43 o 55, y código postal 63830 o 63890.</li>
         <li>Quién actualizará un producto o un precio, y cada cuánto (sección <a href="#mantenimiento">Mantenimiento</a>).</li>
         <li>Si el correo del negocio se puede publicar, y qué hacer con el domingo.</li>
       </ol>
-      <p class="small">Al final hay un formulario, <a href="#decisiones">Tus decisiones</a>, que arma la respuesta lista para pegar en el chat.</p>
+      <p class="small">Construir el sitio (Paso 2) requiere una autorización aparte. El [MD] además pide una cotización aceptada por escrito y la plataforma decidida. Nada de esto lo autoriza.</p>
+      <p class="small">Al final, <a href="#decisiones">Tus decisiones</a> arma un resumen de las respuestas para copiar y pegar.</p>
     </div>
 
-    <h3>Cómo leer este documento</h3>
-    <p>Cada afirmación lleva una etiqueta para que sepas de dónde sale:</p>
-    <ul class="legend">
-      <li><span class="tag t-dato">Dato</span> hecho con fuente (tu mensaje, el MD, el CDR o una referencia citada)</li>
-      <li><span class="tag t-prop">Propuesta</span> decisión mía de diseño o estructura, a revisar</li>
-      <li><span class="tag t-hip">Hipótesis</span> depende del inventario real</li>
-      <li><span class="tag t-pend">Pendiente</span> falta un dato</li>
-    </ul>
-    <p class="small" style="margin-top:16px">Fuentes abreviadas: <b>[U]</b> encargo y mensaje del usuario (7‑oct‑2026) · <b>[MD]</b> «10 · Contexto web y prompts (6‑oct)» · <b>[CDR]</b> archivo editable <code>ARCHIVOS_ROBLES.cdr</code> (metadatos, texto, paleta y miniatura) · <b>[CALC]</b> cálculo hecho para esta propuesta.</p>
+    
   </div>
 </section>
 
@@ -294,10 +309,10 @@ footer.doc :focus-visible{outline-color:#fff}
 <section id="dominios" aria-labelledby="h-dom">
   <div class="wrap">
     <h2 id="h-dom">Dominios más cercanos al nombre</h2>
-    <p class="lede">Los candidatos exactos con las tres terminaciones que pediste: <b>.com</b>, <b>.net</b> y <b>.mx</b>. Ninguno está verificado ni registrado.</p>
+    <p class="lede">Candidatos con el nombre exacto y las tres terminaciones pedidas: <b>.com</b>, <b>.net</b> y <b>.mx</b>, más alternativas por si el nombre exacto estuviera tomado. No se verificó la disponibilidad de ninguno ni se registró ninguno; pueden estar ya registrados.</p>
 
     <div class="callout">
-      <p><strong>Límite:</strong> hoy no pude consultar disponibilidad. La red de esta sesión bloquea los servicios de consulta de dominios, y una búsqueda DNS no basta para saber si un nombre está libre <span class="tag t-pend">Pendiente</span>. Hay que comprobar cada uno con un registrador antes de decidir. <strong>No se registra nada sin tu aprobación.</strong></p>
+      <p><strong>Límite:</strong> no fue posible consultar si estos nombres están libres: desde donde se preparó este documento no hay acceso a los servicios que lo informan <span class="tag t-pend">Pendiente</span>. Antes de decidir, cada nombre se comprueba en una empresa que registre dominios. <strong>No se registra nada sin aprobación.</strong></p>
     </div>
 
     <div class="tw">
@@ -305,35 +320,17 @@ footer.doc :focus-visible{outline-color:#fff}
         <caption>Candidatos, de mayor a menor prioridad</caption>
         <thead><tr><th scope="col">Prioridad</th><th scope="col">Dominio</th><th scope="col">Por qué</th><th scope="col">Riesgos y notas</th><th scope="col">Estado</th></tr></thead>
         <tbody>
-          <tr><td data-l="Prioridad">1 · principal</td><td data-l="Dominio"><code>comercializadorarobles.com</code></td><td data-l="Por qué">Nombre exacto del negocio, sin guiones ni acentos. <b>.com</b> es la terminación que la gente escribe por costumbre.</td><td data-l="Riesgos y notas">22 letras antes del punto: largo para escribir en el celular. Conviene que el enlace de WhatsApp y la tarjeta lleven el nombre completo.</td><td data-l="Estado"><span class="tag t-pend">Sin verificar</span></td></tr>
-          <tr><td data-l="Prioridad">2 · local</td><td data-l="Dominio"><code>comercializadorarobles.mx</code></td><td data-l="Por qué">Mismo nombre; la terminación <b>.mx</b> señala que es un negocio de México.</td><td data-l="Riesgos y notas">Comprobar requisitos y precio con un registrador autorizado de .mx. Útil como segundo nombre que lleva al principal.</td><td data-l="Estado"><span class="tag t-pend">Sin verificar</span></td></tr>
-          <tr><td data-l="Prioridad">3 · defensivo</td><td data-l="Dominio"><code>comercializadorarobles.net</code></td><td data-l="Por qué">Mismo nombre; evita que otra persona use la terminación vecina.</td><td data-l="Riesgos y notas">Es la menos esperada para un comercio local. Solo vale la pena si el costo es bajo, y solo como redirección.</td><td data-l="Estado"><span class="tag t-pend">Sin verificar</span></td></tr>
-          <tr><td data-l="Prioridad">Si el nombre exacto está tomado</td><td data-l="Dominio"><code>comercializadoraroblesnay.com</code> · <code>.mx</code><br><code>comercializadorarobles.com.mx</code></td><td data-l="Por qué">Añaden «nay» (Nayarit; el CDR escribe «Nay.») para distinguirse. La última usa <b>.com.mx</b>, que no pediste: la incluyo solo como respaldo.</td><td data-l="Riesgos y notas">Más largos. Pueden confundirse con otra «Comercializadora Robles» de otro estado.</td><td data-l="Estado"><span class="tag t-hip">Hipótesis</span></td></tr>
+          <tr><td data-l="Prioridad">1 · principal</td><td data-l="Dominio"><code>comercializadorarobles.com</code></td><td data-l="Por qué">Nombre exacto del negocio, sin guiones ni acentos. <span class="tag t-prop">Propuesta</span> <b>.com</b> es la terminación que mucha gente escribe por costumbre.</td><td data-l="Riesgos y notas">22 letras antes del punto: largo para escribir en el celular. Conviene imprimir el nombre completo, sin abreviar, en letreros y tarjetas.</td><td data-l="Estado"><span class="tag t-pend">Pendiente: verificar</span></td></tr>
+          <tr><td data-l="Prioridad">2 · local</td><td data-l="Dominio"><code>comercializadorarobles.mx</code></td><td data-l="Por qué"><span class="tag t-prop">Propuesta</span> Mismo nombre; la terminación <b>.mx</b> indica que es un negocio de México.</td><td data-l="Riesgos y notas">Comprobar requisitos y precio con una empresa autorizada para registrar .mx. Útil como segundo nombre que lleve al principal.</td><td data-l="Estado"><span class="tag t-pend">Pendiente: verificar</span></td></tr>
+          <tr><td data-l="Prioridad">3 · defensivo</td><td data-l="Dominio"><code>comercializadorarobles.net</code></td><td data-l="Por qué"><span class="tag t-prop">Propuesta</span> Mismo nombre; evita que otra persona use la terminación vecina.</td><td data-l="Riesgos y notas">Es una terminación menos habitual en comercios locales. Solo vale la pena si el costo es bajo, y solo como segundo nombre que lleve al principal.</td><td data-l="Estado"><span class="tag t-pend">Pendiente: verificar</span></td></tr>
+          <tr><td data-l="Prioridad">Respaldo si el exacto está tomado</td><td data-l="Dominio"><code>comercializadoraroblesnay.com</code> · <code>.mx</code><br><code>comercializadorarobles.com.mx</code></td><td data-l="Por qué">Añaden «nay» (Nayarit; el CDR escribe «Nay.») para distinguirse. La última usa <b>.com.mx</b>, que no pediste: la incluyo solo como respaldo.</td><td data-l="Riesgos y notas">Más largos. Conviene comprobar que no choquen con otro negocio de nombre parecido (no verificado).</td><td data-l="Estado"><span class="tag t-hip">Hipótesis</span></td></tr>
         </tbody>
       </table>
     </div>
 
     <h3 style="margin-top:var(--s4)">Recomendación <span class="tag t-prop">Propuesta</span></h3>
-    <p><b>.com como principal</b>; <b>.mx</b> y <b>.net</b> como redirecciones al principal, solo si el costo anual te parece razonable. Un solo sitio con una sola dirección; los otros nombres solo apuntan a él.</p>
-    <p>Un dominio propio también serviría para un correo del negocio. El correo que aparece en el CDR es una cuenta gratuita; no se muestra aquí y se publica solo con visto bueno del responsable <span class="tag t-dato">Dato · MD</span>.</p>
-
-    <div class="card">
-      <h3>Pruébalo: cómo se verían las direcciones</h3>
-      <p class="small">Es solo un ejemplo para imaginarlo; elegir aquí no registra ni decide nada.</p>
-      <fieldset style="border:0;padding:0;margin:0">
-        <legend class="small" style="font:700 .9375rem var(--font-body);color:var(--texto)">Terminación a probar</legend>
-        <div style="display:flex;flex-wrap:wrap;gap:8px 20px">
-          <label class="opt"><input type="radio" name="dom" value="comercializadorarobles.com" checked> .com</label>
-          <label class="opt"><input type="radio" name="dom" value="comercializadorarobles.mx"> .mx</label>
-          <label class="opt"><input type="radio" name="dom" value="comercializadorarobles.net"> .net</label>
-        </div>
-      </fieldset>
-      <ul>
-        <li>Inicio: <code>https://<span class="dom">comercializadorarobles.com</span>/</code></li>
-        <li>Construcción: <code>https://<span class="dom">comercializadorarobles.com</span>/catalogo/construccion/</code></li>
-        <li>Visítanos: <code>https://<span class="dom">comercializadorarobles.com</span>/visitanos/</code></li>
-      </ul>
-    </div>
+    <p><b>.com como principal</b>. <b>.mx</b> y <b>.net</b> solo como segundos nombres que lleven al principal, si el costo anual es razonable. Un solo sitio con una sola dirección.</p>
+    <p>Un dominio propio también serviría para un correo del negocio. El CDR trae un correo de cuenta gratuita <span class="tag t-dato">Dato · CDR</span>; no se muestra aquí. El [MD] indica que se publica solo con visto bueno del «dueño», un rol que aún no está confirmado: aquí se usa «responsable» <span class="tag t-dato">Dato · MD</span>.</p>
   </div>
 </section>
 
@@ -350,14 +347,14 @@ footer.doc :focus-visible{outline-color:#fff}
         <tbody>
           <tr><td data-l="Dato">Nombre</td><td data-l="Valor">Comercializadora Robles</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U]; coincide con el logo del [CDR].</td></tr>
           <tr><td data-l="Dato">Líneas</td><td data-l="Valor">Materiales de construcción, limpieza y papelería</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U], [MD].</td></tr>
-          <tr><td data-l="Dato">Dirección</td><td data-l="Valor">Juárez 43, colonia Centro, Santa María del Oro, Nayarit</td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Verificar</span></td><td data-l="Fuente">[U]. <b>Discrepancia:</b> el [CDR] trae «Juárez 43» en un bloque de contacto y «Juárez 55» en las notas.</td></tr>
-          <tr><td data-l="Dato">Código postal</td><td data-l="Valor">63830</td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Verificar</span></td><td data-l="Fuente">[U]. <b>Discrepancia:</b> el [CDR] dice 63890 en todos sus textos. El [MD] indica que el 63830 salió de un listado de terceros.</td></tr>
-          <tr><td data-l="Dato">Responsable</td><td data-l="Valor">Angel Adrián Rodríguez Ramírez</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U], [CDR]. Se escribe «responsable»; <b>no se afirma que sea el dueño</b>. Mostrar su nombre en el sitio solo con su visto bueno.</td></tr>
+          <tr><td data-l="Dato">Dirección</td><td data-l="Valor">Juárez 43, colonia Centro, Santa María del Oro, Nayarit</td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Pendiente: verificar</span></td><td data-l="Fuente">[U]. <b>Discrepancia:</b> el [CDR] trae «Juárez 43» en el bloque de datos para depósito y «Juárez 55» en los textos de datos del contribuyente y de las notas.</td></tr>
+          <tr><td data-l="Dato">Código postal</td><td data-l="Valor">63830</td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Pendiente: verificar</span></td><td data-l="Fuente">[U]. <b>Discrepancia:</b> el [CDR] dice 63890 en todos sus textos. El [MD] indica que el 63830 salió de un listado de terceros.</td></tr>
+          <tr><td data-l="Dato">Responsable</td><td data-l="Valor">Persona indicada en el encargo [U]. El nombre se omite en este borrador público.</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U], [CDR]. Se escribe «responsable»; <b>no se afirma que sea el dueño</b>. En el sitio, su nombre solo con su visto bueno.</td></tr>
           <tr><td data-l="Dato">Teléfono</td><td data-l="Valor">311 910 4468</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U], [CDR].</td></tr>
-          <tr><td data-l="Dato">WhatsApp</td><td data-l="Valor"><code>https://wa.me/523119104468</code></td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">Confirmado por el usuario [U]. El [MD] lo tenía por confirmar; este mensaje lo reemplaza.</td></tr>
-          <tr><td data-l="Dato">Horario</td><td data-l="Valor">Lunes a viernes 9:00–14:00 y 16:00–18:30 · Sábado 9:00–13:00 · Domingo: <b>no informado</b></td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Domingo</span></td><td data-l="Fuente">[U], [MD]. «No informado» no significa «cerrado»: el sitio no debe escribir «cerrado» hasta confirmarlo.</td></tr>
+          <tr><td data-l="Dato">WhatsApp</td><td data-l="Valor"><code>https://wa.me/523119104468</code></td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">Confirmado por el usuario el 7‑oct [U]. El [MD] lo tenía por confirmar; el encargo lo reemplaza.</td></tr>
+          <tr><td data-l="Dato">Horario</td><td data-l="Valor">Lunes a viernes 9:00–14:00 y 16:00–18:30 · Sábado 9:00–13:00 · Domingo: <b>no informado</b></td><td data-l="Estado"><span class="tag t-dato">Dato</span> <span class="tag t-pend">Pendiente: domingo</span></td><td data-l="Fuente">[U], [MD]. «No informado» no significa «cerrado»: el sitio no debe escribir «cerrado» hasta confirmarlo.</td></tr>
           <tr><td data-l="Dato">Formas de pago</td><td data-l="Valor">Efectivo y transferencia</td><td data-l="Estado"><span class="tag t-dato">Dato</span></td><td data-l="Fuente">[U]. No se menciona tarjeta. Los datos bancarios no se publican.</td></tr>
-          <tr><td data-l="Dato">Logo</td><td data-l="Valor">Casa con herramientas; naranja y azul; texto «Comercializadora Robles»</td><td data-l="Estado"><span class="tag t-pend">Exportar</span></td><td data-l="Fuente">[CDR], [MD]. La miniatura del CDR es de baja resolución y <b>no es el logo final</b>: se exporta la pieza correcta cuando se autorice.</td></tr>
+          <tr><td data-l="Dato">Logo</td><td data-l="Valor">Casa con herramientas; naranja y azul; texto «Comercializadora Robles»</td><td data-l="Estado"><span class="tag t-pend">Pendiente: exportar</span></td><td data-l="Fuente">[CDR], [MD]. La miniatura del CDR es de baja resolución y <b>no es el logo final</b>: se exporta la pieza correcta cuando se autorice.</td></tr>
           <tr><td data-l="Dato">Fotos y productos</td><td data-l="Valor">Ninguno recibido</td><td data-l="Estado"><span class="tag t-pend">Pendiente</span></td><td data-l="Fuente">No hay inventario, precios ni fotos autorizadas en el paquete. Se activan solo las ramas del catálogo con productos reales.</td></tr>
         </tbody>
       </table>
@@ -367,22 +364,22 @@ footer.doc :focus-visible{outline-color:#fff}
       <div class="card">
         <h3>Presente en el CDR y que no se publica</h3>
         <ul>
-          <li>Cuenta y clave interbancaria, y RFC: aparecen en el archivo. <b>No se reproducen aquí ni se publicarán</b> salvo decisión expresa del responsable <span class="tag t-dato">Dato · MD</span>.</li>
+          <li>La cuenta bancaria, la CLABE y el RFC aparecen en el archivo. <b>No se reproducen aquí ni se publicarán</b>, salvo que el «dueño» lo decida <span class="tag t-dato">Dato · MD</span>.</li>
           <li>El correo del negocio: solo con visto bueno.</li>
           <li>El CDR completo no se sube al repositorio.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Cosas del CDR que conviene aclarar</h3>
+        <h3>Dudas sobre el archivo CDR</h3>
         <ul>
-          <li>Una nota de la miniatura lleva el rótulo «Reparación de maquinaria para la construcción». Con la resolución disponible no puedo leerlo bien, y <b>no coincide con las líneas declaradas</b>. Podría ser una plantilla ajena. No se usa <span class="tag t-pend">Verificar</span>.</li>
-          <li>Metadatos: creado el 28‑ene‑2026 y modificado el 1‑feb‑2026 por otra persona, Carlos Antonio García Borrego; el campo de derechos está vacío. Confirmar el permiso de uso del arte antes de publicarlo <span class="tag t-pend">Verificar</span>.</li>
+          <li>La nota de la miniatura parece decir «Reparación de maquinaria para la construcción». La resolución es baja y no es seguro. No coincide con las líneas declaradas y podría ser una plantilla ajena. No se usa <span class="tag t-pend">Pendiente: verificar</span>.</li>
+          <li>Metadatos: creado el 28‑ene‑2026 y modificado el 1‑feb‑2026. El autor que figura es una persona distinta del responsable (su nombre no se reproduce aquí) y el campo de derechos está vacío. Antes de publicar el arte, confirmar con quién y bajo qué acuerdo se hizo <span class="tag t-pend">Pendiente: verificar</span>.</li>
         </ul>
       </div>
     </div>
 
     <h3 style="margin-top:var(--s4)">Lo que el sitio no debe afirmar</h3>
-    <p>«Distinguen costos y materiales» es ambiguo: no se traduce en <i>mejores precios</i>, <i>asesoría</i> ni <i>calidad superior</i>. Tampoco se afirma, mientras no haya dato:</p>
+    <p>La frase «distinguen costos y materiales» (del encargo [U]) es ambigua: no se traduce en <i>mejores precios</i>, <i>asesoría</i> ni <i>calidad superior</i>. Tampoco se afirma, mientras no haya dato:</p>
     <div class="grid g3">
       <div class="card"><b>Producto</b><ul><li>Existencia o «agotado» (desconocido no es cero)</li><li>Productos, marcas o precios no capturados</li><li>Descuentos y ofertas</li></ul></div>
       <div class="card"><b>Servicio</b><ul><li>Entrega a domicilio</li><li>Facturación</li><li>Garantías y cambios</li></ul></div>
@@ -396,18 +393,18 @@ footer.doc :focus-visible{outline-color:#fff}
 <section id="visual" aria-labelledby="h-vis">
   <div class="wrap">
     <h2 id="h-vis">Sistema visual (Ruta A)</h2>
-    <p class="lede">Los tres colores de marca están en la paleta del CDR <span class="tag t-dato">Dato · CDR</span>. <b>Los usos son propuesta mía</b> <span class="tag t-prop">Propuesta</span>.</p>
+    <p class="lede">Los tres colores de marca están en la paleta del CDR <span class="tag t-dato">Dato · CDR</span>. <b>Los usos son propuesta</b> <span class="tag t-prop">Propuesta</span>.</p>
 
     <h3>Colores, uso y contraste</h3>
     <div class="tw">
       <table class="stack">
-        <caption>Contrastes calculados con la fórmula WCAG 2.2 [CALC]. Mínimos: 4.5:1 texto normal, 3:1 texto grande y componentes.</caption>
+        <caption>Contraste calculado con las pautas internacionales de accesibilidad web (WCAG 2.2) [CALC]. Mínimos: 4.5:1 para texto normal y 3:1 para texto grande, botones y bordes. Mientras más alto el número, más fácil se lee.</caption>
         <thead><tr><th scope="col">Color</th><th scope="col">Origen</th><th scope="col">Uso propuesto</th><th scope="col">Contraste</th></tr></thead>
         <tbody>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#174F7C"></span><span><b>Azul</b><br><code>#174F7C</code></span></div></td><td data-l="Origen"><span class="tag t-dato">CDR</span> R23 G79 B124</td><td data-l="Uso">Encabezado, títulos, pie y enlaces.</td><td data-l="Contraste"><span class="ok">8.59:1</span> con blanco (texto blanco sobre azul, y azul sobre blanco). <span class="ok">7.79:1</span> sobre gris.</td></tr>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#FFFFFF"></span><span><b>Blanco</b><br><code>#FFFFFF</code></span></div></td><td data-l="Origen"><span class="tag t-dato">CDR</span> «Blanco»</td><td data-l="Uso">Fondo dominante.</td><td data-l="Contraste">Texto <code>#1A1A1A</code>: <span class="ok">17.40:1</span>.</td></tr>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#F2F4F6"></span><span><b>Gris de apoyo</b><br><code>#F2F4F6</code></span></div></td><td data-l="Origen"><span class="tag t-prop">Propuesta</span></td><td data-l="Uso">Bandas alternas, tarjetas, tablas.</td><td data-l="Contraste">Texto <code>#1A1A1A</code>: <span class="ok">15.79:1</span>.</td></tr>
-          <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#F48F07"></span><span><b>Naranja</b><br><code>#F48F07</code></span></div></td><td data-l="Origen"><span class="tag t-dato">CDR</span> R244 G143 B7</td><td data-l="Uso"><b>Solo relleno del botón de cotizar</b>, con texto <code>#1A1A1A</code> y borde azul.</td><td data-l="Contraste">Texto <code>#1A1A1A</code> sobre naranja: <span class="ok">7.28:1</span>. Blanco sobre naranja: <span class="no">2.39:1</span>. Naranja como texto sobre blanco: <span class="no">2.39:1</span>.</td></tr>
+          <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#F48F07"></span><span><b>Naranja</b><br><code>#F48F07</code></span></div></td><td data-l="Origen"><span class="tag t-dato">CDR</span> R244 G143 B7</td><td data-l="Uso"><b>Solo relleno de los botones que abren WhatsApp</b> (cotizar, enviar lista), con texto <code>#1A1A1A</code> y borde azul.</td><td data-l="Contraste">Texto <code>#1A1A1A</code> sobre naranja: <span class="ok">7.28:1</span>. Blanco sobre naranja: <span class="no">2.39:1</span>. Naranja como texto sobre blanco: <span class="no">2.39:1</span>.</td></tr>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#00A9E9"></span><span><b>Celeste</b><br><code>#00A9E9</code></span></div></td><td data-l="Origen"><span class="tag t-dato">CDR</span> (0, .663, .914)</td><td data-l="Uso">Solo decorativo (filetes, formas). Nunca texto ni información que dependa de verlo.</td><td data-l="Contraste">Sobre blanco: <span class="no">2.67:1</span>. Sobre azul: 3.21:1.</td></tr>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#1A1A1A"></span><span><b>Texto</b><br><code>#1A1A1A</code></span></div></td><td data-l="Origen"><span class="tag t-dato">Dato · U</span> (texto del botón)</td><td data-l="Uso">Cuerpo de texto y texto sobre naranja.</td><td data-l="Contraste"><span class="ok">17.40:1</span> sobre blanco.</td></tr>
           <tr><td data-l="Color"><div class="colcell"><span class="sw" style="background:#4A5560"></span><span><b>Texto secundario</b><br><code>#4A5560</code></span></div></td><td data-l="Origen"><span class="tag t-prop">Propuesta</span> (derivado)</td><td data-l="Uso">Notas, pies de foto, ayudas.</td><td data-l="Contraste"><span class="ok">7.61:1</span> sobre blanco; <span class="ok">6.90:1</span> sobre gris.</td></tr>
@@ -416,23 +413,13 @@ footer.doc :focus-visible{outline-color:#fff}
     </div>
 
     <div class="callout alert">
-      <p><strong>Un ajuste respecto al MD.</strong> El [MD] propone naranja «en botones y precios». El naranja sobre blanco da 2.39:1, así que <b>los precios van en azul <code>#174F7C</code> con peso 800</b> (8.59:1). El naranja queda como relleno de botón con texto oscuro <span class="tag t-prop">Propuesta</span>. Como el botón naranja sobre blanco tampoco alcanza 3:1 por sí solo, lleva borde azul de 2 px.</p>
-    </div>
-
-    <div class="card" style="margin-top:var(--s3)">
-      <h3>Probador de contraste</h3>
-      <div class="cc">
-        <label>Color del texto<select id="cc-fg"></select></label>
-        <label>Color del fondo<select id="cc-bg"></select></label>
-        <div class="prev" id="cc-prev">Cotiza por WhatsApp</div>
-        <p><output id="cc-out" aria-live="polite"></output></p>
-      </div>
+      <p><strong>Un ajuste respecto al [MD].</strong> El [MD] pide naranja «en botones y precios». El naranja sobre fondo blanco se lee mal (2.39:1), así que <b>los precios van en azul <code>#174F7C</code> con peso 800</b> (8.59:1). El naranja queda solo como fondo de botón, con texto oscuro y un borde azul de 2 px, porque tampoco alcanza 3:1 contra el blanco <span class="tag t-prop">Propuesta</span>.</p>
     </div>
 
     <h3 style="margin-top:var(--s5)">Tipografía y escala</h3>
     <div class="grid g2">
       <div class="spec">
-        <p class="small">Vista previa. Si Nunito no está instalada en tu equipo, ves la alternativa del sistema.</p>
+        <p class="small">Vista previa aproximada: se ve en Nunito solo si esa fuente está instalada en el equipo; si no, en Arial. El sitio final sí incluiría la fuente.</p>
         <div class="h1x">Materiales y limpieza</div>
         <div class="h2x" style="margin-top:12px">Papelería para tu negocio</div>
         <p style="margin-top:12px">Texto de cuerpo en Arial o la fuente del sistema, a 16 px en el celular y 18 px en pantallas grandes, con interlineado 1.5.</p>
@@ -440,9 +427,9 @@ footer.doc :focus-visible{outline-color:#fff}
       <div class="card">
         <h4>Combinación propuesta <span class="tag t-prop">Propuesta</span></h4>
         <ul>
-          <li><b>Títulos:</b> Nunito 800. Licencia libre OFL (<a href="https://github.com/google/fonts/blob/main/ofl/nunito/OFL.txt">texto de la licencia</a>), tipografía redondeada cercana a la del logo.</li>
+          <li><b>Títulos:</b> Nunito 800, con licencia libre (OFL; <a href="https://github.com/google/fonts/blob/main/ofl/nunito/OFL.txt" rel="noopener noreferrer nofollow">texto de la licencia</a>). Es redondeada y se parece a Arial Rounded MT Bold, que el CDR enumera; no se comprobó que el logo la use.</li>
           <li><b>Cuerpo:</b> Arial o la del sistema.</li>
-          <li>El CDR enumera Arial Rounded MT Bold, Arial, Arial Black y MS Gothic <span class="tag t-dato">Dato · CDR</span>. <b>No presento esta combinación como oficial</b>: es una propuesta compatible con lo que el negocio ya usa.</li>
+          <li>El CDR enumera Arial Rounded MT Bold, Arial, Arial Black y MS Gothic <span class="tag t-dato">Dato · CDR</span>. <b>Esta combinación no se presenta como oficial</b>: es una propuesta compatible con lo que el negocio ya usa.</li>
           <li>Verificado en el paquete: la base de fuentes de <i>ui‑ux‑pro‑max</i> lista Nunito como variable (peso 200–1000, alfabeto latino extendido). El texto de la licencia no pude reabrirlo hoy (red bloqueada).</li>
           <li>En el sitio final la fuente se alojaría en el propio sitio, sin pedirla a terceros.</li>
         </ul>
@@ -458,9 +445,9 @@ footer.doc :focus-visible{outline-color:#fff}
           <tr><td data-l="Elemento">H1</td><td data-l="Tamaño">34–52 px (fluido)</td><td data-l="Interlineado">1.15 <span class="tag t-prop">Propuesta</span></td><td data-l="Origen"><span class="tag t-dato">Dato · U</span></td></tr>
           <tr><td data-l="Elemento">H2</td><td data-l="Tamaño">28–36 px (fluido)</td><td data-l="Interlineado">1.2 <span class="tag t-prop">Propuesta</span></td><td data-l="Origen"><span class="tag t-dato">Dato · U</span></td></tr>
           <tr><td data-l="Elemento">H3 (nombre de producto)</td><td data-l="Tamaño">22 px</td><td data-l="Interlineado">1.25</td><td data-l="Origen"><span class="tag t-prop">Propuesta</span></td></tr>
-          <tr><td data-l="Elemento">Texto de apoyo (mínimo)</td><td data-l="Tamaño">14 px</td><td data-l="Interlineado">1.5</td><td data-l="Origen"><span class="tag t-prop">Propuesta</span></td></tr>
+          <tr><td data-l="Elemento">Texto de apoyo (mínimo, en el sitio final)</td><td data-l="Tamaño">14 px</td><td data-l="Interlineado">1.5</td><td data-l="Origen"><span class="tag t-prop">Propuesta</span></td></tr>
           <tr><td data-l="Elemento">Contenedor y márgenes</td><td data-l="Tamaño">1200 px de ancho máximo; 20 px de margen en móvil</td><td data-l="Interlineado">—</td><td data-l="Origen"><span class="tag t-dato">Dato · U</span></td></tr>
-          <tr><td data-l="Elemento">Botones y enlaces táctiles</td><td data-l="Tamaño">48 px de alto mínimo, 8 px de separación</td><td data-l="Interlineado">—</td><td data-l="Origen"><span class="tag t-prop">Propuesta</span>: la guía <i>ui‑ux‑pro‑max</i> (#22) recomienda 44 pt en iOS y 48 dp en Android; la norma WCAG 2.2 exige al menos 24 px.</td></tr>
+          <tr><td data-l="Elemento">Botones y enlaces táctiles</td><td data-l="Tamaño">48 px de alto mínimo, 8 px de separación</td><td data-l="Interlineado">—</td><td data-l="Origen"><span class="tag t-prop">Propuesta</span>: una guía del paquete de apoyo recomienda 44 pt en iOS y 48 dp en Android; la norma WCAG 2.2 exige al menos 24 px.</td></tr>
         </tbody>
       </table>
     </div>
@@ -471,19 +458,20 @@ footer.doc :focus-visible{outline-color:#fff}
     </ul>
 
     <h3 style="margin-top:var(--s4)">Alternativa B <span class="tag t-prop">Propuesta</span></h3>
-    <p>Mismos colores, tipografía y estructura. Cambia solo el inicio: una fotografía real de la tienda o de la atención ocupa el lugar principal. Reglas: foto con autorización, <code>alt</code> descriptivo, texto fuera de la imagen y peso ligero para datos móviles. <b>No se puede usar hasta tener las fotos</b> <span class="tag t-pend">Pendiente</span>. Puedes ver el cambio en los wireframes con el selector «Ruta».</p>
+    <p>Mismos colores, tipografía y estructura. Cambia solo el inicio: una fotografía real de la tienda o de la atención ocupa el lugar principal. Reglas: foto con autorización, texto alternativo descriptivo, texto fuera de la imagen y peso ligero para datos móviles. <b>No se puede usar hasta tener las fotos</b> <span class="tag t-pend">Pendiente</span>. El cambio se ve en los bocetos con el selector «Ruta».</p>
   </div>
 </section>
 
 <!-- ======================= 5. MAPA ======================= -->
 <section id="mapa" aria-labelledby="h-mapa">
   <div class="wrap">
-    <h2 id="h-mapa">Mapa del sitio: rutas, pestañas y subpestañas</h2>
-    <p class="lede">Cuatro entradas en el menú y un botón. Las rutas vienen del encargo <span class="tag t-dato">Dato · U</span>. Todo lo que dependa de productos reales es una <span class="tag t-hip">Hipótesis</span> hasta tener el inventario.</p>
+    <h2 id="h-mapa">Mapa del sitio: direcciones, pestañas y subpestañas</h2>
+    <p class="lede">Tres pestañas en el menú (Catálogo, Cómo comprar y Visítanos) y un botón. Las direcciones y los nombres vienen del encargo <span class="tag t-dato">Dato · U</span>; el comportamiento del menú es propuesta. Lo que dependa de productos reales es <span class="tag t-hip">Hipótesis</span> hasta tener inventario.</p>
+    <p class="small">«Línea» y «categoría» significan lo mismo aquí: Construcción, Limpieza o Papelería. Las subcategorías son grupos dentro de una línea.</p>
 
     <ul class="tree" aria-label="Mapa del sitio">
-      <li><div class="node"><code>/</code> <b>Inicio</b> <span class="tag t-dato">Dato</span><span class="why">Se llega por el logo; no ocupa lugar en el menú.</span></div></li>
-      <li><div class="node"><code>/catalogo/</code> <b>Catálogo</b> <span class="tag t-dato">Dato</span><span class="why">Pestaña con menú desplegable de tres líneas.</span></div>
+      <li><div class="node"><code>/</code> <b>Inicio</b> <span class="tag t-dato">Dato</span><span class="why"><span class="tag t-prop">Propuesta</span> Se llega por el logo; no ocupa lugar en el menú.</span></div></li>
+      <li><div class="node"><code>/catalogo/</code> <b>Catálogo</b> <span class="tag t-dato">Dato</span><span class="why"><span class="tag t-prop">Propuesta</span> Pestaña con menú desplegable de tres secciones.</span></div>
         <ul>
           <li><div class="node"><code>/catalogo/construccion/</code> <b>Construcción</b> <span class="tag t-dato">Dato</span>
             <span class="why">Subcategorías posibles: materiales de obra · herramientas y complementos <span class="tag t-hip">Hipótesis</span></span></div></li>
@@ -492,7 +480,7 @@ footer.doc :focus-visible{outline-color:#fff}
           <li><div class="node"><code>/catalogo/papeleria/</code> <b>Papelería</b> <span class="tag t-dato">Dato</span>
             <span class="why">Subcategorías posibles: escolar · oficina <span class="tag t-hip">Hipótesis</span></span></div></li>
           <li><div class="node"><code>/catalogo/{linea}/{producto}/</code> <b>Producto</b> <span class="tag t-dato">Dato</span>
-            <span class="why">Vive dentro de su línea; no se lista en el menú.</span></div></li>
+            <span class="why"><span class="tag t-prop">Propuesta</span> Vive dentro de su línea; no se lista en el menú.</span></div></li>
         </ul>
       </li>
       <li><div class="node"><code>/como-comprar/</code> <b>Cómo comprar</b> <span class="tag t-dato">Dato</span></div>
@@ -515,10 +503,10 @@ footer.doc :focus-visible{outline-color:#fff}
       <div class="card">
         <h3>Decisiones de estructura <span class="tag t-prop">Propuesta</span></h3>
         <ul>
-          <li><b>Menú:</b> Catálogo · Cómo comprar · Visítanos · botón «Cotiza por WhatsApp». Cuatro cosas, no más.</li>
+          <li><b>Menú:</b> Catálogo · Cómo comprar · Visítanos · botón «Cotiza por WhatsApp». Tres pestañas y un botón, no más.</li>
           <li><b>Subpestañas</b> de Cómo comprar y Visítanos: secciones con ancla dentro de la misma página y, en pantallas anchas, pestañas encima del contenido. Así no hay siete páginas casi vacías.</li>
           <li><b>Subcategorías:</b> encabezados o filtros dentro de la página de la línea, no rutas ni menús. Evita el árbol profundo que el [MD] recomienda no imitar.</li>
-          <li><b>Ramas vacías:</b> una línea sin productos reales no se muestra como activa; se ofrece «Pregunta por WhatsApp».</li>
+          <li><b>Línea sin productos reales:</b> en el inicio aparece su tarjeta con «Pregunta por WhatsApp» y no tiene página de productos. Si alguien llega por un enlace directo, ve «Aún no hay productos publicados en esta línea».</li>
           <li><b>Móvil:</b> un botón «Menú» abre el menú; las subpestañas se pliegan.</li>
           <li><b>Pie:</b> mapa de enlaces, dirección, horario, teléfono y las políticas aplicables ya aprobadas. Un aviso de privacidad solo si el sitio recaba datos, y con texto revisado por un abogado <span class="tag t-pend">Pendiente</span>.</li>
         </ul>
@@ -535,6 +523,7 @@ footer.doc :focus-visible{outline-color:#fff}
     <h3 style="margin-top:var(--s4)">Lo que se deja fuera, a propósito</h3>
     <div class="tw">
       <table class="stack">
+        <caption>Elementos que no se incluyen</caption>
         <thead><tr><th scope="col">Elemento</th><th scope="col">Motivo</th><th scope="col">Fuente</th></tr></thead>
         <tbody>
           <tr><td data-l="Elemento">Carrito, pago en línea, inicio de sesión, inventario en tiempo real</td><td data-l="Motivo">El negocio cotiza y cobra en efectivo o transferencia; no hay datos de existencias.</td><td data-l="Fuente">[U], [MD] «No imitar».</td></tr>
@@ -549,8 +538,8 @@ footer.doc :focus-visible{outline-color:#fff}
 <!-- ======================= 6. WIREFRAMES ======================= -->
 <section id="wireframes" aria-labelledby="h-wf">
   <div class="wrap">
-    <h2 id="h-wf">Wireframes por bloques</h2>
-    <p class="lede">Esquemas de baja fidelidad: indican qué va y en qué orden, no el diseño final. Cambia entre páginas, entre móvil y escritorio, y entre las rutas A y B.</p>
+    <h2 id="h-wf">Bocetos de página (wireframes) por bloques</h2>
+    <p class="lede">Bocetos sencillos: muestran qué va en cada página y en qué orden, no cómo se verá al final. Se puede cambiar entre páginas, entre móvil y escritorio, y entre las rutas de diseño A y B. El número de cada punto de la lista es el del bloque en el boceto.</p>
 
     <div role="tablist" aria-label="Página a ver" id="wf-tabs">
       <button role="tab" id="tab-inicio" aria-controls="p-inicio" aria-selected="true">Inicio</button>
@@ -570,11 +559,12 @@ footer.doc :focus-visible{outline-color:#fff}
     </div>
 
     <!-- INICIO -->
-    <div role="tabpanel" id="p-inicio" aria-labelledby="tab-inicio">
+    <div role="tabpanel" id="p-inicio" aria-labelledby="tab-inicio" tabindex="0">
+      <h3 class="nojs-only">Boceto: Inicio</h3>
       <div class="wfwrap" data-view="m" data-ruta="A">
         <div class="wf">
           <div class="b blue"><span class="n">1</span><strong>Encabezado</strong><span class="mini">Logo · Menú (móvil: botón) · «Cotiza por WhatsApp»</span></div>
-          <div class="b"><span class="n">2</span><strong>Qué vendemos y dónde</strong>
+          <div class="b"><span class="n">2</span><strong>Qué vende y dónde</strong>
             <span class="mini">H1: «Materiales de construcción, limpieza y papelería en Santa María del Oro»</span>
             <span class="fake-btn">Cotiza por WhatsApp</span>
             <div class="ph hero-a-ph" style="margin-top:8px;min-height:44px">Ruta A: sin foto, solo texto, botón y la línea de dirección</div>
@@ -587,30 +577,31 @@ footer.doc :focus-visible{outline-color:#fff}
             <span class="mini">Abre WhatsApp con «Hola, quiero cotizar esta lista:». El texto o la foto se agregan a mano dentro de WhatsApp.</span>
             <span class="fake-btn">Envía tu lista</span></div>
           <div class="b"><span class="n">5</span><strong>Cómo consultar</strong>
-            <div class="cols c3" style="margin-top:6px"><div class="cell">1 · Elige o envía tu lista</div><div class="cell">2 · Pide el precio</div><div class="cell">3 · Confirma y paga: efectivo o transferencia</div></div></div>
+            <div class="cols c3" style="margin-top:6px"><div class="cell">1 · Elige o envía tu lista</div><div class="cell">2 · Pide el precio</div><div class="cell">3 · Confirma con la tienda</div></div></div>
           <div class="b"><span class="n">6</span><strong>Tarjeta de la tienda</strong>
             <div class="cols c2" style="margin-top:6px"><div class="cell">Dirección · horario · teléfono<br><span class="mini">Domingo: solo si se confirma</span></div><div class="ph" style="min-height:60px">Mapa (se carga al tocar «Cómo llegar»)</div></div>
-            <span class="fake-btn">Cómo llegar</span></div>
+            <span class="fake-btn sec">Cómo llegar</span></div>
           <div class="b blue"><span class="n">7</span><strong>Pie</strong><span class="mini">Mapa de enlaces · contacto · políticas aprobadas</span></div>
         </div>
       </div>
-      <ol class="blocklist">
-        <li><div><strong>Encabezado</strong> — azul con logo, menú y botón principal «Cotiza por WhatsApp». <span class="tag t-dato">Dato · U</span> Alto táctil de 48 px; se queda arriba solo si no tapa el contenido en móvil <span class="tag t-prop">Propuesta</span>.</div></li>
-        <li><div><strong>Qué vende y dónde</strong> — una frase con las tres líneas y la ciudad, y el CTA. <span class="tag t-dato">Dato · U</span> En la Ruta B aparece una foto real; en la A no hay imagen decorativa que sustituya al contenido <span class="tag t-prop">Propuesta</span>.</div></li>
-        <li><div><strong>Tres líneas</strong> — tarjetas hacia las categorías. <span class="tag t-dato">Dato · U</span> No se rellena con categorías inventadas.</div></li>
-        <li><div><strong>Envía tu lista</strong> — abre un borrador de WhatsApp. No se afirma que exista un sistema de adjuntos: la lista o la foto las escribe o adjunta la persona dentro de WhatsApp. <span class="tag t-dato">Dato · U</span> Inspiración: Compañía Fernández permite adjuntar una lista (ver <a href="#fuentes">fuentes</a>).</div></li>
-        <li><div><strong>Cómo consultar</strong> — tres pasos sin promesas de tiempo, entrega ni facturación. <span class="tag t-prop">Propuesta</span></div></li>
-        <li><div><strong>Tarjeta de la tienda</strong> — dirección, horario, teléfono, mapa y «Cómo llegar». <span class="tag t-dato">Dato · U</span> El mapa de un tercero no se carga hasta que la persona lo pide, para no gastar datos móviles ni rastrear al visitante <span class="tag t-prop">Propuesta</span>. Dirección y CP pendientes de comprobar.</div></li>
-        <li><div><strong>Pie</strong> — mapa de enlaces y políticas aplicables aprobadas. <span class="tag t-dato">Dato · U</span></div></li>
+      <ol class="blocklist" aria-label="Qué hay en cada bloque">
+        <li data-b="1"><div><strong>Encabezado</strong> — azul con logo, menú y botón principal «Cotiza por WhatsApp». <span class="tag t-dato">Dato · U</span> Alto táctil de 48 px; se queda arriba solo si no tapa el contenido en móvil <span class="tag t-prop">Propuesta</span>.</div></li>
+        <li data-b="2"><div><strong>Qué vende y dónde</strong> — una frase con las tres líneas y la ciudad, y el botón principal. <span class="tag t-dato">Dato · U</span> En la Ruta B aparece una foto real; en la A no hay imagen decorativa que sustituya al contenido <span class="tag t-prop">Propuesta</span>.</div></li>
+        <li data-b="3"><div><strong>Tres líneas</strong> — tarjetas hacia las categorías. <span class="tag t-dato">Dato · U</span> No se rellena con categorías inventadas.</div></li>
+        <li data-b="4"><div><strong>Envía tu lista</strong> — abre un borrador de WhatsApp. No se afirma que exista un sistema de adjuntos: la lista o la foto las escribe o adjunta la persona dentro de WhatsApp. <span class="tag t-dato">Dato · U</span> Inspiración: Compañía Fernández permite adjuntar una lista (ver <a href="#fuentes">fuentes</a>).</div></li>
+        <li data-b="5"><div><strong>Cómo consultar</strong> — tres pasos sin promesas de tiempo, entrega ni facturación. La forma de pago va en «Cómo comprar». <span class="tag t-prop">Propuesta</span></div></li>
+        <li data-b="6"><div><strong>Tarjeta de la tienda</strong> — dirección, horario, teléfono, mapa y «Cómo llegar». <span class="tag t-dato">Dato · U</span> El mapa de un tercero no se carga hasta que la persona lo pide, para no gastar datos móviles ni rastrear al visitante <span class="tag t-prop">Propuesta</span>. Dirección y CP pendientes de comprobar.</div></li>
+        <li data-b="7"><div><strong>Pie</strong> — mapa de enlaces y políticas aplicables aprobadas. <span class="tag t-dato">Dato · U</span></div></li>
       </ol>
     </div>
 
     <!-- CATEGORÍA -->
-    <div role="tabpanel" id="p-cat" aria-labelledby="tab-cat" hidden>
+    <div role="tabpanel" id="p-cat" aria-labelledby="tab-cat" tabindex="0">
+      <h3 class="nojs-only">Boceto: Categoría</h3>
       <div class="wfwrap" data-view="m" data-ruta="A">
         <div class="wf">
           <div class="b blue"><span class="n">1</span><strong>Encabezado</strong><span class="mini">Igual que en Inicio</span></div>
-          <div class="b"><span class="n">2</span><strong>Ruta de navegación</strong><span class="mini">Inicio › Catálogo › Construcción</span></div>
+          <div class="b"><span class="n">2</span><strong>Camino de navegación</strong><span class="mini">Inicio › Catálogo › Construcción</span></div>
           <div class="b"><span class="n">3</span><strong>Título de la línea</strong><span class="mini">H1: «Construcción» + una línea de introducción</span></div>
           <div class="b"><span class="n">4</span><strong>Filtros (opcional)</strong><span class="mini">Solo si hay datos suficientes. Si no, no aparecen.</span></div>
           <div class="b"><span class="n">5</span><strong>Productos reales</strong>
@@ -619,26 +610,27 @@ footer.doc :focus-visible{outline-color:#fff}
               <div class="cell"><div class="ph" style="min-height:48px">Foto autorizada</div>Nombre<br><span class="mini">Presentación · $ o «Solicita precio»</span><span class="fake-btn">Cotiza</span></div>
               <div class="cell"><div class="ph" style="min-height:48px">Foto autorizada</div>Nombre<br><span class="mini">Presentación · $ o «Solicita precio»</span><span class="fake-btn">Cotiza</span></div>
             </div></div>
-          <div class="b"><span class="n">6</span><strong>Estado vacío o «no encuentras algo»</strong><span class="mini">«Aún no hay productos publicados en esta línea.» + Envía tu lista</span></div>
+          <div class="b"><span class="n">6</span><strong>¿No encuentras algo?</strong><span class="mini">Invitación a «Envía tu lista»</span></div>
           <div class="b blue"><span class="n">7</span><strong>Pie</strong></div>
         </div>
       </div>
-      <ol class="blocklist">
-        <li><div><strong>Ruta de navegación</strong> — la categoría muestra dónde estás. <span class="tag t-dato">Dato · U</span></div></li>
-        <li><div><strong>Título</strong> — nombre de la línea. Sin texto de relleno ni afirmaciones de calidad. <span class="tag t-dato">Dato · U</span></div></li>
-        <li><div><strong>Filtros</strong> — solo con datos suficientes (por ejemplo, marca o presentación). <span class="tag t-dato">Dato · U</span> Subcategorías como encabezados dentro de la página <span class="tag t-hip">Hipótesis</span>.</div></li>
-        <li><div><strong>Productos</strong> — solo productos reales con foto autorizada; sin foto, un marcador neutro. <span class="tag t-dato">Dato · U</span></div></li>
-        <li><div><strong>Precio</strong> — se muestra únicamente si el precio vigente está completo; si no, «Solicita precio». <span class="tag t-dato">Dato · U</span> «Desconocido» nunca se muestra como cero ni como agotado.</div></li>
-        <li><div><strong>Estado vacío</strong> — evita una página en blanco cuando una línea aún no tiene productos. <span class="tag t-prop">Propuesta</span></div></li>
+      <ol class="blocklist" aria-label="Qué hay en cada bloque">
+        <li data-b="2"><div><strong>Camino de navegación</strong> — la categoría muestra dónde estás. <span class="tag t-dato">Dato · U</span></div></li>
+        <li data-b="3"><div><strong>Título</strong> — nombre de la línea. Sin texto de relleno ni afirmaciones de calidad. <span class="tag t-dato">Dato · U</span></div></li>
+        <li data-b="4"><div><strong>Filtros</strong> — solo con datos suficientes (por ejemplo, marca o presentación). <span class="tag t-dato">Dato · U</span> Subcategorías como encabezados dentro de la página <span class="tag t-hip">Hipótesis</span>.</div></li>
+        <li data-b="5"><div><strong>Productos</strong> — solo productos reales con foto autorizada; sin foto, un marcador neutro. <span class="tag t-dato">Dato · U</span></div></li>
+        <li data-b="5"><div><strong>Precio</strong> — se muestra únicamente si el precio vigente está completo; si no, «Solicita precio». <span class="tag t-dato">Dato · U</span> «Desconocido» nunca se muestra como cero ni como agotado.</div></li>
+        <li data-b="6"><div><strong>¿No encuentras algo?</strong> — lleva a «Envía tu lista». <span class="tag t-prop">Propuesta</span> Una línea sin productos reales no tiene página activa (ver Mapa del sitio).</div></li>
       </ol>
     </div>
 
     <!-- PRODUCTO -->
-    <div role="tabpanel" id="p-prod" aria-labelledby="tab-prod" hidden>
+    <div role="tabpanel" id="p-prod" aria-labelledby="tab-prod" tabindex="0">
+      <h3 class="nojs-only">Boceto: Producto</h3>
       <div class="wfwrap" data-view="m" data-ruta="A">
         <div class="wf">
           <div class="b blue"><span class="n">1</span><strong>Encabezado</strong></div>
-          <div class="b"><span class="n">2</span><strong>Ruta de navegación</strong><span class="mini">Inicio › Catálogo › Construcción › Producto</span></div>
+          <div class="b"><span class="n">2</span><strong>Camino de navegación</strong><span class="mini">Inicio › Catálogo › Construcción › Producto</span></div>
           <div class="cols c2">
             <div class="b"><span class="n">3</span><strong>Foto autorizada</strong><div class="ph" style="min-height:110px;margin-top:6px">Foto del producto con texto alternativo</div></div>
             <div class="b"><span class="n">4</span><strong>Nombre del producto</strong>
@@ -647,16 +639,15 @@ footer.doc :focus-visible{outline-color:#fff}
               <span class="mini" style="margin-top:6px">Cantidad: [ − ] 1 [ + ]</span>
               <span class="fake-btn">Cotiza por WhatsApp</span></div>
           </div>
-          <div class="b"><span class="n">5</span><strong>Borrador del mensaje</strong><span class="mini">«Hola, quiero cotizar: producto · unidad · cantidad». La persona decide si lo envía.</span></div>
-          <div class="b"><span class="n">6</span><strong>Más de la línea</strong><span class="mini">Pocos productos relacionados, sin carrusel</span></div>
-          <div class="b blue"><span class="n">7</span><strong>Pie</strong></div>
+          <div class="b"><span class="n">5</span><strong>Borrador del mensaje</strong><span class="mini">«Hola, quiero cotizar: {producto} · {unidad} · cantidad: {n}». La persona decide si lo envía.</span></div>
+          <div class="b blue"><span class="n">6</span><strong>Pie</strong></div>
         </div>
       </div>
-      <ol class="blocklist">
-        <li><div><strong>Foto</strong> — solo foto autorizada; si falta, marcador neutro, nunca la imagen de otro negocio. <span class="tag t-dato">Dato · U</span></div></li>
-        <li><div><strong>Ficha</strong> — nombre, material o especificación, marca si consta, presentación o unidad, cantidad y precio vigente completo, o «Solicita precio». <span class="tag t-dato">Dato · U</span> Fecha de actualización del precio a la vista <span class="tag t-prop">Propuesta</span>: decidir si el negocio puede mantenerla.</div></li>
-        <li><div><strong>Botón de WhatsApp</strong> — abre un borrador con producto, unidad y cantidad. Enviar es acción de quien visita. <span class="tag t-dato">Dato · U</span></div></li>
-        <li><div><strong>Existencia</strong> — no se muestra. Si en el futuro se publica, solo «disponible» con fecha, nunca «agotado» por falta de dato. <span class="tag t-prop">Propuesta</span></div></li>
+      <ol class="blocklist" aria-label="Qué hay en cada bloque">
+        <li data-b="3"><div><strong>Foto</strong> — solo foto autorizada; si falta, marcador neutro, nunca la imagen de otro negocio. <span class="tag t-dato">Dato · U</span></div></li>
+        <li data-b="4"><div><strong>Ficha</strong> — nombre, material o especificación, marca si consta, presentación o unidad, cantidad y precio vigente completo, o «Solicita precio». <span class="tag t-dato">Dato · U</span> La cantidad la escribe quien visita. Fecha de actualización del precio a la vista <span class="tag t-prop">Propuesta</span>: decidir si el negocio puede mantenerla.</div></li>
+        <li data-b="4–5"><div><strong>Botón de WhatsApp</strong> — abre un borrador con producto, unidad y cantidad. Enviar es acción de quien visita. <span class="tag t-dato">Dato · U</span></div></li>
+        <li data-b="4"><div><strong>Existencia</strong> — no se muestra. Si en el futuro se publica, solo «disponible» con fecha, nunca «agotado» por falta de dato. <span class="tag t-prop">Propuesta</span></div></li>
       </ol>
     </div>
   </div>
@@ -672,28 +663,30 @@ footer.doc :focus-visible{outline-color:#fff}
       <div class="card">
         <h3>Botones y su mensaje <span class="tag t-prop">Propuesta</span></h3>
         <div class="tw"><table class="stack">
+          <caption>Botones y su borrador</caption>
           <thead><tr><th scope="col">Botón</th><th scope="col">Borrador</th></tr></thead>
           <tbody>
             <tr><td data-l="Botón">Cotiza por WhatsApp (general)</td><td data-l="Borrador">«Hola, quiero cotizar en Comercializadora Robles.»</td></tr>
             <tr><td data-l="Botón">Envía tu lista</td><td data-l="Borrador">«Hola, quiero cotizar esta lista:»</td></tr>
             <tr><td data-l="Botón">Cotiza (producto)</td><td data-l="Borrador">«Hola, quiero cotizar: {producto} · {unidad} · cantidad: {n}»</td></tr>
           </tbody></table></div>
-        <p class="small" style="margin-top:12px">Número: <code>https://wa.me/523119104468</code> <span class="tag t-dato">Dato · U</span>. «Envía tu lista» no prueba que exista un sistema de adjuntos: el texto o la foto se agregan manualmente en WhatsApp.</p>
+        <p class="small" style="margin-top:12px">Número: <code>https://wa.me/523119104468</code> <span class="tag t-dato">Dato · U</span>. «Envía tu lista» no es un sistema de adjuntos: el texto o la foto los agrega la persona, a mano, dentro de WhatsApp. Lo que va entre llaves { } cambia en cada producto.</p>
       </div>
 
-      <div class="card">
+      <div class="card needs-js">
         <h3>Probador del borrador</h3>
-        <p class="small">Los datos del ejemplo son ficticios. <b>Por seguridad, aquí el mensaje de prueba empieza con «[PRUEBA – NO ENVIAR]»</b>; en el sitio final no llevará esa marca. Abrir el enlace solo abre un borrador en WhatsApp.</p>
+        <p class="small">Datos de ejemplo, ficticios. El enlace de prueba <b>no lleva el número del negocio</b>: WhatsApp pedirá elegir un contacto, y el texto empieza con «[PRUEBA – NO ENVIAR]». En el sitio final el enlace usará el número confirmado y no llevará esa marca. Abrirlo solo abre un borrador.</p>
         <div class="cc">
           <label>Producto (ejemplo)<input type="text" id="wa-prod" value="Producto de ejemplo"></label>
           <label>Unidad o presentación<input type="text" id="wa-uni" value="pieza"></label>
           <label>Cantidad<input type="number" id="wa-cant" min="1" value="2" inputmode="numeric"></label>
         </div>
         <p style="margin-top:12px"><b>Texto del borrador:</b></p>
-        <pre class="out" id="wa-msg" aria-live="polite"></pre>
+        <pre class="out" id="wa-msg"></pre>
         <p style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
-          <a class="btn sm" id="wa-link" href="#" rel="noopener noreferrer" target="_blank">Abrir borrador (no envía)</a>
+          <a class="btn sm" id="wa-link" href="https://wa.me/?text=%5BPRUEBA%20%E2%80%93%20NO%20ENVIAR%5D" rel="noopener noreferrer" target="_blank">Abrir borrador (no envía)</a>
           <button type="button" class="btn sm sec" id="wa-copy">Copiar enlace</button>
+          <span role="status" class="small" id="st-wa"></span>
         </p>
         <p class="small" id="wa-url" style="overflow-wrap:anywhere"></p>
       </div>
@@ -713,19 +706,19 @@ footer.doc :focus-visible{outline-color:#fff}
         <ol>
           <li>¿Quién cambia un producto o un precio: el responsable, alguien del mostrador, un tercero?</li>
           <li>¿Con qué frecuencia cambian los precios: a diario, por semana, por mes?</li>
-          <li>¿Desde qué aparato lo haría: celular, computadora?</li>
+          <li>¿Desde qué dispositivo se haría: celular o computadora?</li>
           <li>¿Cuántos productos habría al inicio? (no se asume ninguna cifra)</li>
           <li>¿Se mostrará precio o «Solicita precio»?</li>
         </ol>
       </div>
       <div class="card">
-        <h3>Familias de opciones <span class="tag t-hip">Hipótesis</span></h3>
+        <h3>Tres formas posibles de mantener el catálogo <span class="tag t-hip">Hipótesis</span></h3>
         <ul>
           <li><b>Plataforma comercial con panel</b>: la persona edita sin tocar código; cuota recurrente y menos control de diseño.</li>
           <li><b>Sitio estático con un archivo de datos editable</b> (por ejemplo, una hoja de cálculo): bajo costo; exige disciplina al editar y alguien que revise.</li>
           <li><b>Sitio sin precios publicados</b>: todo es «Solicita precio»; casi no hay mantenimiento, pero se cotiza más por chat.</li>
         </ul>
-        <p class="small">El [MD] menciona una hoja de Google Sheets pública, 100 productos, 10 categorías, 8 horas y un tope de 2.9 horas. <b>Esta propuesta no adopta ninguno de esos valores.</b></p>
+        <p class="small">El [MD] sugiere una hoja de Google Sheets pública y un tamaño inicial de catálogo, con cifras de categorías y horas. <b>Esta propuesta no adopta esas decisiones</b>: el método y el tamaño se deciden con las respuestas a las preguntas de arriba.</p>
       </div>
     </div>
   </div>
@@ -735,26 +728,26 @@ footer.doc :focus-visible{outline-color:#fff}
 <section id="fuentes" aria-labelledby="h-fu">
   <div class="wrap">
     <h2 id="h-fu">Fuentes: qué se observó y cómo se aplica</h2>
-    <p class="lede">«Lectura 6‑oct» son las observaciones del [MD]. <b>El 7‑oct no pude reabrir ninguna referencia externa</b>: la red de esta sesión bloquea esos sitios. Por eso se citan como lectura previa, no como verificación de hoy. No se copian marcas, textos, fotos ni inventarios de terceros.</p>
+    <p class="lede">Rand Group es una consultora y se usó como modelo de menús con pestañas; las demás son ferreterías y distribuidoras revisadas como referencia. «Lectura 6‑oct» indica que la observación viene del [MD]. <b>El 7‑oct no fue posible reabrir ninguna referencia externa</b> (acceso bloqueado desde donde se preparó este documento), así que se citan como lectura previa, no como verificación de hoy. Los enlaces son los del encargo. No se copian marcas, textos, fotos ni inventarios de terceros.</p>
 
     <div class="tw">
       <table class="stack">
         <caption>Matriz fuente · observación · aplicación</caption>
         <thead><tr><th scope="col">Fuente</th><th scope="col">Observación y límite de acceso</th><th scope="col">Aplicación en Robles</th></tr></thead>
         <tbody>
-          <tr><td data-l="Fuente"><a href="https://www.randgroup.com/">Rand Group</a></td><td data-l="Observación">Jerarquía y páginas por necesidad: menú con pestañas y subpestañas, servicios agrupados por momento del cliente. Lectura 6‑oct [MD]; colores según Brandfetch (fuente secundaria). No reabierta el 7‑oct.</td><td data-l="Aplicación">Páginas por necesidad (cotizar, pagar, visitar). <b>No</b> se copia un menú de nueve pestañas: se usan cuatro.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://indar.mx/">INDAR</a></td><td data-l="Observación">Familias y búsqueda. El [MD] reporta 12 categorías con ícono, «cotiza» en vez de precio y ofertas de la semana. Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Familias visibles en el inicio, pero solo tres. Búsqueda: solo cuando haya inventario suficiente <span class="tag t-hip">Hipótesis</span>.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://www.gafi.com.mx/customer/account/login">GAFI</a></td><td data-l="Observación">La dirección enlazada es un acceso de clientes; el catálogo interior <b>no se verificó</b>. Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Sin aplicación de catálogo. Sirve como ejemplo de lo que no se hace: pedir sesión para ver productos.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://www.casacravioto.com/limpieza/jarceria">Casa Cravioto</a></td><td data-l="Observación">Jerarquía de categorías y limpieza real (jarciería). El encargo advierte: <b>no atribuir cotización al WhatsApp de quejas</b>. El [MD] lo cita como ejemplo de «WhatsApp desde el producto»: esa lectura queda en duda. Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Solo la jerarquía y la forma de agrupar limpieza. <b>No</b> se cita como precedente de cotizar por WhatsApp.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://cristalylavisa.com.mx/PcCatalogoCyL">Cristal y Lavisa (CyL)</a></td><td data-l="Observación">El encargo la cita por familias y contacto, pero el [MD] dice que <b>no se pudo leer</b>. Contradicción sin resolver.</td><td data-l="Aplicación">No se usa como evidencia hasta reabrirla <span class="tag t-pend">Verificar</span>.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://mafensa.com/web/">MAFENSA</a></td><td data-l="Observación">Catálogo y temporada, con límites de extracción: no se pudo leer todo el contenido. El [MD] solo lo lista como fuente. No reabierta.</td><td data-l="Aplicación">Ninguna por ahora. Una sección de temporada, si algún día existe, sería otra decisión.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://fernandez.com.mx/">Compañía Fernández</a></td><td data-l="Observación">Cotización con lista adjunta, como inspiración. Lectura 6‑oct [MD]. No reabierta.</td><td data-l="Aplicación">«Envía tu lista». En Robles no existe un sistema de adjuntos: se hace a mano en WhatsApp.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://ferremayoreo.com.mx/">FMO Ferremayoreo</a></td><td data-l="Observación">Acceso limitado, sin prueba funcional. El [MD] reporta una política de cambios visible (72 h). Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">No se copia ninguna política. Cambios y devoluciones se publican solo con texto del responsable.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://www.santandreu.com.mx/sucursales">Santandreu</a></td><td data-l="Observación">Ficha de ubicación, horario y mapa; el [MD] añade botón para llegar y «Adiós goteras» (soluciones por problema). Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Tarjeta de tienda y página Visítanos. Las «soluciones» quedan para una fase posterior.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://github.com/google/fonts/blob/main/ofl/nunito/OFL.txt">Nunito · licencia OFL</a></td><td data-l="Observación">Licencia libre. No pude abrir la página el 7‑oct. Verificado en el paquete: la base de fuentes de <i>ui‑ux‑pro‑max</i> lista Nunito (peso 200–1000, alfabeto latino extendido).</td><td data-l="Aplicación">Títulos en Nunito 800, alojada en el sitio. Reconfirmar la licencia al incorporar el archivo.</td></tr>
-          <tr><td data-l="Fuente"><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">WCAG 2.2 · contraste mínimo</a></td><td data-l="Observación">Umbrales conocidos: 4.5:1 texto normal, 3:1 texto grande. No pude abrir la página el 7‑oct; los cocientes de color son cálculo propio [CALC].</td><td data-l="Aplicación">Tabla de colores y reglas: naranja solo con texto oscuro; celeste solo decorativo.</td></tr>
-          <tr><td data-l="Fuente">CDR (archivo editable)</td><td data-l="Observación">Leí metadatos, textos, paleta y miniatura; <b>no lo abrí en CorelDRAW</b>. Colores: naranja, azul y celeste. Fuentes enumeradas: Arial, Arial Black, Arial Rounded MT Bold y MS Gothic. Contiene datos bancarios y fiscales.</td><td data-l="Aplicación">Origen de la paleta y del logo. Los datos sensibles no se reproducen.</td></tr>
-          <tr><td data-l="Fuente">Paquetes <i>ui‑ux‑pro‑max</i> y <i>claude‑webkit</i></td><td data-l="Observación">Material de apoyo. Sus instrucciones internas (por ejemplo, el <i>CLAUDE.md</i> que fija un rol) no se siguieron: son referencia.</td><td data-l="Aplicación">Se usaron solo como contraste: medidas táctiles (48 dp; WCAG 24 px), enlace «saltar al contenido», foco visible y movimiento reducido.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://www.randgroup.com/" rel="noopener noreferrer nofollow">Rand Group</a></td><td data-l="Observación">Jerarquía y páginas por necesidad: menú con pestañas y subpestañas, servicios agrupados por momento del cliente. Lectura 6‑oct [MD]; colores según Brandfetch (fuente secundaria). No reabierta el 7‑oct.</td><td data-l="Aplicación">Páginas por necesidad (cotizar, pagar, visitar). <b>No</b> se copia un menú de nueve pestañas: se usan tres más un botón.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://indar.mx/" rel="noopener noreferrer nofollow">INDAR</a></td><td data-l="Observación">Familias y búsqueda. El [MD] reporta 12 categorías con ícono, «cotiza» en vez de precio y ofertas de la semana. Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Familias visibles en el inicio, pero solo tres. Búsqueda: solo cuando haya inventario suficiente <span class="tag t-hip">Hipótesis</span>.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://www.gafi.com.mx/customer/account/login" rel="noopener noreferrer nofollow">GAFI</a></td><td data-l="Observación">La dirección enlazada es un acceso de clientes; el catálogo interior <b>no se verificó</b>. Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Sin aplicación: solo se observó que la dirección enlazada es un acceso de clientes. No se sabe si el catálogo exige sesión, así que no se cita como ejemplo a favor ni en contra.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://www.casacravioto.com/limpieza/jarceria" rel="noopener noreferrer nofollow">Casa Cravioto</a></td><td data-l="Observación">Jerarquía de categorías y limpieza real (jarciería). El encargo advierte: <b>no atribuir cotización al WhatsApp de quejas</b>. El [MD] lo cita como ejemplo de «WhatsApp desde el producto»: esa lectura queda en duda. El [MD] también dice que ninguna ferretera revisada vende limpieza, lo que contradice al encargo en esta fuente <span class="tag t-pend">Pendiente: verificar</span>. Lectura 6‑oct. No reabierta el 7‑oct.</td><td data-l="Aplicación">Solo la jerarquía y la forma de agrupar limpieza. <b>No</b> se cita como precedente de cotizar por WhatsApp.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://cristalylavisa.com.mx/PcCatalogoCyL" rel="noopener noreferrer nofollow">Cristal y Lavisa (CyL)</a></td><td data-l="Observación">El encargo la cita por familias y contacto, pero el [MD] dice que <b>no se pudo leer</b> (6‑oct). Contradicción sin resolver. No reabierta el 7‑oct.</td><td data-l="Aplicación">No se usa como evidencia hasta reabrirla <span class="tag t-pend">Pendiente: verificar</span>.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://mafensa.com/web/" rel="noopener noreferrer nofollow">MAFENSA</a></td><td data-l="Observación">Catálogo y temporada, con límites de extracción: no se pudo leer todo el contenido. El [MD] solo lo lista como fuente (6‑oct). No reabierta el 7‑oct.</td><td data-l="Aplicación">Ninguna por ahora. Una sección de temporada, si algún día existe, sería otra decisión.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://fernandez.com.mx/" rel="noopener noreferrer nofollow">Compañía Fernández</a></td><td data-l="Observación">Cotización con lista adjunta, como inspiración. Lectura 6‑oct [MD]. No reabierta.</td><td data-l="Aplicación">«Envía tu lista». En Robles no existe un sistema de adjuntos: se hace a mano en WhatsApp.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://ferremayoreo.com.mx/" rel="noopener noreferrer nofollow">FMO Ferremayoreo</a></td><td data-l="Observación">Acceso limitado, sin prueba funcional. El [MD] reporta una política de cambios visible (72 h). Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">No se copia ninguna política. Cambios y devoluciones se publican solo con texto del responsable.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://www.santandreu.com.mx/sucursales" rel="noopener noreferrer nofollow">Santandreu</a></td><td data-l="Observación">Ficha de ubicación, horario y mapa; el [MD] añade botón para llegar y «Adiós goteras» (soluciones por problema). Lectura 6‑oct. No reabierta.</td><td data-l="Aplicación">Tarjeta de tienda y página Visítanos. Las «soluciones» quedan para una fase posterior.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://github.com/google/fonts/blob/main/ofl/nunito/OFL.txt" rel="noopener noreferrer nofollow">Nunito · licencia OFL</a></td><td data-l="Observación">Licencia libre. No se pudo abrir la página el 7‑oct. Verificado en el paquete de apoyo (7‑oct): su base de fuentes lista Nunito (peso 200–1000, alfabeto latino extendido).</td><td data-l="Aplicación">Títulos en Nunito 800, alojada en el sitio. Reconfirmar la licencia al incorporar el archivo.</td></tr>
+          <tr><td data-l="Fuente"><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" rel="noopener noreferrer nofollow">WCAG 2.2 · contraste mínimo</a></td><td data-l="Observación">Umbrales conocidos: 4.5:1 texto normal, 3:1 texto grande. No se pudo abrir la página el 7‑oct; los cocientes de color son cálculo propio [CALC].</td><td data-l="Aplicación">Tabla de colores y reglas: naranja solo con texto oscuro; celeste solo decorativo.</td></tr>
+          <tr><td data-l="Fuente">CDR (archivo editable)</td><td data-l="Observación">Leído el 7‑oct: metadatos (creado 28‑ene‑2026, modificado 1‑feb‑2026), textos, paleta y miniatura; <b>no se abrió en CorelDRAW</b>. Colores: naranja, azul y celeste. Fuentes enumeradas: Arial, Arial Black, Arial Rounded MT Bold y MS Gothic. Contiene datos bancarios y fiscales.</td><td data-l="Aplicación">Origen de la paleta y del logo. Los datos sensibles no se reproducen.</td></tr>
+          <tr><td data-l="Fuente">Paquetes de apoyo (<i>ui‑ux‑pro‑max</i> y <i>claude‑webkit</i>)</td><td data-l="Observación">Material de apoyo leído el 7‑oct. Sus instrucciones internas no se siguieron: el encargo las trata como referencia.</td><td data-l="Aplicación">Se usaron solo como contraste: medidas táctiles (48 dp; WCAG 24 px), enlace «saltar al contenido», foco visible y movimiento reducido.</td></tr>
         </tbody>
       </table>
     </div>
@@ -765,9 +758,9 @@ footer.doc :focus-visible{outline-color:#fff}
 <section id="aceptacion" aria-labelledby="h-ac">
   <div class="wrap">
     <h2 id="h-ac">Criterios de aceptación futura</h2>
-    <p class="lede">Lista para revisar el sitio <b>si se autoriza construirlo</b>. Esta autorización no equivale a publicar, a sustituir otro sitio ni a firmar un acuerdo. Marca lo que vayas cumpliendo (se guarda en este navegador).</p>
-    <div class="prog" role="progressbar" aria-label="Avance de criterios" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog"><i></i></div>
-    <p class="small" id="prog-t" aria-live="polite">0 de 0 criterios</p>
+    <p class="lede">Lista para revisar el sitio <b>si se autoriza construirlo</b>. Según el encargo, esa autorización no acredita publicación, sustitución del sitio ni la firma del acuerdo («Hagámoslo») [U]. Marca lo que vayas cumpliendo (se guarda en este navegador).</p>
+    <div class="prog needs-js" role="progressbar" aria-label="Avance de criterios" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog"><i></i></div>
+    <p class="small needs-js" id="prog-t">0 de 0 criterios</p>
 
     <div class="grid g2">
       <div class="card">
@@ -804,14 +797,14 @@ footer.doc :focus-visible{outline-color:#fff}
           <li><input type="checkbox" id="k14"><label for="k14">Teclado: se recorre todo en orden, con foco visible y enlace «saltar al contenido».</label></li>
           <li><input type="checkbox" id="k15"><label for="k15">Menús (escritorio y móvil) abren, cierran y se usan con teclado.</label></li>
           <li><input type="checkbox" id="k16"><label for="k16">Se respeta «reducir movimiento».</label></li>
-          <li><input type="checkbox" id="k17"><label for="k17">Títulos en orden, <code>alt</code> en imágenes informativas, idioma <code>es-MX</code>.</label></li>
+          <li><input type="checkbox" id="k17"><label for="k17">Títulos en orden, texto alternativo en las imágenes informativas e idioma español de México declarado.</label></li>
         </ul>
       </div>
       <div class="card">
         <h3>Pruebas de pantalla</h3>
         <ul class="chk" data-group="c">
-          <li><input type="checkbox" id="k18"><label for="k18">Móvil <b>360</b> y <b>390</b> px: sin desbordes horizontales.</label></li>
-          <li><input type="checkbox" id="k19"><label for="k19">Tableta <b>768</b> px: sin desbordes ni cortes.</label></li>
+          <li><input type="checkbox" id="k18"><label for="k18">Móvil <b>360</b> y <b>390</b> px: nada se sale de la pantalla a los lados.</label></li>
+          <li><input type="checkbox" id="k19"><label for="k19">Tableta <b>768</b> px: nada se sale de la pantalla ni se corta.</label></li>
           <li><input type="checkbox" id="k20"><label for="k20">Escritorio <b>1440</b> px: contenido a 1200 px, centrado.</label></li>
           <li><input type="checkbox" id="k21"><label for="k21">Capturas guardadas de cada página en cada tamaño.</label></li>
         </ul>
@@ -820,7 +813,7 @@ footer.doc :focus-visible{outline-color:#fff}
         <h3>Reporte y límites</h3>
         <ul class="chk" data-group="c">
           <li><input type="checkbox" id="k22"><label for="k22">No se reporta ninguna métrica que no se haya medido (velocidad, SEO, posicionamiento).</label></li>
-          <li><input type="checkbox" id="k23"><label for="k23">Si se usa una auditoría automática, se dice qué sitio y qué versión: el resultado <code>PRO_REQUIRED</code> sobre <code>example.com</code> es una muestra, no una auditoría de estos negocios.</label></li>
+          <li><input type="checkbox" id="k23"><label for="k23">Si se usa una herramienta automática de revisión, se dice a qué sitio se aplicó. Según el encargo, la prueba anterior (Website Auditor) devolvió <code>PRO_REQUIRED</code> y solo analizó <code>example.com</code>: es una muestra, no una auditoría de este negocio.</label></li>
           <li><input type="checkbox" id="k24"><label for="k24">Nada se publica ni reemplaza otro sitio sin aprobación aparte.</label></li>
           <li><input type="checkbox" id="k25"><label for="k25">El aviso de privacidad, si aplica, tiene texto revisado por un abogado.</label></li>
         </ul>
@@ -837,12 +830,12 @@ footer.doc :focus-visible{outline-color:#fff}
       <div class="card">
         <h3>Lo que no estaba en el paquete</h3>
         <ul>
-          <li><code>PROPUESTA-WEB-ROBLES-Y-CERTEZA.md</code>, <code>referencias-robles.md</code> y el <code>AGENTS.md</code> del proyecto: <b>no los recibí</b>, así que no se aplicaron. Si deben prevalecer sobre este documento, reenvíalos.</li>
+          <li><code>PROPUESTA-WEB-ROBLES-Y-CERTEZA.md</code>, <code>referencias-robles.md</code> y el <code>AGENTS.md</code> del proyecto: <b>no se recibieron</b>, así que no se aplicaron. Si deben prevalecer sobre este documento, hay que reenviarlos.</li>
           <li>Fotos, inventario, precios y logo exportado.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Lo que no pude comprobar</h3>
+        <h3>Lo que no se pudo comprobar</h3>
         <ul>
           <li>Disponibilidad de dominios y requisitos del registro.</li>
           <li>Las referencias externas el 7‑oct (red bloqueada): se citan según el [MD].</li>
@@ -852,17 +845,17 @@ footer.doc :focus-visible{outline-color:#fff}
       </div>
     </div>
     <div class="callout">
-      <p><strong>Antes de publicar este archivo.</strong> Contiene la dirección, el teléfono y el nombre del responsable. Tiene <code>noindex</code>, pero si el repositorio es público cualquiera con el enlace puede leerlo. Revísalo con el cliente antes de compartirlo.</p>
+      <p><strong>Este archivo ya está en un repositorio público.</strong> El repositorio <code>keyacuevaca-dot/certeza-operativa</code> es público (comprobado el 7‑oct) y la rama con este documento ya está publicada. El archivo contiene la dirección y el teléfono del negocio; el nombre del responsable y el del autor del CDR se omitieron. Lleva <code>noindex</code>, pero cualquiera con el enlace puede leerlo. Conviene pasarlo a un repositorio privado o revisarlo con el cliente antes de difundirlo.</p>
     </div>
   </div>
 </section>
 
 <!-- ======================= 12. DECISIONES ======================= -->
-<section id="decisiones" aria-labelledby="h-dec">
+<section id="decisiones" class="needs-js" aria-labelledby="h-dec">
   <div class="wrap">
     <h2 id="h-dec">Tus decisiones</h2>
-    <p class="lede">Elige lo que ya sabes y deja el resto sin marcar. Al final se arma un resumen que puedes copiar y pegar en el chat. No se envía a ningún lado.</p>
-    <form id="dec" onsubmit="return false">
+    <p class="lede">Elige lo que ya se sabe y deja el resto sin marcar. Se arma un resumen para copiar y pegar donde se necesite. No se envía a ningún lado.</p>
+    <form id="dec">
       <fieldset><legend>Ruta de diseño</legend>
         <label class="opt"><input type="radio" name="ruta" value="Ruta A (catálogo claro)"> Ruta A: catálogo claro</label>
         <label class="opt"><input type="radio" name="ruta" value="Ruta B (con foto real como protagonista)"> Ruta B: con foto real de la tienda o la atención</label>
@@ -884,26 +877,30 @@ footer.doc :focus-visible{outline-color:#fff}
         <label class="opt"><input type="radio" name="cp" value="sin confirmar"> Aún sin confirmar</label>
       </fieldset>
       <fieldset><legend>Domingo</legend>
-        <label class="opt"><input type="radio" name="dom7" value="abierto (con horario por indicar)"> Abren</label>
-        <label class="opt"><input type="radio" name="dom7" value="cerrado"> Cerrado</label>
+        <label class="opt"><input type="radio" name="dom7" value="abren (horario por indicar)"> Sí abren (el horario se indica después)</label>
+        <label class="opt"><input type="radio" name="dom7" value="no abren"> No abren</label>
         <label class="opt"><input type="radio" name="dom7" value="no publicar el domingo por ahora"> No publicar el domingo por ahora</label>
       </fieldset>
-      <fieldset><legend>Datos que se pueden publicar</legend>
+      <fieldset><legend>Datos con visto bueno del responsable ya confirmado</legend>
         <label class="opt"><input type="checkbox" name="pub" value="correo del negocio"> El correo del negocio</label>
         <label class="opt"><input type="checkbox" name="pub" value="nombre del responsable"> El nombre del responsable</label>
-        <label class="opt"><input type="checkbox" name="pub" value="fotos autorizadas disponibles"> Hay fotos reales con autorización</label>
+      </fieldset>
+      <fieldset><legend>Fotos</legend>
+        <label class="opt"><input type="radio" name="fotos" value="hay fotos reales y se autoriza usarlas"> Hay fotos reales de la tienda o los productos y se autoriza usarlas</label>
+        <label class="opt"><input type="radio" name="fotos" value="aún no hay fotos autorizadas"> Aún no hay fotos autorizadas</label>
       </fieldset>
       <fieldset><legend>Mantenimiento</legend>
         <label>¿Quién actualizará un producto o un precio?<input type="text" id="d-quien" autocomplete="off"></label>
         <p style="margin:12px 0 4px">¿Cada cuánto?</p>
         <label class="opt"><input type="radio" name="frec" value="a diario"> A diario</label>
         <label class="opt"><input type="radio" name="frec" value="cada semana"> Cada semana</label>
-        <label class="opt"><input type="radio" name="frec" value="cada mes"> Cada mes o menos</label>
+        <label class="opt"><input type="radio" name="frec" value="una vez al mes o más espaciado"> Una vez al mes o más espaciado</label>
         <label class="opt"><input type="radio" name="frec" value="no lo sé aún"> No lo sé aún</label>
       </fieldset>
       <p style="display:flex;flex-wrap:wrap;gap:8px">
         <button type="button" class="btn" id="dec-go">Armar resumen</button>
         <button type="button" class="btn sec" id="dec-copy">Copiar resumen</button>
+        <span role="status" class="small" id="st-dec"></span>
       </p>
     </form>
     <pre class="out" id="dec-out" aria-live="polite">El resumen aparecerá aquí.</pre>
@@ -922,6 +919,7 @@ footer.doc :focus-visible{outline-color:#fff}
 <script>
 (function(){
 "use strict";
+document.documentElement.classList.add('js');
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 function ls(k,v){try{if(v===undefined){return localStorage.getItem(k)}localStorage.setItem(k,v)}catch(e){return null}}
@@ -936,35 +934,10 @@ function ls(k,v){try{if(v===undefined){return localStorage.getItem(k)}localStora
   Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s)});
 })();
 
-/* --- Dominio de ejemplo --- */
-(function(){
-  var radios=$$('input[name="dom"]'); var saved=ls('rb-dom');
-  function apply(v){$$('.dom').forEach(function(s){s.textContent=v})}
-  radios.forEach(function(r){
-    if(saved&&r.value===saved) r.checked=true;
-    r.addEventListener('change',function(){apply(r.value);ls('rb-dom',r.value)});
-  });
-  var c=radios.filter(function(r){return r.checked})[0]; if(c) apply(c.value);
-})();
-
-/* --- Probador de contraste --- */
-(function(){
-  var cols=[['Azul #174F7C','#174F7C'],['Blanco #FFFFFF','#FFFFFF'],['Gris #F2F4F6','#F2F4F6'],['Naranja #F48F07','#F48F07'],['Celeste #00A9E9','#00A9E9'],['Texto #1A1A1A','#1A1A1A'],['Texto secundario #4A5560','#4A5560']];
-  var fg=$('#cc-fg'),bg=$('#cc-bg'),pv=$('#cc-prev'),out=$('#cc-out'); if(!fg) return;
-  cols.forEach(function(c,i){fg.add(new Option(c[0],c[1],false,i===5));bg.add(new Option(c[0],c[1],false,i===3))});
-  function lum(h){var n=parseInt(h.slice(1),16),a=[n>>16&255,n>>8&255,n&255].map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return .2126*a[0]+.7152*a[1]+.0722*a[2]}
-  function upd(){
-    var l1=lum(fg.value),l2=lum(bg.value),r=(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);
-    pv.style.color=fg.value;pv.style.background=bg.value;
-    var t=r.toFixed(2)+':1 — '+(r>=7?'cumple AAA para texto normal':r>=4.5?'cumple AA para texto normal':r>=3?'solo sirve para texto grande y componentes (3:1)':'no cumple: no usar para texto');
-    out.textContent=t;
-  }
-  fg.addEventListener('change',upd);bg.addEventListener('change',upd);upd();
-})();
-
 /* --- Wireframes: pestañas, tamaño y ruta --- */
 (function(){
   var tabs=$$('#wf-tabs [role=tab]');
+  tabs.forEach(function(x){var on=x.getAttribute('aria-selected')==='true';document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
   function sel(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus()}
   tabs.forEach(function(t,i){
     t.addEventListener('click',function(){sel(t)});
@@ -987,7 +960,7 @@ function ls(k,v){try{if(v===undefined){return localStorage.getItem(k)}localStora
 /* --- Probador de WhatsApp (solo abre un borrador) --- */
 (function(){
   var p=$('#wa-prod'),u=$('#wa-uni'),c=$('#wa-cant'),msg=$('#wa-msg'),a=$('#wa-link'),urlp=$('#wa-url'),cp=$('#wa-copy'); if(!p) return;
-  var BASE='https://wa.me/523119104468';
+  var BASE='https://wa.me/'; /* sin número: la prueba nunca escribe al negocio */
   function build(){
     var n=Math.max(1,parseInt(c.value,10)||1);
     var t='[PRUEBA – NO ENVIAR] Hola, quiero cotizar: '+(p.value.trim()||'(producto)')+' · '+(u.value.trim()||'(unidad)')+' · cantidad: '+n;
@@ -995,21 +968,23 @@ function ls(k,v){try{if(v===undefined){return localStorage.getItem(k)}localStora
     var url=BASE+'?text='+encodeURIComponent(t);
     a.href=url;urlp.textContent=url;return url;
   }
-  [p,u,c].forEach(function(e){e.addEventListener('input',build)}); build();
-  cp.addEventListener('click',function(){copy(build(),cp,'Copiar enlace')});
+  [p,u,c].forEach(function(e){e.addEventListener('input',build)});
+  c.addEventListener('change',function(){c.value=Math.max(1,parseInt(c.value,10)||1);build()});
+  build();
+  cp.addEventListener('click',function(){copy(build(),$('#st-wa'))});
 })();
 
-function copy(text,btn,label){
-  function done(ok){var o=btn.textContent;btn.textContent=ok?'Copiado':'Selecciona y copia a mano';setTimeout(function(){btn.textContent=label||o},1800)}
-  try{
-    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){done(true)},function(){fallback()});return}
-  }catch(e){}
-  fallback();
+function copy(text,st){
+  function done(ok){st.textContent=ok?'Copiado.':'No se pudo copiar: selecciona el texto y cópialo a mano.';setTimeout(function(){st.textContent=''},2500)}
   function fallback(){
     var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
     var ok=false;try{ok=document.execCommand('copy')}catch(e){}
     document.body.removeChild(ta);done(ok);
   }
+  try{
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){done(true)},fallback);return}
+  }catch(e){}
+  fallback();
 }
 
 /* --- Criterios de aceptación --- */
@@ -1026,7 +1001,7 @@ function copy(text,btn,label){
 
 /* --- Resumen de decisiones --- */
 (function(){
-  var go=$('#dec-go'),cpy=$('#dec-copy'),out=$('#dec-out'); if(!go) return;
+  var go=$('#dec-go'),cpy=$('#dec-copy'),out=$('#dec-out'),form=$('#dec'); if(!go) return;
   function val(n){var r=$('input[name="'+n+'"]:checked');return r?r.value:'sin decidir'}
   function build(){
     var pub=$$('input[name="pub"]:checked').map(function(x){return x.value});
@@ -1037,13 +1012,17 @@ function copy(text,btn,label){
       '- Dirección: '+val('dir'),
       '- Código postal: '+val('cp'),
       '- Domingo: '+val('dom7'),
-      '- Se puede publicar: '+(pub.length?pub.join(', '):'nada adicional por ahora'),
+      '- Datos con visto bueno del responsable: '+(pub.length?pub.join(', '):'sin decidir'),
+      '- Fotos: '+val('fotos'),
       '- Quién actualiza productos y precios: '+q,
-      '- Frecuencia de cambio: '+val('frec')].join('\n');
+      '- Frecuencia de cambio: '+val('frec'),
+      '',
+      'Este resumen no autoriza construir, publicar ni registrar dominios.'].join('\n');
     out.textContent=s;return s;
   }
   go.addEventListener('click',build);
-  cpy.addEventListener('click',function(){copy(build(),cpy,'Copiar resumen')});
+  form.addEventListener('submit',function(e){e.preventDefault();build()});
+  cpy.addEventListener('click',function(){copy(build(),$('#st-dec'))});
 })();
 })();
 </script>
