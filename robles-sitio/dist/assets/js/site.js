@@ -18,9 +18,7 @@
   function slug(t) { return norm(t).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
   function el(tag, attrs, kids) {
     var e = D.createElement(tag);
-    Object.keys(attrs || {}).forEach(function (k) {
-      if (k === 'text') e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]);
-    });
+    Object.keys(attrs || {}).forEach(function (k) { if (k === 'text') e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); });
     (kids || []).forEach(function (c) { if (c) e.appendChild(typeof c === 'string' ? D.createTextNode(c) : c); });
     return e;
   }
@@ -58,10 +56,8 @@
     if (isNaN(v.getTime()) || v < new Date()) return null;
     var iva = /^(sí|si)$/i.test(it.iva) ? 'IVA incluido' : 'IVA no incluido';
     var fecha = v.toLocaleDateString('es-MX', { day: 'numeric', month: 'long' });
-    return {
-      monto: '$' + p.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' MXN',
-      detalle: 'por ' + it.unidad + ' · ' + iva + ' · vigente hasta el ' + fecha
-    };
+    return { monto: '$' + p.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' MXN',
+             detalle: 'por ' + it.unidad + ' · ' + iva + ' · vigente hasta el ' + fecha };
   }
   function lineaMsg(it, qty) { return nombreCompleto(it) + (it.pres ? ' (' + it.pres + ')' : '') + ' · cantidad: ' + qty; }
   function msgProducto(it, qty) { return 'Hola, quiero cotizar: ' + lineaMsg(it, qty); }
@@ -86,7 +82,6 @@
   /* ---------- Lista del visitante ---------- */
   var dlg = $('#lista'), anuncio = $('#anuncio');
   function decir(t) { if (anuncio) { anuncio.textContent = ''; setTimeout(function () { anuncio.textContent = t; }, 30); } }
-  function total() { return lista.reduce(function (a, x) { return a + x.qty; }, 0); }
   function agregar(id, qty) {
     var f = lista.filter(function (x) { return x.id === id; })[0];
     if (f) f.qty = Math.min(999, f.qty + qty); else lista.push({ id: id, qty: qty });
@@ -118,30 +113,30 @@
     $('#lista-wa', dlg).addEventListener('click', function (e) { if (!lista.length) e.preventDefault(); });
   }
 
-  /* ---------- Catálogo ---------- */
+  /* ---------- Catálogo: filas ---------- */
   var cuenta = 0;
-  function tarjeta(it) {
+  function fila(it) {
     var qty = 1, uid = 'q-' + it.id + '-' + (cuenta++), m = meta(it), pc = precioCompleto(it);
-    var wa = el('a', { 'class': 'btn', href: waUrl(msgProducto(it, qty)), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Cotizar ' + it.nombre + ' por WhatsApp' }, [ico('wa'), 'Cotizar por WhatsApp']);
+    var wa = el('a', { 'class': 'btn compacto', href: waUrl(msgProducto(it, qty)), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Cotizar ' + it.nombre + ' por WhatsApp' }, [ico('wa'), 'Cotizar']);
     var c = cantidad(1, function (n) { qty = n; wa.setAttribute('href', waUrl(msgProducto(it, n))); }, it.nombre, uid);
-    var add = el('button', { type: 'button', 'class': 'btn cont chico-b' }, [ico('lista'), 'Agregar a mi lista']);
+    var add = el('button', { type: 'button', 'class': 'btn cont compacto', 'aria-label': 'Agregar ' + it.nombre + ' a mi lista' }, [ico('mas'), 'Agregar']);
     add.addEventListener('click', function () {
       agregar(it.id, c.leer());
-      var t = add.lastChild; var o = t.nodeValue; t.nodeValue = 'Agregado'; setTimeout(function () { t.nodeValue = o; }, 1600);
+      var t = add.lastChild, o = t.nodeValue; t.nodeValue = 'Agregado'; setTimeout(function () { t.nodeValue = o; }, 1600);
     });
-    var foto = it.foto ? el('div', { 'class': 'foto' }, [el('img', { src: it.foto, alt: it.nombre, loading: 'lazy' })]) : el('div', { 'class': 'foto', 'aria-hidden': 'true' }, [ico(it.icono || 'caja')]);
     var precio = pc ? el('p', { 'class': 'precio' }, [pc.monto, el('small', { text: pc.detalle })])
                     : el('p', { 'class': 'precio' }, ['Solicita precio', el('small', { text: 'Te lo damos por WhatsApp' })]);
-    var a = el('article', { 'class': 'prod', 'data-buscar': norm([it.nombre, it.marca, it.pres, it.sub, it.linea].join(' ')) }, [
-      foto, el('div', { 'class': 'cuerpo' }, [el('h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio, el('div', { 'class': 'acciones' }, [c.nodo, wa, add])])
-    ]);
-    return a;
+    var partes = [];
+    if (it.foto) partes.push(el('div', { 'class': 'foto' }, [el('img', { src: it.foto, alt: it.nombre, loading: 'lazy' })]));
+    partes.push(el('div', { 'class': 'info' }, [el('h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio]));
+    partes.push(c.nodo, el('div', { 'class': 'acc' }, [wa, add]));
+    return el('article', { 'class': 'prod' + (it.foto ? ' con-foto' : ''), 'data-buscar': norm([it.nombre, it.marca, it.pres, it.sub, it.linea].join(' ')) }, partes);
   }
+  function idSub(idx, linea, sub) { return 's' + idx + '-' + linea + '-' + slug(sub); }
   function pintarCatalogo(cont, idx) {
     var modo = cont.getAttribute('data-catalogo'), unica = modo !== 'todos';
     var lineas = unica ? LINEAS.filter(function (l) { return l.slug === modo; }) : LINEAS;
-    cont.textContent = '';
-    var nav = unica ? el('ul', { 'class': 'subnav', 'aria-label': 'Ir a una subcategoría' }) : null;
+    cont._idx = idx; cont.textContent = '';
     lineas.forEach(function (ln) {
       var prods = ITEMS.filter(function (i) { return i.linea === ln.slug; });
       var cajaL = el('section', { 'class': 'grupo-linea', 'aria-label': ln.nombre });
@@ -156,59 +151,111 @@
       }
       var subs = []; prods.forEach(function (p) { if (subs.indexOf(p.sub) < 0) subs.push(p.sub); });
       subs.forEach(function (s) {
-        var id = 's' + idx + '-' + ln.slug + '-' + slug(s), lst = prods.filter(function (p) { return p.sub === s; });
-        var g = el('div', { 'class': 'grupo-sub', id: id, tabindex: '-1' }, [
+        var lst = prods.filter(function (p) { return p.sub === s; });
+        cajaL.appendChild(el('div', { 'class': 'grupo-sub', id: idSub(idx, ln.slug, s), tabindex: '-1' }, [
           el(unica ? 'h2' : 'h3', {}, [s + ' ', el('span', { 'class': 'n', text: lst.length + (lst.length === 1 ? ' producto' : ' productos') })]),
-          el('div', { 'class': 'rejilla' }, lst.map(tarjeta))
-        ]);
-        cajaL.appendChild(g);
-        if (nav) nav.appendChild(el('li', {}, [el('a', { href: '#' + id, 'data-ancla': id, text: s })]));
+          el('div', { 'class': 'filas' }, lst.map(fila))
+        ]));
       });
       cont.appendChild(cajaL);
     });
-    if (nav && nav.childNodes.length > 1) cont.insertBefore(nav, cont.firstChild);
     cont.appendChild(el('div', { 'class': 'vacio sin-resultados', hidden: '' }));
   }
   $$('[data-catalogo]').forEach(pintarCatalogo);
 
-  /* Productos destacados del inicio: salen del mismo archivo de datos */
-  $$('[data-chips]').forEach(function (ul) {
-    var sel = ITEMS.filter(function (i) { return i.linea === 'construccion'; }).slice(0, 6)
-      .concat(ITEMS.filter(function (i) { return i.linea === 'limpieza'; }).slice(0, 6));
-    if (!sel.length) return;
-    ul.textContent = '';
-    sel.forEach(function (it) {
-      ul.appendChild(el('li', {}, [el('a', { href: ul.getAttribute('data-href-' + it.linea) || '#' }, [ico(it.icono || 'caja'), it.nombre])]));
+  /* Menú lateral del catálogo: líneas y subcategorías con su conteo */
+  $$('[data-lateral]').forEach(function (box) {
+    var cont = D.getElementById(box.getAttribute('data-para')); if (!cont) return;
+    var modo = cont.getAttribute('data-catalogo'), nav = el('nav', { 'aria-label': 'Categorías del catálogo' });
+    LINEAS.forEach(function (ln) {
+      var prods = ITEMS.filter(function (i) { return i.linea === ln.slug; });
+      var enPagina = modo === 'todos' || modo === ln.slug;
+      nav.appendChild(el('p', { 'class': 't', text: ln.nombre }));
+      var ul = el('ul'), subs = []; prods.forEach(function (p) { if (subs.indexOf(p.sub) < 0) subs.push(p.sub); });
+      if (!subs.length) ul.appendChild(el('li', {}, [el('a', { href: box.getAttribute('data-href-' + ln.slug) || '#' }, ['Pregunta por WhatsApp'])]));
+      subs.forEach(function (s) {
+        var n = prods.filter(function (p) { return p.sub === s; }).length;
+        var a = enPagina ? el('a', { href: '#' + idSub(cont._idx, ln.slug, s), 'data-ancla': idSub(cont._idx, ln.slug, s) }, [s, el('span', { text: String(n) })])
+                         : el('a', { href: box.getAttribute('data-href-' + ln.slug) || '#' }, [s, el('span', { text: String(n) })]);
+        ul.appendChild(el('li', {}, [a]));
+      });
+      nav.appendChild(ul);
+    });
+    box.appendChild(nav);
+    if (window.matchMedia && matchMedia('(min-width:980px)').matches) box.setAttribute('open', '');
+  });
+
+  /* Conteo por línea en la portada, con los datos vigentes */
+  $$('[data-cuenta]').forEach(function (e) {
+    var n = ITEMS.filter(function (i) { return i.linea === e.getAttribute('data-cuenta'); }).length;
+    e.textContent = n ? n + (n === 1 ? ' producto' : ' productos') : 'Sin productos publicados';
+  });
+
+  /* Índice de la portada, desde el mismo archivo de datos */
+  $$('[data-indice]').forEach(function (cont) {
+    var grupos = [];
+    ITEMS.forEach(function (i) { var g = grupos.filter(function (x) { return x.l === i.linea && x.s === i.sub; })[0]; if (!g) { g = { l: i.linea, s: i.sub, p: [] }; grupos.push(g); } g.p.push(i); });
+    if (!grupos.length) return;
+    cont.textContent = '';
+    grupos.forEach(function (g) {
+      var href = cont.getAttribute('data-href-' + g.l) || '#';
+      cont.appendChild(el('div', {}, [el('h3', { text: g.s }), el('ul', {}, g.p.map(function (p) { return el('li', {}, [el('a', { href: href }, [p.nombre + (p.pres ? ' · ' + p.pres : '')])]); }))]));
     });
   });
 
-  /* Buscador: filtra las tarjetas del contenedor indicado */
+  /* ---------- Buscador ---------- */
+  function filtrar(cont, q0) {
+    var q = norm(q0).trim(), hay = 0;
+    $$('.prod', cont).forEach(function (c) { var ok = !q || c.getAttribute('data-buscar').indexOf(q) >= 0; c.hidden = !ok; if (ok) hay++; });
+    $$('.grupo-sub', cont).forEach(function (g) {
+      var v = $$('.prod', g).filter(function (c) { return !c.hidden; }).length;
+      g.hidden = v === 0; var n = $('.n', g); if (n) n.textContent = v + (v === 1 ? ' producto' : ' productos');
+    });
+    $$('.grupo-linea', cont).forEach(function (l) { l.hidden = !!q && !$$('.prod', l).some(function (c) { return !c.hidden; }); });
+    var sr = $('.sin-resultados', cont);
+    if (q && !hay) {
+      var t = q0.trim();
+      sr.hidden = false; sr.textContent = '';
+      sr.appendChild(el('h3', { text: 'No encontramos «' + t + '»' }));
+      sr.appendChild(el('p', { text: 'Puede que no lo tengamos publicado todavía. Pregúntanos por WhatsApp.' }));
+      sr.appendChild(el('a', { 'class': 'btn', href: waUrl('Hola, busco: ' + t), target: '_blank', rel: 'noopener noreferrer' }, [ico('wa'), 'Preguntar por WhatsApp']));
+    } else { sr.hidden = true; }
+  }
   $$('input[data-en]').forEach(function (inp) {
-    var cont = D.getElementById(inp.getAttribute('data-en'));
-    if (!cont) return;
-    inp.addEventListener('input', function () {
-      var q = norm(inp.value).trim(), hay = 0;
-      $$('.prod', cont).forEach(function (c) { var ok = !q || c.getAttribute('data-buscar').indexOf(q) >= 0; c.hidden = !ok; if (ok) hay++; });
-      $$('.grupo-sub', cont).forEach(function (g) {
-        var v = $$('.prod', g).filter(function (c) { return !c.hidden; }).length;
-        g.hidden = v === 0; var n = $('.n', g); if (n) n.textContent = v + (v === 1 ? ' producto' : ' productos');
-      });
-      var sr = $('.sin-resultados', cont);
-      if (q && !hay) {
-        sr.hidden = false; sr.textContent = '';
-        sr.appendChild(el('h3', { text: 'No encontramos «' + inp.value.trim() + '»' }));
-        sr.appendChild(el('p', { text: 'Puede que no lo tengamos publicado todavía. Pregúntanos por WhatsApp.' }));
-        sr.appendChild(el('a', { 'class': 'btn', href: waUrl('Hola, busco: ' + inp.value.trim()), target: '_blank', rel: 'noopener noreferrer' }, [ico('wa'), 'Preguntar por WhatsApp']));
-      } else { sr.hidden = true; }
+    var cont = D.getElementById(inp.getAttribute('data-en')); if (!cont) return;
+    inp.addEventListener('input', function () { filtrar(cont, inp.value); });
+  });
+  // Búsqueda desde el encabezado o el inicio: lleva al catálogo con el texto ya escrito
+  var pendienteQ = '';
+  function aplicarQ() {
+    var q = pendienteQ;
+    if (!q) { try { q = new URLSearchParams(location.search).get('q') || ''; } catch (e) { q = ''; } }
+    if (!q) return;
+    var inp = $$('input[data-en]').filter(function (i) { var c = D.getElementById(i.getAttribute('data-en')); return c && c.getAttribute('data-catalogo') === 'todos' && i.offsetParent !== null; })[0];
+    if (inp) { inp.value = q; inp.dispatchEvent(new Event('input')); pendienteQ = ''; }
+  }
+  $$('form[data-busqueda]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = $('input[name="q"]', f).value.trim(), dest = f.getAttribute('data-destino') || '#';
+      if (dest.charAt(0) === '#') { pendienteQ = q; if (location.hash === dest) aplicarQ(); else location.hash = dest; }
+      else location.href = dest + (q ? '?q=' + encodeURIComponent(q) : '');
+    });
+  });
+
+  /* Formulario de lista escrita: abre WhatsApp con el texto; la persona decide si lo envía */
+  $$('form[data-form-lista]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = $('textarea', f).value.trim();
+      window.open(waUrl('Hola, quiero cotizar esta lista:' + (t ? '\n' + t : '')), '_blank', 'noopener');
     });
   });
 
   /* ---------- Anclas dentro de la página (también en el archivo único) ---------- */
   D.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[data-ancla]');
-    if (!a) return;
-    var t = D.getElementById(a.getAttribute('data-ancla'));
-    if (!t) return;
+    var a = e.target.closest && e.target.closest('a[data-ancla]'); if (!a) return;
+    var t = D.getElementById(a.getAttribute('data-ancla')); if (!t) return;
     e.preventDefault();
     t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
@@ -217,9 +264,9 @@
 
   /* ---------- Menús ---------- */
   var btnMenu = $('#btn-menu'), movil = $('#movil');
+  function cerrarMovil() { if (movil) movil.classList.remove('abierto'); if (btnMenu) { btnMenu.setAttribute('aria-expanded', 'false'); btnMenu.lastChild.nodeValue = 'Menú'; } }
   if (btnMenu && movil) btnMenu.addEventListener('click', function () {
-    var ab = movil.classList.toggle('abierto'); btnMenu.setAttribute('aria-expanded', ab ? 'true' : 'false');
-    btnMenu.lastChild.nodeValue = ab ? 'Cerrar' : 'Menú';
+    var ab = movil.classList.toggle('abierto'); btnMenu.setAttribute('aria-expanded', ab ? 'true' : 'false'); btnMenu.lastChild.nodeValue = ab ? 'Cerrar' : 'Menú';
   });
   function cerrarMenus() { $$('.menu-d.abierto').forEach(function (m) { m.classList.remove('abierto'); var b = $('button.sub', m); if (b) b.setAttribute('aria-expanded', 'false'); }); }
   $$('.menu-d').forEach(function (m) {
@@ -230,7 +277,7 @@
   D.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     var ab = $('.menu-d.abierto'); if (ab) { var b = $('button.sub', ab); cerrarMenus(); if (b) b.focus(); }
-    else if (movil && movil.classList.contains('abierto')) { movil.classList.remove('abierto'); btnMenu.setAttribute('aria-expanded', 'false'); btnMenu.lastChild.nodeValue = 'Menú'; btnMenu.focus(); }
+    else if (movil && movil.classList.contains('abierto')) { cerrarMovil(); btnMenu.focus(); }
   });
   D.addEventListener('click', function (e) { if (!e.target.closest('.menu-d')) cerrarMenus(); });
 
@@ -248,12 +295,13 @@
         var n = a.getAttribute('data-nav'), on = n === '' ? actual === '' : actual.indexOf(n) === 0;
         if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
       });
-      cerrarMenus(); if (movil) { movil.classList.remove('abierto'); if (btnMenu) { btnMenu.setAttribute('aria-expanded', 'false'); btnMenu.lastChild.nodeValue = 'Menú'; } }
+      cerrarMenus(); cerrarMovil();
       if (!inicial) { window.scrollTo(0, 0); var h1 = $('h1', pg); if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); } }
+      aplicarQ();
     };
     window.addEventListener('hashchange', function () { ruta(false); });
     ruta(true);
-  }
+  } else { aplicarQ(); }
 
   pintarLista();
 })();

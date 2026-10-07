@@ -13,8 +13,8 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 
 | Página | Contenido |
 |---|---|
-| Inicio | Qué vende y dónde, botón «Cotiza por WhatsApp», tres líneas (Construcción primero), productos, «¿Ya tienes tu lista?», cómo cotizar y tarjeta de la tienda |
-| Catálogo | 24 productos con buscador, cantidad, «Cotizar por WhatsApp» y «Agregar a mi lista» |
+| Inicio | Héroe con buscador de productos, datos de la tienda, tres líneas (Construcción primero, con botón para cotizar materiales de obra), índice «Lo que encuentras» y marcas, «Así cotizas», «Manda tu lista» y «Visítanos» |
+| Catálogo | 24 productos en filas tipo ficha técnica, menú lateral de categorías, buscador, cantidad, «Cotizar» (abre WhatsApp) y «Agregar» a mi lista |
 | Construcción, Limpieza, Papelería | Una página por línea; Papelería aún sin productos |
 | Cómo comprar | Solicitar cotización, formas de pago y preguntas |
 | Visítanos | Ubicación, horario y contacto |
@@ -43,11 +43,11 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 
 ## Decisiones
 
-- **Diseño:** Ruta A (catálogo claro). Azul `#174F7C` y naranja `#F48F07` del archivo de diseño del negocio; el naranja solo rellena botones, con texto `#1A1A1A`.
+- **Diseño (v2, profesional):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px, barra de datos + encabezado con buscador, héroe azul con panel de búsqueda, filas de catálogo con menú lateral. Azul `#174F7C` y naranja `#F48F07` del archivo de diseño del negocio; el naranja solo rellena botones, con texto `#1A1A1A`. Se retiraron las siluetas de objetos de la v1 por verse poco profesionales: solo quedan iconos de interfaz de un mismo trazo.
 - **Tipografía:** sin Arial. Bricolage Grotesque (títulos) e Instrument Sans (cuerpo), con licencia libre (OFL), incluidas en el sitio. Licencias en `licencias/`.
 - **Que no se parezca a Truper ni a Pretul:** el azul domina, el naranja ocupa poca superficie y se evitó el amarillo con negro. **No pude comprobar sus colores reales** (sin acceso a sus sitios): conviene comparar con un empaque. Si el naranja resultara parecido, el botón pasa a celeste `#00A9E9` con texto oscuro.
 - **Datos publicados:** dirección, teléfono y WhatsApp, horario de lunes a sábado y el correo aprobado. **No se publica** el domingo, el nombre del responsable ni datos bancarios o fiscales.
-- **Sin fotos:** ilustraciones propias de línea, genéricas, no son inventario.
+- **Sin fotos ni ilustraciones de producto:** no hay fotos autorizadas; el catálogo es texto limpio hasta que haya fotos reales (la columna `foto` del CSV ya las soporta).
 - **Marca:** la casa y el nombre en texto son provisionales y **no son el logo original**. Falta exportar la pieza correcta del archivo de diseño.
 
 ## Lo que falta o no se afirma
@@ -59,7 +59,7 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 
 ## Pruebas realizadas
 
-Móvil 360 y 390 px, tableta 768 y escritorio 1440 en las 7 páginas, tanto en `dist/` como en el archivo único: sin desbordes, sin errores de consola y sin peticiones externas. Contraste AA en todo el texto, objetivos táctiles de 44 px, foco visible, navegación por teclado, reflujo a 320 px, diálogo de «Mi lista» y las instrucciones del editor de punta a punta. **No se midieron** velocidad, SEO ni posicionamiento, y no se probó con lectores de pantalla reales.
+Móvil 360 y 390 px, tableta 768 y escritorio 1440 en las 7 páginas, tanto en `dist/` como en el archivo único: sin desbordes, sin errores de consola y sin peticiones externas. Contraste AA en todo el texto (el número decorativo de cada línea es `aria-hidden`), objetivos táctiles de 44 px, foco visible, orden de encabezados, referencias (landmarks), navegación por teclado, reflujo a 320 px, diálogo de «Mi lista», búsqueda, cantidades, mensajes de WhatsApp y las instrucciones del editor de punta a punta. **No se midieron** velocidad, SEO ni posicionamiento, y no se probó con lectores de pantalla reales.
 
 ## Privacidad
 
