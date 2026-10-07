@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Editor del catálogo · Comercializadora Robles</title>
+<style>
+:root{--azul:#174F7C;--naranja:#F48F07;--gris:#F2F4F6;--borde:#D3DBE3;--texto:#1A1A1A}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;color:var(--texto);background:#fff}
+header{background:var(--azul);color:#fff;padding:20px}
+header h1{margin:0 0 4px;font-size:1.5rem}
+header p{margin:0;max-width:60em}
+main{padding:20px;max-width:1500px;margin:auto}
+ol{padding-left:1.2rem}
+.caja{background:var(--gris);border:1px solid var(--borde);border-radius:12px;padding:16px;margin-bottom:16px}
+button,.btn{font:700 1rem system-ui;min-height:44px;padding:8px 16px;border-radius:10px;border:2px solid var(--azul);background:#fff;color:var(--azul);cursor:pointer}
+button.p{background:var(--naranja);color:var(--texto)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.barra{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+.tabla{overflow-x:auto;border:1px solid var(--borde);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:1180px;font-size:.9375rem}
+th,td{padding:6px;border-bottom:1px solid var(--borde);text-align:left;vertical-align:top}
+th{background:var(--azul);color:#fff;position:sticky;top:0}
+td input,td select{width:100%;min-height:40px;border:1px solid var(--borde);border-radius:8px;padding:4px 8px;font:inherit}
+td input[type=number]{min-width:96px}
+.estado{font-size:.875rem;min-width:200px}
+.ok{color:#14532d;font-weight:700}.aviso{color:#7a3b00;font-weight:700}
+.msg{min-height:1.5em;font-weight:700;color:var(--azul)}
+.chico{font-size:.875rem;color:#4A5560}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Editor del catálogo</h1>
+  <p>Cambia productos y precios sin tocar el código. Funciona en esta misma página, sin internet, y no envía nada a ningún lado.</p>
+</header>
+<main>
+  <div class="caja">
+    <h2 style="margin-top:0">Cómo se usa (cada semana)</h2>
+    <ol>
+      <li><b>Guarda una copia</b> del archivo actual <code>dist/assets/js/catalogo.js</code>.</li>
+      <li>Aquí abajo, <b>carga ese archivo</b> (o el <code>catalogo.csv</code>).</li>
+      <li>Cambia lo que necesites. Un precio solo se muestra en el sitio si tiene <b>monto, unidad, IVA y fecha de vigencia</b>; si falta algo o ya venció, el sitio dice «Solicita precio».</li>
+      <li><b>Descarga catalogo.js</b> y reemplaza con él el archivo <code>dist/assets/js/catalogo.js</code>. Abre el sitio para revisar.</li>
+    </ol>
+    <p class="chico">Tus cambios viven solo en esta ventana hasta que descargues el archivo. No publica nada por sí solo.</p>
+  </div>
+
+  <div class="barra">
+    <label for="archivo"><b>Cargar catálogo:</b></label>
+    <input id="archivo" type="file" accept=".js,.csv,.json">
+    <button type="button" id="agregar">Agregar producto</button>
+    <button type="button" class="p" id="bajar-js">Descargar catalogo.js</button>
+    <button type="button" id="bajar-csv">Descargar catalogo.csv</button>
+  </div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+
+  <div class="tabla" role="region" aria-label="Tabla de productos" tabindex="0">
+    <table>
+      <thead><tr><th>Producto</th><th>Línea</th><th>Subcategoría</th><th>Marca</th><th>Presentación</th><th>Precio MXN</th><th>Unidad del precio</th><th>IVA incluido</th><th>Vigencia hasta</th><th>Activo</th><th>Así se verá</th><th><span class="sr">Quitar</span></th></tr></thead>
+      <tbody id="filas"></tbody>
+    </table>
+  </div>
+  <datalist id="subs"></datalist>
+</main>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var LINEAS = [{ slug: 'construccion', nombre: 'Construcción' }, { slug: 'limpieza', nombre: 'Limpieza' }, { slug: 'papeleria', nombre: 'Papelería' }];
+  var datos = [];
+  var COLS = ['id', 'linea', 'subcategoria', 'producto', 'marca', 'presentacion', 'precio_mxn', 'unidad_del_precio', 'iva_incluido', 'vigencia_hasta', 'foto', 'icono', 'orden', 'activo', 'nota_interna'];
+
+  function msg(t) { $('#msg').textContent = t; }
+  function hoyISO() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function estadoPrecio(r) {
+    var p = parseFloat(String(r.precio).replace(',', '.'));
+    if (!r.precio) return { ok: false, t: 'Solicita precio' };
+    var f = [];
+    if (!(p > 0)) f.push('un monto válido');
+    if (!r.unidad) f.push('la unidad');
+    if (!/^(sí|si|no)$/i.test(r.iva || '')) f.push('si incluye IVA');
+    if (!r.vigencia) f.push('la fecha de vigencia'); else if (r.vigencia < hoyISO()) f.push('una vigencia que no haya vencido');
+    if (f.length) return { ok: false, t: 'Solicita precio (falta ' + f.join(', ') + ')' };
+    return { ok: true, t: '$' + p.toFixed(2) + ' MXN por ' + r.unidad + ' · ' + (/^(sí|si)$/i.test(r.iva) ? 'IVA incluido' : 'IVA no incluido') + ' · hasta ' + r.vigencia };
+  }
+  function campo(r, k, tipo, extra) {
+    var i = document.createElement('input'); i.type = tipo || 'text'; i.value = r[k] == null ? '' : r[k];
+    i.setAttribute('aria-label', k + ' de ' + (r.nombre || 'producto nuevo'));
+    if (extra) Object.keys(extra).forEach(function (a) { i.setAttribute(a, extra[a]); });
+    i.addEventListener('input', function () { r[k] = i.value; pintarEstado(r); });
+    return i;
+  }
+  function select(r, k, opciones) {
+    var s = document.createElement('select'); s.setAttribute('aria-label', k + ' de ' + (r.nombre || 'producto nuevo'));
+    opciones.forEach(function (o) { var op = document.createElement('option'); op.value = o[0]; op.textContent = o[1]; if (String(r[k]) === o[0]) op.selected = true; s.appendChild(op); });
+    s.addEventListener('change', function () { r[k] = s.value; pintarEstado(r); });
+    return s;
+  }
+  var celdas = new Map();
+  function pintarEstado(r) {
+    var c = celdas.get(r); if (!c) return; var e = estadoPrecio(r);
+    c.textContent = e.t; c.className = 'estado ' + (e.ok ? 'ok' : 'aviso');
+    var subs = {}; datos.forEach(function (x) { if (x.sub) subs[x.sub] = 1; });
+    var dl = $('#subs'); dl.textContent = ''; Object.keys(subs).forEach(function (s) { var o = document.createElement('option'); o.value = s; dl.appendChild(o); });
+  }
+  function pintar() {
+    var tb = $('#filas'); tb.textContent = ''; celdas.clear();
+    datos.forEach(function (r) {
+      var tr = document.createElement('tr');
+      function td(n) { var c = document.createElement('td'); c.appendChild(n); tr.appendChild(c); return c; }
+      td(campo(r, 'nombre'));
+      td(select(r, 'linea', LINEAS.map(function (l) { return [l.slug, l.nombre]; })));
+      var sub = campo(r, 'sub'); sub.setAttribute('list', 'subs'); td(sub);
+      td(campo(r, 'marca')); td(campo(r, 'pres'));
+      td(campo(r, 'precio', 'number', { step: '0.01', min: '0', inputmode: 'decimal' }));
+      td(campo(r, 'unidad'));
+      td(select(r, 'iva', [['', '—'], ['sí', 'Sí'], ['no', 'No']]));
+      td(campo(r, 'vigencia', 'date'));
+      td(select(r, 'activo', [['sí', 'Sí'], ['no', 'No']]));
+      var e = document.createElement('td'); tr.appendChild(e); celdas.set(r, e);
+      var q = document.createElement('button'); q.type = 'button'; q.textContent = 'Quitar'; q.setAttribute('aria-label', 'Quitar ' + (r.nombre || 'producto'));
+      q.addEventListener('click', function () { if (confirm('¿Quitar «' + (r.nombre || 'este producto') + '» del catálogo?')) { datos.splice(datos.indexOf(r), 1); pintar(); msg('Producto quitado.'); } });
+      td(q); tb.appendChild(tr); pintarEstado(r);
+    });
+  }
+  function csvADatos(t) {
+    var filas = [], f = [], c = '', q = false;
+    t = t.replace(/^﻿/, '');
+    for (var i = 0; i < t.length; i++) {
+      var ch = t[i];
+      if (q) { if (ch === '"' && t[i + 1] === '"') { c += '"'; i++; } else if (ch === '"') q = false; else c += ch; }
+      else if (ch === '"') q = true; else if (ch === ',') { f.push(c); c = ''; }
+      else if (ch === '\n' || ch === '\r') { if (ch === '\r' && t[i + 1] === '\n') i++; f.push(c); c = ''; if (f.length > 1 || f[0]) filas.push(f); f = []; }
+      else c += ch;
+    }
+    if (c || f.length) { f.push(c); filas.push(f); }
+    var h = filas.shift();
+    return filas.map(function (x) { var o = {}; h.forEach(function (k, i) { o[k] = x[i] || ''; });
+      return { id: o.id, linea: o.linea, sub: o.subcategoria, nombre: o.producto, marca: o.marca, pres: o.presentacion, precio: o.precio_mxn, unidad: o.unidad_del_precio, iva: o.iva_incluido, vigencia: o.vigencia_hasta, foto: o.foto, icono: o.icono || 'caja', orden: +o.orden || 0, activo: o.activo || 'sí', nota: o.nota_interna }; });
+  }
+  $('#archivo').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function () {
+      try {
+        var t = String(rd.result);
+        if (/\.csv$/i.test(f.name)) datos = csvADatos(t);
+        else {
+          var m = t.match(/window\.ROBLES_CATALOGO\s*=\s*(\[[\s\S]*?\]);\s*$/m) || t.match(/window\.ROBLES_CATALOGO\s*=\s*(\[[\s\S]*\])/);
+          if (!m) throw new Error('No encontré el catálogo en este archivo.');
+          datos = JSON.parse(m[1]);
+          var l = t.match(/window\.ROBLES_LINEAS\s*=\s*(\[[\s\S]*?\]);/); if (l) LINEAS = JSON.parse(l[1]);
+        }
+        pintar(); msg('Cargados ' + datos.length + ' productos de «' + f.name + '».');
+      } catch (err) { msg('No se pudo leer el archivo: ' + err.message); }
+    };
+    rd.readAsText(f, 'utf-8');
+  });
+  $('#agregar').addEventListener('click', function () {
+    var n = datos.length + 1, id = 'N' + String(n).padStart(3, '0');
+    datos.push({ id: id, linea: LINEAS[0].slug, sub: '', nombre: '', marca: '', pres: '', precio: '', unidad: '', iva: '', vigencia: '', foto: '', icono: 'caja', orden: n, activo: 'sí' });
+    pintar(); msg('Producto agregado al final de la tabla. Escribe su nombre.');
+    var ins = document.querySelectorAll('#filas tr:last-child input'); if (ins[0]) ins[0].focus();
+  });
+  function bajar(nombre, tipo, texto) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([texto], { type: tipo })); a.download = nombre; document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  function validos() {
+    var sinNombre = datos.filter(function (r) { return !String(r.nombre || '').trim(); });
+    if (sinNombre.length) { msg('Hay ' + sinNombre.length + ' producto(s) sin nombre. Escríbelo o quítalo antes de descargar.'); return false; }
+    datos.forEach(function (r, i) { r.orden = i + 1; }); return true;
+  }
+  $('#bajar-js').addEventListener('click', function () {
+    if (!validos()) return;
+    bajar('catalogo.js', 'text/javascript', '/* Generado con el editor del catálogo. Reemplaza dist/assets/js/catalogo.js con este archivo. */\nwindow.ROBLES_LINEAS=' + JSON.stringify(LINEAS) + ';\nwindow.ROBLES_CATALOGO=' + JSON.stringify(datos, null, 1) + ';\n');
+    msg('Descargado catalogo.js con ' + datos.length + ' productos. Reemplázalo en dist/assets/js/.');
+  });
+  $('#bajar-csv').addEventListener('click', function () {
+    if (!validos()) return;
+    function q(v) { v = v == null ? '' : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+    var l = [COLS.join(',')];
+    datos.forEach(function (r) { l.push([r.id, r.linea, r.sub, r.nombre, r.marca, r.pres, r.precio, r.unidad, r.iva, r.vigencia, r.foto, r.icono, r.orden, r.activo, r.nota || ''].map(q).join(',')); });
+    bajar('catalogo.csv', 'text/csv;charset=utf-8', '﻿' + l.join('\r\n') + '\r\n');
+    msg('Descargado catalogo.csv con ' + datos.length + ' productos.');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿id,linea,subcategoria,producto,marca,presentacion,precio_mxn,unidad_del_precio,iva_incluido,vigencia_hasta,foto,icono,orden,activo,nota_interna
+C01,construccion,Herramienta manual,Desarmadores,,,,,,,,desarmador,1,sí,Hay algunos Stanley; marca de los demás por confirmar
+C02,construccion,Herramienta manual,Picos,,,,,,,,pico,2,sí,Marca por confirmar (¿Truper?)
+C03,construccion,Herramienta manual,Palas,,,,,,,,pala,3,sí,Marca por confirmar (¿Truper?)
+C04,construccion,Herramienta manual,Cajas de herramienta,Stanley,,,,,,,caja,4,sí,
+C05,construccion,Corte y afilado,Discos de corte,,,,,,,,disco,5,sí,Tipos y medidas por detallar
+C06,construccion,Corte y afilado,Afiladores de motosierra,,,,,,,,lima,6,sí,
+C07,construccion,Selladores,Selladores en tubo,,,,,,,,sellador,7,sí,Varios tipos por detallar
+L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,rollo,8,sí,
+L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,toalla,9,sí,
+L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,panuelos,10,sí,Presentación por detallar
+L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,,,,,,,botella,11,sí,El negocio dijo «de 750»: confirmar la unidad (¿ml?) antes de publicarla como presentación
+L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,botella,12,sí,Marca por confirmar («de marca»)
+L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,botella,13,sí,Presentación por detallar
+L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,botella,14,sí,
+L08,limpieza,Cloro y aromas,Suavitel,Suavitel,,,,,,,botella,15,sí,Presentación por detallar
+L09,limpieza,Cloro y aromas,Aromatizante,,,,,,,,spray,16,sí,Tipo y marca por detallar
+L10,limpieza,Jabones,Jabón en barra,,,,,,,,jabon,17,sí,
+L11,limpieza,Jabones,Jabón para manos,,,,,,,,dispensador,18,sí,
+L12,limpieza,Utensilios de limpieza,Fibras verdes,,,,,,,,fibra,19,sí,
+L13,limpieza,Utensilios de limpieza,Estropajos,,,,,,,,fibra,20,sí,
+L14,limpieza,Utensilios de limpieza,Toallitas azules,,,,,,,,toalla,21,sí,
+L15,limpieza,Utensilios de limpieza,Escobas,,,,,,,,escoba,22,sí,
+L16,limpieza,Utensilios de limpieza,Trapeadores,,,,,,,,trapeador,23,sí,
+L17,limpieza,Insecticidas,Raid casa y jardín,Raid,,,,,,,spray,24,sí,
