@@ -5,6 +5,9 @@
   var D = document, H = D.documentElement, NS = 'http://www.w3.org/2000/svg';
   H.classList.add('js');
   var WA = '523119104468';
+  // Las fotos de producto con ruta relativa se resuelven desde la carpeta del sitio (la del script)
+  var BASE = (function () { var s = D.currentScript; return s && s.src ? s.src.replace(/assets\/js\/site\.js.*$/, '') : ''; })();
+  function fotoSrc(f) { return /^(data:|https?:|\/)/.test(f) ? f : BASE + f; }
   var $ = function (s, r) { return (r || D).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || D).querySelectorAll(s)); };
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -22,6 +25,16 @@
     (kids || []).forEach(function (c) { if (c) e.appendChild(typeof c === 'string' ? D.createTextNode(c) : c); });
     return e;
   }
+  function pico(k) {
+    var s = D.createElementNS(NS, 'svg'); s.setAttribute('class', 'ico'); s.setAttribute('aria-hidden', 'true');
+    var u = D.createElementNS(NS, 'use'); u.setAttribute('href', '#p-' + k); s.appendChild(u); return s;
+  }
+  function tile(k) { return el('span', { 'class': 'ico-prod', 'aria-hidden': 'true' }, [pico(k)]); }
+  var SUBICO = [[/cemento/, 'saco'], [/varilla/, 'varilla'], [/llaves, pinzas/, 'llave'], [/herramienta/, 'herramienta'], [/medicion/, 'regla'], [/brocas/, 'brocas'],
+    [/pintura/, 'rodillo'], [/tubos/, 'tubo'], [/sanitarios/, 'taza'], [/interruptores/, 'rayo'], [/contactos/, 'enchufe'], [/tornill/, 'tuerca'],
+    [/cerraj/, 'candado'], [/seguridad/, 'casco'], [/papel/, 'papel'], [/cloro/, 'gotas'], [/jabon/, 'jabon'], [/utensilios/, 'escoba'], [/insectic/, 'aerosol']];
+  function iconoSub(nombre) { var n = norm(nombre); for (var i = 0; i < SUBICO.length; i++) if (SUBICO[i][0].test(n)) return SUBICO[i][1]; return 'caja'; }
+  function corto(n) { var c = String(n).split(',')[0]; return c.length > 34 ? c.slice(0, 33).replace(/\s+\S*$/, '') + '…' : c; }
   function ico(id) {
     var s = D.createElementNS(NS, 'svg'); s.setAttribute('class', 'ico'); s.setAttribute('aria-hidden', 'true');
     var u = D.createElementNS(NS, 'use'); u.setAttribute('href', '#i-' + id); s.appendChild(u); return s;
@@ -47,6 +60,7 @@
     var p = [];
     if (it.marca && norm(it.nombre).indexOf(norm(it.marca)) < 0) p.push(it.marca);
     if (it.pres) p.push(it.pres);
+    if (it.unidad && !/^pieza$/i.test(it.unidad) && !precioCompleto(it)) p.push('por ' + it.unidad);
     return p.join(' · ');
   }
   // Un precio solo se muestra completo: monto, unidad, IVA y fecha de vigencia sin vencer.
@@ -62,7 +76,6 @@
   }
   var HAY_PRECIOS = ITEMS.some(function (i) { return !!precioCompleto(i); });
   function lineaMsg(it, qty) { return nombreCompleto(it) + (it.pres ? ' (' + it.pres + ')' : '') + ' · cantidad: ' + qty; }
-  function msgProducto(it, qty) { return 'Hola, quiero cotizar: ' + lineaMsg(it, qty); }
   function msgLista() {
     var l = ['Hola, quiero cotizar esta lista:'];
     lista.forEach(function (x, i) { l.push((i + 1) + '. ' + lineaMsg(BYID[x.id], x.qty)); });
@@ -142,10 +155,9 @@
 
   /* ---------- Catálogo: filas ---------- */
   var cuenta = 0;
-  function fila(it) {
-    var qty = 1, uid = 'q-' + it.id + '-' + (cuenta++), m = meta(it), pc = precioCompleto(it);
-    var wa = el('a', { 'class': 'btn compacto', href: waUrl(msgProducto(it, qty)), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Cotizar ' + etiq(it) + ' por WhatsApp' }, [ico('wa'), 'Cotizar']);
-    var c = cantidad(1, function (n) { qty = n; wa.setAttribute('href', waUrl(msgProducto(it, n))); }, etiq(it), uid);
+  function fila(it, nivel) {
+    var uid = 'q-' + it.id + '-' + (cuenta++), m = meta(it), pc = precioCompleto(it);
+    var c = cantidad(1, function () {}, etiq(it), uid);
     var add = el('button', { type: 'button', 'class': 'btn cont compacto', 'aria-label': 'Agregar ' + etiq(it) + ' a mi lista' }, [ico('mas'), 'Agregar']);
     add.addEventListener('click', function () {
       agregar(it.id, c.leer());
@@ -155,12 +167,12 @@
     var precio = pc ? el('p', { 'class': 'precio' }, [pc.monto, el('small', { text: pc.detalle })])
                     : (HAY_PRECIOS ? el('p', { 'class': 'precio' }, ['Solicita precio', el('small', { text: 'Te lo damos por WhatsApp' })]) : null);
     var partes = [];
-    if (it.foto) partes.push(el('div', { 'class': 'foto' }, [el('img', { src: it.foto, alt: it.nombre, loading: 'lazy' })]));
-    partes.push(el('div', { 'class': 'info' }, [el('h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio]));
-    partes.push(c.nodo, el('div', { 'class': 'acc' }, [wa, add]));
+    partes.push(it.foto ? el('div', { 'class': 'foto' }, [el('img', { src: fotoSrc(it.foto), alt: it.nombre, loading: 'lazy' })]) : tile(it.icono || 'caja'));
+    partes.push(el('div', { 'class': 'info' }, [el(nivel || 'h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio]));
+    partes.push(c.nodo, el('div', { 'class': 'acc' }, [add]));
     return el('article', { 'class': 'prod' + (it.foto ? ' con-foto' : ''), 'data-buscar': norm([it.nombre, it.marca, it.pres].join(' ')) }, partes);
   }
-  function idSub(idx, linea, sub) { return 's' + idx + '-' + linea + '-' + slug(sub); }
+  function idSub(modo, linea, sub) { return (modo === 'todos' ? 't-' : 's-') + linea + '-' + slug(sub); }
   function pintarCatalogo(cont, idx) {
     var modo = cont.getAttribute('data-catalogo'), unica = modo !== 'todos';
     var lineas = unica ? LINEAS.filter(function (l) { return l.slug === modo; }) : LINEAS;
@@ -173,16 +185,16 @@
         cajaL.appendChild(el('div', { 'class': 'vacio' }, [
           el(unica ? 'h2' : 'h3', { text: 'Aún no publicamos productos de ' + ln.nombre.toLowerCase() }),
           el('p', { text: 'Escríbenos qué necesitas y te decimos si lo tenemos.' }),
-          el('a', { 'class': 'btn', href: waUrl('Hola, quiero cotizar en ' + ln.nombre.toLowerCase() + ':'), target: '_blank', rel: 'noopener noreferrer' }, [ico('wa'), 'Cotizar por WhatsApp'])
+          el('a', { 'class': 'btn', href: waUrl('Hola, quiero cotizar en ' + ln.nombre.toLowerCase() + ':'), target: '_blank', rel: 'noopener noreferrer' }, [ico('wa'), 'Preguntar por WhatsApp'])
         ]));
         cont.appendChild(cajaL); return;
       }
       var subs = []; prods.forEach(function (p) { if (subs.indexOf(p.sub) < 0) subs.push(p.sub); });
       subs.forEach(function (s) {
         var lst = prods.filter(function (p) { return p.sub === s; });
-        cajaL.appendChild(el('div', { 'class': 'grupo-sub', id: idSub(idx, ln.slug, s), tabindex: '-1' }, [
+        cajaL.appendChild(el('div', { 'class': 'grupo-sub', id: idSub(modo, ln.slug, s), tabindex: '-1' }, [
           el(unica ? 'h2' : 'h3', {}, [s + ' ', el('span', { 'class': 'n', text: lst.length + (lst.length === 1 ? ' producto' : ' productos') })]),
-          el('div', { 'class': 'filas' }, lst.map(fila))
+          el('div', { 'class': 'filas' }, lst.map(function (p) { return fila(p, unica ? 'h3' : 'h4'); }))
         ]));
       });
       cont.appendChild(cajaL);
@@ -203,7 +215,7 @@
       if (!subs.length) ul.appendChild(el('li', {}, [el('a', { href: waUrl('Hola, quiero cotizar en ' + ln.nombre.toLowerCase() + ':'), target: '_blank', rel: 'noopener noreferrer' }, ['Pregunta por WhatsApp'])]));
       subs.forEach(function (s) {
         var n = prods.filter(function (p) { return p.sub === s; }).length;
-        var a = enPagina ? el('a', { href: '#' + idSub(cont._idx, ln.slug, s), 'data-ancla': idSub(cont._idx, ln.slug, s) }, [s, el('span', { text: String(n) })])
+        var a = enPagina ? el('a', { href: '#' + idSub(modo, ln.slug, s), 'data-ancla': idSub(modo, ln.slug, s) }, [s, el('span', { text: String(n) })])
                          : el('a', { href: box.getAttribute('data-href-' + ln.slug) || '#' }, [s, el('span', { text: String(n) })]);
         ul.appendChild(el('li', {}, [a]));
       });
@@ -218,23 +230,69 @@
   });
 
   /* Conteo por línea en la portada, con los datos vigentes */
-  if (HAY_PRECIOS) $$('[data-nota]').forEach(function (e) { e.textContent = '«Cotizar» abre WhatsApp con tu producto listo; tú decides si lo envías. Si un producto no muestra precio, pídelo por WhatsApp.'; });
+  if (HAY_PRECIOS) $$('[data-nota]').forEach(function (e) { e.textContent = 'Agrega productos a tu lista y envíala por WhatsApp. Si un producto no muestra precio, pídelo en el chat.'; });
   $$('[data-cuenta]').forEach(function (e) {
     var n = ITEMS.filter(function (i) { return i.linea === e.getAttribute('data-cuenta'); }).length;
     e.textContent = n ? n + (n === 1 ? ' producto' : ' productos') : 'Sin productos publicados';
   });
 
-  /* Índice de la portada, desde el mismo archivo de datos */
-  $$('[data-indice]').forEach(function (cont) {
-    var grupos = [];
-    ITEMS.forEach(function (i) { var g = grupos.filter(function (x) { return x.l === i.linea && x.s === i.sub; })[0]; if (!g) { g = { l: i.linea, s: i.sub, p: [] }; grupos.push(g); } g.p.push(i); });
-    if (!grupos.length) return;
-    cont.textContent = '';
-    grupos.forEach(function (g) {
-      var href = cont.getAttribute('data-href-' + g.l) || '#';
-      cont.appendChild(el('div', {}, [el('h3', { text: g.s }), el('ul', {}, g.p.map(function (p) { return el('li', {}, [el('a', { href: href }, [p.nombre + (p.pres ? ' · ' + p.pres : '')])]); }))]));
+  /* ---------- Portada: categorías y cinta de productos, desde el mismo archivo de datos ---------- */
+  var PORTATIL = !!window.ROBLES_PORTATIL, pendienteSub = '';
+  $$('[data-categorias]').forEach(function (cont) {
+    var hay = false; cont.textContent = '';
+    LINEAS.forEach(function (ln) {
+      var prods = ITEMS.filter(function (i) { return i.linea === ln.slug; });
+      var base = cont.getAttribute('data-href-' + ln.slug) || '#';
+      var grupo = el('section', { 'class': 'cat-grupo', 'aria-label': ln.nombre });
+      if (!prods.length) {
+        grupo.appendChild(el('h3', {}, [ln.nombre]));
+        grupo.appendChild(el('p', { 'class': 'cat-vacia', text: 'Todavía no hay productos publicados en esta línea.' }));
+        cont.appendChild(grupo); return;
+      }
+      hay = true;
+      var subs = []; prods.forEach(function (p) { var g = subs.filter(function (x) { return x.n === p.sub; })[0]; if (!g) { g = { n: p.sub, c: 0 }; subs.push(g); } g.c++; });
+      grupo.appendChild(el('h3', {}, [ln.nombre + ' ', el('span', { 'class': 'n', text: prods.length + (prods.length === 1 ? ' producto' : ' productos') })]));
+      grupo.appendChild(el('ul', { 'class': 'cat-grid' }, subs.map(function (g) {
+        var id = idSub('linea', ln.slug, g.n);
+        var a = el('a', { 'class': 'cat-tile', href: PORTATIL ? base : base + '#' + id, 'data-sub-id': id }, [tile(iconoSub(g.n)), el('span', {}, [el('b', { text: g.n }), el('small', { text: g.c + (g.c === 1 ? ' producto' : ' productos') })])]);
+        return el('li', {}, [a]);
+      })));
+      cont.appendChild(grupo);
+    });
+    if (!hay) cont.appendChild(el('p', { 'class': 'cat-vacia', text: 'El catálogo se está actualizando.' }));
+  });
+  $$('[data-cinta]').forEach(function (sec) {
+    var ul = $('.pista', sec); if (!ul) return;
+    var ids = (sec.getAttribute('data-ids') || '').split(',').filter(Boolean);
+    var elegidos = ids.map(function (id) { return BYID[id]; }).filter(Boolean);
+    if (!elegidos.length) { sec.hidden = true; return; }
+    var base = sec.getAttribute('data-href-catalogo') || '#';
+    function copia(oculta) {
+      return elegidos.map(function (it) {
+        var a = el('a', { 'class': 'mini', href: PORTATIL ? base : base + '?q=' + encodeURIComponent(it.nombre), 'data-q': it.nombre }, [tile(it.icono || 'caja'), el('span', {}, [el('b', { text: corto(it.nombre) }), el('small', { text: it.sub })])]);
+        var li = el('li', {}, [a]);
+        if (oculta) { li.setAttribute('aria-hidden', 'true'); a.setAttribute('tabindex', '-1'); }
+        return li;
+      });
+    }
+    copia(false).concat(copia(true)).forEach(function (li) { ul.appendChild(li); });
+    ul.style.setProperty('--dur', Math.max(40, elegidos.length * 5) + 's');
+    var bp = $('.btn-pausa', sec);
+    if (bp) bp.addEventListener('click', function () {
+      var p = sec.classList.toggle('pausada'); bp.setAttribute('aria-pressed', p ? 'true' : 'false');
+      bp.lastChild.nodeValue = p ? 'Reanudar' : 'Pausar'; var u = bp.querySelector('use'); if (u) u.setAttribute('href', p ? '#i-play' : '#i-pausa');
     });
   });
+  // Enlaces que llevan al catálogo con un texto o a una subcategoría concreta
+  D.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-q],a[data-sub-id]'); if (!a) return;
+    if (a.hasAttribute('data-q') && PORTATIL) { pendienteQ = a.getAttribute('data-q'); limpiarQ = false; }
+    if (a.hasAttribute('data-sub-id') && PORTATIL) pendienteSub = a.getAttribute('data-sub-id');
+  });
+  function irASub() {
+    var id = pendienteSub || (!PORTATIL && location.hash.length > 1 ? location.hash.slice(1) : ''); pendienteSub = '';
+    var t = id && D.getElementById(id); if (t) { t.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+  }
 
   /* ---------- Buscador ---------- */
   function filtrar(cont, q0) {
@@ -340,11 +398,11 @@
       $$('#movil a').forEach(function (a) { if (a.getAttribute('href') === tok) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       cerrarMenus(); cerrarMovil();
       if (!inicial) { window.scrollTo(0, 0); var h1 = $('h1', pg); if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); } }
-      aplicarQ();
+      aplicarQ(); irASub();
     };
     window.addEventListener('hashchange', function () { ruta(false); });
     ruta(true);
-  } else { aplicarQ(); }
+  } else { aplicarQ(); irASub(); }
 
   pintarLista();
 })();

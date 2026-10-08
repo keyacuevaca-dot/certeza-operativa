@@ -1,36 +1,203 @@
 ﻿id,linea,subcategoria,producto,marca,presentacion,precio_mxn,unidad_del_precio,iva_incluido,vigencia_hasta,foto,icono,orden,activo,nota_interna
-C08,construccion,"Cemento, cal y morteros",Cemento Tolteca,Tolteca,25 kg,,,,,,,1,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
-C09,construccion,"Cemento, cal y morteros",Cemento Moctezuma,Moctezuma,25 kg,,,,,,,2,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
-C10,construccion,"Cemento, cal y morteros",Mortero Tolteca,Tolteca,25 kg,,,,,,,3,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
-C11,construccion,"Cemento, cal y morteros",Mortero Moctezuma,Moctezuma,25 kg,,,,,,,4,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
-C12,construccion,"Cemento, cal y morteros",Cal Calidra,Calidra,25 kg,,,,,,,5,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
-C13,construccion,"Cemento, cal y morteros",Pegapiso Ade1000,,20 kg,,,,,,,6,sí,Dato del cliente por WhatsApp (6-oct). Se escribió «Ade1000»; confirmar si es marca o nombre del producto.
-C14,construccion,Varilla,Varilla,,1/2 pulgada,,,,,,,7,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
-C15,construccion,Varilla,Varilla,,3/8 pulgada,,,,,,,8,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
-C01,construccion,Herramienta manual,Desarmadores,,,,,,,,desarmador,9,sí,Hay algunos Stanley (dicho por el cliente); marca de los demás por confirmar
-C02,construccion,Herramienta manual,Picos,Truper,,,,,,,pico,10,sí,RELLENADO: el cliente anotó «Truper» después de picos y palas; confirmar.
-C03,construccion,Herramienta manual,Palas,Truper,,,,,,,pala,11,sí,RELLENADO: el cliente anotó «Truper» después de picos y palas; confirmar.
-C04,construccion,Herramienta manual,Cajas de herramienta,Stanley,,,,,,,caja,12,sí,
-C16,construccion,Herramienta manual,Carretillas,Truper,,,,,,,,13,sí,Dato del cliente por WhatsApp (6-oct). Marca indicada por el cliente.
-C05,construccion,Corte y afilado,Discos de corte,,,,,,,,disco,14,sí,Tipos y medidas por detallar
-C06,construccion,Corte y afilado,Afiladores de motosierra,,,,,,,,lima,15,sí,
-C07,construccion,Selladores,Selladores en tubo,,,,,,,,sellador,16,sí,Varios tipos por detallar
-C17,construccion,Selladores,Sellador en cubeta,Del Toro,cubeta de 20 litros,,,,,,,17,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: el cliente escribió «marca del toro»; confirmar la marca.
-C18,construccion,Cerrajería,Chapas,Phillips,,,,,,,,18,sí,Dato del cliente por WhatsApp (6-oct). Modelos y tipos por detallar.
-L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,rollo,19,sí,
-L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,toalla,20,sí,
-L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,panuelos,21,sí,Presentación por detallar
-L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,750 ml,,,,,,botella,22,sí,RELLENADO: el negocio dijo «de 750»; se asumió ml. Confirmar con la tienda.
-L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,botella,23,sí,Marca por confirmar («de marca»)
-L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,botella,24,sí,Presentación por detallar
-L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,botella,25,sí,
-L08,limpieza,Cloro y aromas,Suavitel,Suavitel,,,,,,,botella,26,sí,Presentación por detallar
-L09,limpieza,Cloro y aromas,Aromatizante,,,,,,,,spray,27,sí,Tipo y marca por detallar
-L10,limpieza,Jabones,Jabón en barra,,,,,,,,jabon,28,sí,
-L11,limpieza,Jabones,Jabón para manos,,,,,,,,dispensador,29,sí,
-L12,limpieza,Utensilios de limpieza,Fibras verdes,,,,,,,,fibra,30,sí,
-L13,limpieza,Utensilios de limpieza,Estropajos,,,,,,,,fibra,31,sí,
-L14,limpieza,Utensilios de limpieza,Toallitas azules,,,,,,,,toalla,32,sí,
-L15,limpieza,Utensilios de limpieza,Escobas,,,,,,,,escoba,33,sí,
-L16,limpieza,Utensilios de limpieza,Trapeadores,,,,,,,,trapeador,34,sí,
-L17,limpieza,Insecticidas,Raid casa y jardín,Raid,,,,,,,spray,35,sí,
+C12,construccion,"Cemento, cal y morteros",Cal Calidra,Calidra,25 kg,,,,,,saco,1,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C09,construccion,"Cemento, cal y morteros",Cemento Moctezuma,Moctezuma,25 kg,,,,,,saco,2,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C08,construccion,"Cemento, cal y morteros",Cemento Tolteca,Tolteca,25 kg,,,,,,saco,3,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C11,construccion,"Cemento, cal y morteros",Mortero Moctezuma,Moctezuma,25 kg,,,,,,saco,4,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C10,construccion,"Cemento, cal y morteros",Mortero Tolteca,Tolteca,25 kg,,,,,,saco,5,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C13,construccion,"Cemento, cal y morteros",Pegapiso Ade1000,,20 kg,,,,,,saco,6,sí,Dato del cliente por WhatsApp (6-oct). Se escribió «Ade1000»; confirmar si es marca o nombre del producto.
+C158,construccion,Varilla y alambre,Alambre recocido,,,,kilogramo,,,,alambre,7,sí,Inventario del cliente (captura 2).
+C14,construccion,Varilla y alambre,Varilla,,1/2 pulgada,,,,,,varilla,8,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
+C15,construccion,Varilla y alambre,Varilla,,3/8 pulgada,,,,,,varilla,9,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
+C06,construccion,Herramienta manual,Afiladores de motosierra,,,,,,,,herramienta,10,sí,
+C129,construccion,Herramienta manual,Atomizador de 1/2 L,,,,pieza,,,,herramienta,11,sí,Inventario del cliente (captura 2).
+C04,construccion,Herramienta manual,Cajas de herramienta,Stanley,,,,,,,caja-herr,12,sí,
+C133,construccion,Herramienta manual,Cajón mezclador reforzado grande,,,,pieza,,,,herramienta,13,sí,Inventario del cliente (captura 2).
+C110,construccion,Herramienta manual,"Cámara para llanta de carretilla 16"" Truper",Truper,,,pieza,,,,carretilla,14,sí,Inventario del cliente (captura 1).
+C271,construccion,Herramienta manual,"Carretilla 5 FT, llanta imponchable, Truper",Truper,,,pieza,,,,carretilla,15,sí,Inventario del cliente (captura 4).
+C196,construccion,Herramienta manual,"Cincel de punta de 13""",,,,pieza,,,,martillo,16,sí,Inventario del cliente (captura 3).
+C197,construccion,Herramienta manual,"Cincel plano de 12""",,,,pieza,,,,martillo,17,sí,Inventario del cliente (captura 3).
+C132,construccion,Herramienta manual,"Cuchara T / Guadalajara 9""",,,,pieza,,,,herramienta,18,sí,Inventario del cliente (captura 2).
+C233,construccion,Herramienta manual,Cutter 18 mm reforzado tipo navaja Truper Expert,Truper,,,pieza,,,,tijera,19,sí,Inventario del cliente (captura 4).
+C232,construccion,Herramienta manual,Cutter Pretul amarillo,Pretul,,,pieza,,,,tijera,20,sí,Inventario del cliente (captura 4).
+C240,construccion,Herramienta manual,"Espátula flexible c/mango 4"" Pretul",Pretul,,,pieza,,,,herramienta,21,sí,Inventario del cliente (captura 4).
+C119,construccion,Herramienta manual,Hoja de segueta bimetálica diente fino Hecort,Hecort,,,pieza,,,,tijera,22,sí,Inventario del cliente (captura 2).
+C109,construccion,Herramienta manual,"Llanta reforzada 16"" para carretilla sin rin",,,,pieza,,,,carretilla,23,sí,Inventario del cliente (captura 1).
+C108,construccion,Herramienta manual,"Machete caguayano 27"" cacha negra inyectada Truper",Truper,,,pieza,,,,hacha,24,sí,Inventario del cliente (captura 1).
+C107,construccion,Herramienta manual,"Machete estándar 24"", cacha negra",,,,pieza,,,,hacha,25,sí,Inventario del cliente (captura 1).
+C198,construccion,Herramienta manual,"Marro octagonal 4 lb, fibra de vidrio 14""",,,,pieza,,,,martillo,26,sí,Inventario del cliente (captura 3).
+C178,construccion,Herramienta manual,"Martillo uña recta 16 oz, mango de madera, Truper",Truper,,,pieza,,,,martillo,27,sí,Inventario del cliente (captura 3).
+C177,construccion,Herramienta manual,"Mazo de hule 16 oz, Truper",Truper,,,pieza,,,,martillo,28,sí,Inventario del cliente (captura 3).
+C03,construccion,Herramienta manual,Palas,Truper,,,,,,,pala,29,sí,RELLENADO: el cliente anotó «Truper» después de picos y palas; confirmar.
+C105,construccion,Herramienta manual,"Piedra para afilar grano 120, Truper",Truper,,,pieza,,,,herramienta,30,sí,Inventario del cliente (captura 1).
+C111,construccion,Herramienta manual,"Talacho-pico, mango de madera 14"", Truper",Truper,,,pieza,,,,pico,31,sí,Inventario del cliente (captura 1).
+C151,construccion,"Llaves, pinzas y desarmadores","Desarmador de cruz de 1/4"" x 4"", Comfort Grip",,,,pieza,,,,desarmador,32,sí,Inventario del cliente (captura 2).
+C152,construccion,"Llaves, pinzas y desarmadores","Desarmador plano de 1/4"" x 4"" mango Comfort Grip, Truper",Truper,,,pieza,,,,desarmador,33,sí,Inventario del cliente (captura 2).
+C195,construccion,"Llaves, pinzas y desarmadores","Desarmador plano de 3/16"" x 6"" mango Comfort Grip",,,,pieza,,,,desarmador,34,sí,Inventario del cliente (captura 3).
+C159,construccion,"Llaves, pinzas y desarmadores","Juego de desarmadores de precisión 6 pzas, Truper",Truper,,,pieza,,,,desarmador,35,sí,Inventario del cliente (captura 2).
+C162,construccion,"Llaves, pinzas y desarmadores","Llave ajustable 10"" 87-047 - 84-110",,,,pieza,,,,llave,36,sí,Inventario del cliente (captura 3).
+C163,construccion,"Llaves, pinzas y desarmadores","Llave ajustable 8"" Stanley 87-046",Stanley,,,pieza,,,,llave,37,sí,Inventario del cliente (captura 3).
+C166,construccion,"Llaves, pinzas y desarmadores","Llave para tubo Stilson 10""",,,,pieza,,,,llave,38,sí,Inventario del cliente (captura 3).
+C167,construccion,"Llaves, pinzas y desarmadores","Llave para tubo, Stilson 14""",,,,pieza,,,,llave,39,sí,Inventario del cliente (captura 3).
+C182,construccion,"Llaves, pinzas y desarmadores","Pinza de electricistas 8"" uso rudo, Comfort Grip Truper",Truper,,,pieza,,,,llave,40,sí,Inventario del cliente (captura 3).
+C165,construccion,"Llaves, pinzas y desarmadores","Pinza de presión 10"" mordaza curva, Truper",Truper,,,pieza,,,,llave,41,sí,Inventario del cliente (captura 3).
+C164,construccion,"Llaves, pinzas y desarmadores","Pinza de presión 7"", mordaza curva Truper",Truper,,,pieza,,,,llave,42,sí,Inventario del cliente (captura 3).
+C184,construccion,"Llaves, pinzas y desarmadores","Pinza mecánica de 8"" Truper",Truper,,,pieza,,,,llave,43,sí,Inventario del cliente (captura 3).
+C183,construccion,"Llaves, pinzas y desarmadores","Pinza para electricista 9 uso rudo, mango PVC, Truper",Truper,,,pieza,,,,llave,44,sí,Inventario del cliente (captura 3).
+C241,construccion,Medición y nivel,Cinta métrica,,,,pieza,,,,regla,45,sí,Inventario del cliente (captura 4).
+C116,construccion,Medición y nivel,"Flexómetro auto lock 5 m, cinta 3/4"" Truper",Truper,,,pieza,,,,regla,46,sí,Inventario del cliente (captura 2).
+C154,construccion,Medición y nivel,Flexómetro Lion Tools 3 m 0222,Lion Tools,,,pieza,,,,regla,47,sí,Inventario del cliente (captura 2).
+C128,construccion,Medición y nivel,"Manguera de nivel 1/4""",,,,metro,,,,regla,48,sí,Inventario del cliente (captura 2).
+C156,construccion,Medición y nivel,Nivel de gota profesional con cuerpo de aluminio Truper,Truper,,,pieza,,,,nivel,49,sí,Inventario del cliente (captura 2).
+C157,construccion,Medición y nivel,"Nivel torpedo magnético 9"" Truper",Truper,,,pieza,,,,nivel,50,sí,Inventario del cliente (captura 2).
+C189,construccion,Brocas y discos,"Broca para acero A.V. 1/4"" zanco recto",,,,pieza,,,,brocas,51,sí,Inventario del cliente (captura 3).
+C191,construccion,Brocas y discos,"Broca para acero A.V. 3/8"" zanco recto",,,,pieza,,,,brocas,52,sí,Inventario del cliente (captura 3).
+C190,construccion,Brocas y discos,"Broca para acero A.V. 5/16"" zanco recto",,,,pieza,,,,brocas,53,sí,Inventario del cliente (captura 3).
+C188,construccion,Brocas y discos,"Broca para concreto A.V. 1/2"" x 6""",,,,pieza,,,,brocas,54,sí,Inventario del cliente (captura 3).
+C185,construccion,Brocas y discos,"Broca para concreto A.V. 1/4"" x 6""",,,,pieza,,,,brocas,55,sí,Inventario del cliente (captura 3).
+C187,construccion,Brocas y discos,"Broca para concreto A.V. 3/8"" x 5"" y 6""",,,,pieza,,,,brocas,56,sí,Inventario del cliente (captura 3).
+C186,construccion,Brocas y discos,"Broca para concreto A.V. 5/16"" x 4"" y 5""",,,,pieza,,,,brocas,57,sí,Inventario del cliente (captura 3).
+C147,construccion,Brocas y discos,"Disco de corte preciso de metal de 4 1/2"" x 1 mm",,,,pieza,,,,disco,58,sí,Inventario del cliente (captura 2).
+C149,construccion,Brocas y discos,"Disco de diamante 4 1/2"", corte de pisos, Truper",Truper,,,pieza,,,,disco,59,sí,Inventario del cliente (captura 2).
+C148,construccion,Brocas y discos,"Disco de diamante de 4 1/2"" x 1.6 mm, rin continuo, Truper",Truper,,,pieza,,,,disco,60,sí,Inventario del cliente (captura 2).
+C150,construccion,Brocas y discos,"Disco de diamante para uso general rin segmentado Dragon Cut 4 1/2""",,,,pieza,,,,disco,61,sí,"Inventario del cliente (captura 2). Corregido en el nombre: DISCO D DIAMANTE «Disco de diamante». Corregido en el nombre: 41/2"" «4 1/2""»."
+C134,construccion,Pintura y selladores,"Brocha de 2"" Truper",Truper,,,pieza,,,,brocha,62,sí,Inventario del cliente (captura 2).
+C135,construccion,Pintura y selladores,"Brocha de 5"" Truper",Truper,,,pieza,,,,brocha,63,sí,Inventario del cliente (captura 2).
+C153,construccion,Pintura y selladores,"Brocha de 6"" Truper",Truper,,,pieza,,,,brocha,64,sí,Inventario del cliente (captura 2).
+C121,construccion,Pintura y selladores,"Brocha profesional de 3"" Truper",Truper,,,pieza,,,,brocha,65,sí,Inventario del cliente (captura 2).
+C270,construccion,Pintura y selladores,Cubeta de Impersika Plus blanco 5 años,Impersika,,,pieza,,,,pintura,66,sí,Inventario del cliente (captura 4). Texto cortado en el borde de la captura: puede haber más palabras.
+C143,construccion,Pintura y selladores,"Raspador de acero inoxidable con cuchillas de 1 1/2"" Truper",Truper,,,pieza,,,,brocha,67,sí,Inventario del cliente (captura 2). Corregido en el nombre: Incoxidable «inoxidable».
+C142,construccion,Pintura y selladores,"Rodillo para pintar 9"" x 1 1/4"" extrarugoso Truper",Truper,,,pieza,,,,rodillo,68,sí,Inventario del cliente (captura 2).
+C269,construccion,Pintura y selladores,Sellador Del Toro 18 kg,Del Toro,,,pieza,,,,sellador,69,sí,Inventario del cliente (captura 4).
+C17,construccion,Pintura y selladores,Sellador en cubeta,Del Toro,cubeta de 20 litros,,,,,,cubeta,70,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: el cliente escribió «marca del toro»; confirmar la marca.
+C117,construccion,Pintura y selladores,Silicón blanco baños y cocinas 85 g Truper,Truper,,,pieza,,,,sellador,71,sí,Inventario del cliente (captura 2).
+C138,construccion,Pintura y selladores,Silicón RTV oxime Zoms gris de 70 g,Zoms,,,pieza,,,,sellador,72,sí,Inventario del cliente (captura 2).
+C137,construccion,Pintura y selladores,Silicón RTV oxime Zoms negro de 70 g,Zoms,,,pieza,,,,sellador,73,sí,Inventario del cliente (captura 2).
+C113,construccion,Pintura y selladores,Thinner de primera,,,,litro,,,,pintura,74,sí,Inventario del cliente (captura 1).
+C130,construccion,Tubos y conexiones,"Cinta teflón 1/2"" Truper 7 m",Truper,,,pieza,,,,cinta,75,sí,Inventario del cliente (captura 2).
+C131,construccion,Tubos y conexiones,"Cinta teflón 1/2"" Truper 7 m industrial",Truper,,,pieza,,,,cinta,76,sí,Inventario del cliente (captura 2).
+C209,construccion,Tubos y conexiones,"Codo 45° PVC HCO 1/2""",,,,pieza,,,,tubo,77,sí,Inventario del cliente (captura 3).
+C208,construccion,Tubos y conexiones,"Codo 45° PVC HCO 3/4""",,,,pieza,,,,tubo,78,sí,Inventario del cliente (captura 3).
+C207,construccion,Tubos y conexiones,"Codo 90° PVC HCO 1/2""",,,,pieza,,,,tubo,79,sí,Inventario del cliente (captura 3).
+C206,construccion,Tubos y conexiones,"Codo 90° PVC HCO 3/4""",,,,pieza,,,,tubo,80,sí,Inventario del cliente (captura 3).
+C213,construccion,Tubos y conexiones,Codo CPVC 1/2 x 45°,,,,pieza,,,,tubo,81,sí,Inventario del cliente (captura 3).
+C212,construccion,Tubos y conexiones,"Codo CPVC 1/2"" x 90°",,,,pieza,,,,tubo,82,sí,Inventario del cliente (captura 3).
+C211,construccion,Tubos y conexiones,"Codo CPVC 3/4"" x 45°",,,,pieza,,,,tubo,83,sí,Inventario del cliente (captura 3).
+C210,construccion,Tubos y conexiones,"Codo CPVC 3/4"" x 90°",,,,pieza,,,,tubo,84,sí,Inventario del cliente (captura 3).
+C265,construccion,Tubos y conexiones,"Conector CPVC hembra 1/2""",,,,pieza,,,,tubo,85,sí,Inventario del cliente (captura 4).
+C266,construccion,Tubos y conexiones,"Conector CPVC hembra 3/4""",,,,pieza,,,,tubo,86,sí,Inventario del cliente (captura 4).
+C263,construccion,Tubos y conexiones,"Conector CPVC macho 1/2""",,,,pieza,,,,tubo,87,sí,Inventario del cliente (captura 4).
+C264,construccion,Tubos y conexiones,"Conector CPVC macho 3/4""",,,,pieza,,,,tubo,88,sí,Inventario del cliente (captura 4).
+C261,construccion,Tubos y conexiones,"Conector PVC HCO hembra 1/2""",,,,pieza,,,,tubo,89,sí,Inventario del cliente (captura 4).
+C262,construccion,Tubos y conexiones,"Conector PVC HCO hembra 3/4""",,,,pieza,,,,tubo,90,sí,Inventario del cliente (captura 4).
+C259,construccion,Tubos y conexiones,"Conector PVC HCO macho 1/2""",,,,pieza,,,,tubo,91,sí,Inventario del cliente (captura 4).
+C260,construccion,Tubos y conexiones,"Conector PVC HCO macho 3/4""",,,,pieza,,,,tubo,92,sí,Inventario del cliente (captura 4).
+C217,construccion,Tubos y conexiones,"Cople CPVC 1/2""",,,,pieza,,,,tubo,93,sí,Inventario del cliente (captura 3).
+C216,construccion,Tubos y conexiones,"Cople CPVC 3/4""",,,,pieza,,,,tubo,94,sí,Inventario del cliente (captura 3).
+C215,construccion,Tubos y conexiones,"Cople PVC HCO 1/2""",,,,pieza,,,,tubo,95,sí,Inventario del cliente (captura 3).
+C214,construccion,Tubos y conexiones,"Cople PVC HCO 3/4""",,,,pieza,,,,tubo,96,sí,Inventario del cliente (captura 3).
+C267,construccion,Tubos y conexiones,"Cortador de tubo de hasta 1-5/8"" Truper",Truper,,,pieza,,,,tubo,97,sí,Inventario del cliente (captura 4).
+C122,construccion,Tubos y conexiones,Multiconector para tinaco Rotoplas,Rotoplas,,,pieza,,,,tubo,98,sí,Inventario del cliente (captura 2).
+C231,construccion,Tubos y conexiones,Pegamento azul PVC Contac 1/8 L,Contac,,,pieza,,,,sellador,99,sí,Inventario del cliente (captura 4).
+C230,construccion,Tubos y conexiones,Pegamento CPVC Contac 1/8 L,Contac,,,pieza,,,,sellador,100,sí,Inventario del cliente (captura 4).
+C155,construccion,Tubos y conexiones,Solda cobre Devcon,Devcon,,,pieza,,,,sellador,101,sí,Inventario del cliente (captura 2).
+C204,construccion,Tubos y conexiones,"Tee CPVC 1/2""",,,,pieza,,,,tubo,102,sí,Inventario del cliente (captura 3).
+C203,construccion,Tubos y conexiones,"Tee CPVC 3/4""",,,,pieza,,,,tubo,103,sí,Inventario del cliente (captura 3).
+C205,construccion,Tubos y conexiones,"Tee PVC HCO 1/2""",,,,pieza,,,,tubo,104,sí,Inventario del cliente (captura 3).
+C268,construccion,Tubos y conexiones,"Tee PVC HCO 3/4""",,,,pieza,,,,tubo,105,sí,Inventario del cliente (captura 4).
+C220,construccion,Tubos y conexiones,"Tubo CPVC 1/2"" x 6 m",,,,pieza,,,,tubo,106,sí,Inventario del cliente (captura 3).
+C221,construccion,Tubos y conexiones,"Tubo CPVC 3/4"" x 6 m",,,,pieza,,,,tubo,107,sí,Inventario del cliente (captura 3).
+C252,construccion,Tubos y conexiones,"Tubo Plus clase 16-20 mm 1/2""",,,,pieza,,,,tubo,108,sí,Inventario del cliente (captura 4).
+C253,construccion,Tubos y conexiones,"Tubo Plus clase 16-25 mm 3/4""",,,,pieza,,,,tubo,109,sí,Inventario del cliente (captura 4).
+C218,construccion,Tubos y conexiones,"Tubo PVC HCO CEM CD40 de 1/2"" tramo de 6.10 m",,,,pieza,,,,tubo,110,sí,Inventario del cliente (captura 3). Corregido en el nombre: Trmo «tramo».
+C219,construccion,Tubos y conexiones,"Tubo PVC HCO CEM CD40 de 3/4"" tramo de 6.10 m",,,,pieza,,,,tubo,111,sí,Inventario del cliente (captura 3). Corregido en el nombre: Trmo «tramo».
+C272,construccion,"Llaves, válvulas y sanitarios","Asiento redondo para WC, blanco",,,,pieza,,,,taza,112,sí,Inventario del cliente (captura 4).
+C249,construccion,"Llaves, válvulas y sanitarios",Llave angular Dica 3401SC,Dica,,,pieza,,,,llave-agua,113,sí,Inventario del cliente (captura 4).
+C246,construccion,"Llaves, válvulas y sanitarios",Llave de nariz 1/2 Dica Eco. 4119C,Dica,,,pieza,,,,llave-agua,114,sí,Inventario del cliente (captura 4).
+C255,construccion,"Llaves, válvulas y sanitarios",Llave de nariz 1/4 vuelta Mueller,Mueller,,,pieza,,,,llave-agua,115,sí,Inventario del cliente (captura 4).
+C127,construccion,"Llaves, válvulas y sanitarios","Llave nariz de latón 1/2"", Foset",Foset,,,pieza,,,,llave-agua,116,sí,Inventario del cliente (captura 2).
+C251,construccion,"Llaves, válvulas y sanitarios",Manguera para fregadero 1/2 x 1/2 x 55 Coflex/Plas,Coflex,,,pieza,,,,manguera,117,sí,Inventario del cliente (captura 4).
+C250,construccion,"Llaves, válvulas y sanitarios",Manguera para lavabo 1/2 x 1/2 x 40 Coflex/Plas,Coflex,,,pieza,,,,manguera,118,sí,Inventario del cliente (captura 4).
+C258,construccion,"Llaves, válvulas y sanitarios","Manguera para WC 1/2"" x 7/8"" x 50 cm Coflex / Plas",Coflex,,,pieza,,,,manguera,119,sí,Inventario del cliente (captura 4).
+C114,construccion,"Llaves, válvulas y sanitarios","Pera sapo de 2"" Fleximatic",Fleximatic,,,pieza,,,,taza,120,sí,Inventario del cliente (captura 1).
+C115,construccion,"Llaves, válvulas y sanitarios","Pera sapo de 3"" Fleximatic",Fleximatic,,,pieza,,,,taza,121,sí,Inventario del cliente (captura 1).
+C256,construccion,"Llaves, válvulas y sanitarios",Tanque cerámico blanco 4.8 L,,,,pieza,,,,taza,122,sí,Inventario del cliente (captura 4).
+C257,construccion,"Llaves, válvulas y sanitarios","Taza redonda cerámica blanca de 3"" descarga",,,,pieza,,,,taza,123,sí,Inventario del cliente (captura 4).
+C247,construccion,"Llaves, válvulas y sanitarios","Válvula de esfera roscable 1/2"" Dica 3550C13",Dica,,,pieza,,,,llave-agua,124,sí,Inventario del cliente (captura 4).
+C248,construccion,"Llaves, válvulas y sanitarios","Válvula de esfera roscable 3/4"" Dica 3550C19",Dica,,,pieza,,,,llave-agua,125,sí,Inventario del cliente (captura 4).
+C254,construccion,Interruptores y centros de carga,Base de medidor bif. 5ta terminal IUSA,IUSA,,,pieza,,,,rayo,126,sí,Inventario del cliente (captura 4).
+C201,construccion,Interruptores y centros de carga,Cartucho fusible 30 A Gamma reforzado,Gamma,,,pieza,,,,rayo,127,sí,Inventario del cliente (captura 3).
+C106,construccion,Interruptores y centros de carga,Centro de carga QOD 3F,,,,pieza,,,,rayo,128,sí,Inventario del cliente (captura 1).
+C104,construccion,Interruptores y centros de carga,Centro de carga QOD-1F,,,,pieza,,,,rayo,129,sí,Inventario del cliente (captura 1).
+C103,construccion,Interruptores y centros de carga,Centro de carga QOD-2F,,,,pieza,,,,rayo,130,sí,Inventario del cliente (captura 1).
+C101,construccion,Interruptores y centros de carga,Interruptor termomagnético QO110,,,,pieza,,,,rayo,131,sí,Inventario del cliente (captura 1).
+C112,construccion,Interruptores y centros de carga,Interruptor termomagnético QO115,,,,pieza,,,,rayo,132,sí,Inventario del cliente (captura 1).
+C102,construccion,Interruptores y centros de carga,Interruptor termomagnético QO120,,,,pieza,,,,rayo,133,sí,Inventario del cliente (captura 1).
+C202,construccion,Interruptores y centros de carga,Listón fusible 30 A,,,,pieza,,,,rayo,134,sí,Inventario del cliente (captura 3).
+C242,construccion,Interruptores y centros de carga,Quinta terminal,,,,pieza,,,,rayo,135,sí,Inventario del cliente (captura 4).
+C170,construccion,"Contactos, focos y cables",Barra multicontacto 6 entradas,,,,pieza,,,,enchufe,136,sí,Inventario del cliente (captura 3).
+C228,construccion,"Contactos, focos y cables",Bote integral PVC negro 75 W 8 y 10 cm c/tapa,,,,pieza,,,,caja,137,sí,Inventario del cliente (captura 4).
+C227,construccion,"Contactos, focos y cables",Chalupa verde PVC Argos,Argos,,,pieza,,,,caja,138,sí,Inventario del cliente (captura 4).
+C144,construccion,"Contactos, focos y cables","Cincho de plástico, 20 cm, 40 lb color negro",,,,pieza,,,,cable,139,sí,Inventario del cliente (captura 2).
+C145,construccion,"Contactos, focos y cables","Cincho de plástico, 30 cm, 50 lb color negro",,,,pieza,,,,cable,140,sí,Inventario del cliente (captura 2).
+C146,construccion,"Contactos, focos y cables","Cincho de plástico, 40 cm, 50 lb color negro",,,,pieza,,,,cable,141,sí,Inventario del cliente (captura 2).
+C226,construccion,"Contactos, focos y cables",Clavija blindada uso rudo aterrizada JT,JT,,,pieza,,,,enchufe,142,sí,Inventario del cliente (captura 4).
+C225,construccion,"Contactos, focos y cables",Clavija negra 500 Royer,Royer,,,pieza,,,,enchufe,143,sí,Inventario del cliente (captura 4).
+C200,construccion,"Contactos, focos y cables",Conector cooper W. para tierra física,,,,pieza,,,,cable,144,sí,Inventario del cliente (captura 3).
+C168,construccion,"Contactos, focos y cables",Extensión eléctrica blanca 10 m,,,,pieza,,,,enchufe,145,sí,Inventario del cliente (captura 3).
+C169,construccion,"Contactos, focos y cables",Extensión eléctrica blanca 5 m,,,,pieza,,,,enchufe,146,sí,Inventario del cliente (captura 3).
+C223,construccion,"Contactos, focos y cables",Foco LED doméstico A19 10 W Geopower,Geopower,,,pieza,,,,foco,147,sí,Inventario del cliente (captura 4).
+C140,construccion,"Contactos, focos y cables",Grapa para cable 8 mm curva,,,,pieza,,,,cable,148,sí,Inventario del cliente (captura 2).
+C139,construccion,"Contactos, focos y cables",Grapa para cable pot 10 mm curva,,,,pieza,,,,cable,149,sí,Inventario del cliente (captura 2).
+C141,construccion,"Contactos, focos y cables",Grapa para cable pot 6 mm plana,,,,pieza,,,,cable,150,sí,Inventario del cliente (captura 2).
+C234,construccion,"Contactos, focos y cables",Guía para cable metálica 30 m,,,,pieza,,,,cable,151,sí,Inventario del cliente (captura 4).
+C222,construccion,"Contactos, focos y cables","Panel LED redondo, sobreponer, 18 W Arlite",Arlite,,,pieza,,,,foco,152,sí,Inventario del cliente (captura 4).
+C173,construccion,"Contactos, focos y cables",Placa c/ 3 apagadores senc 1 mod Lucek,Lucek,,,pieza,,,,contacto,153,sí,Inventario del cliente (captura 3).
+C172,construccion,"Contactos, focos y cables",Placa c/2 apag. senc. de 1 mod. Lucek,Lucek,,,pieza,,,,contacto,154,sí,Inventario del cliente (captura 3).
+C175,construccion,"Contactos, focos y cables",Placa c/3 cont..senc. 1MOD. Lucek,Lucek,,,pieza,,,,contacto,155,sí,Inventario del cliente (captura 3).
+C176,construccion,"Contactos, focos y cables",Placa c/apag senc y cont 1.5 mod Lucek,Lucek,,,pieza,,,,contacto,156,sí,Inventario del cliente (captura 3). Texto pegado al borde de la captura: confirmar que termina en LUCEK.
+C171,construccion,"Contactos, focos y cables",Placa c/apag. senc. de 3 mod. Lucek,Lucek,,,pieza,,,,contacto,157,sí,Inventario del cliente (captura 3).
+C174,construccion,"Contactos, focos y cables",Placa c/contacto duplex Lucek,Lucek,,,pieza,,,,contacto,158,sí,Inventario del cliente (captura 3).
+C224,construccion,"Contactos, focos y cables",Socket sencillo Yeilite o IUSA 111,,,,pieza,,,,foco,159,sí,Inventario del cliente (captura 4).
+C229,construccion,"Contactos, focos y cables","Tapa cuadrada PVC 3/4"" verde 4"" x 4"" Tipsa",Tipsa,,,pieza,,,,caja,160,sí,Inventario del cliente (captura 4).
+C199,construccion,"Contactos, focos y cables","Varilla cooper 1/2"" x 1 m",,,,pieza,,,,cable,161,sí,Inventario del cliente (captura 3).
+C245,construccion,Tornillería y fijación,"Abrazadera omega galv. 1 1/2""",,,,pieza,,,,tuerca,162,sí,"Inventario del cliente (captura 4). Corregido en el nombre: 11/2"" «1 1/2""»."
+C243,construccion,Tornillería y fijación,"Abrazadera omega galv. 1/2""",,,,pieza,,,,tuerca,163,sí,Inventario del cliente (captura 4).
+C244,construccion,Tornillería y fijación,"Abrazadera omega galv. 3/4""",,,,pieza,,,,tuerca,164,sí,Inventario del cliente (captura 4).
+C118,construccion,Tornillería y fijación,"Clavo normal 1 1/2""",,,,kilogramo,,,,clavo,165,sí,Inventario del cliente (captura 2).
+C236,construccion,Tornillería y fijación,"Clavo para concreto 1 1/2""",,,,kilogramo,,,,clavo,166,sí,Inventario del cliente (captura 4).
+C235,construccion,Tornillería y fijación,"Clavo para concreto 1""",,,,kilogramo,,,,clavo,167,sí,Inventario del cliente (captura 4).
+C237,construccion,Tornillería y fijación,"Clavo para concreto 2""",,,,pieza,,,,clavo,168,sí,Inventario del cliente (captura 4).
+C238,construccion,Tornillería y fijación,"Ménsula blanca de 8"" x 10""",,,,pieza,,,,tuerca,169,sí,Inventario del cliente (captura 4).
+C239,construccion,Tornillería y fijación,"Ménsula blanca de 8"" x 6""",,,,pieza,,,,tuerca,170,sí,Inventario del cliente (captura 4).
+C160,construccion,Tornillería y fijación,"Pija broca 8 x 1/2""",,,,pieza,,,,tornillo,171,sí,Inventario del cliente (captura 3).
+C161,construccion,Tornillería y fijación,"Pija broca 8 x 3/4""",,,,pieza,,,,tornillo,172,sí,Inventario del cliente (captura 3).
+C194,construccion,Tornillería y fijación,"Rondana plana galvanizada 3/8"" (pza)",,,,pieza,,,,tuerca,173,sí,Inventario del cliente (captura 3).
+C192,construccion,Tornillería y fijación,"Taquete expansivo Z de 3/8"" s/tornillo",,,,pieza,,,,tornillo,174,sí,Inventario del cliente (captura 3).
+C193,construccion,Tornillería y fijación,"Tornillo hexagonal 3/8"" x 2""",,,,pieza,,,,tornillo,175,sí,Inventario del cliente (captura 3).
+C124,construccion,Cerrajería,"Cerradura Hermex, Instala-fácil, derecha",Hermex,,,pieza,,,,candado,176,sí,Inventario del cliente (captura 2). Corregido en el nombre: INTALA-FACIL «Instala-fácil».
+C123,construccion,Cerrajería,"Cerradura Hermex, Instala-fácil, izquierda",Hermex,,,pieza,,,,candado,177,sí,Inventario del cliente (captura 2). Corregido en el nombre: INTALA-FACIL «Instala-fácil».
+C18,construccion,Cerrajería,Chapas,Phillips,,,,,,,chapa,178,sí,Dato del cliente por WhatsApp (6-oct). Modelos y tipos por detallar.
+C179,construccion,Seguridad y protección,Bota jardinero núm. 27,,,,pieza,,,,bota,179,sí,Inventario del cliente (captura 3).
+C180,construccion,Seguridad y protección,Bota jardinero núm. 28,,,,pieza,,,,bota,180,sí,Inventario del cliente (captura 3).
+C181,construccion,Seguridad y protección,Bota jardinero núm. 29,,,,pieza,,,,bota,181,sí,Inventario del cliente (captura 3).
+C136,construccion,Seguridad y protección,"Guante de poliéster con látex, medianos, Truper",Truper,,,pieza,,,,guante,182,sí,Inventario del cliente (captura 2).
+C126,construccion,Seguridad y protección,Guantes nitrilo grande Pretul,Pretul,,,pieza,,,,guante,183,sí,Inventario del cliente (captura 2).
+C125,construccion,Seguridad y protección,Guantes nitrilo mediano Pretul,Pretul,,,pieza,,,,guante,184,sí,Inventario del cliente (captura 2).
+C120,construccion,Seguridad y protección,"Guantes para soldador, rojos, Truper",Truper,,,pieza,,,,guante,185,sí,Inventario del cliente (captura 2). Texto pegado al borde de la captura: confirmar que termina en TRUPER.
+L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,papel,186,sí,
+L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,papel,187,sí,
+L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,capas,188,sí,Presentación por detallar
+L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,750 ml,,,,,,gotas,189,sí,RELLENADO: el negocio dijo «de 750»; se asumió ml. Confirmar con la tienda.
+L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,gotas,190,sí,Marca por confirmar («de marca»)
+L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,gotas,191,sí,Presentación por detallar
+L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,gotas,192,sí,
+L08,limpieza,Cloro y aromas,Suavitel,Suavitel,,,,,,,gotas,193,sí,Presentación por detallar
+L09,limpieza,Cloro y aromas,Aromatizante,,,,,,,,destellos,194,sí,Tipo y marca por detallar
+L10,limpieza,Jabones,Jabón en barra,,,,,,,,jabon,195,sí,
+L11,limpieza,Jabones,Jabón para manos,,,,,,,,jabon,196,sí,
+L12,limpieza,Utensilios de limpieza,Fibras verdes,,,,,,,,burbujas,197,sí,
+L13,limpieza,Utensilios de limpieza,Estropajos,,,,,,,,burbujas,198,sí,
+L14,limpieza,Utensilios de limpieza,Toallitas azules,,,,,,,,capas,199,sí,
+L15,limpieza,Utensilios de limpieza,Escobas,,,,,,,,escoba,200,sí,
+L16,limpieza,Utensilios de limpieza,Trapeadores,,,,,,,,trapeador,201,sí,
+L17,limpieza,Insecticidas,Raid casa y jardín,Raid,,,,,,,aerosol,202,sí,

@@ -13,11 +13,13 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 
 | Página | Contenido |
 |---|---|
-| Inicio | Héroe con buscador de productos, datos de la tienda (en escritorio, en la barra superior), tres líneas (Construcción primero, con botón para cotizar materiales de obra; una línea sin productos, hoy Papelería, aparece como franja compacta), índice «Lo que encuentras» y marcas, «Así cotizas», «Manda tu lista» y «Visítanos» |
-| Catálogo | 35 productos en filas tipo ficha técnica, menú lateral de categorías, buscador, cantidad, «Cotizar» (abre WhatsApp) y «Agregar» a mi lista |
+| Inicio | Encabezado con buscador, héroe con panel «Busca un producto» y búsquedas frecuentes, cinta de productos que se mueve (con botón Pausar), categorías con icono, marcas, «Manda tu lista» y pie con tienda y contacto |
+| Catálogo | 202 productos del inventario del cliente, en filas con icono, menú lateral de categorías, buscador, cantidad y «Agregar» a mi lista |
 | Construcción, Limpieza, Papelería | Una página por línea; Papelería aún sin productos |
-| Cómo comprar | Solicitar cotización, formas de pago y preguntas |
+| Cómo comprar | Cómo se compra (3 pasos con icono), formas de pago y preguntas |
 | Visítanos | Ubicación, horario y contacto |
+
+Solo hay dos llamadas a cotizar: «Cotiza por WhatsApp» arriba y «Enviar por WhatsApp» con la lista. Los productos solo tienen «Agregar».
 
 **Copiar mensaje:** la lista escrita y «Mi lista» tienen un botón para copiar el texto por si WhatsApp no abre.
 
@@ -35,6 +37,11 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 
 Para el archivo único, quien administre el repositorio ejecuta `python3 scripts/build.py`. Antes, copia el `catalogo.csv` que descargó el editor a `datos/catalogo.csv`. Todavía **falta comprobar que la administradora puede hacerlo sola**.
 
+## Fotos de producto y logos de marca
+
+- **Fotos:** guarda una por producto como `src/img/productos/<id>.webp` (o `.jpg`/`.png`; el `id` está en `datos/catalogo.csv`, por ejemplo `C101.webp`) y ejecuta `python3 scripts/build.py`. Sin foto, el producto muestra su icono. Solo fotos propias o autorizadas.
+- **Logos de marca:** `src/img/marcas/<marca>.png|.webp|.svg` (minúsculas, sin acentos: `truper.png`). Sin archivo, la marca sale como texto en un recuadro. Hoy **todas** salen como texto: no hay archivos de logos.
+
 ## Cambiar otros detalles
 
 Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `src/site.css`. Después, `python3 scripts/build.py` regenera todo (solo requiere Python 3; no usa la red).
@@ -45,11 +52,13 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 
 ## Decisiones
 
-- **Diseño (v2, profesional):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px, barra de datos + encabezado con buscador, héroe azul con panel de búsqueda, filas de catálogo con menú lateral. Azul `#044770` y naranja `#E97E1C`, tomados del logo real; el naranja solo rellena botones, con texto `#1A1A1A`. Se retiraron las siluetas de objetos de la v1 por verse poco profesionales: solo quedan iconos de interfaz de un mismo trazo.
+- **Diseño (v3):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px. Azul `#044770` y naranja `#E97E1C`, tomados del logo real; el naranja solo rellena botones, con texto `#1A1A1A`. El botón «Menú» lleva marco azul de 2 px y fondo celeste claro para que destaque.
+- **Iconos:** uno por producto y subcategoría, de trazo simple y un solo grosor. Salen de Lucide (licencia ISC, en `licencias/Lucide-ISC.txt`) más unos pocos dibujados a mano en `src/sprite-prod.svg`. No son fotos: se sustituyen por fotos reales cuando existan.
 - **Tipografía:** sin Arial. Bricolage Grotesque (títulos) e Instrument Sans (cuerpo), con licencia libre (OFL), incluidas en el sitio. Licencias en `licencias/`.
-- **Que no se parezca a Truper ni a Pretul:** el azul domina, el naranja ocupa poca superficie y se evitó el amarillo con negro. **No pude comprobar sus colores reales** (sin acceso a sus sitios): conviene comparar con un empaque. Si el naranja resultara parecido, el botón pasa a celeste `#00A9E9` con texto oscuro.
+- **Que no se parezca a Truper ni a Pretul:** el azul domina y el naranja ocupa poca superficie. **No pude comprobar sus colores reales** (sin acceso a sus sitios): conviene comparar con un empaque. Si el naranja resultara parecido, el botón pasa a celeste `#00A9E9` con texto oscuro.
 - **Datos publicados:** dirección, teléfono y WhatsApp, horario de lunes a sábado y el correo aprobado. **No se publica** el domingo, el nombre del responsable ni datos bancarios o fiscales.
-- **Sin fotos ni ilustraciones de producto:** no hay fotos autorizadas; el catálogo es texto limpio hasta que haya fotos reales (la columna `foto` del CSV ya las soporta).
+- **Inventario:** salió de 4 capturas del cliente, leídas por dos lectores independientes que coincidieron en las 172 filas (respaldo en `datos/inventario-capturas.csv`: texto original y nombre en el sitio). Las capturas **no traían la columna de precios**; por eso ningún producto muestra precio.
+- **Competencia:** no pude abrir Home Depot ni Office Depot (acceso bloqueado desde este entorno). Además, sus precios y fotos no son del negocio y las fotos tienen derechos. Se tomó de ellos solo la **estructura** (buscador al centro, cinta de productos, categorías con icono), a partir de lo que ya se conoce de ese tipo de sitios.
 - **Marca:** logo real del cliente (imagen con fondo transparente en `src/img/`). Falta confirmar si existe el archivo vectorial original y quién tiene los derechos de uso.
 
 ## Qué falta y ruta para terminar
@@ -60,14 +69,15 @@ Herramientas para quien atiende: `herramientas/respuestas-whatsapp.md` (respuest
 
 ## Lo que falta o no se afirma
 
-- **Materiales de obra:** el chat con el cliente trajo 11 productos (cemento, mortero, cal, pegapiso, varilla, carretillas, sellador en cubeta y chapas). Falta el resto del inventario («de todo un poco»), precios y fotos. El sitio invita a preguntar por WhatsApp lo que no aparece.
+- **Precios:** el cliente no los incluyó en las capturas. El campo `unidad_del_precio` ya trae la unidad de venta; falta monto, IVA y vigencia.
+- **Fotos y logos de marca:** ver la sección de arriba. Hoy se usan iconos y texto.
 - **Papelería:** sin productos en la lista, por eso no tiene catálogo.
-- **Marcas:** salen del catálogo (Tolteca, Moctezuma, Calidra, Del Toro, Phillips, Truper, Stanley, Cloralex, Fabuloso, Suavitel, Kleenex y Raid). Truper en picos y palas, y «Del Toro» son supuestos por confirmar; ver `PENDIENTES.md`.
+- **Por confirmar con la tienda:** Cloralex «750 ml», varilla en pulgadas, marca «Del Toro», pegapiso «Ade1000», Truper en picos y palas, y las descripciones que tocan el borde de la captura (marcadas en `nota_interna`). Ver `PENDIENTES.md`.
 - No se afirman entregas, facturación, garantías, descuentos, testimonios, pago con tarjeta ni existencia.
 
 ## Pruebas realizadas
 
-Móvil 360 y 390 px, tableta 768 y escritorio 1440 en las 7 páginas, tanto en `dist/` como en el archivo único: sin desbordes, sin errores de consola y sin peticiones externas. Contraste AA en todo el texto (el número decorativo de cada línea es `aria-hidden`), objetivos táctiles de 44 px, foco visible, orden de encabezados, referencias (landmarks), navegación por teclado, reflujo a 320 px, diálogo de «Mi lista», búsqueda, cantidades, mensajes de WhatsApp y las instrucciones del editor de punta a punta. **No se midieron** velocidad, SEO ni posicionamiento, y no se probó con lectores de pantalla reales.
+Móvil 320, 360 y 390 px, tableta 768, 980–1180 y escritorio 1440 en las 7 páginas, en `dist/` y en el archivo único: sin desbordes, sin errores de consola y sin peticiones externas. Contraste AA, objetivos táctiles de 44 px, foco visible, orden de encabezados, navegación por teclado, diálogo de «Mi lista», búsqueda, chips de búsqueda frecuente, cantidades, enlaces de WhatsApp, cinta (mueve, pausa y enlaces), categorías que llevan a su subcategoría, foto de producto, editor de punta a punta y el archivo dentro de un marco con sandbox. **No se probó** en celulares reales ni con lectores de pantalla, y no se midieron velocidad ni SEO.
 
 ## Privacidad
 
