@@ -20,7 +20,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--blanco);color:var(--texto);font:400 1rem/1.55 var(--f-cue);-webkit-font-smoothing:antialiased;padding-bottom:76px}
+body{margin:0;background:var(--blanco);color:var(--texto);font:400 1rem/1.55 var(--f-cue);-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 @media (min-width:768px){body{font-size:1.125rem}}
 @media (min-width:980px){body{padding-bottom:0}}
 img,svg{max-width:100%}
@@ -55,7 +55,7 @@ html:not(.js) .solo-js{display:none}
 @media (min-width:980px){.util{display:block}}
 
 /* ---------- Encabezado ---------- */
-.enc{position:sticky;top:0;z-index:100;background:#fff;border-bottom:var(--linea) solid var(--borde)}
+.enc{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:#fff;border-bottom:var(--linea) solid var(--borde)}
 .enc .wrap{display:flex;align-items:center;gap:var(--s2);min-height:72px}
 .marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--azul);margin-right:auto;min-height:44px}
 .marca .ico{width:36px;height:36px;stroke-width:3}
@@ -316,7 +316,7 @@ html:not(.js) .solo-js{display:none}
 .pie .legal{border-top:var(--linea) solid rgba(255,255,255,.22);margin-top:var(--s5);padding-top:var(--s2);font-size:.875rem;color:#cfe0ee}
 
 /* ---------- Barra móvil y lista ---------- */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:120;background:#fff;border-top:var(--linea) solid var(--borde);padding:10px var(--gut);display:flex;align-items:center;gap:10px;box-shadow:0 -6px 20px rgba(15,58,92,.1)}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:120;background:#fff;border-top:var(--linea) solid var(--borde);padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;box-shadow:0 -6px 20px rgba(15,58,92,.1)}
 .barra .btn{flex:1;white-space:nowrap}
 @media (min-width:980px){.barra{display:none}}
 dialog.lista{border:0;padding:0;margin:0 0 0 auto;width:min(460px,100%);max-width:none;height:100%;max-height:none;background:#fff;color:var(--texto);box-shadow:-12px 0 40px rgba(0,0,0,.25)}

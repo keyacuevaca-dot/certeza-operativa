@@ -246,13 +246,12 @@
     });
   });
 
-  /* Formulario de lista escrita: abre WhatsApp con el texto; la persona decide si lo envía */
+  /* Lista escrita: el botón es un enlace de WhatsApp que se actualiza con lo que escribes; la persona decide si lo envía */
   $$('form[data-form-lista]').forEach(function (f) {
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var t = $('textarea', f).value.trim();
-      window.open(waUrl('Hola, quiero cotizar esta lista:' + (t ? '\n' + t : '')), '_blank', 'noopener');
-    });
+    var ta = $('textarea', f), enlace = $('a[data-lista-wa]', f);
+    function armar() { if (enlace) enlace.setAttribute('href', waUrl('Hola, quiero cotizar esta lista:' + (ta.value.trim() ? '\n' + ta.value.trim() : ''))); }
+    ta.addEventListener('input', armar); armar();
+    f.addEventListener('submit', function (e) { e.preventDefault(); });
   });
 
   /* ---------- Anclas dentro de la página (también en el archivo único) ---------- */
@@ -288,7 +287,7 @@
   if (window.ROBLES_PORTATIL) {
     var paginas = $$('.pagina');
     var ruta = function (inicial) {
-      var r = (location.hash || '').replace(/^#\/?/, '');
+      var h = (location.hash || '').replace(/^#\/?/, ''), r = h === 'inicio' ? '' : h.replace(/~/g, '/');
       if (r && r.slice(-1) !== '/') r += '/';
       var pg = paginas.filter(function (p) { return p.getAttribute('data-ruta') === r; })[0] || paginas.filter(function (p) { return p.getAttribute('data-ruta') === ''; })[0];
       paginas.forEach(function (p) { p.hidden = p !== pg; });

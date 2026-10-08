@@ -100,7 +100,7 @@ class Ctx:
 
     def L(self, destino):
         if self.modo == 'portatil':
-            return '#/' + destino
+            return '#' + (destino.rstrip('/').replace('/', '~') or 'inicio')
         return '../' * self.prof + (destino + 'index.html')
 
     def ancla(self, id_, texto):
@@ -304,7 +304,7 @@ def p_inicio(c):
 <section class="banda"><div class="wrap">{encabezado_sec("Manda tu lista", "Escríbela como la tengas. Se abre WhatsApp con tu lista lista para enviar; si tienes una foto, la adjuntas desde el chat.")}
 <form class="form-lista solo-js" data-form-lista><label for="lista-t">Tu lista</label>
 <textarea id="lista-t" name="lista" placeholder="Por ejemplo: 2 palas, 1 caja de herramienta, 6 rollos de papel higiénico"></textarea>
-<div class="grupo"><button type="submit" class="btn">{ico("wa")}Enviar lista por WhatsApp</button></div>
+<div class="grupo"><a class="btn" data-lista-wa href="{wa("Hola, quiero cotizar esta lista:")}" target="_blank" rel="noopener noreferrer">{ico("wa")}Enviar lista por WhatsApp</a></div>
 <p class="chico">WhatsApp solo abre el mensaje: tú decides si lo envías.</p></form>
 <noscript><div>{boton_wa(wa("Hola, quiero cotizar esta lista:"), "Enviar mi lista por WhatsApp", "claro")}</div></noscript></div></section>
 <section class="sec" id="tienda"><div class="wrap">{encabezado_sec("Visítanos")}<div class="tienda"><div>
