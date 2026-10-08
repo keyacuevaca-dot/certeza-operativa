@@ -186,7 +186,7 @@ def horario_tabla():
 
 def pie_sitio(c):
     cat = ''.join(f'<li><a href="{c.L("catalogo/%s/" % l["slug"])}">{l["nombre"]}</a></li>' for l in LINEAS)
-    ext = ' · Vista previa de revisión: no está publicada.' if REVISION else ''
+    ext = ' Vista previa de revisión: no está publicada.' if REVISION else ''
     return f'''<footer class="pie"><div class="wrap"><div class="cols">
  <div><a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio">{ico("casa")}<span><b>ROBLES</b><small>Comercializadora</small></span></a>
   <p>Materiales de construcción, limpieza y papelería en {N["ciudad"]}, {N["estado"]}.</p></div>
@@ -194,7 +194,7 @@ def pie_sitio(c):
  <nav aria-label="Cómo comprar"><h2>Cómo comprar</h2><ul><li><a href="{c.L("como-comprar/")}">Solicitar cotización</a></li><li><a href="{c.L("como-comprar/")}">Formas de pago</a></li><li><a href="{c.L("como-comprar/")}">Preguntas</a></li><li><a href="{c.L("visitanos/")}">Visítanos</a></li></ul></nav>
  <div><h2>Contacto</h2><p>{N["calle"]}, Col. {N["colonia"]}<br>{N["ciudad"]}, {N["estado"]}</p>
   <ul><li><a href="tel:{N["tel_href"]}">{ico("tel")}{N["tel"]}</a></li><li><a href="{WA_GENERAL}" target="_blank" rel="noopener noreferrer">{ico("wa")}WhatsApp</a></li><li><a href="mailto:{N["correo"]}">{ico("mail")}{N["correo"]}</a></li></ul></div>
-</div><p class="legal">© 2026 {N["nombre"]}. Efectivo y transferencia.{ext}</p></div></footer>'''
+</div><p class="legal">© 2026 {N["nombre"]}.{ext}</p></div></footer>'''
 
 
 def utilidades():
@@ -202,7 +202,7 @@ def utilidades():
 <dialog class="lista" id="lista" aria-labelledby="t-lista"><div class="cab"><h2 id="t-lista">Mi lista</h2><button type="button" class="cerrar" aria-label="Cerrar mi lista">{ico("x")}</button></div>
 <div class="cuerpo"><p class="lista-vacia">Tu lista está vacía. Agrega productos del catálogo o manda tu lista directo por WhatsApp.</p><ul class="items"></ul></div>
 <div class="pie-l"><a id="lista-wa" class="btn" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">{ico("wa")}Enviar lista por WhatsApp</a><button type="button" class="btn cont compacto" id="lista-vaciar" hidden>Vaciar lista</button>
-<p class="chico">Tu lista se guarda solo en este dispositivo. WhatsApp abre un mensaje listo; tú decides si lo envías.</p></div></dialog>
+<p class="chico">Tu lista se guarda en este dispositivo cuando el navegador lo permite. WhatsApp abre un mensaje listo; tú decides si lo envías.</p></div></dialog>
 <div id="anuncio" class="sr" role="status" aria-live="polite"></div>'''
 
 
@@ -355,7 +355,7 @@ def p_como_comprar(c):
     pasos_html = ''.join(f'<li><h3>{t}</h3><p>{d}</p></li>' for t, d in pasos)
     faq = ''.join(f'<details><summary>{E(q)}{ico("chev")}</summary><p>{E(r)}</p></details>' for q, r in FAQ)
     return cab + f'''<section class="sec" id="solicitar-cotizacion"><div class="wrap">{encabezado_sec("Solicitar cotización", "Tres pasos, sin registrarte ni crear una cuenta.")}
-<ol class="pasos">{pasos_html}</ol><div class="grupo" style="margin-top:32px">{boton_wa(wa("Hola, quiero cotizar esta lista:"), "Enviar mi lista por WhatsApp")}<a class="btn cont" href="{c.L("catalogo/")}">Ver catálogo</a></div></div></section>
+<ol class="pasos">{pasos_html}</ol><div class="grupo" style="margin-top:32px">{boton_wa(WA_GENERAL, "Cotiza por WhatsApp")}<a class="btn cont" href="{c.L("catalogo/")}">Ver catálogo</a></div></div></section>
 <section class="sec gris compacta" id="formas-de-pago"><div class="wrap">{encabezado_sec("Formas de pago", "Aceptamos efectivo y transferencia. No publicamos datos bancarios en este sitio: pídelos a la tienda al confirmar tu pedido.")}
 <ul class="pagos"><li>Efectivo</li><li>Transferencia</li></ul></div></section>
 <section class="sec" id="preguntas"><div class="wrap">{encabezado_sec("Preguntas")}<div class="preguntas">{faq}</div>

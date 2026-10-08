@@ -37,6 +37,7 @@
   function guardar() { memoria = lista; try { localStorage.setItem(KEY, JSON.stringify(lista)); } catch (e) {} }
 
   /* ---------- Producto: texto, precio y mensajes ---------- */
+  function etiq(it) { return it.nombre + (it.pres ? ' (' + it.pres + ')' : ''); }
   function nombreCompleto(it) {
     var n = it.nombre;
     if (it.marca && norm(n).indexOf(norm(it.marca)) < 0) n += ' ' + it.marca;
@@ -93,11 +94,16 @@
     $$('[data-n-lista]').forEach(function (n) { n.textContent = lista.length; n.hidden = lista.length === 0; });
     if (!dlg) return;
     var ul = $('.items', dlg), vacio = $('.lista-vacia', dlg), enviar = $('#lista-wa', dlg), borrar = $('#lista-vaciar', dlg);
+    var foco = null;
+    if (dlg.open && D.activeElement && ul.contains(D.activeElement)) {
+      var li0 = D.activeElement.closest('li');
+      foco = { i: Array.prototype.indexOf.call(ul.children, li0), j: $$('button,input', li0).indexOf(D.activeElement) };
+    }
     ul.textContent = '';
     lista.forEach(function (x) {
       var it = BYID[x.id], m = meta(it);
-      var c = cantidad(x.qty, function (n) { x.qty = n; guardar(); pintarLista(); }, it.nombre, 'lq-' + it.id);
-      var q = el('button', { type: 'button', 'class': 'quitar' }, ['Quitar ' + it.nombre]);
+      var c = cantidad(x.qty, function (n) { x.qty = n; guardar(); pintarLista(); }, etiq(it), 'lq-' + it.id);
+      var q = el('button', { type: 'button', 'class': 'quitar', 'aria-label': 'Quitar ' + etiq(it) + ' de mi lista' }, ['Quitar ' + it.nombre]);
       q.addEventListener('click', function () { lista = lista.filter(function (y) { return y !== x; }); guardar(); pintarLista(); decir(it.nombre + ' quitado de tu lista.'); });
       ul.appendChild(el('li', {}, [el('b', { text: nombreCompleto(it) }), c.nodo, m ? el('span', { 'class': 'meta', text: m }) : null, q]));
     });
@@ -105,12 +111,16 @@
     enviar.setAttribute('href', lista.length ? waUrl(msgLista()) : '#');
     enviar.setAttribute('aria-disabled', lista.length ? 'false' : 'true');
     borrar.hidden = lista.length === 0;
+    if (foco) {
+      var li1 = ul.children[Math.min(foco.i, ul.children.length - 1)];
+      if (li1) { var cs = $$('button,input', li1); (cs[foco.j] || cs[cs.length - 1]).focus(); } else $('.cerrar', dlg).focus();
+    }
   }
   if (dlg) {
     $$('[data-abrir-lista]').forEach(function (b) { b.addEventListener('click', function () { pintarLista(); if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }); });
     $('.cerrar', dlg).addEventListener('click', function () { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg && dlg.close) dlg.close(); });
-    $('#lista-vaciar', dlg).addEventListener('click', function () { lista = []; guardar(); pintarLista(); decir('Tu lista quedó vacía.'); });
+    $('#lista-vaciar', dlg).addEventListener('click', function () { lista = []; guardar(); pintarLista(); decir('Tu lista quedó vacía.'); $('.cerrar', dlg).focus(); });
     $('#lista-wa', dlg).addEventListener('click', function (e) { if (!lista.length) e.preventDefault(); });
   }
 
@@ -118,12 +128,12 @@
   var cuenta = 0;
   function fila(it) {
     var qty = 1, uid = 'q-' + it.id + '-' + (cuenta++), m = meta(it), pc = precioCompleto(it);
-    var wa = el('a', { 'class': 'btn compacto', href: waUrl(msgProducto(it, qty)), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Cotizar ' + it.nombre + ' por WhatsApp' }, [ico('wa'), 'Cotizar']);
-    var c = cantidad(1, function (n) { qty = n; wa.setAttribute('href', waUrl(msgProducto(it, n))); }, it.nombre, uid);
-    var add = el('button', { type: 'button', 'class': 'btn cont compacto', 'aria-label': 'Agregar ' + it.nombre + ' a mi lista' }, [ico('mas'), 'Agregar']);
+    var wa = el('a', { 'class': 'btn compacto', href: waUrl(msgProducto(it, qty)), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Cotizar ' + etiq(it) + ' por WhatsApp' }, [ico('wa'), 'Cotizar']);
+    var c = cantidad(1, function (n) { qty = n; wa.setAttribute('href', waUrl(msgProducto(it, n))); }, etiq(it), uid);
+    var add = el('button', { type: 'button', 'class': 'btn cont compacto', 'aria-label': 'Agregar ' + etiq(it) + ' a mi lista' }, [ico('mas'), 'Agregar']);
     add.addEventListener('click', function () {
       agregar(it.id, c.leer());
-      var t = add.lastChild, o = t.nodeValue; t.nodeValue = 'Agregado'; setTimeout(function () { t.nodeValue = o; }, 1600);
+      var t = add.lastChild; t.nodeValue = 'Agregado'; clearTimeout(add._tm); add._tm = setTimeout(function () { t.nodeValue = 'Agregar'; }, 1600);
     });
     // Sin ningún precio publicado, el aviso va una sola vez arriba de la lista; con precios, cada fila sin precio lo indica.
     var precio = pc ? el('p', { 'class': 'precio' }, [pc.monto, el('small', { text: pc.detalle })])
@@ -132,7 +142,7 @@
     if (it.foto) partes.push(el('div', { 'class': 'foto' }, [el('img', { src: it.foto, alt: it.nombre, loading: 'lazy' })]));
     partes.push(el('div', { 'class': 'info' }, [el('h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio]));
     partes.push(c.nodo, el('div', { 'class': 'acc' }, [wa, add]));
-    return el('article', { 'class': 'prod' + (it.foto ? ' con-foto' : ''), 'data-buscar': norm([it.nombre, it.marca, it.pres, it.sub, it.linea].join(' ')) }, partes);
+    return el('article', { 'class': 'prod' + (it.foto ? ' con-foto' : ''), 'data-buscar': norm([it.nombre, it.marca, it.pres].join(' ')) }, partes);
   }
   function idSub(idx, linea, sub) { return 's' + idx + '-' + linea + '-' + slug(sub); }
   function pintarCatalogo(cont, idx) {
@@ -174,7 +184,7 @@
       var enPagina = modo === 'todos' || modo === ln.slug;
       nav.appendChild(el('p', { 'class': 't', text: ln.nombre }));
       var ul = el('ul'), subs = []; prods.forEach(function (p) { if (subs.indexOf(p.sub) < 0) subs.push(p.sub); });
-      if (!subs.length) ul.appendChild(el('li', {}, [el('a', { href: box.getAttribute('data-href-' + ln.slug) || '#' }, ['Pregunta por WhatsApp'])]));
+      if (!subs.length) ul.appendChild(el('li', {}, [el('a', { href: waUrl('Hola, quiero cotizar en ' + ln.nombre.toLowerCase() + ':'), target: '_blank', rel: 'noopener noreferrer' }, ['Pregunta por WhatsApp'])]));
       subs.forEach(function (s) {
         var n = prods.filter(function (p) { return p.sub === s; }).length;
         var a = enPagina ? el('a', { href: '#' + idSub(cont._idx, ln.slug, s), 'data-ancla': idSub(cont._idx, ln.slug, s) }, [s, el('span', { text: String(n) })])
@@ -184,7 +194,11 @@
       nav.appendChild(ul);
     });
     box.appendChild(nav);
-    if (window.matchMedia && matchMedia('(min-width:980px)').matches) box.setAttribute('open', '');
+    if (window.matchMedia) {
+      var mq = matchMedia('(min-width:980px)');
+      var ajusta = function () { if (mq.matches) box.setAttribute('open', ''); };
+      ajusta(); if (mq.addEventListener) mq.addEventListener('change', ajusta);
+    }
   });
 
   /* Conteo por línea en la portada, con los datos vigentes */
@@ -229,19 +243,19 @@
     inp.addEventListener('input', function () { filtrar(cont, inp.value); });
   });
   // Búsqueda desde el encabezado o el inicio: lleva al catálogo con el texto ya escrito
-  var pendienteQ = '';
+  var pendienteQ = '', limpiarQ = false;
   function aplicarQ() {
     var q = pendienteQ;
     if (!q) { try { q = new URLSearchParams(location.search).get('q') || ''; } catch (e) { q = ''; } }
-    if (!q) return;
+    if (!q && !limpiarQ) return;
     var inp = $$('input[data-en]').filter(function (i) { var c = D.getElementById(i.getAttribute('data-en')); return c && c.getAttribute('data-catalogo') === 'todos' && i.offsetParent !== null; })[0];
-    if (inp) { inp.value = q; inp.dispatchEvent(new Event('input')); pendienteQ = ''; }
+    if (inp) { inp.value = q; inp.dispatchEvent(new Event('input')); pendienteQ = ''; limpiarQ = false; }
   }
   $$('form[data-busqueda]').forEach(function (f) {
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var q = $('input[name="q"]', f).value.trim(), dest = f.getAttribute('data-destino') || '#';
-      if (dest.charAt(0) === '#') { pendienteQ = q; if (location.hash === dest) aplicarQ(); else location.hash = dest; }
+      if (dest.charAt(0) === '#') { pendienteQ = q; limpiarQ = !q; cerrarMovil(); if (location.hash === dest) aplicarQ(); else location.hash = dest; }
       else location.href = dest + (q ? '?q=' + encodeURIComponent(q) : '');
     });
   });
@@ -249,7 +263,7 @@
   /* Lista escrita: el botón es un enlace de WhatsApp que se actualiza con lo que escribes; la persona decide si lo envía */
   $$('form[data-form-lista]').forEach(function (f) {
     var ta = $('textarea', f), enlace = $('a[data-lista-wa]', f);
-    function armar() { if (enlace) enlace.setAttribute('href', waUrl('Hola, quiero cotizar esta lista:' + (ta.value.trim() ? '\n' + ta.value.trim() : ''))); }
+    function armar() { if (enlace) enlace.setAttribute('href', waUrl(ta.value.trim() ? 'Hola, quiero cotizar esta lista:\n' + ta.value.trim() : 'Hola, quiero cotizar en Comercializadora Robles.')); }
     ta.addEventListener('input', armar); armar();
     f.addEventListener('submit', function (e) { e.preventDefault(); });
   });
@@ -266,10 +280,17 @@
 
   /* ---------- Menús ---------- */
   var btnMenu = $('#btn-menu'), movil = $('#movil');
-  function cerrarMovil() { if (movil) movil.classList.remove('abierto'); if (btnMenu) { btnMenu.setAttribute('aria-expanded', 'false'); btnMenu.lastChild.nodeValue = 'Menú'; } }
-  if (btnMenu && movil) btnMenu.addEventListener('click', function () {
-    var ab = movil.classList.toggle('abierto'); btnMenu.setAttribute('aria-expanded', ab ? 'true' : 'false'); btnMenu.lastChild.nodeValue = ab ? 'Cerrar' : 'Menú';
-  });
+  function pintaMenu(ab) {
+    if (!btnMenu) return;
+    btnMenu.setAttribute('aria-expanded', ab ? 'true' : 'false'); btnMenu.lastChild.nodeValue = ab ? 'Cerrar' : 'Menú';
+    var u = btnMenu.querySelector('use'); if (u) u.setAttribute('href', ab ? '#i-x' : '#i-menu');
+    D.documentElement.classList.toggle('menu-ab', ab);
+  }
+  function cerrarMovil() { if (movil) movil.classList.remove('abierto'); pintaMenu(false); }
+  if (btnMenu && movil) {
+    btnMenu.addEventListener('click', function () { pintaMenu(movil.classList.toggle('abierto')); });
+    movil.addEventListener('click', function (e) { if (e.target.closest('a')) cerrarMovil(); });
+  }
   function cerrarMenus() { $$('.menu-d.abierto').forEach(function (m) { m.classList.remove('abierto'); var b = $('button.sub', m); if (b) b.setAttribute('aria-expanded', 'false'); }); }
   $$('.menu-d').forEach(function (m) {
     var b = $('button.sub', m);
@@ -297,6 +318,8 @@
         var n = a.getAttribute('data-nav'), on = n === '' ? actual === '' : actual.indexOf(n) === 0;
         if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
       });
+      var tok = actual === '' ? '#inicio' : '#' + actual.replace(/\/$/, '').replace(/\//g, '~');
+      $$('#movil a').forEach(function (a) { if (a.getAttribute('href') === tok) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       cerrarMenus(); cerrarMovil();
       if (!inicial) { window.scrollTo(0, 0); var h1 = $('h1', pg); if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); } }
       aplicarQ();
