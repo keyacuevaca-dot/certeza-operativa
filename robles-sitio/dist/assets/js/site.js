@@ -83,6 +83,21 @@
 
   /* ---------- Lista del visitante ---------- */
   var dlg = $('#lista'), anuncio = $('#anuncio');
+  /* Copiar texto al portapapeles; si el navegador lo niega, se avisa en lugar de fingir que funcionó */
+  function copiar(txt, btn) {
+    function fin(ok) {
+      decir(ok ? 'Mensaje copiado.' : 'No se pudo copiar. Selecciona el texto y cópialo.');
+      var n = btn.lastChild; if (!n || n.nodeType !== 3) return;
+      var o = btn.getAttribute('data-txt') || n.nodeValue; btn.setAttribute('data-txt', o);
+      n.nodeValue = ok ? 'Copiado' : 'No se pudo copiar'; clearTimeout(btn._tm); btn._tm = setTimeout(function () { n.nodeValue = o; }, 1800);
+    }
+    function viejo() {
+      var ta = D.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+      D.body.appendChild(ta); ta.select(); var ok = false; try { ok = D.execCommand('copy'); } catch (e) { ok = false; } D.body.removeChild(ta); fin(ok);
+    }
+    try { if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(function () { fin(true); }, viejo); return; } } catch (e) { /* cae al método anterior */ }
+    viejo();
+  }
   function decir(t) { if (anuncio) { anuncio.textContent = ''; setTimeout(function () { anuncio.textContent = t; }, 30); } }
   function agregar(id, qty) {
     var f = lista.filter(function (x) { return x.id === id; })[0];
@@ -110,7 +125,7 @@
     vacio.hidden = lista.length > 0; ul.hidden = lista.length === 0;
     enviar.setAttribute('href', lista.length ? waUrl(msgLista()) : '#');
     enviar.setAttribute('aria-disabled', lista.length ? 'false' : 'true');
-    borrar.hidden = lista.length === 0;
+    borrar.hidden = lista.length === 0; var cop = $('#lista-copiar', dlg); if (cop) cop.hidden = lista.length === 0;
     if (foco) {
       var li1 = ul.children[Math.min(foco.i, ul.children.length - 1)];
       if (li1) { var cs = $$('button,input', li1); (cs[foco.j] || cs[cs.length - 1]).focus(); } else $('.cerrar', dlg).focus();
@@ -122,6 +137,7 @@
     dlg.addEventListener('click', function (e) { if (e.target === dlg && dlg.close) dlg.close(); });
     $('#lista-vaciar', dlg).addEventListener('click', function () { lista = []; guardar(); pintarLista(); decir('Tu lista quedó vacía.'); $('.cerrar', dlg).focus(); });
     $('#lista-wa', dlg).addEventListener('click', function (e) { if (!lista.length) e.preventDefault(); });
+    var cop = $('#lista-copiar', dlg); if (cop) cop.addEventListener('click', function () { copiar(msgLista(), cop); });
   }
 
   /* ---------- Catálogo: filas ---------- */
@@ -263,6 +279,8 @@
   /* Lista escrita: el botón es un enlace de WhatsApp que se actualiza con lo que escribes; la persona decide si lo envía */
   $$('form[data-form-lista]').forEach(function (f) {
     var ta = $('textarea', f), enlace = $('a[data-lista-wa]', f);
+    var cb = $('[data-copiar-lista]', f);
+    if (cb) cb.addEventListener('click', function () { copiar(ta.value.trim() ? 'Hola, quiero cotizar esta lista:\n' + ta.value.trim() : 'Hola, quiero cotizar en Comercializadora Robles.', cb); });
     function armar() { if (enlace) enlace.setAttribute('href', waUrl(ta.value.trim() ? 'Hola, quiero cotizar esta lista:\n' + ta.value.trim() : 'Hola, quiero cotizar en Comercializadora Robles.')); }
     ta.addEventListener('input', armar); armar();
     f.addEventListener('submit', function (e) { e.preventDefault(); });

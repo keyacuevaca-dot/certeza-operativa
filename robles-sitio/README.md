@@ -19,6 +19,8 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 | Cómo comprar | Solicitar cotización, formas de pago y preguntas |
 | Visítanos | Ubicación, horario y contacto |
 
+**Copiar mensaje:** la lista escrita y «Mi lista» tienen un botón para copiar el texto por si WhatsApp no abre.
+
 **Mi lista:** el visitante agrega productos y envía **toda la lista en un solo mensaje de WhatsApp**. Se guarda solo en su dispositivo. WhatsApp abre el mensaje listo; **enviarlo lo decide la persona**.
 
 **Precios:** un precio solo se muestra si tiene monto, unidad, IVA y fecha de vigencia sin vencer. Mientras ningún producto tenga precio publicado, el aviso «Los precios te los damos por WhatsApp» sale una sola vez arriba de la lista; en cuanto haya algún precio, los productos sin precio indican «Solicita precio». No se muestra existencia.
@@ -43,12 +45,18 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 
 ## Decisiones
 
-- **Diseño (v2, profesional):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px, barra de datos + encabezado con buscador, héroe azul con panel de búsqueda, filas de catálogo con menú lateral. Azul `#174F7C` y naranja `#F48F07` del archivo de diseño del negocio; el naranja solo rellena botones, con texto `#1A1A1A`. Se retiraron las siluetas de objetos de la v1 por verse poco profesionales: solo quedan iconos de interfaz de un mismo trazo.
+- **Diseño (v2, profesional):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px, barra de datos + encabezado con buscador, héroe azul con panel de búsqueda, filas de catálogo con menú lateral. Azul `#044770` y naranja `#E97E1C`, tomados del logo real; el naranja solo rellena botones, con texto `#1A1A1A`. Se retiraron las siluetas de objetos de la v1 por verse poco profesionales: solo quedan iconos de interfaz de un mismo trazo.
 - **Tipografía:** sin Arial. Bricolage Grotesque (títulos) e Instrument Sans (cuerpo), con licencia libre (OFL), incluidas en el sitio. Licencias en `licencias/`.
 - **Que no se parezca a Truper ni a Pretul:** el azul domina, el naranja ocupa poca superficie y se evitó el amarillo con negro. **No pude comprobar sus colores reales** (sin acceso a sus sitios): conviene comparar con un empaque. Si el naranja resultara parecido, el botón pasa a celeste `#00A9E9` con texto oscuro.
 - **Datos publicados:** dirección, teléfono y WhatsApp, horario de lunes a sábado y el correo aprobado. **No se publica** el domingo, el nombre del responsable ni datos bancarios o fiscales.
 - **Sin fotos ni ilustraciones de producto:** no hay fotos autorizadas; el catálogo es texto limpio hasta que haya fotos reales (la columna `foto` del CSV ya las soporta).
-- **Marca:** la casa y el nombre en texto son provisionales y **no son el logo original**. Falta exportar la pieza correcta del archivo de diseño.
+- **Marca:** logo real del cliente (imagen con fondo transparente en `src/img/`). Falta confirmar si existe el archivo vectorial original y quién tiene los derechos de uso.
+
+## Qué falta y ruta para terminar
+
+Ver **`PENDIENTES.md`**: ruta ordenada, tabla de estado (rellenado · por decidir · falta dato) y lo que simplifica la operación.
+
+Herramientas para quien atiende: `herramientas/respuestas-whatsapp.md` (respuestas rápidas), `herramientas/qr-whatsapp.png` y `.svg` (QR a WhatsApp) y `herramientas/editor-catalogo.html`.
 
 ## Lo que falta o no se afirma
 

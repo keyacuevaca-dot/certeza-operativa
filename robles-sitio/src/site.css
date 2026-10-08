@@ -1,10 +1,10 @@
 /* Comercializadora Robles · sistema visual v2
    Un solo radio, un solo grosor de línea, una escala de 8 px y una jerarquía de botones.
-   Color: azul #174F7C (marca) · naranja #F48F07 (solo llamadas a la acción, texto #1A1A1A) · celeste #00A9E9 (reserva, Plan B del botón).
-   Derivados: azul-900 #0F3A5C y azul-50 #EDF3F8 (tonos del mismo azul). Fuentes: Bricolage Grotesque + Instrument Sans (OFL). */
+   Color (tomados del logo real): azul #044770 · naranja #E97E1C (solo llamadas a la acción, texto #1A1A1A) · celeste #00A9E9 (reserva, Plan B del botón).
+   Derivados: azul-900 #032F4D y azul-50 #EAF1F6 (tonos del mismo azul). Fuentes: Bricolage Grotesque + Instrument Sans (OFL). */
 :root{
-  --azul:#174F7C; --azul-900:#0F3A5C; --azul-50:#EDF3F8;
-  --naranja:#F48F07; --naranja-h:#E08200; --celeste:#00A9E9;
+  --azul:#044770; --azul-900:#032F4D; --azul-50:#EAF1F6;
+  --naranja:#E97E1C; --naranja-h:#D26F10; --celeste:#00A9E9;
   color-scheme:light; --borde-ctl:#7A8896; --blanco:#fff; --gris-50:#F7F8FA; --gris-100:#F2F4F6; --borde:#D3DBE3;
   --texto:#1A1A1A; --texto-2:#4A5560;
   --r:8px; --linea:1px;
@@ -55,11 +55,9 @@ html:not(.js) .solo-js{display:none}
 /* ---------- Encabezado ---------- */
 .enc{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:#fff;border-bottom:var(--linea) solid var(--borde)}
 .enc .wrap{display:flex;align-items:center;gap:var(--s2);min-height:72px}
-.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--azul);margin-right:auto;min-height:44px}
-.marca .ico{width:36px;height:36px;stroke-width:3}
-.marca b{display:block;font:700 1.375rem/1 var(--f-tit);letter-spacing:.01em}
-.marca small{display:block;font:600 .75rem/1.2 var(--f-cue);letter-spacing:.12em;text-transform:uppercase;color:var(--texto-2);margin-top:2px}
-@media (max-width:359px){.enc .marca small{display:none}.btn-menu{padding:8px 10px}}
+.marca{display:flex;align-items:center;text-decoration:none;margin-right:auto;min-height:44px}
+.logo{display:block;height:clamp(34px,10.5vw,48px);aspect-ratio:1000/237;background:var(--logo) no-repeat center/contain}
+@media (max-width:359px){.btn-menu{padding:8px 10px}}
 .nav{display:none}
 .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;align-items:center}
 .nav a,.nav button.sub{white-space:nowrap;font:600 1rem var(--f-cue);color:var(--texto);text-decoration:none;padding:10px 12px;border-radius:var(--r);min-height:44px;display:inline-flex;align-items:center;background:none;border:0;cursor:pointer}
@@ -150,7 +148,7 @@ html:not(.js) .solo-js{display:none}
 .lineas{display:grid;gap:var(--s3)}
 @media (min-width:980px){.lineas{grid-template-columns:1.4fr 1fr 1fr}.lineas.con-sin{grid-template-columns:1.4fr 1fr}}
 .linea{background:#fff;border:var(--linea) solid var(--borde);border-radius:var(--r);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2);position:relative;overflow:hidden}
-.linea .num{font:700 4.5rem/1 var(--f-tit);color:transparent;-webkit-text-stroke:1.5px rgba(23,79,124,.28);position:absolute;right:20px;top:8px;letter-spacing:-.04em;pointer-events:none}
+.linea .num{font:700 4.5rem/1 var(--f-tit);color:transparent;-webkit-text-stroke:1.5px rgba(4,71,112,.28);position:absolute;right:20px;top:8px;letter-spacing:-.04em;pointer-events:none}
 .linea h3{font-size:1.75rem;margin:0;position:relative}
 .linea .cuenta{font-size:.9375rem;font-weight:600;color:var(--texto-2);margin:0}
 .linea p{margin:0}
@@ -310,8 +308,8 @@ html:not(.js) .solo-js{display:none}
 @media (min-width:1040px){.pie .cols{grid-template-columns:1.1fr .8fr .9fr 1.7fr}}
 .pie ul{list-style:none;margin:0;padding:0}
 .pie li a{display:inline-flex;align-items:center;gap:10px;min-height:44px;overflow-wrap:anywhere;min-width:0;max-width:100%}
-.pie .marca{color:#fff;margin-bottom:12px}
-.pie .marca small{color:#cfe0ee}
+.pie .marca{display:inline-flex;background:#fff;padding:10px 14px;border-radius:var(--r);margin-bottom:12px}
+.pie .logo{height:40px}
 .pie p{margin:0 0 10px;color:#e4eef6;overflow-wrap:anywhere}
 .pie .legal{border-top:var(--linea) solid rgba(255,255,255,.22);margin-top:var(--s5);padding-top:var(--s2);font-size:.875rem;color:#cfe0ee}
 
@@ -321,7 +319,7 @@ html:not(.js) .solo-js{display:none}
 @media (min-width:1180px){.barra{display:none}}
 .menu-ab .barra{display:none}
 dialog.lista{border:0;padding:0;margin:0 0 0 auto;width:min(460px,100%);max-width:none;height:100%;max-height:none;background:#fff;color:var(--texto);box-shadow:-12px 0 40px rgba(0,0,0,.25)}
-dialog.lista::backdrop{background:rgba(15,58,92,.55)}
+dialog.lista::backdrop{background:rgba(3,47,77,.55)}
 dialog.lista .cab{display:flex;align-items:center;justify-content:space-between;flex:none;padding:calc(var(--s2) + env(safe-area-inset-top,0px)) var(--s3) var(--s2);border-bottom:var(--linea) solid var(--borde)}
 dialog.lista .cab h2{margin:0;font-size:1.5rem}
 dialog.lista .cerrar{width:44px;height:44px;border:var(--linea) solid var(--borde);background:#fff;color:var(--azul);border-radius:var(--r);display:grid;place-items:center;cursor:pointer;padding:0}

@@ -9,7 +9,7 @@ C07,construccion,Selladores,Selladores en tubo,,,,,,,,sellador,7,sí,Varios tipo
 L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,rollo,8,sí,
 L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,toalla,9,sí,
 L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,panuelos,10,sí,Presentación por detallar
-L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,,,,,,,botella,11,sí,El negocio dijo «de 750»: confirmar la unidad (¿ml?) antes de publicarla como presentación
+L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,750 ml,,,,,,botella,11,sí,RELLENADO: el negocio dijo «de 750»; se asumió ml. Confirmar con la tienda.
 L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,botella,12,sí,Marca por confirmar («de marca»)
 L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,botella,13,sí,Presentación por detallar
 L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,botella,14,sí,

@@ -167,7 +167,7 @@ window.ROBLES_CATALOGO=[
   "sub": "Cloro y aromas",
   "nombre": "Cloro Cloralex",
   "marca": "Cloralex",
-  "pres": "",
+  "pres": "750 ml",
   "precio": "",
   "unidad": "",
   "iva": "",

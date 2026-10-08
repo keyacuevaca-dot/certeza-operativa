@@ -93,6 +93,14 @@ def css_fuentes(modo):
     return out
 
 
+def logo_css(modo):
+    if modo == 'portatil':
+        u = 'data:image/webp;base64,' + base64.b64encode((RAIZ / 'src/img/logo-completo.webp').read_bytes()).decode()
+    else:
+        u = '../img/logo-completo.webp'
+    return ':root{--logo:url(%s)}\n' % u
+
+
 # ---------------------------------------------------------------- contexto de enlaces
 class Ctx:
     def __init__(self, modo, ruta):
@@ -160,7 +168,7 @@ def cabecera_sitio(c, actual):
  <span>{ico("tel")}<a href="tel:{N["tel_href"]}">{N["tel"]}</a></span>
 </div></div>
 <header class="enc"><div class="wrap">
- <a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio">{ico("casa")}<span><b>ROBLES</b><small>Comercializadora</small></span></a>
+ <a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio"><span class="logo" aria-hidden="true"></span></a>
  <nav class="nav" aria-label="Principal"><ul>
   <li class="menu-d"><a href="{c.L("catalogo/")}" data-nav="catalogo/"{cat_cur}>Catálogo</a><button type="button" class="sub" aria-expanded="false" aria-controls="panel-cat" aria-label="Mostrar las líneas del catálogo">{ico("chev")}</button>
    <ul class="panel" id="panel-cat">{sub}</ul></li>
@@ -188,7 +196,7 @@ def pie_sitio(c):
     cat = ''.join(f'<li><a href="{c.L("catalogo/%s/" % l["slug"])}">{l["nombre"]}</a></li>' for l in LINEAS)
     ext = ' Vista previa de revisión: no está publicada.' if REVISION else ''
     return f'''<footer class="pie"><div class="wrap"><div class="cols">
- <div><a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio">{ico("casa")}<span><b>ROBLES</b><small>Comercializadora</small></span></a>
+ <div><a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio"><span class="logo" aria-hidden="true"></span></a>
   <p>Materiales de construcción, limpieza y papelería en {N["ciudad"]}, {N["estado"]}.</p></div>
  <nav aria-label="Catálogo"><h2>Catálogo</h2><ul><li><a href="{c.L("catalogo/")}">Todo el catálogo</a></li>{cat}</ul></nav>
  <nav aria-label="Cómo comprar"><h2>Cómo comprar</h2><ul><li><a href="{c.L("como-comprar/")}">Solicitar cotización</a></li><li><a href="{c.L("como-comprar/")}">Formas de pago</a></li><li><a href="{c.L("como-comprar/")}">Preguntas</a></li><li><a href="{c.L("visitanos/")}">Visítanos</a></li></ul></nav>
@@ -201,18 +209,20 @@ def utilidades():
     return f'''<div class="barra" role="region" aria-label="Acciones rápidas">{boton_wa(WA_GENERAL, "WhatsApp")}<button type="button" class="btn cont btn-lista solo-js" data-abrir-lista>{ico("lista")}Mi lista <span class="n" data-n-lista hidden>0</span></button></div>
 <dialog class="lista" id="lista" aria-labelledby="t-lista"><div class="cab"><h2 id="t-lista">Mi lista</h2><button type="button" class="cerrar" aria-label="Cerrar mi lista">{ico("x")}</button></div>
 <div class="cuerpo"><p class="lista-vacia">Tu lista está vacía. Agrega productos del catálogo o manda tu lista directo por WhatsApp.</p><ul class="items"></ul></div>
-<div class="pie-l"><a id="lista-wa" class="btn" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">{ico("wa")}Enviar lista por WhatsApp</a><button type="button" class="btn cont compacto" id="lista-vaciar" hidden>Vaciar lista</button>
+<div class="pie-l"><a id="lista-wa" class="btn" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">{ico("wa")}Enviar lista por WhatsApp</a><button type="button" class="btn cont compacto" id="lista-copiar" hidden>Copiar lista</button><button type="button" class="btn cont compacto" id="lista-vaciar" hidden>Vaciar lista</button>
 <p class="chico">Tu lista se guarda en este dispositivo cuando el navegador lo permite. WhatsApp abre un mensaje listo; tú decides si lo envías.</p></div></dialog>
 <div id="anuncio" class="sr" role="status" aria-live="polite"></div>'''
 
 
 FAQ = [
     ('¿Cómo pido una cotización?', 'Escríbenos por WhatsApp. Puedes mandar un producto, tu lista completa o una foto de tu lista, adjuntándola desde el chat.'),
+    ('¿Quién me atiende?', 'Nuestro equipo atiende todas las consultas por WhatsApp.'),
     ('¿Cómo puedo pagar?', 'En efectivo o por transferencia.'),
     ('¿Dónde están y a qué hora abren?', '%s. Lunes a viernes de 9:00 a 14:00 y de 16:00 a 18:30; sábado de 9:00 a 13:00.' % DIRECCION),
     ('¿Cuánto cuesta un producto?', 'Los precios te los damos por WhatsApp. Cuando publiquemos un precio, verás hasta qué fecha vale.'),
     ('¿Hacen entregas o dan factura?', 'Todavía no publicamos esa información. Pregúntanos por WhatsApp antes de venir.'),
     ('¿Tienen existencia de un producto?', 'No publicamos existencias. Pregúntanos por WhatsApp y te decimos.'),
+    ('¿Guardan mis datos?', 'Este sitio no tiene cuentas ni formularios que guarden información. Tu lista se queda en tu dispositivo y solo llega a la tienda si tú la envías por WhatsApp.'),
 ]
 
 
@@ -286,7 +296,7 @@ def p_inicio(c):
     rapido = ''.join(f'<li><a href="{c.L("catalogo/%s/" % l["slug"])}">{l["nombre"]}</a></li>' for l in LINEAS)
     return f'''<section class="heroe"><div class="wrap"><div>
 <h1>Materiales de construcción, limpieza y papelería en {N["ciudad"]}</h1>
-<p class="sub">Cotiza por WhatsApp: elige productos del catálogo o manda tu lista, y te respondemos con el precio.</p>
+<p class="sub">Cotiza por WhatsApp: elige productos del catálogo o manda tu lista y nuestro equipo te atiende con el precio.</p>
 <div class="grupo">{boton_wa(WA_GENERAL, "Cotiza por WhatsApp")}<a class="btn borde-b" href="{c.L("catalogo/")}">Ver catálogo</a></div></div>
 <div class="panel-busca"><h2>Busca un producto</h2><p>Escribe el nombre de lo que necesitas.</p>
 {buscador_form(c, "busca-i", "Ejemplo: cloro, escobas, palas")}
@@ -304,7 +314,7 @@ def p_inicio(c):
 <section class="banda"><div class="wrap">{encabezado_sec("Manda tu lista", "Escríbela como la tengas. Se abre WhatsApp con tu lista lista para enviar; si tienes una foto, la adjuntas desde el chat.")}
 <form class="form-lista solo-js" data-form-lista><label for="lista-t">Tu lista</label>
 <textarea id="lista-t" name="lista" placeholder="Por ejemplo: 2 palas, 1 caja de herramienta, 6 rollos de papel higiénico"></textarea>
-<div class="grupo"><a class="btn" data-lista-wa href="{wa("Hola, quiero cotizar esta lista:")}" target="_blank" rel="noopener noreferrer">{ico("wa")}Enviar lista por WhatsApp</a></div>
+<div class="grupo"><a class="btn" data-lista-wa href="{wa("Hola, quiero cotizar esta lista:")}" target="_blank" rel="noopener noreferrer">{ico("wa")}Enviar lista por WhatsApp</a><button type="button" class="btn cont" data-copiar-lista>Copiar mensaje</button></div>
 <p class="chico">WhatsApp solo abre el mensaje: tú decides si lo envías.</p></form>
 <noscript><div>{boton_wa(wa("Hola, quiero cotizar esta lista:"), "Enviar mi lista por WhatsApp", "claro")}</div></noscript></div></section>
 <section class="sec" id="tienda"><div class="wrap">{encabezado_sec("Visítanos")}<div class="tienda"><div>
@@ -387,7 +397,12 @@ PAGINAS = [  # ruta, título, descripción, función
     ('visitanos/', 'Visítanos · Comercializadora Robles', 'Dirección, horario y contacto de Comercializadora Robles en Santa María del Oro, Nayarit.', p_visitanos),
 ]
 
-FAVICON = 'data:image/svg+xml,' + urllib.parse.quote('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 24 24 6l21 18" stroke="#F48F07"/><path d="M9 21v22h30V21M20 43V31h8v12" stroke="#174F7C"/></svg>')
+
+
+def icono(c):
+    if c.modo == 'portatil':
+        return 'data:image/png;base64,' + base64.b64encode((RAIZ / 'src/img/favicon.png').read_bytes()).decode()
+    return c.asset('img/favicon.png')
 
 
 def head(c, ruta, titulo, desc):
@@ -396,7 +411,7 @@ def head(c, ruta, titulo, desc):
     og = (f'<meta property="og:type" content="website"><meta property="og:locale" content="es_MX"><meta property="og:site_name" content="{N["nombre"]}">'
           f'<meta property="og:title" content="{E(titulo)}"><meta property="og:description" content="{E(desc)}">')
     return (f'<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(titulo)}</title>'
-            f'<meta name="description" content="{E(desc)}"><meta name="theme-color" content="#174F7C">{robots}{canon}{og}<link rel="icon" href="{FAVICON}">')
+            f'<meta name="description" content="{E(desc)}"><meta name="theme-color" content="#044770">{robots}{canon}{og}<link rel="icon" href="{icono(c)}">')
 
 
 # ---------------------------------------------------------------- salida
@@ -409,12 +424,14 @@ def construir_dist():
     dist = RAIZ / 'dist'
     if dist.exists():
         shutil.rmtree(dist)
-    (dist / 'assets/css').mkdir(parents=True); (dist / 'assets/js').mkdir(parents=True); (dist / 'assets/fonts').mkdir(parents=True)
+    (dist / 'assets/css').mkdir(parents=True); (dist / 'assets/js').mkdir(parents=True); (dist / 'assets/fonts').mkdir(parents=True); (dist / 'assets/img').mkdir(parents=True)
     for _, _, arch in FUENTES:
         shutil.copy(ruta_fuente(arch), dist / 'assets/fonts' / arch)
+    for f in ('logo-completo.webp', 'favicon.png'):
+        shutil.copy(RAIZ / 'src/img' / f, dist / 'assets/img' / f)
     for f in (RAIZ / 'licencias').glob('*.txt'):
         shutil.copy(f, dist / 'assets/fonts' / f.name)
-    escribir(dist / 'assets/css/site.css', css_fuentes('dist') + CSS)
+    escribir(dist / 'assets/css/site.css', css_fuentes('dist') + logo_css('dist') + CSS)
     escribir(dist / 'assets/js/site.js', JS)
     escribir(dist / 'assets/js/catalogo.js', CATALOGO_JS)
     for ruta, titulo, desc, fn in PAGINAS:
@@ -439,7 +456,7 @@ def construir_portatil():
         secciones += f'<div class="pagina" data-ruta="{ruta}" data-titulo="{E(titulo)}" hidden>{fn(c)}</div>\n'
     c = Ctx('portatil', '')
     inicio = PAGINAS[0]
-    doc = f'''<!doctype html><html lang="es-MX"><head>{head(c, '', inicio[1], inicio[2])}<style>{css_fuentes('portatil')}{CSS}</style>{json_ld(c, '')}</head><body>
+    doc = f'''<!doctype html><html lang="es-MX"><head>{head(c, '', inicio[1], inicio[2])}<style>{css_fuentes('portatil')}{logo_css('portatil')}{CSS}</style>{json_ld(c, '')}</head><body>
 <a class="saltar" href="#contenido" data-ancla="contenido">Saltar al contenido</a>{SPRITE}{cabecera_sitio(c, '')}<main id="contenido">
 {secciones}</main>{pie_sitio(c)}{utilidades()}
 <script>window.ROBLES_PORTATIL=true;</script><script>{CATALOGO_JS}</script><script>{JS}</script></body></html>'''
