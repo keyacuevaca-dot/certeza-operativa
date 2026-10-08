@@ -4,20 +4,9 @@ Actualizado el 8-oct-2026 con el inventario del cliente (4 capturas) y el chat d
 
 Estados: **Rellenado** = lo puse yo porque era un detalle simple (revisar) · **Por decidir** = lo decide el responsable o el cliente · **Falta dato** = sin eso no se puede completar.
 
-## Ruta más eficaz (orden y tiempo de trabajo, sin contar esperas)
+## Ruta
 
-| # | Paso | Quién | Tiempo | Desbloquea |
-|---|---|---|---|---|
-| 1 | Mandar al cliente el enlace de vista previa con el mensaje de `herramientas/mensaje-al-cliente.md` (pide solo precios, supuestos y fotos) | Responsable | 10 min | Respuesta del cliente |
-| 2 | Cargar precios (monto, unidad, IVA y vigencia) en el CSV o el editor | IA | 30 min | Precios visibles |
-| 3 | Fotos propias o autorizadas: `src/img/productos/<id>.webp`; logos de marca en `src/img/marcas/` | Cliente toma; IA coloca | 30 min + espera | Catálogo con fotos y marcas |
-| 4 | Decidir lo de «Por decidir» (tabla de abajo) en una sola conversación | Responsable + cliente | 30 min | Textos finales |
-| 5 | Probar en 2 celulares reales (Android y iPhone) y mandar el QR a imprimir | Responsable | 30 min | Cierre de pruebas |
-| 6 | Verificar disponibilidad de dominio (`.com`, `.net`, `.mx`), registrar y publicar | Responsable autoriza; IA prepara | 1–2 h | Publicación |
-| 7 | Abrir la página de Facebook con `herramientas/kit-facebook.md` | Cliente | 30 min | Redes (prioridad 1 del cliente) |
-| 8 | Dar a la persona que atiende las respuestas rápidas y mostrar cómo actualizar el catálogo | Responsable | 30 min | Operación semanal |
-
-Total aproximado: **4–5 h de trabajo** si el paso 1 se contesta completo. Es una estimación mía, no una medición.
+Las fases, sub-pasos, quién y tiempos (míos) están en **`PLAN-FASES.md`**. Esta tabla solo dice el estado de cada dato.
 
 ## Tabla de estado
 

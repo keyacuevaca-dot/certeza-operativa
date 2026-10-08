@@ -63,7 +63,7 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 
 ## Qué falta y ruta para terminar
 
-Ver **`PENDIENTES.md`**: ruta ordenada, tabla de estado (rellenado · por decidir · falta dato) y lo que simplifica la operación.
+Ver **`PLAN-FASES.md`** (fases, sub-pasos, quién y tiempos) y **`PENDIENTES.md`** (estado de cada dato: rellenado · por decidir · falta dato).
 
 Herramientas para quien atiende: `herramientas/respuestas-whatsapp.md` (respuestas rápidas), `herramientas/qr-whatsapp.png` y `.svg` (QR a WhatsApp) y `herramientas/editor-catalogo.html`.
 
