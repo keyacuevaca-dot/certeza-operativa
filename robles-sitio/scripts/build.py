@@ -24,14 +24,14 @@ N = dict(
 )
 DIRECCION = '%s, colonia %s, %s, %s' % (N['calle'], N['colonia'], N['ciudad'], N['estado'])
 HORARIO = [('Lunes a viernes', '9:00 a 14:00 y de 16:00 a 18:30'), ('Sábado', '9:00 a 13:00')]   # domingo: no se publica
-MARCAS_EXTRA = ['Truper']      # el negocio la mencionó como marca que maneja; aún sin producto asignado
+MARCAS_EXTRA = []             # marcas mencionadas por el negocio sin producto asignado
 LINEAS = [
     dict(slug='construccion', nombre='Construcción'),
     dict(slug='limpieza', nombre='Limpieza'),
     dict(slug='papeleria', nombre='Papelería'),
 ]
 DESC_LINEA = {
-    'construccion': 'Herramienta manual, corte y afilado, y selladores. ¿Buscas un material para tu obra? Pregúntanos por WhatsApp.',
+    'construccion': 'Cemento, cal y morteros, varilla, herramienta, corte, selladores y chapas. ¿Buscas otro material para tu obra? Pregúntanos por WhatsApp.',
     'limpieza': 'Papel y desechables, cloro y aromas, jabones, utensilios e insecticidas para tu casa o negocio.',
     'papeleria': 'Todavía no publicamos productos de esta línea. Cuéntanos qué necesitas y te decimos si lo tenemos.',
 }
@@ -272,7 +272,7 @@ def p_inicio(c):
             cuerpo = f'<ul>{lista}</ul>{extra}<a class="mas" href="{href}"><span>Ver {l["nombre"].lower()}</span>{ico("flecha")}</a>'
         else:
             cuerpo = f'<div class="grupo">{boton_wa(wa("Hola, quiero cotizar en papelería:"), "Cotiza por WhatsApp")}</div>'
-        tarjetas += (f'<article class="linea{" principal" if s == "construccion" else ""}{"" if prods else " sin"}"><span class="num" aria-hidden="true">{n:02d}</span>'
+        tarjetas += (f'<article class="linea{"" if prods else " sin"}"><span class="num" aria-hidden="true">{n:02d}</span>'
                      f'<h3>{l["nombre"]}</h3><p class="cuenta" data-cuenta="{s}">{cuenta}</p><p>{DESC_LINEA[s]}</p>{cuerpo}</article>')
     # Índice estático (se vuelve a dibujar con los datos vigentes cuando hay JavaScript)
     grupos = []

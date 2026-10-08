@@ -1,25 +1,36 @@
 ﻿id,linea,subcategoria,producto,marca,presentacion,precio_mxn,unidad_del_precio,iva_incluido,vigencia_hasta,foto,icono,orden,activo,nota_interna
-C01,construccion,Herramienta manual,Desarmadores,,,,,,,,desarmador,1,sí,Hay algunos Stanley; marca de los demás por confirmar
-C02,construccion,Herramienta manual,Picos,,,,,,,,pico,2,sí,Marca por confirmar (¿Truper?)
-C03,construccion,Herramienta manual,Palas,,,,,,,,pala,3,sí,Marca por confirmar (¿Truper?)
-C04,construccion,Herramienta manual,Cajas de herramienta,Stanley,,,,,,,caja,4,sí,
-C05,construccion,Corte y afilado,Discos de corte,,,,,,,,disco,5,sí,Tipos y medidas por detallar
-C06,construccion,Corte y afilado,Afiladores de motosierra,,,,,,,,lima,6,sí,
-C07,construccion,Selladores,Selladores en tubo,,,,,,,,sellador,7,sí,Varios tipos por detallar
-L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,rollo,8,sí,
-L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,toalla,9,sí,
-L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,panuelos,10,sí,Presentación por detallar
-L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,750 ml,,,,,,botella,11,sí,RELLENADO: el negocio dijo «de 750»; se asumió ml. Confirmar con la tienda.
-L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,botella,12,sí,Marca por confirmar («de marca»)
-L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,botella,13,sí,Presentación por detallar
-L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,botella,14,sí,
-L08,limpieza,Cloro y aromas,Suavitel,Suavitel,,,,,,,botella,15,sí,Presentación por detallar
-L09,limpieza,Cloro y aromas,Aromatizante,,,,,,,,spray,16,sí,Tipo y marca por detallar
-L10,limpieza,Jabones,Jabón en barra,,,,,,,,jabon,17,sí,
-L11,limpieza,Jabones,Jabón para manos,,,,,,,,dispensador,18,sí,
-L12,limpieza,Utensilios de limpieza,Fibras verdes,,,,,,,,fibra,19,sí,
-L13,limpieza,Utensilios de limpieza,Estropajos,,,,,,,,fibra,20,sí,
-L14,limpieza,Utensilios de limpieza,Toallitas azules,,,,,,,,toalla,21,sí,
-L15,limpieza,Utensilios de limpieza,Escobas,,,,,,,,escoba,22,sí,
-L16,limpieza,Utensilios de limpieza,Trapeadores,,,,,,,,trapeador,23,sí,
-L17,limpieza,Insecticidas,Raid casa y jardín,Raid,,,,,,,spray,24,sí,
+C08,construccion,"Cemento, cal y morteros",Cemento Tolteca,Tolteca,25 kg,,,,,,,1,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C09,construccion,"Cemento, cal y morteros",Cemento Moctezuma,Moctezuma,25 kg,,,,,,,2,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C10,construccion,"Cemento, cal y morteros",Mortero Tolteca,Tolteca,25 kg,,,,,,,3,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C11,construccion,"Cemento, cal y morteros",Mortero Moctezuma,Moctezuma,25 kg,,,,,,,4,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C12,construccion,"Cemento, cal y morteros",Cal Calidra,Calidra,25 kg,,,,,,,5,sí,Dato del cliente por WhatsApp (6-oct). Precio y existencia por confirmar.
+C13,construccion,"Cemento, cal y morteros",Pegapiso Ade1000,,20 kg,,,,,,,6,sí,Dato del cliente por WhatsApp (6-oct). Se escribió «Ade1000»; confirmar si es marca o nombre del producto.
+C14,construccion,Varilla,Varilla,,1/2 pulgada,,,,,,,7,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
+C15,construccion,Varilla,Varilla,,3/8 pulgada,,,,,,,8,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: se asumió pulgadas (medida estándar). Largo y tipo por confirmar.
+C01,construccion,Herramienta manual,Desarmadores,,,,,,,,desarmador,9,sí,Hay algunos Stanley (dicho por el cliente); marca de los demás por confirmar
+C02,construccion,Herramienta manual,Picos,Truper,,,,,,,pico,10,sí,RELLENADO: el cliente anotó «Truper» después de picos y palas; confirmar.
+C03,construccion,Herramienta manual,Palas,Truper,,,,,,,pala,11,sí,RELLENADO: el cliente anotó «Truper» después de picos y palas; confirmar.
+C04,construccion,Herramienta manual,Cajas de herramienta,Stanley,,,,,,,caja,12,sí,
+C16,construccion,Herramienta manual,Carretillas,Truper,,,,,,,,13,sí,Dato del cliente por WhatsApp (6-oct). Marca indicada por el cliente.
+C05,construccion,Corte y afilado,Discos de corte,,,,,,,,disco,14,sí,Tipos y medidas por detallar
+C06,construccion,Corte y afilado,Afiladores de motosierra,,,,,,,,lima,15,sí,
+C07,construccion,Selladores,Selladores en tubo,,,,,,,,sellador,16,sí,Varios tipos por detallar
+C17,construccion,Selladores,Sellador en cubeta,Del Toro,cubeta de 20 litros,,,,,,,17,sí,Dato del cliente por WhatsApp (6-oct). RELLENADO: el cliente escribió «marca del toro»; confirmar la marca.
+C18,construccion,Cerrajería,Chapas,Phillips,,,,,,,,18,sí,Dato del cliente por WhatsApp (6-oct). Modelos y tipos por detallar.
+L01,limpieza,Papel y desechables,Papel higiénico,,paquete de rollos,,,,,,rollo,19,sí,
+L02,limpieza,Papel y desechables,Toalla en rollo,,,,,,,,toalla,20,sí,
+L03,limpieza,Papel y desechables,Kleenex,Kleenex,,,,,,,panuelos,21,sí,Presentación por detallar
+L04,limpieza,Cloro y aromas,Cloro Cloralex,Cloralex,750 ml,,,,,,botella,22,sí,RELLENADO: el negocio dijo «de 750»; se asumió ml. Confirmar con la tienda.
+L05,limpieza,Cloro y aromas,Cloro,,10 litros,,,,,,botella,23,sí,Marca por confirmar («de marca»)
+L06,limpieza,Cloro y aromas,Fabuloso,Fabuloso,,,,,,,botella,24,sí,Presentación por detallar
+L07,limpieza,Cloro y aromas,Fabuloso,Fabuloso,10 litros,,,,,,botella,25,sí,
+L08,limpieza,Cloro y aromas,Suavitel,Suavitel,,,,,,,botella,26,sí,Presentación por detallar
+L09,limpieza,Cloro y aromas,Aromatizante,,,,,,,,spray,27,sí,Tipo y marca por detallar
+L10,limpieza,Jabones,Jabón en barra,,,,,,,,jabon,28,sí,
+L11,limpieza,Jabones,Jabón para manos,,,,,,,,dispensador,29,sí,
+L12,limpieza,Utensilios de limpieza,Fibras verdes,,,,,,,,fibra,30,sí,
+L13,limpieza,Utensilios de limpieza,Estropajos,,,,,,,,fibra,31,sí,
+L14,limpieza,Utensilios de limpieza,Toallitas azules,,,,,,,,toalla,32,sí,
+L15,limpieza,Utensilios de limpieza,Escobas,,,,,,,,escoba,33,sí,
+L16,limpieza,Utensilios de limpieza,Trapeadores,,,,,,,,trapeador,34,sí,
+L17,limpieza,Insecticidas,Raid casa y jardín,Raid,,,,,,,spray,35,sí,

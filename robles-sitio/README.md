@@ -14,7 +14,7 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 | Página | Contenido |
 |---|---|
 | Inicio | Héroe con buscador de productos, datos de la tienda (en escritorio, en la barra superior), tres líneas (Construcción primero, con botón para cotizar materiales de obra; una línea sin productos, hoy Papelería, aparece como franja compacta), índice «Lo que encuentras» y marcas, «Así cotizas», «Manda tu lista» y «Visítanos» |
-| Catálogo | 24 productos en filas tipo ficha técnica, menú lateral de categorías, buscador, cantidad, «Cotizar» (abre WhatsApp) y «Agregar» a mi lista |
+| Catálogo | 35 productos en filas tipo ficha técnica, menú lateral de categorías, buscador, cantidad, «Cotizar» (abre WhatsApp) y «Agregar» a mi lista |
 | Construcción, Limpieza, Papelería | Una página por línea; Papelería aún sin productos |
 | Cómo comprar | Solicitar cotización, formas de pago y preguntas |
 | Visítanos | Ubicación, horario y contacto |
@@ -60,9 +60,9 @@ Herramientas para quien atiende: `herramientas/respuestas-whatsapp.md` (respuest
 
 ## Lo que falta o no se afirma
 
-- **Materiales de obra:** la lista del negocio no los trae (cemento, varilla, block…), aunque son la línea principal. No se inventaron; el sitio invita a preguntar por WhatsApp.
+- **Materiales de obra:** el chat con el cliente trajo 11 productos (cemento, mortero, cal, pegapiso, varilla, carretillas, sellador en cubeta y chapas). Falta el resto del inventario («de todo un poco»), precios y fotos. El sitio invita a preguntar por WhatsApp lo que no aparece.
 - **Papelería:** sin productos en la lista, por eso no tiene catálogo.
-- **Marcas:** Truper se mencionó pero no quedó asignada a ningún producto; solo Stanley, Cloralex, Fabuloso, Suavitel, Kleenex y Raid aparecen donde el negocio las indicó.
+- **Marcas:** salen del catálogo (Tolteca, Moctezuma, Calidra, Del Toro, Phillips, Truper, Stanley, Cloralex, Fabuloso, Suavitel, Kleenex y Raid). Truper en picos y palas, y «Del Toro» son supuestos por confirmar; ver `PENDIENTES.md`.
 - No se afirman entregas, facturación, garantías, descuentos, testimonios, pago con tarjeta ni existencia.
 
 ## Pruebas realizadas

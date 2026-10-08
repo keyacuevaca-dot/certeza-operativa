@@ -2,6 +2,134 @@
 window.ROBLES_LINEAS=[{"slug": "construccion", "nombre": "Construcción"}, {"slug": "limpieza", "nombre": "Limpieza"}, {"slug": "papeleria", "nombre": "Papelería"}];
 window.ROBLES_CATALOGO=[
  {
+  "id": "C08",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Cemento Tolteca",
+  "marca": "Tolteca",
+  "pres": "25 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 1,
+  "activo": "sí"
+ },
+ {
+  "id": "C09",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Cemento Moctezuma",
+  "marca": "Moctezuma",
+  "pres": "25 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 2,
+  "activo": "sí"
+ },
+ {
+  "id": "C10",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Mortero Tolteca",
+  "marca": "Tolteca",
+  "pres": "25 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 3,
+  "activo": "sí"
+ },
+ {
+  "id": "C11",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Mortero Moctezuma",
+  "marca": "Moctezuma",
+  "pres": "25 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 4,
+  "activo": "sí"
+ },
+ {
+  "id": "C12",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Cal Calidra",
+  "marca": "Calidra",
+  "pres": "25 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 5,
+  "activo": "sí"
+ },
+ {
+  "id": "C13",
+  "linea": "construccion",
+  "sub": "Cemento, cal y morteros",
+  "nombre": "Pegapiso Ade1000",
+  "marca": "",
+  "pres": "20 kg",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 6,
+  "activo": "sí"
+ },
+ {
+  "id": "C14",
+  "linea": "construccion",
+  "sub": "Varilla",
+  "nombre": "Varilla",
+  "marca": "",
+  "pres": "1/2 pulgada",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 7,
+  "activo": "sí"
+ },
+ {
+  "id": "C15",
+  "linea": "construccion",
+  "sub": "Varilla",
+  "nombre": "Varilla",
+  "marca": "",
+  "pres": "3/8 pulgada",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 8,
+  "activo": "sí"
+ },
+ {
   "id": "C01",
   "linea": "construccion",
   "sub": "Herramienta manual",
@@ -14,7 +142,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "desarmador",
-  "orden": 1,
+  "orden": 9,
   "activo": "sí"
  },
  {
@@ -22,7 +150,7 @@ window.ROBLES_CATALOGO=[
   "linea": "construccion",
   "sub": "Herramienta manual",
   "nombre": "Picos",
-  "marca": "",
+  "marca": "Truper",
   "pres": "",
   "precio": "",
   "unidad": "",
@@ -30,7 +158,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "pico",
-  "orden": 2,
+  "orden": 10,
   "activo": "sí"
  },
  {
@@ -38,7 +166,7 @@ window.ROBLES_CATALOGO=[
   "linea": "construccion",
   "sub": "Herramienta manual",
   "nombre": "Palas",
-  "marca": "",
+  "marca": "Truper",
   "pres": "",
   "precio": "",
   "unidad": "",
@@ -46,7 +174,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "pala",
-  "orden": 3,
+  "orden": 11,
   "activo": "sí"
  },
  {
@@ -62,7 +190,23 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "caja",
-  "orden": 4,
+  "orden": 12,
+  "activo": "sí"
+ },
+ {
+  "id": "C16",
+  "linea": "construccion",
+  "sub": "Herramienta manual",
+  "nombre": "Carretillas",
+  "marca": "Truper",
+  "pres": "",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 13,
   "activo": "sí"
  },
  {
@@ -78,7 +222,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "disco",
-  "orden": 5,
+  "orden": 14,
   "activo": "sí"
  },
  {
@@ -94,7 +238,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "lima",
-  "orden": 6,
+  "orden": 15,
   "activo": "sí"
  },
  {
@@ -110,7 +254,39 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "sellador",
-  "orden": 7,
+  "orden": 16,
+  "activo": "sí"
+ },
+ {
+  "id": "C17",
+  "linea": "construccion",
+  "sub": "Selladores",
+  "nombre": "Sellador en cubeta",
+  "marca": "Del Toro",
+  "pres": "cubeta de 20 litros",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 17,
+  "activo": "sí"
+ },
+ {
+  "id": "C18",
+  "linea": "construccion",
+  "sub": "Cerrajería",
+  "nombre": "Chapas",
+  "marca": "Phillips",
+  "pres": "",
+  "precio": "",
+  "unidad": "",
+  "iva": "",
+  "vigencia": "",
+  "foto": "",
+  "icono": "",
+  "orden": 18,
   "activo": "sí"
  },
  {
@@ -126,7 +302,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "rollo",
-  "orden": 8,
+  "orden": 19,
   "activo": "sí"
  },
  {
@@ -142,7 +318,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "toalla",
-  "orden": 9,
+  "orden": 20,
   "activo": "sí"
  },
  {
@@ -158,7 +334,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "panuelos",
-  "orden": 10,
+  "orden": 21,
   "activo": "sí"
  },
  {
@@ -174,7 +350,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "botella",
-  "orden": 11,
+  "orden": 22,
   "activo": "sí"
  },
  {
@@ -190,7 +366,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "botella",
-  "orden": 12,
+  "orden": 23,
   "activo": "sí"
  },
  {
@@ -206,7 +382,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "botella",
-  "orden": 13,
+  "orden": 24,
   "activo": "sí"
  },
  {
@@ -222,7 +398,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "botella",
-  "orden": 14,
+  "orden": 25,
   "activo": "sí"
  },
  {
@@ -238,7 +414,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "botella",
-  "orden": 15,
+  "orden": 26,
   "activo": "sí"
  },
  {
@@ -254,7 +430,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "spray",
-  "orden": 16,
+  "orden": 27,
   "activo": "sí"
  },
  {
@@ -270,7 +446,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "jabon",
-  "orden": 17,
+  "orden": 28,
   "activo": "sí"
  },
  {
@@ -286,7 +462,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "dispensador",
-  "orden": 18,
+  "orden": 29,
   "activo": "sí"
  },
  {
@@ -302,7 +478,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "fibra",
-  "orden": 19,
+  "orden": 30,
   "activo": "sí"
  },
  {
@@ -318,7 +494,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "fibra",
-  "orden": 20,
+  "orden": 31,
   "activo": "sí"
  },
  {
@@ -334,7 +510,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "toalla",
-  "orden": 21,
+  "orden": 32,
   "activo": "sí"
  },
  {
@@ -350,7 +526,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "escoba",
-  "orden": 22,
+  "orden": 33,
   "activo": "sí"
  },
  {
@@ -366,7 +542,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "trapeador",
-  "orden": 23,
+  "orden": 34,
   "activo": "sí"
  },
  {
@@ -382,7 +558,7 @@ window.ROBLES_CATALOGO=[
   "vigencia": "",
   "foto": "",
   "icono": "spray",
-  "orden": 24,
+  "orden": 35,
   "activo": "sí"
  }
 ];

@@ -150,7 +150,7 @@ html:not(.js) .solo-js{display:none}
 
 /* ---------- Líneas ---------- */
 .lineas{display:grid;gap:var(--s3)}
-@media (min-width:980px){.lineas{grid-template-columns:1.4fr 1fr 1fr}.lineas.con-sin{grid-template-columns:1.4fr 1fr}}
+@media (min-width:980px){.lineas{grid-template-columns:repeat(3,1fr)}.lineas.con-sin{grid-template-columns:repeat(2,1fr)}}
 .linea{background:#fff;border:var(--linea) solid var(--borde);border-radius:var(--r);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2);position:relative;overflow:hidden}
 .linea .num{font:700 4.5rem/1 var(--f-tit);color:transparent;-webkit-text-stroke:1.5px rgba(4,71,112,.28);position:absolute;right:20px;top:8px;letter-spacing:-.04em;pointer-events:none}
 .linea h3{font-size:1.75rem;margin:0;position:relative}
