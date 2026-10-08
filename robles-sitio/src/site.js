@@ -59,6 +59,7 @@
     return { monto: '$' + p.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' MXN',
              detalle: 'por ' + it.unidad + ' · ' + iva + ' · vigente hasta el ' + fecha };
   }
+  var HAY_PRECIOS = ITEMS.some(function (i) { return !!precioCompleto(i); });
   function lineaMsg(it, qty) { return nombreCompleto(it) + (it.pres ? ' (' + it.pres + ')' : '') + ' · cantidad: ' + qty; }
   function msgProducto(it, qty) { return 'Hola, quiero cotizar: ' + lineaMsg(it, qty); }
   function msgLista() {
@@ -124,8 +125,9 @@
       agregar(it.id, c.leer());
       var t = add.lastChild, o = t.nodeValue; t.nodeValue = 'Agregado'; setTimeout(function () { t.nodeValue = o; }, 1600);
     });
+    // Sin ningún precio publicado, el aviso va una sola vez arriba de la lista; con precios, cada fila sin precio lo indica.
     var precio = pc ? el('p', { 'class': 'precio' }, [pc.monto, el('small', { text: pc.detalle })])
-                    : el('p', { 'class': 'precio' }, ['Solicita precio', el('small', { text: 'Te lo damos por WhatsApp' })]);
+                    : (HAY_PRECIOS ? el('p', { 'class': 'precio' }, ['Solicita precio', el('small', { text: 'Te lo damos por WhatsApp' })]) : null);
     var partes = [];
     if (it.foto) partes.push(el('div', { 'class': 'foto' }, [el('img', { src: it.foto, alt: it.nombre, loading: 'lazy' })]));
     partes.push(el('div', { 'class': 'info' }, [el('h3', { text: it.nombre }), m ? el('p', { 'class': 'meta', text: m }) : null, precio]));
@@ -186,6 +188,7 @@
   });
 
   /* Conteo por línea en la portada, con los datos vigentes */
+  if (HAY_PRECIOS) $$('[data-nota]').forEach(function (e) { e.textContent = '«Cotizar» abre WhatsApp con tu producto listo; tú decides si lo envías. Si un producto no muestra precio, pídelo por WhatsApp.'; });
   $$('[data-cuenta]').forEach(function (e) {
     var n = ITEMS.filter(function (i) { return i.linea === e.getAttribute('data-cuenta'); }).length;
     e.textContent = n ? n + (n === 1 ? ' producto' : ' productos') : 'Sin productos publicados';

@@ -261,8 +261,8 @@ def p_inicio(c):
                 extra = f'<div class="grupo fin">{boton_wa(wa("Hola, quiero cotizar materiales para obra:"), "Cotiza materiales para obra")}</div>'
             cuerpo = f'<ul>{lista}</ul>{extra}<a class="mas" href="{href}"><span>Ver {l["nombre"].lower()}</span>{ico("flecha")}</a>'
         else:
-            cuerpo = f'<div class="grupo" style="margin-top:auto">{boton_wa(wa("Hola, quiero cotizar en papelería:"), "Cotiza por WhatsApp")}</div>'
-        tarjetas += (f'<article class="linea{" principal" if s == "construccion" else ""}"><span class="num" aria-hidden="true">{n:02d}</span>'
+            cuerpo = f'<div class="grupo">{boton_wa(wa("Hola, quiero cotizar en papelería:"), "Cotiza por WhatsApp")}</div>'
+        tarjetas += (f'<article class="linea{" principal" if s == "construccion" else ""}{"" if prods else " sin"}"><span class="num" aria-hidden="true">{n:02d}</span>'
                      f'<h3>{l["nombre"]}</h3><p class="cuenta" data-cuenta="{s}">{cuenta}</p><p>{DESC_LINEA[s]}</p>{cuerpo}</article>')
     # Índice estático (se vuelve a dibujar con los datos vigentes cuando hay JavaScript)
     grupos = []
@@ -289,14 +289,14 @@ def p_inicio(c):
 <p class="sub">Cotiza por WhatsApp: elige productos del catálogo o manda tu lista, y te respondemos con el precio.</p>
 <div class="grupo">{boton_wa(WA_GENERAL, "Cotiza por WhatsApp")}<a class="btn borde-b" href="{c.L("catalogo/")}">Ver catálogo</a></div></div>
 <div class="panel-busca"><h2>Busca un producto</h2><p>Escribe el nombre de lo que necesitas.</p>
-{buscador_form(c, "busca-i", "Por ejemplo: desarmadores, cloro, escobas")}
+{buscador_form(c, "busca-i", "Ejemplo: cloro, escobas, palas")}
 <ul class="rapido">{rapido}</ul></div></div></section>
 <div class="datos-b"><div class="wrap"><ul>
 <li>{ico("pin")}<div><b>{N["calle"]}, Col. {N["colonia"]}</b><span>{N["ciudad"]}, {N["estado"]}</span></div></li>
 <li>{ico("reloj")}<div><b>Lun a vie 9:00–14:00 y 16:00–18:30</b><span>Sábado 9:00–13:00</span></div></li>
 <li>{ico("pago")}<div><b>Efectivo y transferencia</b><span>Los datos para pagar se piden a la tienda</span></div></li>
 </ul></div></div>
-<section class="sec"><div class="wrap">{encabezado_sec("Catálogo por línea", "Tres líneas en un solo lugar. Elige una o busca por producto.")}<div class="lineas">{tarjetas}</div></div></section>
+<section class="sec"><div class="wrap">{encabezado_sec("Catálogo por línea", "Tres líneas en un solo lugar. Elige una o busca por producto.")}<div class="lineas{" con-sin" if "linea sin" in tarjetas or " sin\"" in tarjetas else ""}">{tarjetas}</div></div></section>
 <section class="sec gris"><div class="wrap">{encabezado_sec("Lo que encuentras", "Productos que manejamos hoy. Si no ves el que buscas, pregúntanos por WhatsApp.")}
 <div class="indice" data-indice {attrs_href(c)}>{indice}</div>
 <div class="marcas"><h3>Marcas</h3><ul>{marcas_html}</ul></div></div></section>
@@ -325,7 +325,7 @@ def catalogo_layout(c, slug, con_busqueda=True):
     if con_busqueda:
         herr = (f'<div class="herr"><div class="busca"><label class="sr" for="buscar-{slug}">Buscar en el catálogo</label>{ico("lupa")}'
                 f'<input id="buscar-{slug}" type="search" placeholder="Buscar en el catálogo" autocomplete="off" data-en="{cid}"></div>'
-                f'<p class="nota">{ico("wa")}<span>«Cotizar» abre WhatsApp con tu producto listo; tú decides si lo envías.</span></p></div>')
+                f'<p class="nota">{ico("wa")}<span data-nota>Los precios te los damos por WhatsApp. «Cotizar» abre WhatsApp con tu producto listo; tú decides si lo envías.</span></p></div>')
     modo = 'todos' if slug == 'todos' else slug
     aviso = '' if slug == 'papeleria' else AVISO_CAT % boton_wa(WA_GENERAL, 'Cotiza por WhatsApp', 'compacto')
     return f'<div class="wrap"><div class="cat">{lateral}<div>{herr}<div id="{cid}" data-catalogo="{modo}"></div>{aviso}</div></div></div>'
@@ -356,7 +356,8 @@ def p_como_comprar(c):
     faq = ''.join(f'<details><summary>{E(q)}{ico("chev")}</summary><p>{E(r)}</p></details>' for q, r in FAQ)
     return cab + f'''<section class="sec" id="solicitar-cotizacion"><div class="wrap">{encabezado_sec("Solicitar cotización", "Tres pasos, sin registrarte ni crear una cuenta.")}
 <ol class="pasos">{pasos_html}</ol><div class="grupo" style="margin-top:32px">{boton_wa(wa("Hola, quiero cotizar esta lista:"), "Enviar mi lista por WhatsApp")}<a class="btn cont" href="{c.L("catalogo/")}">Ver catálogo</a></div></div></section>
-<section class="sec gris" id="formas-de-pago"><div class="wrap">{encabezado_sec("Formas de pago", "Aceptamos <b>efectivo</b> y <b>transferencia</b>. No publicamos datos bancarios en este sitio: pídelos a la tienda al confirmar tu pedido.")}</div></section>
+<section class="sec gris compacta" id="formas-de-pago"><div class="wrap">{encabezado_sec("Formas de pago", "Aceptamos efectivo y transferencia. No publicamos datos bancarios en este sitio: pídelos a la tienda al confirmar tu pedido.")}
+<ul class="pagos"><li>Efectivo</li><li>Transferencia</li></ul></div></section>
 <section class="sec" id="preguntas"><div class="wrap">{encabezado_sec("Preguntas")}<div class="preguntas">{faq}</div>
 <div class="aviso"><p>¿Tienes otra duda? Escríbenos por WhatsApp.</p><p>{boton_wa(WA_GENERAL, "Cotiza por WhatsApp", "compacto")}</p></div></div></section>'''
 

@@ -13,7 +13,7 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 
 | Página | Contenido |
 |---|---|
-| Inicio | Héroe con buscador de productos, datos de la tienda, tres líneas (Construcción primero, con botón para cotizar materiales de obra), índice «Lo que encuentras» y marcas, «Así cotizas», «Manda tu lista» y «Visítanos» |
+| Inicio | Héroe con buscador de productos, datos de la tienda (en escritorio, en la barra superior), tres líneas (Construcción primero, con botón para cotizar materiales de obra; una línea sin productos, hoy Papelería, aparece como franja compacta), índice «Lo que encuentras» y marcas, «Así cotizas», «Manda tu lista» y «Visítanos» |
 | Catálogo | 24 productos en filas tipo ficha técnica, menú lateral de categorías, buscador, cantidad, «Cotizar» (abre WhatsApp) y «Agregar» a mi lista |
 | Construcción, Limpieza, Papelería | Una página por línea; Papelería aún sin productos |
 | Cómo comprar | Solicitar cotización, formas de pago y preguntas |
@@ -21,7 +21,7 @@ En GitHub, estos archivos se ven como código; descárgalos (*Download raw file*
 
 **Mi lista:** el visitante agrega productos y envía **toda la lista en un solo mensaje de WhatsApp**. Se guarda solo en su dispositivo. WhatsApp abre el mensaje listo; **enviarlo lo decide la persona**.
 
-**Precios:** un precio solo se muestra si tiene monto, unidad, IVA y fecha de vigencia sin vencer. Si falta algo o venció, dice «Solicita precio». No se muestra existencia.
+**Precios:** un precio solo se muestra si tiene monto, unidad, IVA y fecha de vigencia sin vencer. Mientras ningún producto tenga precio publicado, el aviso «Los precios te los damos por WhatsApp» sale una sola vez arriba de la lista; en cuanto haya algún precio, los productos sin precio indican «Solicita precio». No se muestra existencia.
 
 ## Actualizar el catálogo cada semana (administradora)
 
