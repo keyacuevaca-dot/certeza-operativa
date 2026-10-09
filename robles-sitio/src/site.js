@@ -287,7 +287,11 @@
   D.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[data-q],a[data-sub-id]'); if (!a) return;
     if (a.hasAttribute('data-q') && PORTATIL) { pendienteQ = a.getAttribute('data-q'); limpiarQ = false; }
-    if (a.hasAttribute('data-sub-id') && PORTATIL) pendienteSub = a.getAttribute('data-sub-id');
+    if (a.hasAttribute('data-sub-id') && PORTATIL) {
+      pendienteSub = a.getAttribute('data-sub-id');
+      // ya estás en esa página: el hash no cambia, así que se baja directo a la sección
+      if (a.getAttribute('href') === location.hash) { e.preventDefault(); irASub(); }
+    }
   });
   function irASub() {
     var id = pendienteSub || (!PORTATIL && location.hash.length > 1 ? location.hash.slice(1) : ''); pendienteSub = '';

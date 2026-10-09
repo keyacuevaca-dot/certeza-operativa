@@ -140,6 +140,21 @@ def ico(id_):
     return f'<svg class="ico" aria-hidden="true"><use href="#i-{id_}"/></svg>'
 
 
+ICONO_LINEA = {'construccion': 'ladrillo', 'limpieza': 'escoba', 'papeleria': 'lapiz'}
+
+
+def ico_p(id_):
+    return f'<svg class="ico" aria-hidden="true"><use href="#p-{id_}"/></svg>'
+
+
+def pestana(href, icono, texto):
+    return f'<li><a href="{href}">{icono}<span>{texto}</span></a></li>'
+
+
+def subnav(c, items):
+    return '<ul class="subnav" aria-label="En esta página">' + ''.join(f'<li><a href="#{i}" data-ancla="{i}">{ico(ic)}<span>{t}</span></a></li>' for i, ic, t in items) + '</ul>'
+
+
 def boton_wa(url, texto, cls=''):
     c = ('btn ' + cls).strip()
     return f'<a class="{c}" href="{url}" target="_blank" rel="noopener noreferrer">{ico("wa")}{texto}</a>'
@@ -211,14 +226,13 @@ def horario_tabla():
 
 def pie_sitio(c):
     ext = ' Vista previa de revisión: no está publicada.' if REVISION else ''
-    sitio = ''.join(f'<li><a href="{c.L(r)}">{t}</a></li>' for t, r in [('Catálogo', 'catalogo/')] + [(l['nombre'], 'catalogo/%s/' % l['slug']) for l in LINEAS] + [('Cómo comprar', 'como-comprar/'), ('Visítanos', 'visitanos/')])
-    horas = '<br>'.join(f'{d}: {h.replace(" a ", "–").replace(" y de ", " y ")}' for d, h in HORARIO)
+    horario = c.L('visitanos/') + ('' if c.modo == 'portatil' else '#horario')
     return f'''<footer class="pie"><div class="wrap"><div class="cols">
- <div><a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio"><span class="logo" aria-hidden="true"></span></a>
-  <p>Construcción, limpieza y papelería en {N["ciudad"]}, {N["estado"]}.</p></div>
- <nav aria-label="Sitio"><h2>Sitio</h2><ul>{sitio}</ul></nav>
- <div><h2>Tienda</h2><p class="horas">{N["calle"]}, Col. {N["colonia"]}<br>{N["ciudad"]}, {N["estado"]}</p><p class="horas">{horas}</p>
-  <p><a class="enl" href="{MAPS}" target="_blank" rel="noopener noreferrer">Cómo llegar</a></p></div>
+ <div class="pie-marca"><a class="marca" href="{c.L("")}" aria-label="{N["nombre"]}, inicio"><span class="logo" aria-hidden="true"></span></a>
+  <p>Construcción, limpieza y papelería en {N["ciudad"]}, {N["estado"]}.</p>
+  <ul><li><a href="{c.L("como-comprar/")}">{ico("bolsa")}Cómo comprar</a></li></ul></div>
+ <div><h2>Tienda</h2><p>{N["calle"]}, Col. {N["colonia"]}<br>{N["ciudad"]}, {N["estado"]}</p>
+  <ul><li><a href="{MAPS}" target="_blank" rel="noopener noreferrer">{ico("pin")}Cómo llegar</a></li><li><a href="{horario}" data-sub-id="horario">{ico("reloj")}Horario</a></li></ul></div>
  <div><h2>Contacto</h2>
   <ul><li><a href="tel:{N["tel_href"]}">{ico("tel")}{N["tel"]}</a></li><li><a href="{WA_GENERAL}" target="_blank" rel="noopener noreferrer">{ico("wa")}WhatsApp</a></li><li><a href="mailto:{N["correo"]}">{ico("mail")}{N["correo"]}</a></li></ul></div>
 </div><p class="legal">© 2026 {N["nombre"]}.{ext}</p></div></footer>'''
@@ -338,7 +352,7 @@ def tile_ui(id_):
 
 
 def p_inicio(c):
-    atajos = ''.join(f'<li><a href="{c.L("catalogo/%s/" % l["slug"])}">{l["nombre"]}{ico("flecha")}</a></li>' for l in LINEAS)
+    atajos = ''.join(pestana(c.L("catalogo/%s/" % l["slug"]), ico_p(ICONO_LINEA[l["slug"]]), l["nombre"]) for l in LINEAS)
     chips = ''.join(f'<li><a href="{enlace_q(c, q)}" data-q="{E(q)}">{t}</a></li>' for t, q in BUSQUEDAS)
     fallback = ''.join(f'<li><a href="{c.L("catalogo/%s/" % l["slug"])}">{l["nombre"]}</a></li>' for l in LINEAS)
     marcas = ''.join(marca_item(c, m) for m in marcas_visibles())
@@ -391,7 +405,7 @@ def p_linea(slug):
 
 
 def p_como_comprar(c):
-    sub = f'<ul class="subnav" aria-label="En esta página"><li>{c.ancla("pasos", "Cómo se compra")}</li><li>{c.ancla("formas-de-pago", "Formas de pago")}</li><li>{c.ancla("preguntas", "Preguntas")}</li></ul>'
+    sub = subnav(c, [("pasos", "bolsa", "Cómo se compra"), ("formas-de-pago", "pago", "Formas de pago"), ("preguntas", "ayuda", "Preguntas")])
     cab = cabecera_pagina(c, [('Inicio', ''), ('Cómo comprar', None)], 'Cómo comprar', 'Arma tu lista, mándala por WhatsApp y confirma con la tienda.', sub)
     pasos = ''.join(f'<li>{tile_ui(i)}<span><b>{t}</b><small>{d}</small></span></li>' for i, t, d in PASOS_PAGINA)
     faq = ''.join(f'<details><summary>{E(q)}{ico("chev")}</summary><p>{E(r)}</p></details>' for q, r in FAQ)
@@ -404,7 +418,7 @@ def p_como_comprar(c):
 
 
 def p_visitanos(c):
-    sub = f'<ul class="subnav" aria-label="En esta página"><li>{c.ancla("ubicacion", "Ubicación")}</li><li>{c.ancla("horario", "Horario")}</li><li>{c.ancla("contacto", "Contacto")}</li></ul>'
+    sub = subnav(c, [("ubicacion", "pin", "Ubicación"), ("horario", "reloj", "Horario"), ("contacto", "tel", "Contacto")])
     cab = cabecera_pagina(c, [('Inicio', ''), ('Visítanos', None)], 'Visítanos', f'Estamos en el centro de {N["ciudad"]}.', sub)
     return cab + f"""<section class="sec"><div class="wrap"><div class="dos"><div id="ubicacion"><h2>Ubicación</h2>
 <ul class="ficha"><li>{ico("pin")}<div><b>Dirección</b>{N["calle"]}<br>Col. {N["colonia"]}, C.P. {N["cp"]}<br>{N["ciudad"]}, {N["estado"]}</div></li></ul>

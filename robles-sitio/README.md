@@ -53,6 +53,7 @@ Datos del negocio, horario y textos: `scripts/build.py`. Colores y tamaños: `sr
 ## Decisiones
 
 - **Diseño (v3):** Ruta A (catálogo claro). Sistema único: radio de 8 px, líneas de 1 px, escala de espacios de 8 px. Azul `#044770` y naranja `#E97E1C`, tomados del logo real; el naranja solo rellena botones, con texto `#1A1A1A`. El botón «Menú» lleva marco azul de 2 px y fondo celeste claro para que destaque.
+- **Pestañas y pie:** las pestañas del héroe (líneas, «Cómo comprar» y «Visítanos») llevan un icono de silueta en lugar de flecha: tres losetas iguales en celular y botones en fila desde 640 px. El pie tiene un solo enlace del sitio («Cómo comprar»), más «Cómo llegar» y «Horario» (lleva a la sección de Visítanos), y fondo `#032A45` (10 % más oscuro que el azul de las bandas).
 - **Iconos:** uno por producto y subcategoría, de trazo simple y un solo grosor. Salen de Lucide (licencia ISC, en `licencias/Lucide-ISC.txt`) más unos pocos dibujados a mano en `src/sprite-prod.svg`. No son fotos: se sustituyen por fotos reales cuando existan.
 - **Tipografía:** sin Arial. Bricolage Grotesque (títulos) e Instrument Sans (cuerpo), con licencia libre (OFL), incluidas en el sitio. Licencias en `licencias/`.
 - **Que no se parezca a Truper ni a Pretul:** el azul domina y el naranja ocupa poca superficie. **No pude comprobar sus colores reales** (sin acceso a sus sitios): conviene comparar con un empaque. Si el naranja resultara parecido, el botón pasa a celeste `#00A9E9` con texto oscuro.
