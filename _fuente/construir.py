@@ -57,6 +57,7 @@ def lineart(n=34, giro=-46, dx=190, dy=170, x0=230, y0=410, s0=170, flecha=False
 def sprite():
     return '''<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
   <symbol id="mark" viewBox="38 8 175 133"><path fill="currentColor" d="M125.5 12.5 165.2 72H138.5L125.5 52.5 82.8 116.5H194.9L208.5 137H42.5Z"/><path fill="currentColor" d="M140.2 74.6H166.9L173.3 84.2H146.6ZM148.1 86.8H174.8L181.2 96.4H154.5Z"/></symbol>
+  <symbol id="certeza" viewBox="0 0 433.6 72.8"><path fill="currentColor" d="M66 42.2L66.8 42.2L67 58.9Q64.7 62.8 60.9 66.0Q57.1 69.1 51.7 71.0Q46.2 72.8 38.9 72.8L38.9 72.8Q27.3 72.7 18.5 68.3Q9.7 63.9 4.9 55.8Q0 47.6 0 36.3L0 36.3Q0 25.2 4.8 17.1Q9.6 8.9 18.4 4.5Q27.2 0 39.3 0L39.3 0Q47.1 0 53.3 1.8Q59.5 3.5 63.8 5.9L63.8 5.9L64.6 22L63.7 22Q61.2 12.5 54.9 8.2Q48.5 3.8 40 3.8L40 3.8Q31.8 3.8 25.9 7.8Q19.9 11.7 16.7 19.0Q13.4 26.2 13.4 36.1L13.4 36.1Q13.4 46 16.6 53.4Q19.7 60.7 25.5 64.8Q31.2 68.8 38.9 69L38.9 69Q46.4 69 52.0 66.5Q57.5 63.9 61.0 58Q64.6 52.1 66 42.2L66 42.2ZM124.8 54.4L125.7 54.4L121.3 71.4L76.4 71.4L76.4 70.4L77.7 70.4Q80.0 70.4 81.6 68.9Q83.2 67.3 83.3 65.1L83.3 65.1L83.3 17.7Q83.2 15.4 81.6 13.9Q80.0 12.4 77.7 12.4L77.7 12.4L76.4 12.4L76.4 11.4L109.5 11.4Q112.4 11.4 115.7 10.9Q119.0 10.3 120.3 9.8L120.3 9.8L120.3 24.2L119.2 24.2L119.2 23.1Q119.2 19.5 117.2 17.3Q115.2 15.1 111.5 15.1L111.5 15.1L95.0 15.1L95.0 39.7L108.2 39.7Q111.3 39.7 113.0 37.8Q114.7 35.9 114.7 33.1L114.7 33.1L114.7 32.2L115.7 32.2L115.7 51L114.7 51L114.7 50.1Q114.7 47.3 113.0 45.4Q111.3 43.5 108.2 43.4L108.2 43.4L95.0 43.4L95.0 67.7L107.9 67.7Q112.5 67.7 115.8 66.1Q119.0 64.4 121.2 61.4Q123.4 58.4 124.8 54.4L124.8 54.4ZM157.3 71.4L138.7 71.4L132.1 71.4L132.1 70.4L133.3 70.4Q135.6 70.4 137.2 68.8L137.2 68.8Q138.5 67.5 138.7 65.8L138.7 65.8L138.7 16.9Q138.5 15.1 137.2 13.9L137.2 13.9Q135.6 12.4 133.4 12.4L133.4 12.4L132.1 12.4L132.1 11.4L160.9 11.4Q165.3 11.4 169.2 12.3Q173.0 13.2 176.0 15.2Q178.9 17.1 180.6 20.2Q182.2 23.3 182.2 27.7L182.2 27.7Q182.2 31.4 180.6 35.0Q179.0 38.5 175.8 41.0Q172.6 43.4 167.8 44L167.8 44Q170.3 44.8 172.9 47.4Q175.4 50 176.8 52.3L176.8 52.3Q177.1 52.8 178.3 54.6Q179.4 56.3 181.1 58.7Q182.8 61 184.6 63.3L184.6 63.3Q186.6 65.9 188.2 67.5Q189.8 69 191.6 69.7Q193.3 70.4 195.5 70.4L195.5 70.4L195.5 71.4L188.9 71.4Q183.5 71.4 179.8 70.4Q176.1 69.4 173.6 67.3Q171.0 65.2 168.9 62.1L168.9 62.1Q168.2 61 167.1 59.1Q165.9 57.2 164.7 55.2Q163.5 53.1 162.5 51.3Q161.5 49.4 161.2 48.4L161.2 48.4Q159.7 45.4 157.7 43.8Q155.7 42.2 153.8 42.1L153.8 42.1L153.8 41.2Q153.9 41.2 154.9 41.3Q155.9 41.3 157.4 41.2L157.4 41.2Q159.7 41.1 162.1 40.5Q164.4 39.9 166.3 37.9Q168.2 35.9 169.2 31.7L169.2 31.7Q169.5 30.9 169.7 29.7Q169.8 28.5 169.7 27L169.7 27Q169.6 23.6 168.5 21.4Q167.4 19.1 165.7 17.8Q164.0 16.5 162.0 15.9Q160.0 15.3 158.2 15.2L158.2 15.2Q155.3 15.1 153.1 15.2L153.1 15.2Q151.2 15.2 150.5 15.2L150.5 15.2L150.5 65.1Q150.6 67.4 152.3 68.9Q154.0 70.4 156.1 70.4L156.1 70.4L157.2 70.4L157.3 71.4ZM248.3 9.7L248.3 9.7L248.3 24.1L247.2 24.1L247.2 22.9Q247.3 19.4 245.3 17.3Q243.2 15.1 239.5 15L239.5 15L225.8 15L225.8 65.1Q225.8 67.3 227.5 68.9Q229.1 70.4 231.4 70.4L231.4 70.4L232.4 70.4L232.4 71.4L207.2 71.4L207.2 70.4L208.3 70.4Q210.6 70.4 212.2 68.9Q213.8 67.3 213.9 65.1L213.9 65.1L213.9 15L200.2 15Q196.5 15.1 194.5 17.3Q192.4 19.4 192.4 22.9L192.4 22.9L192.4 24.1L191.4 24.1L191.4 9.7Q192.2 10 194.0 10.4Q195.8 10.8 198.0 11.1Q200.2 11.3 202.1 11.3L202.1 11.3L237.5 11.3Q239.5 11.3 241.7 11.1Q243.9 10.8 245.8 10.4Q247.6 10 248.3 9.7ZM302.5 54.4L303.4 54.4L299 71.4L254.1 71.4L254.1 70.4L255.4 70.4Q257.7 70.4 259.3 68.9Q260.9 67.3 261 65.1L261 65.1L261 17.7Q260.9 15.4 259.3 13.9Q257.7 12.4 255.4 12.4L255.4 12.4L254.1 12.4L254.1 11.4L287.2 11.4Q290.1 11.4 293.4 10.9Q296.7 10.3 298 9.8L298 9.8L298 24.2L296.9 24.2L296.9 23.1Q296.9 19.5 294.9 17.3Q292.9 15.1 289.2 15.1L289.2 15.1L272.7 15.1L272.7 39.7L285.9 39.7Q289 39.7 290.7 37.8Q292.4 35.9 292.4 33.1L292.4 33.1L292.4 32.2L293.4 32.2L293.4 51L292.4 51L292.4 50.1Q292.4 47.3 290.7 45.4Q289 43.5 285.9 43.4L285.9 43.4L272.7 43.4L272.7 67.7L285.6 67.7Q290.2 67.7 293.5 66.1Q296.7 64.4 298.9 61.4Q301.1 58.4 302.5 54.4L302.5 54.4ZM360.1 10.1L360.1 10.1L360.1 10.9L325.8 67.8L346.4 67.8Q351.1 67.7 354.4 66.1Q357.7 64.5 360 61.5Q362.3 58.5 363.7 54.4L363.7 54.4L364.7 54.4L360 71.4L309.8 71.4L309.8 70.5L344.2 14.9L320.1 14.9Q316.4 15 314.4 17.2Q312.3 19.4 312.3 23L312.3 23L312.3 24.1L311.2 24.1L311.2 9.7Q312.1 10 313.9 10.4Q315.8 10.7 318.1 11.0Q320.3 11.2 322.2 11.3L322.2 11.3L349.5 11.3Q351.5 11.3 353.8 11.1Q356 10.9 357.8 10.6Q359.5 10.3 360.1 10.1ZM398.1 9.1L399 9.1L425 64.6L425 64.6Q426.4 67.7 428.6 69.1Q430.8 70.4 432.8 70.4L432.8 70.4L433.6 70.4L433.6 71.4L407.2 71.4L407.2 70.4L408 70.4Q409.7 70.4 411.1 68.9L411.1 68.9Q412.4 67.4 411.4 64.7L411.4 64.7L407 54.2L384.5 54.2L379.9 64.8Q378.9 67.4 380.3 68.9L380.3 68.9Q381.7 70.4 383.4 70.4L383.4 70.4L384.2 70.4L384.2 71.4L364.5 71.4L364.5 70.4L365.3 70.4Q367.4 70.4 369.6 69.1L369.6 69.1Q371.5 67.9 372.9 65.3L372.9 65.3L393.7 20.6Q393.8 20.2 394.4 18.8Q395.1 17.4 395.9 15.5Q396.7 13.6 397.4 11.9Q398 10.1 398.1 9.1L398.1 9.1ZM395.8 27.6L386 50.6L405.5 50.6L395.8 27.6Z"/></symbol>
   <symbol id="i-orden" viewBox="0 0 64 64"><path d="M14 12h36a4 4 0 0 1 4 4v42a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/><path d="M23 4h18a3 3 0 0 1 3 3v8H20V7a3 3 0 0 1 3-3z"/><circle cx="32" cy="8.5" r="2" fill="var(--ic-cut)"/><rect x="16" y="21" width="32" height="35" rx="1.5" fill="var(--ic-cut)"/><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 28.5l2.4 2.4 4.6-4.8M19.5 35.5l2.4 2.4 4.6-4.8M19.5 42.5l2.4 2.4 4.6-4.8M19.5 49.5l2.4 2.4 4.6-4.8"/></g><rect x="31" y="27.5" width="14" height="3" rx="1.5"/><rect x="31" y="34.5" width="14" height="3" rx="1.5"/><rect x="31" y="41.5" width="14" height="3" rx="1.5"/><rect x="31" y="48.5" width="14" height="3" rx="1.5"/></symbol>
   <symbol id="i-vis" viewBox="0 0 64 64"><path d="M2 32C9 20 20 13 32 13s23 7 30 19c-7 12-18 19-30 19S9 44 2 32z"/><circle cx="32" cy="32" r="12.5" fill="var(--ic-cut)"/><circle cx="32" cy="32" r="6.5"/></symbol>
   <symbol id="i-ctl" viewBox="0 0 64 64"><path d="M32 3l22 8v19c0 15-9 25-22 31C19 55 10 45 10 30V11z"/><path d="M22 32l8 8 14-16" fill="none" stroke="var(--ic-cut)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -95,7 +96,7 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#0b3c49">
+<meta name="theme-color" content="#132a31">
 <link rel="canonical" href="{url}">
 <link rel="icon" type="image/svg+xml" href="{base}assets/favicon.svg">
 <link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
@@ -125,7 +126,7 @@ def menu(base, actual):
     ind = ''.join(item(f'industrias/{i["slug"]}.html', i['nombre'], i['corto'], f'industrias/{i["slug"]}.html') for i in INDUSTRIAS)
     sol = ''.join(item(f'soluciones/{s["slug"]}.html', s['nombre'], s['tl'], f'soluciones/{s["slug"]}.html') for s in SOLUCIONES)
     srv = ''.join(item(h, b, s, '') for h, b, s in [
-        ('servicios.html#empieza', 'Empieza: Triaje y Ficha', 'Siempre sin costo. La Ficha, el mismo día.'),
+        ('servicios.html#empieza', 'Empieza: Triaje y Ficha', 'Siempre sin costo. La Ficha, el mismo día de la visita.'),
         ('servicios.html#tickets', 'Tickets de mejora', 'Piezas de Orden, Visibilidad y Control.'),
         ('servicios.html#pagina-web', 'Página web', 'Para que te encuentren, te conozcan o te pidan cotización.'),
         ('servicios.html#canva', 'Documentos y tableros con Canva', 'Con tu marca, en la cuenta de tu negocio.'),
@@ -151,9 +152,9 @@ def menu(base, actual):
         {top('p-sol', 'Soluciones', 'Soluciones', 'Cuatro resultados que un dueño nota en su día a día, y las herramientas y métodos con que los logramos.', sol, 'c3')}
         {top('p-srv', 'Servicios', 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta.', srv, '', ('servicios.html', 'Ver todos los servicios'))}
         {top('p-nos', 'Nosotros', 'Nosotros', 'Cómo lo hacemos, qué puedes esperar y quién te atiende.', nos, '', ('nosotros.html', 'Conoce cómo trabajamos'))}
-        <li class="cta"><a class="btn oro" href="{base}index.html#empieza">Empieza</a></li>
+        <li class="cta"><a class="btn primary" href="{base}index.html#empieza">Empieza</a></li>
       </ul>
-      <a class="btn oro small" href="{base}index.html#empieza">Empieza</a>
+      <a class="btn claro small" href="{base}index.html#empieza">Empieza</a>
     </nav>
   </div>
 </header>
@@ -166,7 +167,7 @@ def pie(base):
   <div class="wrap">
     <div class="top">
       <div>
-        <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><span>CERTEZA<small>OPERATIVA</small></span></a>
+        <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg class="m-delta" viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><svg class="m-nombre" viewBox="0 0 433.6 118" aria-hidden="true"><use href="#certeza" width="433.6" height="72.8"/><text x="0" y="114" textLength="433.6" lengthAdjust="spacing">OPERATIVA</text></svg></a>
         {social(True)}
       </div>
       {col('Industrias', [(f'industrias/{i["slug"]}.html', i['nombre']) for i in INDUSTRIAS])}
@@ -180,7 +181,7 @@ def pie(base):
     </div>
   </div>
 </footer>
-<a class="btn oro float" id="float" href="{WA_PRO}">Habla con un profesional</a>
+<a class="btn primary float" id="float" href="{WA_PRO}">Habla con un profesional</a>
 <script src="{base}assets/sitio.js" defer></script>
 </body>
 </html>
@@ -219,7 +220,7 @@ def inicio(base):
                ('aun', 'Todavía no,', 'si aún no tienes ventas constantes. En la primera llamada te lo decimos y te dejamos una recomendación sin costo.')]
     # Así trabajamos: título · cuándo · qué pasa (mismos nombres y orden en todo el sitio)
     pasos = [('1', 'Te visitamos', 'Triaje · sin costo · hasta 90 min', 'Vamos a donde pasa el trabajo, hacemos doce preguntas y revisamos un caso real. También platicamos con alguien de tu equipo.'),
-             ('2', 'Te damos un plan', 'Ficha · el mismo día', 'Una hoja con lo que encontramos, una acción gratis para hoy y el siguiente paso con precio cerrado y fecha. Incluye la lista corta de papeles que vamos a necesitar.'),
+             ('2', 'Te damos un plan', 'Ficha · el mismo día de la visita', 'Una hoja con lo que encontramos, una acción gratis para hoy y el siguiente paso con precio cerrado y fecha. Incluye la lista corta de papeles que vamos a necesitar.'),
              ('3', 'Medimos tu punto de partida', 'Línea Cero · con tus papeles', 'Elegimos un solo número que importe, por ejemplo cuánto te deben. Lo medimos con tus papeles, no de memoria.'),
              ('4', 'Lo resolvemos', 'Ticket · precio cerrado', 'Atacamos la causa, no el síntoma, con una herramienta sencilla. Si al revisar la causa resulta otra, te cotizamos de nuevo antes de empezar.'),
              ('5', 'Tu equipo lo usa solo', 'Prueba de salida', 'Capacitamos a quien lo va a usar. El trabajo termina cuando tu equipo completa un ciclo sin nosotros.'),
@@ -229,22 +230,22 @@ def inicio(base):
            ('¿Cuánto pago y cuándo?', 'Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.'),
            ('¿Qué papeles necesito?', 'Pocos y de tu negocio, por ejemplo tu estado de cuenta, notas o un conteo. Te damos la lista en la Ficha y solo usamos lo del negocio.'),
            ('¿Tengo que cambiar lo que uso?', 'No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.'),
-           ('¿Me garantizan resultados?', 'No prometemos lo que no se puede medir: cada trabajo tiene un número que medimos antes y después.'),
+           ('¿Me garantizan resultados?', 'No garantizamos ventas ni ganancias. Por escrito te damos precio cerrado y un número que medimos antes y después. El trabajo termina cuando tu equipo lo usa solo.'),
            ('¿Y si el problema resulta ser otro?', 'Te lo decimos y te cotizamos de nuevo antes de empezar. No pagas por el cambio de rumbo.'),
-           ('¿Y si decido parar?', 'Pagas solo lo trabajado.'),
+           ('¿Y si decido parar?', 'Pagas solo lo trabajado hasta ese día. Cada bloque de trabajo queda registrado con fecha y evidencia, y puedes pedir el registro.'),
            ('¿Cuándo termina un trabajo?', 'Cuando tu equipo completa un ciclo sin nosotros.'),
            ('¿Qué pasa cuando termina?', 'Lo que funcionó queda escrito como la forma de trabajar de tu negocio. Si quieres, elegimos juntos el siguiente problema, con su propio precio.')]
     return f'''
 <section class="hero" aria-labelledby="t-hero">
   <div class="wrap">
     <div class="ha">
-      <p class="kicker">Consultoría para MiPyMEs (micro, pequeña y mediana empresa) · Sede en Nayarit</p>
+      <p class="kicker">Consultoría operativa para micro y pequeñas empresas · Sede en Nayarit</p>
       <h1 id="t-hero">Mejorando empresas de México.</h1>
     </div>
     <div class="hb">
-      <p class="lead">Detectamos lo que frena tu negocio y trabajamos contigo para mejorar tus procesos. Tú verificas cada resultado.</p>
-      <ul class="cero" aria-label="Cómo empiezas">
-        <li>Empezar no cuesta</li><li>Si paras, pagas solo lo trabajado</li><li>Resultados que tú verificas</li>
+      <p class="lead">Detectamos lo que frena tu negocio. Te ayudamos a ordenar pedidos, cobros y tareas con herramientas sencillas. Acordamos contigo qué resolver y cómo comprobarlo.</p>
+      <ul class="checks" aria-label="Lo que te aseguramos">
+        <li>Revisión inicial sin costo</li><li>Precio por escrito antes de empezar</li><li>Tu equipo aprende a usar lo entregado</li>
       </ul>
       <div class="actions">
         <a class="btn primary" href="{WA_PRO}">Habla con un profesional</a>
@@ -259,15 +260,15 @@ def inicio(base):
   <div class="wrap"><ul>{''.join(f'<li><b>{esc(n)}</b><span>{esc(t)}</span></li>' for n, t in compromisos)}</ul></div>
 </section>
 
-<section class="oscuro full" id="ventajas" aria-labelledby="t-ventajas">
+<section class="full" id="ventajas" aria-labelledby="t-ventajas">
   <div class="wrap">
     <div class="head">
       <h2 id="t-ventajas">Claro desde el primer día.</h2>
       <p class="sub">Sabes cuánto cuesta, qué recibes y cómo se mide antes de decidir.</p>
     </div>
     <div class="ventajas">
-      <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
-      <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Decides con información, no con una promesa.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Conoce una estimación antes de contactarnos.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Revisión inicial sin costo</h3><p>La primera visita (Triaje) y el plan en una hoja (Ficha) siempre son sin costo. Decides con información, no con una promesa.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un número que medimos juntos, antes y después. No garantizamos lo que no se puede medir.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
     </div>
@@ -275,9 +276,9 @@ def inicio(base):
       <h3>¿Es para ti?</h3>
       <ul>{''.join(f'<li class="{c}"><p><b>{esc(s)}</b> {esc(t)}</p></li>' for c, s, t in para_ti)}</ul>
     </div>
-    <p class="pasos-t">Así trabajamos</p>
+    <h3 class="pasos-t">Así trabajamos</h3>
     <ol class="pasos">
-      {''.join(f'<li><span class="n">{n}</span><h3>{esc(h)}</h3><p class="cuando">{esc(c)}</p><p>{esc(p)}</p></li>' for n, h, c, p in pasos)}
+      {''.join(f'<li><span class="n">{n}</span><h4>{esc(h)}</h4><p class="cuando">{esc(c)}</p><p>{esc(p)}</p></li>' for n, h, c, p in pasos)}
     </ol>
   </div>
 </section>
@@ -286,7 +287,7 @@ def inicio(base):
   <div class="wrap">
     <div class="head" id="cotizador">
       <h2 id="t-precio">Elige lo que necesitas. Mira cuánto cuesta.</h2>
-      <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
+      <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Cada trabajo es de 5 horas como mínimo. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
     </div>
     <div class="cat-grid">
       <div>
@@ -331,7 +332,14 @@ def inicio(base):
       <p class="sub">Tres frentes, en este orden: primero Orden, luego Visibilidad, luego Control. No se ve lo que no está ordenado, y no se controla lo que no se ve.</p>
     </div>
     <div class="potencial">{pot_html}</div>
-    <div class="giros"><span>Por giro:</span>{giros}</div>
+    <div class="giros"><span>Encuentra ejemplos para tu tipo de negocio:</span>{giros}</div>
+  </div>
+</section>
+
+<section class="faq-s" id="preguntas" aria-labelledby="t-faq">
+  <div class="wrap">
+    <h2 id="t-faq">Preguntas frecuentes</h2>
+    <div class="faq">{''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in faq)}</div>
   </div>
 </section>
 
@@ -341,20 +349,13 @@ def inicio(base):
       <h2 id="t-empieza">Empieza <em>hoy</em>.</h2>
       <p class="sub">El Triaje siempre es sin costo. Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
       <div class="actions">
-        <a class="btn oro" href="{WA_TRIAJE}">Habla con un profesional</a>
+        <a class="btn claro" href="{WA_TRIAJE}">Habla con un profesional</a>
         <a class="btn ghost" href="tel:+523114469363">Llamar al {TEL}</a>
         <a class="btn ghost" id="share" href="#">Compartir esta página</a>
       </div>
       {social()}
     </div>
     <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(n=30, giro=40, x0=170, y0=440, dx=150, dy=150, s0=150)}</svg>
-  </div>
-</section>
-
-<section class="faq-s" id="preguntas" aria-labelledby="t-faq">
-  <div class="wrap">
-    <h2 id="t-faq">Preguntas frecuentes</h2>
-    <dl class="faq">{''.join(f'<div><dt>{esc(q)}</dt><dd>{esc(a)}</dd></div>' for q, a in faq)}</dl>
   </div>
 </section>'''
 
@@ -379,7 +380,7 @@ def ph(base, migas, h1, lead, tipos='', variante=0, wa_msg=None):
 
 
 def cta(base, titulo='Empieza con un Triaje sin costo.'):
-    return f'''<section class="oscuro cta-band"><div class="wrap"><h2>{esc(titulo)}</h2><div class="actions"><a class="btn oro" href="{WA_TRIAJE}">Habla con un profesional</a><a class="btn ghost" href="{base}index.html#empieza">Empieza</a></div></div></section>'''
+    return f'''<section class="oscuro cta-band"><div class="wrap"><h2>{esc(titulo)}</h2><div class="actions"><a class="btn claro" href="{WA_TRIAJE}">Habla con un profesional</a><a class="btn ghost" href="{base}index.html#empieza">Empieza</a></div></div></section>'''
 
 
 def industria(i, k):
@@ -443,7 +444,7 @@ def servicios():
         return ph(base, [('index.html', 'Inicio'), (None, 'Servicios')], 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta y cada trabajo tiene precio cerrado antes de empezar.', '', 2) + f'''
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Empieza: Triaje y Ficha</h2><p class="tl">Siempre sin costo.</p></div><div>
-    <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. También platicamos con alguien de tu equipo. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>El plan en una hoja, el mismo día. Trae el problema en tus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
+    <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. También platicamos con alguien de tu equipo. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>El plan en una hoja, el mismo día de la visita. Trae el problema en tus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
     <div class="actions" style="margin-top:22px"><a class="btn primary" href="{WA_TRIAJE}">Empieza</a></div></div></article>
   <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un número que medimos antes y después. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
   <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. Hay versión con más extras; te la explicamos en el Triaje.</p></div><div class="webs">{web}</div></article>
@@ -458,10 +459,10 @@ def servicios():
 
 def nosotros():
     def cuerpo(base):
-        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Consultoría para MiPyMEs · Sede en Nayarit.', 3) + f'''
+        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Consultoría para micro y pequeñas empresas · Sede en Nayarit.', 3) + f'''
 <section class="bloque blanco" id="como"><div class="wrap dos">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de tu negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
-  <ol class="lista2 num"><li>Te visitamos · Triaje<span>La primera visita, sin costo y de hasta 90 min. Doce preguntas, un caso real y una plática con alguien de tu equipo.</span></li><li>Te damos un plan · Ficha<span>El plan en una hoja, el mismo día, con una acción gratis para hoy y la lista corta de papeles.</span></li><li>Medimos tu punto de partida · Línea Cero<span>Elegimos un solo número que importe y lo medimos con tus papeles, no de memoria.</span></li><li>Lo resolvemos · Ticket<span>Un trabajo con precio cerrado. Si la causa resulta otra, te cotizamos de nuevo antes de empezar.</span></li><li>Tu equipo lo usa solo · Prueba de salida<span>Capacitamos a quien lo va a usar. Termina cuando tu equipo completa un ciclo sin nosotros.</span></li><li>Medimos la mejora · Delta<span>La diferencia entre el número de antes y el de hoy. Lo que funcionó queda escrito.</span></li></ol>
+  <ol class="lista2 num"><li>Te visitamos · Triaje<span>La primera visita, sin costo y de hasta 90 min. Doce preguntas, un caso real y una plática con alguien de tu equipo.</span></li><li>Te damos un plan · Ficha<span>El plan en una hoja, el mismo día de la visita, con una acción gratis para hoy y la lista corta de papeles.</span></li><li>Medimos tu punto de partida · Línea Cero<span>Elegimos un solo número que importe y lo medimos con tus papeles, no de memoria.</span></li><li>Lo resolvemos · Ticket<span>Un trabajo con precio cerrado. Si la causa resulta otra, te cotizamos de nuevo antes de empezar.</span></li><li>Tu equipo lo usa solo · Prueba de salida<span>Capacitamos a quien lo va a usar. Termina cuando tu equipo completa un ciclo sin nosotros.</span></li><li>Medimos la mejora · Delta<span>La diferencia entre el número de antes y el de hoy. Lo que funcionó queda escrito.</span></li></ol>
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
   <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
