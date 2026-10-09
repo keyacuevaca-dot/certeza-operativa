@@ -139,11 +139,3 @@ SOLUCIONES = [
                       ('Tableros visuales', 'Pocos números, a la vista, revisados cada semana.')],
          mide=('Delta (Δ)', 'El indicador de cada Ticket, antes y después. Tú lo verificas.')),
 ]
-
-# ---------------- Herramientas de la barra (≥15) ----------------
-# Las que tienen ícono libre (Simple Icons, CC0) llevan su slug; las demás se muestran solo con su nombre.
-BARRA = [('Excel', None), ('Hojas de Google', 'googlesheets'), ('WhatsApp Business', 'whatsapp'), ('Canva', None),
-         ('Odoo', 'odoo'), ('Notion', 'notion'), ('Claude', 'claude'), ('ChatGPT', None), ('Gemini', 'googlegemini'),
-         ('Google Drive', 'googledrive'), ('Gmail', 'gmail'), ('Google Calendar', 'googlecalendar'), ('Google Forms', 'googleforms'),
-         ('Google Maps', 'googlemaps'), ('CONTPAQi', None), ('Aspel', None), ('Power BI', None), ('Mercado Pago', 'mercadopago'),
-         ('Shopify', 'shopify'), ('Zapier', 'zapier'), ('Trello', 'trello'), ('Zoom', 'zoom'), ('Facebook', 'facebook'), ('Instagram', 'instagram')]

@@ -4,11 +4,10 @@
 import json, math, os
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZAS, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, BARRA
+from contenido import WA_NUM, TEL, PIEZAS, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
-ICONOS = json.load(open(os.path.join(RAIZ, '_fuente', 'iconos.json'), encoding='utf-8'))
 ANIO = 2026
 
 
@@ -34,7 +33,7 @@ def _redondo(pts, r):
     return d + 'Z'
 
 
-def lineart(n=34, giro=-46, dx=190, dy=170, x0=230, y0=410, s0=170, flecha=True):
+def lineart(n=34, giro=-46, dx=190, dy=170, x0=230, y0=410, s0=170, flecha=False):
     ease = lambda t: t * t * (3 - 2 * t)
     centro = lambda t: (x0 + dx * ease(t) + 30 * math.sin(t * math.pi), y0 - dy * ease(t) - 40 * math.sin(t * math.pi))
     out = []
@@ -197,29 +196,13 @@ def pagina(ruta, titulo, desc, cuerpo, extra_head=''):
 
 
 # ---------- Inicio ----------
-def barra():
-    def li(n, slug, oculto=False):
-        ic = f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{ICONOS[slug]["d"]}"/></svg>' if slug else ''
-        return f'<li{" aria-hidden=\"true\"" if oculto else ""}>{ic}{esc(n)}</li>'
-    uno = ''.join(li(n, s) for n, s in BARRA)
-    dos = ''.join(li(n, s, True) for n, s in BARRA)
-    return f'''<section class="tools" aria-label="Herramientas con las que trabajamos">
-  <div class="wrap tools-hd"><p>Partimos de las herramientas que ya usa tu negocio</p><button type="button" class="pausa" aria-pressed="false">Pausar</button></div>
-  <div class="marquee"><ul>{uno}{dos}</ul></div>
-  <p class="marcas">Marcas de sus respectivos dueños; se muestran solo como referencia, sin afiliación.</p>
-</section>'''
 
-
-def check_svg(d):
-    return f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{d}"/></svg>'
 
 
 def inicio(base):
     def piece(p):
         pil, h, a, n, d = p
-        return f'<label class="piece" data-p="{pil}" data-h="{h}"{" data-a=\"1\"" if a else ""} data-n="{esc(n)}"><input type="checkbox"><span class="k"><span>{PILAR_NOMBRE[pil]}</span><span>{h} h</span></span><b>{esc(n)}</b><span class="d">{esc(d)}</span></label>'
-    pillar = lambda k, ic, tl: f'<button type="button" class="pillar" id="tab-{k}" data-p="{k}" aria-pressed="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#{ic}"/></svg><span class="pt">{PILAR_NOMBRE[k]}</span><span class="chev" aria-hidden="true">+</span><span class="ps">{tl}</span></button>'
-    spark = lambda hs: '<span class="spark">' + ''.join(f'<i style="height:{h}%"></i>' for h in hs) + '</span>'
+        return f'<label class="piece" data-p="{pil}" data-h="{h}"{" data-a=\"1\"" if a else ""} data-n="{esc(n)}"><input type="checkbox"><b>{esc(n)}</b><span class="k">{h} h</span><span class="d">{esc(d)}</span></label>'
     pots = [
         ('orden', 'i-orden', 'Cada cosa en su lugar.', ['Lista de precios o catálogo', 'Cotizador con tu marca', 'Procedimientos con lista de verificación', 'Quién hace qué', 'Expediente para el contador']),
         ('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo.', ['Registro diario desde el celular', 'Control de pedidos y cobros', 'Tablero semanal', 'Flujo a 30, 60 y 90 días', 'Inventario y reorden']),
@@ -251,44 +234,9 @@ def inicio(base):
       </div>
       <p class="nota">Hoy atendemos micro y pequeñas empresas; medianas, próximamente.</p>
     </div>
-    <div class="hv">
-      <p class="sr">Ejemplos de lo que entregamos: una lista de apertura, un tablero con los cinco números de la semana, un cierre de caja que cuadra y un recordatorio de pago por WhatsApp.</p>
-      <div class="vis" aria-hidden="true">
-        <svg class="lineart" viewBox="0 0 640 600">{lineart(x0=170, y0=470, dx=150, dy=190, s0=150)}</svg>
-        <div class="hc hc-lista">
-          <div class="hd"><i>{check_svg('M4 12.5l5 5L20 6.5')}</i><span>Apertura</span><em>Ejemplo</em></div>
-          <div class="check si"><i></i><span>Fondo de caja contado</span></div>
-          <div class="check si"><i></i><span>Precios a la vista</span></div>
-          <div class="check si"><i></i><span>Refrigeradores en temperatura</span></div>
-          <div class="check"><i></i><span>Pedido al proveedor</span></div>
-        </div>
-        <div class="hc hc-semana">
-          <div class="hd"><i>{check_svg('M5 20V11M12 20V5M19 20v-6')}</i><span>Tu semana en 5 números</span><em>Ejemplo</em></div>
-          <div class="row"><span>{spark([40, 55, 48, 70, 82])}Ventas</span><b>▲ mejor que la pasada</b></div>
-          <div class="row"><span>{spark([50, 60, 58, 66, 75])}Cobrado</span><span class="ok">En meta</span></div>
-          <div class="row"><span>{spark([70, 62, 55, 50, 40])}Por cobrar</span><span class="warn">3 clientes</span></div>
-          <div class="row"><span>{spark([60, 70, 72, 80, 90])}Pedidos a tiempo</span><b>9 de 10</b></div>
-          <div class="row"><span>{spark([30, 45, 40, 52, 58])}Por pedir</span><span class="warn">2 productos</span></div>
-        </div>
-        <div class="hc hc-caja">
-          <div class="hd"><i>{check_svg('M3 7h18v12H3zM3 11h18M7 15h3')}</i><span>Cierre de caja · hoy</span><em>Ejemplo</em></div>
-          <div class="row"><span>Ventas del día</span><b>$8,420</b></div>
-          <div class="row"><span>Efectivo y transferencias</span><b>$8,420</b></div>
-          <div class="row"><span>Diferencia</span><span class="ok">$0 · Cuadra</span></div>
-        </div>
-        <div class="hc hc-wa">
-          <div class="hd"><i>{check_svg('M4 20l1.5-4A8 8 0 1 1 9 19.2z')}</i><span>Recordatorio amable</span><em>Ejemplo</em></div>
-          <div class="bub">Hola, Sra. Lupita. Le recuerdo con gusto su saldo de $1,250, que vence el viernes. ¡Gracias por su preferencia!</div>
-          <div class="meta">9:30 <i>✓✓</i></div>
-        </div>
-        <div class="hc hc-delta"><b>Δ</b>Antes y después, medido contigo</div>
-      </div>
-      <p class="vis-cap">Ejemplos de lo que entregamos, con datos ilustrativos.</p>
-    </div>
+    <div class="hv" aria-hidden="true"><div class="vis"><svg class="lineart" viewBox="0 0 640 600">{lineart(x0=170, y0=470, dx=150, dy=190, s0=150)}</svg></div></div>
   </div>
 </section>
-
-{barra()}
 
 <section class="oscuro full" id="ventajas" aria-labelledby="t-ventajas">
   <div class="wrap">
@@ -305,7 +253,7 @@ def inicio(base):
     <p class="pasos-t">Así trabajamos</p>
     <ol class="pasos">
       <li><span class="n">1</span><h3>Te visitamos</h3><p class="cuando">Triaje · siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
-      <li><span class="n">2</span><h3>Te decimos qué encontramos</h3><p class="cuando">Ficha · el mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
+      <li><span class="n">2</span><h3>Te damos un plan</h3><p class="cuando">Ficha · el mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
       <li><span class="n">3</span><h3>Lo resolvemos</h3><p class="cuando">Ticket · precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
       <li><span class="n">Δ</span><h3>Medimos la mejora</h3><p class="cuando">Delta · medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
     </ol>
@@ -316,15 +264,11 @@ def inicio(base):
   <div class="wrap">
     <div class="head" id="cotizador">
       <h2 id="t-precio">Elige lo que necesitas. Mira cuánto cuesta.</h2>
-      <p class="sub">Toca Orden, Visibilidad o Control, marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
-    </div>
-    <div class="pillars" role="group" aria-label="Elige un pilar para ver sus piezas">
-      {pillar('orden', 'i-orden', 'Cada cosa en su lugar')}{pillar('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo')}{pillar('control', 'i-ctl', 'Que lo cobrado cuadre')}
+      <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
     </div>
     <div class="cat-grid">
       <div>
-        <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
-        <div class="pieces" id="pieces" role="group">{''.join(piece(p) for p in PIEZAS)}</div>
+        <div class="pieces" id="pieces" role="group">{''.join(f'<p class="grupo">{PILAR_NOMBRE[k]}</p>' + ''.join(piece(p) for p in PIEZAS if p[0] == k) for k in ('orden', 'visibilidad', 'control'))}</div>
         <p class="pnote">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
       </div>
       <div class="est-wrap">

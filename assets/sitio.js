@@ -48,15 +48,6 @@
   if (desk.addEventListener) desk.addEventListener('change', alCambiar); else if (desk.addListener) desk.addListener(alCambiar);
   $$('.menu a[href*="#"]').forEach(function (a) { a.addEventListener('click', function () { if (menu.classList.contains('open')) toggleMenu(false); closeAll(); }); });
 
-  /* --- Barra de herramientas: se puede pausar --- */
-  var pausa = $('.pausa'), marquee = $('.marquee');
-  if (pausa && marquee) pausa.addEventListener('click', function () {
-    var on = !marquee.classList.contains('quieta');
-    marquee.classList.toggle('quieta', on);
-    pausa.setAttribute('aria-pressed', String(on));
-    pausa.textContent = on ? 'Reanudar' : 'Pausar';
-  });
-
   /* --- Botón flotante --- */
   var fl = $('#float');
   if (fl) {
@@ -114,18 +105,5 @@
   $$('input', $('#pieces')).forEach(function (i) { i.addEventListener('change', calc); });
   calc();
 
-  /* Pilares: tocar uno abre sus piezas; tocarlo otra vez las cierra */
-  var openP = null;
-  function openPillar(p) {
-    openP = p;
-    $$('.pillar').forEach(function (b) { b.setAttribute('aria-pressed', String(!!p && b.dataset.p === p)); });
-    pieces.forEach(function (x) { x.hidden = !p || x.dataset.p !== p; });
-    $('#phint').hidden = !!p;
-    if (p) $('#pieces').setAttribute('aria-labelledby', 'tab-' + p); else $('#pieces').removeAttribute('aria-labelledby');
-  }
-  $$('.pillar').forEach(function (b) { b.addEventListener('click', function () { openPillar(openP === b.dataset.p ? null : b.dataset.p); }); });
-  $$('[data-open]').forEach(function (a) { a.addEventListener('click', function () { openPillar(a.dataset.open); }); });
-  var h = location.hash.replace('#', '');
-  openPillar(['orden', 'visibilidad', 'control'].indexOf(h) > -1 ? h : 'orden');
   if (reduce) document.documentElement.classList.add('rm');
 })();
