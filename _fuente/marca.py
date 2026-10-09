@@ -223,6 +223,15 @@ def main():
     guardar("3-vertical-completo", svg(W, Hv, cuerpo))
     guardar("3-vertical-completo-sin-fondo", svg(W, Hv, cuerpo, fondo=False))
 
+    # 4 · Imagotipo cuadrado en petróleo (redes, portadas, presentaciones): el vertical
+    # sin su margen ocupa el 64 % del ancho; queda 2 % arriba del centro (centro óptico).
+    L = 2160
+    e = L * 0.64 / ancho
+    x0 = (L - ancho * e) / 2 - pad * e
+    y0 = (L - (Hv - 2 * pad) * e) / 2 - pad * e - L * 0.02
+    guardar("4-imagotipo-cuadrado", svg(L, L, f'<g transform="translate({x0:.2f} {y0:.2f}) scale({e:.5f})">{cuerpo}</g>'),
+            escala=0.5)
+
 
 if __name__ == "__main__":
     main()
