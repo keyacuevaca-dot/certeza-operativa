@@ -359,3 +359,13 @@ footer .social a { width: 42px; height: 42px; }
   html { scroll-behavior: auto; }
   .panel, .btn, .piece, .stack-bar i, .burger span { transition: none; }
 }
+
+/* Barra superior en escritorio: Delta a la izquierda, menú repartido al centro y «Empieza» a la derecha */
+@media (min-width: 1081px) {
+  :root { --hdr: 84px; }
+  .delta { --w: 62px; }
+  .menu { flex: 1; margin-left: 32px; }
+  .menu > ul { flex: 1; justify-content: center; gap: clamp(8px, 3vw, 48px); }
+  .mtop { font-size: 17px; padding: 0 14px; }
+  .menu > .btn { min-height: 48px; padding: 10px 26px; font-size: 16px; }
+}
