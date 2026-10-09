@@ -142,7 +142,7 @@ def menu(base, actual):
     return f'''<a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site">
   <div class="wrap bar">
-    <a class="delta" href="{base}index.html" aria-label="Certeza Operativa, inicio"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></a>
+    <a class="delta" href="{base}index.html" aria-label="Certeza Operativa, inicio"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></a>
     <nav class="menu" aria-label="Principal">
       <button class="burger" type="button" aria-expanded="false" aria-controls="menu-lista" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul id="menu-lista">
@@ -165,7 +165,7 @@ def pie(base):
   <div class="wrap">
     <div class="top">
       <div>
-        <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg><span>CERTEZA<small>OPERATIVA</small></span></a>
+        <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><span>CERTEZA<small>OPERATIVA</small></span></a>
         {social(True)}
       </div>
       {col('Industrias', [(f'industrias/{i["slug"]}.html', i['nombre']) for i in INDUSTRIAS])}
@@ -447,7 +447,7 @@ def nosotros():
 </div></section>
 <section class="bloque" id="quien"><div class="wrap dos">
   <div class="head"><h2>Quién te atiende.</h2><p class="sub">Sede en Nayarit. Atendemos por WhatsApp y, cuando hace falta, en tu negocio.</p></div>
-  <div class="persona"><span class="av"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
+  <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
 </div></section>
 {cta(base)}'''
     return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos: medimos antes de proponer, compromisos por escrito y horas útiles. Consultoría para MiPyMEs con sede en Nayarit.', cuerpo)
