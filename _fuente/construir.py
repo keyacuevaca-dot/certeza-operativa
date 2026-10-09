@@ -100,6 +100,7 @@ def head(titulo, desc, ruta, base, extra=''):
 <link rel="icon" type="image/svg+xml" href="{base}assets/favicon.svg">
 <link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="{base}assets/fonts/Outfit-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{base}assets/fonts/Outfit-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="{base}assets/estilo.css">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -207,16 +208,32 @@ def inicio(base):
         ('orden', 'i-orden', 'Cada cosa en su lugar.', ['Lista de precios o catálogo', 'Cotizador con tu marca', 'Procedimientos con lista de verificación', 'Quién hace qué', 'Expediente para el contador']),
         ('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo.', ['Registro diario desde el celular', 'Control de pedidos y cobros', 'Tablero semanal', 'Flujo a 30, 60 y 90 días', 'Inventario y reorden']),
         ('control', 'i-ctl', 'Que lo cobrado cuadre.', ['Arqueo y cierre de caja', 'Lo cobrado contra lo depositado', 'Agenda de cobranza', 'Mensajes de cobranza para WhatsApp', 'Lista de apertura y cierre']),
-        ('mejora-continua', 'i-mejora', 'Medir, ajustar y volver a medir.', ['Un indicador por trabajo, antes y después', 'Prueba con un caso real y ajuste', 'Se entrega cuando tu equipo lo usa solo', 'Capacitación para tu equipo', 'Herramientas y métodos a tu medida']),
     ]
-    pot_html = ''.join(f'''<article class="pot"><svg class="ic" aria-hidden="true"><use href="#{ic}"/></svg><h3>{PILAR_NOMBRE.get(k, 'Mejora continua')}</h3><p class="tl">{tl}</p><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul><a class="link" href="{base}soluciones/{k}.html">Conoce {PILAR_NOMBRE.get(k, 'Mejora continua')}</a></article>''' for k, ic, tl, items in pots)
+    pot_html = ''.join(f'''<article class="pot"><svg class="ic" aria-hidden="true"><use href="#{ic}"/></svg><h3>{PILAR_NOMBRE[k]}</h3><p class="tl">{tl}</p><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul><a class="link" href="{base}soluciones/{k}.html">Conoce {PILAR_NOMBRE[k]}</a></article>''' for k, ic, tl, items in pots)
+    mejora = ['Un número por trabajo, medido antes y después', 'Prueba con un caso real y ajuste', 'Se entrega cuando tu equipo lo usa solo', 'Capacitación para tu equipo', 'Herramientas y métodos a tu medida']
+    pot_html += f'''<article class="pot mejora-band"><div><svg class="ic" aria-hidden="true"><use href="#i-mejora"/></svg><h3>Mejora continua: el método que une los tres</h3><p class="tl">Medir, resolver, comprobar y volver a empezar.</p><a class="link" href="{base}soluciones/mejora-continua.html">Conoce Mejora continua</a></div><ul>{''.join(f'<li>{esc(x)}</li>' for x in mejora)}</ul></article>'''
     giros = ''.join(f'<a href="{base}industrias/{i["slug"]}.html">{esc(i["nombre"])}</a>' for i in INDUSTRIAS)
+    compromisos = [('$0', 'para empezar: Triaje y Ficha'), ('90 min', 'dura el Triaje en micro'), ('1 número', 'medido antes y después'), ('1 ciclo', 'que tu equipo hace sin nosotros')]
+    para_ti = [('si', 'Sí,', 'si tienes un negocio micro o pequeño que ya vende y todo depende de tu memoria o de tu libreta.'),
+               ('si', 'Sí,', 'si sabes que se te va dinero o tiempo, pero no sabes dónde.'),
+               ('aun', 'Todavía no,', 'si aún no tienes ventas constantes. En la primera llamada te lo decimos y te dejamos una recomendación sin costo.')]
+    # Así trabajamos: título · cuándo · qué pasa (mismos nombres y orden en todo el sitio)
+    pasos = [('1', 'Te visitamos', 'Triaje · sin costo · hasta 90 min', 'Vamos a donde pasa el trabajo, hacemos doce preguntas y revisamos un caso real. También platicamos con alguien de tu equipo.'),
+             ('2', 'Te damos un plan', 'Ficha · el mismo día', 'Una hoja con lo que encontramos, una acción gratis para hoy y el siguiente paso con precio cerrado y fecha. Incluye la lista corta de papeles que vamos a necesitar.'),
+             ('3', 'Medimos tu punto de partida', 'Línea Cero · con tus papeles', 'Elegimos un solo número que importe, por ejemplo cuánto te deben. Lo medimos con tus papeles, no de memoria.'),
+             ('4', 'Lo resolvemos', 'Ticket · precio cerrado', 'Atacamos la causa, no el síntoma, con una herramienta sencilla. Si al revisar la causa resulta otra, te cotizamos de nuevo antes de empezar.'),
+             ('5', 'Tu equipo lo usa solo', 'Prueba de salida', 'Capacitamos a quien lo va a usar. El trabajo termina cuando tu equipo completa un ciclo sin nosotros.'),
+             ('Δ', 'Medimos la mejora', 'Delta · antes y después', 'Comparamos el número de antes con el de hoy. Lo que funcionó queda escrito y, si quieres, elegimos juntos el siguiente problema.')]
     faq = [('¿Cuánto cuesta el Triaje?', 'Siempre sin costo, y la Ficha también. Dura hasta 90 min en micro y 2 h en pequeña.'),
+           ('¿Qué significan Triaje, Ficha, Ticket y Delta?', 'Triaje es la primera visita, sin costo. Ficha es el plan en una hoja. Ticket es el trabajo con precio cerrado. Delta es la diferencia entre el número de antes y el de después.'),
            ('¿Cuánto pago y cuándo?', 'Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.'),
+           ('¿Qué papeles necesito?', 'Pocos y de tu negocio, por ejemplo tu estado de cuenta, notas o un conteo. Te damos la lista en la Ficha y solo usamos lo del negocio.'),
            ('¿Tengo que cambiar lo que uso?', 'No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.'),
-           ('¿Me garantizan resultados?', 'No prometemos lo que no se puede medir: cada trabajo tiene un indicador.'),
+           ('¿Me garantizan resultados?', 'No prometemos lo que no se puede medir: cada trabajo tiene un número que medimos antes y después.'),
+           ('¿Y si el problema resulta ser otro?', 'Te lo decimos y te cotizamos de nuevo antes de empezar. No pagas por el cambio de rumbo.'),
            ('¿Y si decido parar?', 'Pagas solo lo trabajado.'),
-           ('¿Cuándo termina un trabajo?', 'Cuando tu equipo completa un ciclo sin nosotros.')]
+           ('¿Cuándo termina un trabajo?', 'Cuando tu equipo completa un ciclo sin nosotros.'),
+           ('¿Qué pasa cuando termina?', 'Lo que funcionó queda escrito como la forma de trabajar de tu negocio. Si quieres, elegimos juntos el siguiente problema, con su propio precio.')]
     return f'''
 <section class="hero" aria-labelledby="t-hero">
   <div class="wrap">
@@ -225,7 +242,7 @@ def inicio(base):
       <h1 id="t-hero">Mejorando empresas de México.</h1>
     </div>
     <div class="hb">
-      <p class="lead">Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.</p>
+      <p class="lead">Detectamos lo que frena tu negocio y trabajamos contigo para mejorar tus procesos. Tú verificas cada resultado.</p>
       <ul class="cero" aria-label="Cómo empiezas">
         <li>Empezar no cuesta</li><li>Si paras, pagas solo lo trabajado</li><li>Resultados que tú verificas</li>
       </ul>
@@ -238,6 +255,10 @@ def inicio(base):
   </div>
 </section>
 
+<section class="compromisos" aria-label="Nuestros compromisos">
+  <div class="wrap"><ul>{''.join(f'<li><b>{esc(n)}</b><span>{esc(t)}</span></li>' for n, t in compromisos)}</ul></div>
+</section>
+
 <section class="oscuro full" id="ventajas" aria-labelledby="t-ventajas">
   <div class="wrap">
     <div class="head">
@@ -247,15 +268,16 @@ def inicio(base):
     <div class="ventajas">
       <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Decides con información, no con una promesa.</p></article>
-      <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos lo que no se puede medir.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un número que medimos juntos, antes y después. No garantizamos lo que no se puede medir.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
+    </div>
+    <div class="para-ti">
+      <h3>¿Es para ti?</h3>
+      <ul>{''.join(f'<li class="{c}"><p><b>{esc(s)}</b> {esc(t)}</p></li>' for c, s, t in para_ti)}</ul>
     </div>
     <p class="pasos-t">Así trabajamos</p>
     <ol class="pasos">
-      <li><span class="n">1</span><h3>Te visitamos</h3><p class="cuando">Triaje · siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
-      <li><span class="n">2</span><h3>Te damos un plan</h3><p class="cuando">Ficha · el mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
-      <li><span class="n">3</span><h3>Lo resolvemos</h3><p class="cuando">Ticket · precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
-      <li><span class="n">Δ</span><h3>Medimos la mejora</h3><p class="cuando">Delta · medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
+      {''.join(f'<li><span class="n">{n}</span><h3>{esc(h)}</h3><p class="cuando">{esc(c)}</p><p>{esc(p)}</p></li>' for n, h, c, p in pasos)}
     </ol>
   </div>
 </section>
@@ -306,7 +328,7 @@ def inicio(base):
   <div class="wrap">
     <div class="head">
       <h2 id="t-pot">Optimiza tu potencial.</h2>
-      <p class="sub">Cuatro frentes y lo que hacemos en cada uno. Tú eliges por dónde empezar.</p>
+      <p class="sub">Tres frentes, en este orden: primero Orden, luego Visibilidad, luego Control. No se ve lo que no está ordenado, y no se controla lo que no se ve.</p>
     </div>
     <div class="potencial">{pot_html}</div>
     <div class="giros"><span>Por giro:</span>{giros}</div>
@@ -400,7 +422,7 @@ def solucion(s, k):
   <ul class="lista2">{ent}</ul>
 </div></section>
 <section class="bloque blanco" aria-labelledby="t-mide"><div class="wrap dos">
-  <div class="head"><h2 id="t-mide">Cómo sabemos que funcionó.</h2><p class="sub">Cada trabajo tiene un indicador. Lo medimos contigo antes y después.</p></div>
+  <div class="head"><h2 id="t-mide">Cómo sabemos que funcionó.</h2><p class="sub">Cada trabajo tiene un número que importa. Lo medimos contigo antes y después.</p></div>
   <div class="mide"><b>Δ</b><div><h3>{esc(s['mide'][0])}</h3><p>{esc(s['mide'][1])}</p></div></div>
 </div></section>
 <section class="bloque" aria-labelledby="t-otras"><div class="wrap">
@@ -421,9 +443,9 @@ def servicios():
         return ph(base, [('index.html', 'Inicio'), (None, 'Servicios')], 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta y cada trabajo tiene precio cerrado antes de empezar.', '', 2) + f'''
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Empieza: Triaje y Ficha</h2><p class="tl">Siempre sin costo.</p></div><div>
-    <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>Un PDF corto, el mismo día: el problema en tus palabras, dos o tres hechos, una acción para hoy y el siguiente paso con precio y fecha.</span></li></ul>
+    <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. También platicamos con alguien de tu equipo. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>El plan en una hoja, el mismo día. Trae el problema en tus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
     <div class="actions" style="margin-top:22px"><a class="btn primary" href="{WA_TRIAJE}">Empieza</a></div></div></article>
-  <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un indicador. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
+  <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un número que medimos antes y después. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
   <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. Hay versión con más extras; te la explicamos en el Triaje.</p></div><div class="webs">{web}</div></article>
   <article class="svc" id="canva"><div><h2>Documentos y tableros con Canva</h2><p class="tl">Con tu marca, en la cuenta de Canva de tu negocio, para que tú y tu equipo los usen, los editen y los descarguen en PDF.</p></div><div>
     <ul class="lista2"><li>Orden<span>Lista de precios, procedimientos y quién hace qué.</span></li><li>Visibilidad<span>Tablero de la semana con 5 números.</span></li><li>Control<span>Cierre de caja, calendario de cobro y mensajes de cobranza listos.</span></li></ul></div></article>
@@ -439,7 +461,7 @@ def nosotros():
         return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Consultoría para MiPyMEs · Sede en Nayarit.', 3) + f'''
 <section class="bloque blanco" id="como"><div class="wrap dos">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de tu negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
-  <ul class="lista2"><li>Triaje<span>Doce preguntas y un caso real, de punta a punta. Siempre sin costo.</span></li><li>Ficha<span>Lo que encontramos y lo que sigue, el mismo día.</span></li><li>Ticket<span>Precio cerrado y un indicador. Tu equipo completa un ciclo solo.</span></li><li>Delta<span>El indicador antes y después. Tú lo verificas.</span></li></ul>
+  <ol class="lista2 num"><li>Te visitamos · Triaje<span>La primera visita, sin costo y de hasta 90 min. Doce preguntas, un caso real y una plática con alguien de tu equipo.</span></li><li>Te damos un plan · Ficha<span>El plan en una hoja, el mismo día, con una acción gratis para hoy y la lista corta de papeles.</span></li><li>Medimos tu punto de partida · Línea Cero<span>Elegimos un solo número que importe y lo medimos con tus papeles, no de memoria.</span></li><li>Lo resolvemos · Ticket<span>Un trabajo con precio cerrado. Si la causa resulta otra, te cotizamos de nuevo antes de empezar.</span></li><li>Tu equipo lo usa solo · Prueba de salida<span>Capacitamos a quien lo va a usar. Termina cuando tu equipo completa un ciclo sin nosotros.</span></li><li>Medimos la mejora · Delta<span>La diferencia entre el número de antes y el de hoy. Lo que funcionó queda escrito.</span></li></ol>
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
   <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
@@ -450,7 +472,7 @@ def nosotros():
   <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
 </div></section>
 {cta(base)}'''
-    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos: medimos antes de proponer, compromisos por escrito y horas útiles. Consultoría para MiPyMEs con sede en Nayarit.', cuerpo)
+    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en seis pasos, de la primera visita sin costo a medir la mejora. Compromisos por escrito. Consultoría con sede en Nayarit.', cuerpo)
 
 
 def portada_jsonld():

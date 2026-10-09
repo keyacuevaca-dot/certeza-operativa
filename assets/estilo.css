@@ -98,7 +98,7 @@ header.site .bar { display: flex; align-items: center; justify-content: space-be
 .hv { grid-area: v; align-self: center; }
 .kicker { display: flex; align-items: flex-start; gap: 12px; font-size: 16.5px; line-height: 1.45; color: var(--texto); margin-bottom: 22px; max-width: 480px; }
 .kicker::before { content: ""; flex: none; width: 9px; height: 9px; margin-top: 7px; border: 2px solid var(--oro-deep); transform: rotate(45deg); }
-.hero h1 { font-size: clamp(48px, 6.4vw, 80px); line-height: .98; }
+.hero h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(46px, 6.2vw, 84px); line-height: 1; letter-spacing: -.045em; }
 .lead { font-size: 20px; line-height: 1.55; max-width: 520px; margin: 24px 0 22px; color: var(--texto); }
 .nota { margin-top: 16px; font-size: 14.5px; color: var(--texto-2); }
 .cero { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0 0 30px; padding: 0; }
@@ -116,6 +116,13 @@ h2 { font-size: clamp(36px, 4.6vw, 52px); line-height: 1.04; margin-bottom: 18px
 .oscuro .sub { color: var(--en-azul-2); }
 .head { max-width: 760px; margin-bottom: 52px; }
 
+/* ===== Fila de compromisos: cuatro números grandes ===== */
+.compromisos { padding: 44px 0; background: var(--blanco); border-top: 1px solid var(--linea); }
+.compromisos ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
+.compromisos li { border-left: 3px solid var(--oro); padding-left: 18px; }
+.compromisos b { display: block; font-family: var(--serif); font-size: clamp(40px, 4.4vw, 56px); line-height: 1; color: var(--azul); margin-bottom: 6px; white-space: nowrap; }
+.compromisos span { display: block; font-size: 15.5px; line-height: 1.4; color: var(--texto-2); }
+
 /* ===== Pantalla completa: ventajas y cómo trabajamos (sin divisiones) ===== */
 .full { min-height: 100svh; display: flex; align-items: center; }
 .full > .wrap { width: 100%; }
@@ -123,12 +130,19 @@ h2 { font-size: clamp(36px, 4.6vw, 52px); line-height: 1.04; margin-bottom: 18px
 .ventajas .ic { width: 44px; height: 44px; color: var(--oro); --ic-cut: var(--azul); margin-bottom: 18px; }
 .ventajas h3 { font-size: 28px; line-height: 1.08; margin-bottom: 10px; }
 .ventajas p { font-size: 16.5px; }
+.para-ti { margin-bottom: 88px; }
+.para-ti h3 { font-size: 32px; margin-bottom: 20px; }
+.para-ti ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+.para-ti li { border: 1px solid rgba(222, 194, 146, .35); border-radius: 16px; padding: 22px 22px 24px; font-size: 16.5px; }
+.para-ti li.aun { border-style: dashed; }
+.para-ti b { color: var(--oro); }
 .pasos-t { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--oro); margin-bottom: 26px; }
-.pasos { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; list-style: none; margin: 0; padding: 0; }
-.pasos::before { content: ""; position: absolute; left: 28px; right: 12%; top: 27px; height: 2px; background: linear-gradient(90deg, var(--oro), rgba(222, 194, 146, .15)); }
+.pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px 40px; list-style: none; margin: 0; padding: 0; }
 .pasos li { position: relative; }
+.pasos li::after { content: ""; position: absolute; left: 68px; right: -28px; top: 27px; height: 2px; background: linear-gradient(90deg, var(--oro), rgba(222, 194, 146, .15)); }
+.pasos li:nth-child(3n)::after { display: none; }
 .pasos .n { position: relative; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--azul-3); border: 2px solid var(--oro); color: var(--oro); font-family: var(--serif); font-size: 26px; margin-bottom: 20px; }
-.pasos h3 { font-size: 30px; margin-bottom: 4px; }
+.pasos h3 { font-size: 26px; line-height: 1.1; margin-bottom: 6px; }
 .pasos .cuando { font-size: 14.5px; font-weight: 700; color: var(--oro); margin-bottom: 8px; }
 .pasos p { font-size: 16.5px; }
 
@@ -197,7 +211,7 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 .plazo-nota { margin-top: 26px; font-size: 15px; color: var(--texto-2); max-width: 760px; }
 
 /* ===== Optimiza tu potencial: servicios por pilar, sin precios ===== */
-.potencial { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.potencial { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .pot { display: flex; flex-direction: column; background: var(--blanco); border-radius: 18px; padding: 28px 24px 24px; border: 1px solid var(--linea); }
 .pot .ic { width: 44px; height: 44px; color: var(--azul); --ic-cut: var(--blanco); margin-bottom: 16px; }
 .pot h3 { font-size: 30px; line-height: 1; margin-bottom: 6px; }
@@ -205,6 +219,15 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 .pot ul { list-style: none; margin: 0 0 20px; padding: 0; }
 .pot li { padding: 9px 0; border-top: 1px solid var(--linea); font-size: 15.5px; color: var(--azul); }
 .pot .link { margin-top: auto; }
+.mejora-band { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px 48px; align-items: start; background: var(--azul); border-color: var(--azul); color: var(--en-azul-2); padding: 36px 36px 30px; }
+.mejora-band .ic { color: var(--oro); --ic-cut: var(--azul); }
+.mejora-band h3 { color: var(--en-azul); font-size: 32px; line-height: 1.08; margin-bottom: 8px; }
+.mejora-band .tl { color: var(--en-azul-2); margin-bottom: 18px; }
+.mejora-band ul { margin: 0; }
+.mejora-band li { color: var(--en-azul); border-top-color: rgba(188, 211, 214, .22); }
+.mejora-band .link { color: var(--oro); text-decoration-color: var(--oro); }
+.mejora-band .link:hover { text-decoration-color: var(--en-azul); }
+.mejora-band :focus-visible { outline-color: var(--oro); }
 .giros { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 48px; }
 .giros span { font-size: 15px; color: var(--texto-2); margin-right: 6px; }
 .giros a { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 16px; border-radius: 999px; background: var(--blanco); border: 1px solid var(--linea); font-size: 15px; text-decoration: none; color: var(--azul); transition: border-color .2s, background-color .2s; }
@@ -259,6 +282,10 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 .lista2 li { padding: 13px 0 13px 30px; border-top: 1px solid var(--linea); position: relative; font-size: 16.5px; color: var(--azul); }
 .lista2 li::before { content: ""; position: absolute; left: 2px; top: 20px; width: 14px; height: 8px; border-left: 2.5px solid var(--teal); border-bottom: 2.5px solid var(--teal); transform: rotate(-45deg); }
 .lista2 li span { display: block; color: var(--texto-2); font-size: 15px; }
+.lista2.num { counter-reset: paso; grid-auto-flow: column; grid-template-rows: repeat(3, auto); }
+.lista2.num li { padding-left: 42px; }
+.lista2.num li::before { counter-increment: paso; content: counter(paso); left: 0; top: 13px; width: 28px; height: 28px; border: 0; border-radius: 50%; background: var(--azul); color: var(--oro); font: 700 14px/28px var(--sans); text-align: center; transform: none; }
+.lista2.num li:last-child::before { content: "Δ"; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
 .chips li { padding: 8px 16px; border-radius: 999px; background: var(--blanco); border: 1px solid var(--linea); font-size: 15px; color: var(--azul); }
 .dos { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
@@ -323,8 +350,12 @@ footer .social a { width: 42px; height: 42px; }
   .hv { width: 100%; max-width: 420px; margin: -28px auto -36px; }
   .ph .wrap, .cat-grid, .empieza .wrap, .dos, .svc { grid-template-columns: minmax(0, 1fr); }
   .est-wrap { position: static; }
-  .ventajas, .pasos, .potencial { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pasos::before { display: none; }
+  .ventajas, .pasos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pasos li:nth-child(3n)::after { display: block; }
+  .pasos li:nth-child(2n)::after { display: none; }
+  .compromisos ul { gap: 20px; }
+  .pot { padding: 24px 20px 20px; }
+  .pot h3 { font-size: 26px; }
   .metodo .cols { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .etapas { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
   .ayuda, .webs { grid-template-columns: minmax(0, 1fr); }
@@ -341,7 +372,22 @@ footer .social a { width: 42px; height: 42px; }
   .hero { padding-top: 36px; }
   .lead, .sub { font-size: 18px; }
   .hb .lead { margin-top: 0; }
-  .ventajas, .pasos, .potencial, .faq, .voces, .lista2 { grid-template-columns: minmax(0, 1fr); }
+  .ventajas, .pasos, .potencial, .faq, .voces, .lista2, .para-ti ul, .mejora-band { grid-template-columns: minmax(0, 1fr); }
+  .lista2.num { grid-auto-flow: row; grid-template-rows: none; }
+  .compromisos { padding: 32px 0; }
+  .compromisos ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; }
+  .compromisos li { padding-left: 14px; }
+  .compromisos b { font-size: clamp(30px, 8.6vw, 38px); }
+  .compromisos span { font-size: 14.5px; }
+  .para-ti { margin-bottom: 64px; }
+  .para-ti h3 { font-size: 28px; }
+  .pasos { gap: 34px; }
+  .pasos li { padding-left: 72px; min-height: 52px; }
+  .pasos .n { position: absolute; left: 0; top: 0; width: 52px; height: 52px; margin: 0; font-size: 24px; }
+  .pasos li:nth-child(n)::after { display: block; left: 25px; right: auto; top: 60px; bottom: -30px; width: 2px; height: auto; background: linear-gradient(180deg, var(--oro), rgba(222, 194, 146, .15)); }
+  .pasos li:last-child::after { display: none; }
+  .mejora-band { padding: 28px 22px 24px; }
+  .mejora-band h3 { font-size: 28px; }
   .ventajas { gap: 30px; margin-bottom: 64px; }
   .pieces { grid-template-columns: minmax(0, 1fr); }
   .etapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -360,12 +406,11 @@ footer .social a { width: 42px; height: 42px; }
   .panel, .btn, .piece, .stack-bar i, .burger span { transition: none; }
 }
 
-/* Barra superior en escritorio: Delta a la izquierda, menú repartido al centro y «Empieza» a la derecha */
+/* Barra superior en escritorio: Delta a la izquierda; menú y «Empieza» juntos a la derecha, con el mismo alto y el mismo espaciado */
 @media (min-width: 1081px) {
-  :root { --hdr: 84px; }
-  .delta { --w: 62px; }
-  .menu { flex: 1; margin-left: 32px; }
-  .menu > ul { flex: 1; justify-content: center; gap: clamp(8px, 3vw, 48px); }
-  .mtop { font-size: 17px; padding: 0 14px; }
-  .menu > .btn { min-height: 48px; padding: 10px 26px; font-size: 16px; }
+  :root { --hdr: 80px; }
+  .delta { --w: 58px; }
+  .menu > ul { gap: 6px; }
+  .mtop { height: 48px; padding: 0 18px; font-size: 16.5px; }
+  .menu > .btn { min-height: 48px; margin-left: 22px; padding: 10px 26px; font-size: 16px; }
 }
