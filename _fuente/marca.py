@@ -22,8 +22,9 @@ SALIDA = RAIZ / "marca"
 PETROLEO = "#0B3C49"
 GRIS_DELTA = "#BFC8CC"   # claro sobre petróleo, sin llegar a blanco
 TEXTO = "#EDF0F0"        # CERTEZA: blanco hueso
-ACENTO = "#8FB4BD"       # OPERATIVA, filete e iconos: acero azulado
+ACENTO = "#8FB4BD"       # OPERATIVA, filete y separadores: acero azulado
 LEMA = "#BFC8CC"         # Orden · Visibilidad · Control
+SEP = "punto"            # separador del lema: punto | filete | franja
 
 SERIF = FUENTES / "Cinzel-SemiBold.ttf"
 SANS = FUENTES / "Montserrat-Medium.ttf"
@@ -95,21 +96,6 @@ class Fuente:
         return b[2] - b[0]
 
 
-# ---------------------------------------------------------------- Iconos (caja 24, línea fina)
-ICONOS = {
-    "orden": '<rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/>'
-             '<rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/>',
-    "visibilidad": '<path d="M2.2 12C5 7.2 8.3 5 12 5s7 2.2 9.8 7c-2.8 4.8-6.1 7-9.8 7s-7-2.2-9.8-7z"/><circle cx="12" cy="12" r="3.2"/>',
-    "control": '<path d="M12 2.8l7.4 2.8v5.6c0 4.8-3 8.3-7.4 10-4.4-1.7-7.4-5.2-7.4-10V5.6z"/><path d="M8.7 11.9l2.3 2.3 4.4-4.6"/>',
-}
-
-
-def icono(nombre, x, y, lado, color, trazo=1.35):
-    e = lado / 24
-    return (f'<g transform="translate({x:.2f} {y:.2f}) scale({e:.4f})" fill="none" stroke="{color}" '
-            f'stroke-width="{trazo}" stroke-linecap="round" stroke-linejoin="round">{ICONOS[nombre]}</g>')
-
-
 # ---------------------------------------------------------------- Composición
 def svg(ancho, alto, cuerpo, fondo=True, titulo="Certeza Operativa"):
     rect = f'<rect width="{ancho:.0f}" height="{alto:.0f}" fill="{PETROLEO}"/>' if fondo else ""
@@ -141,31 +127,41 @@ def palabra_marca(serif, sans, x, y_cap, tam):
     return out, dict(x=x, ancho=ancho, cap=cap, top=y_cap, base1=base1, base2=base2, cap2=cap2)
 
 
-def lema(sans, x, ancho, y_cap, cap_lema):
-    """Ícono + palabra ×3 con huecos iguales, centrados en el ancho dado."""
-    items = [("orden", "ORDEN"), ("visibilidad", "VISIBILIDAD"), ("control", "CONTROL")]
+def lema(sans, x, ancho, y_cap, cap_max, sep="punto"):
+    """ORDEN · VISIBILIDAD · CONTROL al mismo ancho que CERTEZA.
+
+    Interletrado y hueco fijos (en em); se despeja el tamaño. Si saliera más
+    grande que cap_max, se usa cap_max y el conjunto va centrado.
+    """
+    palabras = ["ORDEN", "VISIBILIDAD", "CONTROL"]
+    tr, hueco_em = 0.30, 1.9
     _, b = sans.texto("O", 100)
-    tam = cap_lema / (-b[1]) * 100
-    tr = 0.16
-    lado = cap_lema * 1.75
-    sep = cap_lema * 0.85
-    grupos = []
-    for ic, palabra in items:
-        w = sans.ancho(palabra, tam, tr)
-        grupos.append((ic, palabra, w, lado + sep + w))
-    hueco = (ancho - sum(g[3] for g in grupos)) / 2
-    assert hueco > 0, "el lema no cabe; baja cap_lema"
-    hueco = min(hueco, cap_lema * 3.4)  # huecos firmes; el conjunto va centrado
-    total = sum(g[3] for g in grupos) + 2 * hueco
-    base = y_cap + cap_lema
+    cap100 = -b[1]
+    unidad = sum(sans.ancho(w, 100, tr) for w in palabras) / 100 + 2 * hueco_em
+    tam = min(ancho / unidad, cap_max / cap100 * 100)
+    cap = cap100 * tam / 100
+    hueco = hueco_em * tam
+    total = unidad * tam
+    base = y_cap + cap
     cx, out = x + (ancho - total) / 2, []
-    for ic, palabra, w, total in grupos:
-        out.append(icono(ic, cx, base - cap_lema / 2 - lado / 2, lado, ACENTO))
-        _, bb = sans.texto(palabra, tam, 0, base, tr)
-        d, _ = sans.texto(palabra, tam, cx + lado + sep - bb[0], base, tr)
+    for i, w in enumerate(palabras):
+        _, bb = sans.texto(w, tam, 0, base, tr)
+        d, bb2 = sans.texto(w, tam, cx - bb[0], base, tr)
         out.append(f'<path fill="{LEMA}" d="{d}"/>')
-        cx += total + hueco
-    return "".join(out)
+        cx = bb2[2]
+        if i < 2:
+            mx, my = cx + hueco / 2, base - cap / 2
+            if sep == "punto":
+                out.append(f'<circle cx="{mx:.2f}" cy="{my:.2f}" r="{cap * 0.11:.2f}" fill="{ACENTO}"/>')
+            elif sep == "filete":
+                out.append(f'<rect x="{mx - cap * 0.03:.2f}" y="{my - cap * 0.75:.2f}" width="{cap * 0.06:.2f}" height="{cap * 1.5:.2f}" fill="{ACENTO}" opacity=".7"/>')
+            else:  # franja: misma inclinación que las franjas del Delta
+                h, w2, k = cap * 0.22, cap * 0.9, 0.6667
+                pts = [(mx - w2 / 2 - k * h / 2, my - h / 2), (mx + w2 / 2 - k * h / 2, my - h / 2),
+                       (mx + w2 / 2 + k * h / 2, my + h / 2), (mx - w2 / 2 + k * h / 2, my + h / 2)]
+                out.append(f'<path fill="{ACENTO}" d="M' + " L".join(f"{a:.2f} {c:.2f}" for a, c in pts) + ' Z"/>')
+            cx += hueco
+    return "".join(out), cap
 
 
 def guardar(nombre, contenido, escala=1.0):
@@ -206,7 +202,7 @@ def main():
     guardar("2-horizontal", svg(W, Hh, cuerpo), escala=1.0)
     guardar("2-horizontal-sin-fondo", svg(W, Hh, cuerpo, fondo=False), escala=1.0)
 
-    # 3 · Vertical completo: Delta arriba, CERTEZA, OPERATIVA, filete y lema con iconos.
+    # 3 · Vertical completo: Delta arriba, CERTEZA, OPERATIVA, filete y lema.
     tam = 240
     _, m = palabra_marca(serif, sans, 0, 0, tam)
     ancho = m["ancho"]
@@ -220,10 +216,9 @@ def main():
     marca, m = palabra_marca(serif, sans, pad, y, tam)
     y = m["base2"] + m["cap"] * 0.30
     filete = f'<rect x="{pad:.2f}" y="{y:.2f}" width="{ancho:.2f}" height="{max(1.5, m["cap"] * 0.009):.2f}" fill="{ACENTO}" opacity=".45"/>'
-    cap_lema = m["cap"] * 0.125
     y += m["cap"] * 0.30
-    lem = lema(sans, pad, ancho, y, cap_lema)
-    Hv = y + cap_lema * 1.5 + pad
+    lem, cap_lema = lema(sans, pad, ancho, y, m["cap2"] * 0.62, SEP)
+    Hv = y + cap_lema + pad
     cuerpo = f'<path fill="{GRIS_DELTA}" d="{d}"/>{marca}{filete}{lem}'
     guardar("3-vertical-completo", svg(W, Hv, cuerpo))
     guardar("3-vertical-completo-sin-fondo", svg(W, Hv, cuerpo, fondo=False))
