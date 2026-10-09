@@ -134,7 +134,6 @@ def menu(base, actual):
     nos = ''.join(item(h, b, s, '') for h, b, s in [
         ('nosotros.html#como', 'Cómo lo hacemos', 'Medimos, proponemos y verificamos contigo.'),
         ('nosotros.html#esperar', 'Lo que puedes esperar', 'Compromisos por escrito.'),
-        ('nosotros.html#horas', 'Horas útiles', 'Qué cuenta y qué no cuenta como trabajo.'),
         ('nosotros.html#quien', 'Quién te atiende', 'Sede en Nayarit, atención por WhatsApp.'),
         ('index.html#preguntas', 'Preguntas frecuentes', 'Lo que más nos preguntan.')])
     def top(pid, nombre, h, p, lista, cls='', ver=None):
@@ -225,7 +224,7 @@ def inicio(base):
         ('orden', 'i-orden', 'Cada cosa en su lugar.', ['Lista de precios o catálogo', 'Cotizador con tu marca', 'Procedimientos con lista de verificación', 'Quién hace qué', 'Expediente para el contador']),
         ('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo.', ['Registro diario desde el celular', 'Control de pedidos y cobros', 'Tablero semanal', 'Flujo a 30, 60 y 90 días', 'Inventario y reorden']),
         ('control', 'i-ctl', 'Que lo cobrado cuadre.', ['Arqueo y cierre de caja', 'Lo cobrado contra lo depositado', 'Agenda de cobranza', 'Mensajes de cobranza para WhatsApp', 'Lista de apertura y cierre']),
-        ('mejora-continua', 'i-mejora', 'Medir, ajustar y volver a medir.', ['Un indicador por trabajo, antes y después', 'Prueba con un caso real y ajuste', 'Se entrega cuando tu equipo lo usa solo', 'Revisiones extra cuando las necesitas (con Plus)', 'Herramientas y métodos a tu medida']),
+        ('mejora-continua', 'i-mejora', 'Medir, ajustar y volver a medir.', ['Un indicador por trabajo, antes y después', 'Prueba con un caso real y ajuste', 'Se entrega cuando tu equipo lo usa solo', 'Capacitación para tu equipo', 'Herramientas y métodos a tu medida']),
     ]
     pot_html = ''.join(f'''<article class="pot"><svg class="ic" aria-hidden="true"><use href="#{ic}"/></svg><h3>{PILAR_NOMBRE.get(k, 'Mejora continua')}</h3><p class="tl">{tl}</p><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul><a class="link" href="{base}soluciones/{k}.html">Conoce {PILAR_NOMBRE.get(k, 'Mejora continua')}</a></article>''' for k, ic, tl, items in pots)
     giros = ''.join(f'<a href="{base}industrias/{i["slug"]}.html">{esc(i["nombre"])}</a>' for i in INDUSTRIAS)
@@ -305,10 +304,10 @@ def inicio(base):
     </div>
     <p class="pasos-t">Así trabajamos</p>
     <ol class="pasos">
-      <li><span class="n">1</span><h3>Triaje</h3><p class="cuando">Siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
-      <li><span class="n">2</span><h3>Ficha</h3><p class="cuando">El mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
-      <li><span class="n">3</span><h3>Ticket</h3><p class="cuando">Precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
-      <li><span class="n">Δ</span><h3>Delta</h3><p class="cuando">Medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
+      <li><span class="n">1</span><h3>Te visitamos</h3><p class="cuando">Triaje · siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
+      <li><span class="n">2</span><h3>Te decimos qué encontramos</h3><p class="cuando">Ficha · el mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
+      <li><span class="n">3</span><h3>Lo resolvemos</h3><p class="cuando">Ticket · precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
+      <li><span class="n">Δ</span><h3>Medimos la mejora</h3><p class="cuando">Delta · medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
     </ol>
   </div>
 </section>
@@ -343,31 +342,18 @@ def inicio(base):
           </div>
           <p class="msg" id="msg" role="status">Elige al menos una pieza.</p>
           <a class="btn primary" id="wa" href="https://wa.me/{WA_NUM}">Enviar mi selección por WhatsApp</a>
-          <p class="note">Tarifas por hora: micro $700 + IVA y pequeña $1,400 + IVA. Empresas medianas, próximamente. Precios en pesos mexicanos. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
+          <p class="note">Precios en pesos, más IVA: micro $700 y pequeña $1,400 por hora. Mínimo 5 horas por trabajo. El precio final te lo damos por escrito. Nada de esto se guarda.</p>
         </aside>
       </div>
     </div>
 
     <div class="metodo" id="metodo">
-      <div class="head">
-        <h2>Proceso y metodología.</h2>
-        <p class="sub">Lo que necesitas saber antes de empezar. Primero, una llamada de 15 minutos y, si hace falta, el Triaje en tu negocio, siempre sin costo: hasta 90 min en micro y 2 h en pequeña. Después te damos por escrito qué haremos y cuántas horas autorizas.</p>
-      </div>
+      <div class="head"><h2>Lo que necesitas saber antes de empezar.</h2></div>
       <div class="cols">
-        <div><h3>Cuenta como hora útil</h3><ul><li>Diseño, redacción y armado de lo que te entregamos</li><li>Pruebas en celular y computadora</li><li>Publicación y configuración</li><li>Capacitación contigo o con tu equipo</li></ul></div>
-        <div class="no"><h3>No cuenta</h3><ul><li>Traslados</li><li>El tiempo esperando tu información o tu respuesta</li><li>Corregir errores nuestros</li></ul></div>
-        <div class="espera"><h3>Lo que puedes esperar</h3><ul><li>Las horas autorizadas no se rebasan sin tu autorización por escrito</li><li>Cada bloque de trabajo queda registrado con fecha y evidencia; puedes pedir el registro</li><li>Lo que entregamos queda a nombre de tu negocio</li></ul></div>
+        <div><h3>Empezar no cuesta</h3><p>Una llamada de 15 minutos y, si hace falta, una visita a tu negocio. El Triaje siempre es sin costo.</p></div>
+        <div><h3>Sabes el precio antes</h3><p>Te lo damos por escrito antes de empezar y no se rebasa sin tu autorización.</p></div>
+        <div><h3>Todo queda a tu nombre</h3><p>Lo que hacemos es de tu negocio, y tu equipo aprende a usarlo sin nosotros.</p></div>
       </div>
-      <h3 class="etapas-t">Por qué no se entrega el mismo día</h3>
-      <p class="sub">Cada etapa necesita tu información o tu visto bueno, y los cambios se hacen con calma para que salgan bien.</p>
-      <ol class="etapas">
-        <li class="tu"><span class="q">1</span><small>Tú</small><p>Nos entregas lo indispensable</p></li>
-        <li><span class="q">2</span><small>Nosotros</small><p>Estructura y textos</p></li>
-        <li class="tu"><span class="q">3</span><small>Tú</small><p>Revisas y apruebas</p></li>
-        <li><span class="q">4</span><small>Nosotros</small><p>Diseño, armado y pruebas</p></li>
-        <li class="tu"><span class="q">5</span><small>Tú</small><p>Revisión final</p></li>
-        <li class="ambos"><span class="q">6</span><small>Ambos</small><p>Publicación y capacitación</p></li>
-      </ol>
     </div>
   </div>
 </section>
@@ -459,7 +445,7 @@ def industria(i, k):
 def solucion(s, k):
     def cuerpo(base):
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in SOLUCIONES if o is not s)
-        ent = ''.join(f'<li>{esc(a)}<span>{esc(b)}</span></li>' for a, b in s['entregables'])
+        ent = ''.join(f'<li>{esc(a)}<span>{esc(b)}</span></li>' for a, b in s['entregables'] if 'Plus' not in a)
         return ph(base, [('index.html', 'Inicio'), ('index.html#potencial', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1) + f'''
 <section class="bloque blanco" aria-labelledby="t-suena"><div class="wrap">
   <div class="head"><h2 id="t-suena">¿Te suena?</h2></div>
@@ -486,19 +472,19 @@ def servicios():
         webs = [('Página de lanzamiento', 'Una sola página para que te encuentren y te escriban: oferta, qué ofreces y a quién, contacto, ubicación y datos del negocio.', '5 h', '5 a 7 días hábiles'),
                 ('Sitio completo', 'Hasta 5 secciones para que te conozcan antes de escribirte, por ejemplo inicio, servicios, nosotros, preguntas y contacto.', '11,5 h', '10 a 14 días hábiles'),
                 ('Sitio con catálogo', 'El sitio completo con tus productos, listos para pedir cotización: hasta 30 con foto, descripción y presentación.', '21 h', '15 a 20 días hábiles')]
-        web = ''.join(f'<article class="ay"><h3>{a}</h3><p>{b}</p><strong>{c}</strong><em>de trabajo, versión Estándar · {d} desde que recibimos lo indispensable</em></article>' for a, b, c, d in webs)
+        web = ''.join(f'<article class="ay"><h3>{a}</h3><p>{b}</p><em>Lista en {d}.</em></article>' for a, b, c, d in webs)
         tk = ''.join(f'<li>{esc(n)}<span>{PILAR_NOMBRE[p]} · {esc(d)}</span></li>' for p, h, a, n, d in PIEZAS)
         return ph(base, [('index.html', 'Inicio'), (None, 'Servicios')], 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta y cada trabajo tiene precio cerrado antes de empezar.', '', 2) + f'''
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Empieza: Triaje y Ficha</h2><p class="tl">Siempre sin costo.</p></div><div>
     <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>Un PDF corto, el mismo día: el problema en tus palabras, dos o tres hechos, una acción para hoy y el siguiente paso con precio y fecha.</span></li></ul>
     <div class="actions" style="margin-top:22px"><a class="btn primary" href="{WA_TRIAJE}">Empieza</a></div></div></article>
-  <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un indicador. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2">{tk}</ul></div></article>
-  <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. La versión Plus suma extras, como una ronda más de cambios; la comparamos en el Triaje.</p></div><div class="webs">{web}</div></article>
+  <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un indicador. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
+  <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. Hay versión con más extras; te la explicamos en el Triaje.</p></div><div class="webs">{web}</div></article>
   <article class="svc" id="canva"><div><h2>Documentos y tableros con Canva</h2><p class="tl">Con tu marca, en la cuenta de Canva de tu negocio, para que tú y tu equipo los usen, los editen y los descarguen en PDF.</p></div><div>
-    <ul class="lista2"><li>Orden<span>Lista de precios, procedimiento con lista de verificación y mapa de quién hace qué. Con Plus: formato de cotización y plantillas protegidas.</span></li><li>Visibilidad<span>Tablero semanal de 5 indicadores y captura semanal de 5 minutos. Con Plus: resumen de una página y revisión a las 4 semanas.</span></li><li>Control<span>Lista de apertura y cierre, arqueo diario, calendario de cobro y mensajes de cobranza en 3 tonos. Con Plus: formato de salidas y entregas, y revisión de tus primeros 5 cierres.</span></li><li>Hoja de cálculo cuando conviene<span>Registro diario, pedidos y saldos, flujo de efectivo, inventario y conciliación van en Excel u Hojas de Google.</span></li></ul></div></article>
+    <ul class="lista2"><li>Orden<span>Lista de precios, procedimientos y quién hace qué.</span></li><li>Visibilidad<span>Tablero de la semana con 5 números.</span></li><li>Control<span>Cierre de caja, calendario de cobro y mensajes de cobranza listos.</span></li></ul></div></article>
   <article class="svc" id="acompanamiento"><div><h2>Acompañamiento</h2><p class="tl">Hasta que tu equipo lo use solo.</p></div><div>
-    <ul class="lista2"><li>Prueba con un caso real<span>Una semana o un cierre real, y ajuste.</span></li><li>Revisión a las cuatro semanas (con Plus)<span>En Visibilidad, para ajustar los indicadores.</span></li><li>Capacitación<span>Para cambiar textos y fotos de tu página. Con Plus, también para editar en Canva y para tu encargado de caja.</span></li><li>Extras cuando hacen falta<span>Otra sección, más productos, otro procedimiento, perfil en Google Maps o una sesión extra de capacitación.</span></li></ul></div></article>
+    <ul class="lista2"><li>Prueba con un caso real<span>Lo usamos contigo una semana o un cierre real, y ajustamos.</span></li><li>Capacitación<span>Para que tú y tu equipo lo usen sin nosotros.</span></li><li>Extras cuando hacen falta<span>Más secciones, más productos o tu perfil en Google Maps.</span></li></ul></div></article>
 </div></section>
 {cta(base)}'''
     return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Triaje y Ficha sin costo, Tickets de mejora con precio cerrado, página web, documentos con Canva y acompañamiento para MiPyMEs en Nayarit.', cuerpo)
@@ -515,13 +501,9 @@ def nosotros():
   <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
   <ul class="lista2"><li>Las horas autorizadas no se rebasan<span>Sin tu autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan por escrito y se trabajan por hora.</span></li><li>Lo que entregamos queda a nombre de tu negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
 </div></section>
-<section class="bloque blanco" id="horas"><div class="wrap dos">
-  <div class="head"><h2>Horas útiles, no horas de reloj.</h2><p class="sub">Solo cuentan las horas de trabajo útil. Mínimo de 5 horas por Ticket.</p></div>
-  <ul class="lista2"><li>Sí cuenta<span>Diseño, redacción y armado; pruebas en celular y computadora; publicación y configuración; capacitación contigo o con tu equipo.</span></li><li>No cuenta<span>Traslados, el tiempo esperando tu información o tu respuesta, y corregir errores nuestros.</span></li></ul>
-</div></section>
 <section class="bloque" id="quien"><div class="wrap dos">
   <div class="head"><h2>Quién te atiende.</h2><p class="sub">Sede en Nayarit. Atendemos por WhatsApp y, cuando hace falta, en tu negocio.</p></div>
-  <div class="persona"><span class="av"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Certeza Operativa</h3><p>Consultoría para micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
+  <div class="persona"><span class="av"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
 </div></section>
 {cta(base)}'''
     return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos: medimos antes de proponer, compromisos por escrito y horas útiles. Consultoría para MiPyMEs con sede en Nayarit.', cuerpo)

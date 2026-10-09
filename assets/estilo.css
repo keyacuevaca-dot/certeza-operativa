@@ -245,7 +245,8 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 /* Proceso y metodología (dentro del mismo flujo) */
 .metodo { margin-top: 120px; }
 .metodo .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-bottom: 72px; }
-.metodo h3 { font-size: 27px; margin-bottom: 12px; }
+.metodo h3 { font-size: 27px; margin-bottom: 10px; }
+.metodo .cols p { font-size: 17px; }
 .metodo ul { list-style: none; margin: 0; padding: 0; }
 .metodo li { position: relative; padding: 8px 0 8px 26px; font-size: 16.5px; }
 .metodo li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); }
