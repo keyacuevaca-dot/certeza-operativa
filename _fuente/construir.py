@@ -88,7 +88,7 @@ def social(extra=False):
 
 
 def head(titulo, desc, ruta, base, extra=''):
-    url = SITIO + ruta
+    url = SITIO + ('' if ruta == 'index.html' else ruta)
     return f'''<!doctype html>
 <html lang="es-MX">
 <head>
@@ -124,7 +124,7 @@ def menu(base, actual):
         return f'<li><a href="{base}{href}"{cur}><b>{esc(b)}</b><span>{esc(s)}</span></a></li>'
     ind = ''.join(item(f'industrias/{i["slug"]}.html', i['nombre'], i['corto'], f'industrias/{i["slug"]}.html') for i in INDUSTRIAS)
     sol = ''.join(item(f'soluciones/{s["slug"]}.html', s['nombre'], s['tl'], f'soluciones/{s["slug"]}.html') for s in SOLUCIONES)
-    srv = ''.join(item(h, b, s, 'servicios.html' if h.startswith('servicios') else '') for h, b, s in [
+    srv = ''.join(item(h, b, s, '') for h, b, s in [
         ('servicios.html#empieza', 'Empieza: Triaje y Ficha', 'Siempre sin costo. La Ficha, el mismo día.'),
         ('servicios.html#tickets', 'Tickets de mejora', 'Piezas de Orden, Visibilidad y Control.'),
         ('servicios.html#pagina-web', 'Página web', 'Para que te encuentren, te conozcan o te pidan cotización.'),
@@ -205,8 +205,9 @@ def barra():
     uno = ''.join(li(n, s) for n, s in BARRA)
     dos = ''.join(li(n, s, True) for n, s in BARRA)
     return f'''<section class="tools" aria-label="Herramientas con las que trabajamos">
-  <p>Trabajamos con las herramientas que ya usa tu negocio</p>
+  <div class="wrap tools-hd"><p>Partimos de las herramientas que ya usa tu negocio</p><button type="button" class="pausa" aria-pressed="false">Pausar</button></div>
   <div class="marquee"><ul>{uno}{dos}</ul></div>
+  <p class="marcas">Marcas de sus respectivos dueños; se muestran solo como referencia, sin afiliación.</p>
 </section>'''
 
 
@@ -223,15 +224,15 @@ def inicio(base):
     pots = [
         ('orden', 'i-orden', 'Cada cosa en su lugar.', ['Lista de precios o catálogo', 'Cotizador con tu marca', 'Procedimientos con lista de verificación', 'Quién hace qué', 'Expediente para el contador']),
         ('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo.', ['Registro diario desde el celular', 'Control de pedidos y cobros', 'Tablero semanal', 'Flujo a 30, 60 y 90 días', 'Inventario y reorden']),
-        ('control', 'i-ctl', 'Que lo cobrado cuadre.', ['Arqueo y cierre de caja', 'Lo cobrado contra lo depositado', 'Agenda de cobranza', 'Mensajes de cobranza para WhatsApp', 'Formato de salidas y entregas']),
-        ('mejora-continua', 'i-mejora', 'Medir, ajustar y volver a medir.', ['Un indicador por trabajo, antes y después', 'Prueba con un caso real y ajuste', 'Revisión a las cuatro semanas', 'Capacitación para que tu equipo lo use solo', 'Herramientas y métodos a tu medida']),
+        ('control', 'i-ctl', 'Que lo cobrado cuadre.', ['Arqueo y cierre de caja', 'Lo cobrado contra lo depositado', 'Agenda de cobranza', 'Mensajes de cobranza para WhatsApp', 'Lista de apertura y cierre']),
+        ('mejora-continua', 'i-mejora', 'Medir, ajustar y volver a medir.', ['Un indicador por trabajo, antes y después', 'Prueba con un caso real y ajuste', 'Se entrega cuando tu equipo lo usa solo', 'Revisiones extra cuando las necesitas (con Plus)', 'Herramientas y métodos a tu medida']),
     ]
     pot_html = ''.join(f'''<article class="pot"><svg class="ic" aria-hidden="true"><use href="#{ic}"/></svg><h3>{PILAR_NOMBRE.get(k, 'Mejora continua')}</h3><p class="tl">{tl}</p><ul>{''.join(f'<li>{esc(x)}</li>' for x in items)}</ul><a class="link" href="{base}soluciones/{k}.html">Conoce {PILAR_NOMBRE.get(k, 'Mejora continua')}</a></article>''' for k, ic, tl, items in pots)
     giros = ''.join(f'<a href="{base}industrias/{i["slug"]}.html">{esc(i["nombre"])}</a>' for i in INDUSTRIAS)
     faq = [('¿Cuánto cuesta el Triaje?', 'Siempre sin costo, y la Ficha también. Dura hasta 90 min en micro y 2 h en pequeña.'),
            ('¿Cuánto pago y cuándo?', 'Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.'),
            ('¿Tengo que cambiar lo que uso?', 'No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.'),
-           ('¿Me garantizan resultados?', 'No prometemos lo que no se puede medir: cada trabajo tiene un indicador que tú verificas.'),
+           ('¿Me garantizan resultados?', 'No prometemos lo que no se puede medir: cada trabajo tiene un indicador.'),
            ('¿Y si decido parar?', 'Pagas solo lo trabajado.'),
            ('¿Cuándo termina un trabajo?', 'Cuando tu equipo completa un ciclo sin nosotros.')]
     return f'''
@@ -243,27 +244,27 @@ def inicio(base):
     </div>
     <div class="hb">
       <p class="lead">Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.</p>
-      <ul class="cero" aria-label="Sin riesgo para empezar">
-        <li>Empezar no cuesta</li><li>Pagas solo lo trabajado</li><li>Resultados que tú verificas</li>
+      <ul class="cero" aria-label="Cómo empiezas">
+        <li>Empezar no cuesta</li><li>Si paras, pagas solo lo trabajado</li><li>Resultados que tú verificas</li>
       </ul>
       <div class="actions">
         <a class="btn primary" href="{WA_PRO}">Habla con un profesional</a>
-        <a class="btn ghost" href="#precio">Mira cuánto cuesta</a>
       </div>
+      <p class="nota">Hoy atendemos micro y pequeñas empresas; medianas, próximamente.</p>
     </div>
     <div class="hv">
       <p class="sr">Ejemplos de lo que entregamos: una lista de apertura, un tablero con los cinco números de la semana, un cierre de caja que cuadra y un recordatorio de pago por WhatsApp.</p>
       <div class="vis" aria-hidden="true">
         <svg class="lineart" viewBox="0 0 640 600">{lineart(x0=170, y0=470, dx=150, dy=190, s0=150)}</svg>
         <div class="hc hc-lista">
-          <div class="hd"><i>{check_svg('M4 12.5l5 5L20 6.5')}</i>Apertura<em>Ejemplo</em></div>
+          <div class="hd"><i>{check_svg('M4 12.5l5 5L20 6.5')}</i><span>Apertura</span><em>Ejemplo</em></div>
           <div class="check si"><i></i><span>Fondo de caja contado</span></div>
           <div class="check si"><i></i><span>Precios a la vista</span></div>
           <div class="check si"><i></i><span>Refrigeradores en temperatura</span></div>
           <div class="check"><i></i><span>Pedido al proveedor</span></div>
         </div>
         <div class="hc hc-semana">
-          <div class="hd"><i>{check_svg('M5 20V11M12 20V5M19 20v-6')}</i>Tu semana en 5 números<em>Ejemplo</em></div>
+          <div class="hd"><i>{check_svg('M5 20V11M12 20V5M19 20v-6')}</i><span>Tu semana en 5 números</span><em>Ejemplo</em></div>
           <div class="row"><span>{spark([40, 55, 48, 70, 82])}Ventas</span><b>▲ mejor que la pasada</b></div>
           <div class="row"><span>{spark([50, 60, 58, 66, 75])}Cobrado</span><span class="ok">En meta</span></div>
           <div class="row"><span>{spark([70, 62, 55, 50, 40])}Por cobrar</span><span class="warn">3 clientes</span></div>
@@ -271,13 +272,13 @@ def inicio(base):
           <div class="row"><span>{spark([30, 45, 40, 52, 58])}Por pedir</span><span class="warn">2 productos</span></div>
         </div>
         <div class="hc hc-caja">
-          <div class="hd"><i>{check_svg('M3 7h18v12H3zM3 11h18M7 15h3')}</i>Cierre de caja · hoy<em>Ejemplo</em></div>
+          <div class="hd"><i>{check_svg('M3 7h18v12H3zM3 11h18M7 15h3')}</i><span>Cierre de caja · hoy</span><em>Ejemplo</em></div>
           <div class="row"><span>Ventas del día</span><b>$8,420</b></div>
           <div class="row"><span>Efectivo y transferencias</span><b>$8,420</b></div>
           <div class="row"><span>Diferencia</span><span class="ok">$0 · Cuadra</span></div>
         </div>
         <div class="hc hc-wa">
-          <div class="hd"><i>{check_svg('M4 20l1.5-4A8 8 0 1 1 9 19.2z')}</i>Recordatorio amable<em>Ejemplo</em></div>
+          <div class="hd"><i>{check_svg('M4 20l1.5-4A8 8 0 1 1 9 19.2z')}</i><span>Recordatorio amable</span><em>Ejemplo</em></div>
           <div class="bub">Hola, Sra. Lupita. Le recuerdo con gusto su saldo de $1,250, que vence el viernes. ¡Gracias por su preferencia!</div>
           <div class="meta">9:30 <i>✓✓</i></div>
         </div>
@@ -298,7 +299,7 @@ def inicio(base):
     </div>
     <div class="ventajas">
       <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
-      <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Y si decides parar, pagas solo lo trabajado.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Decides con información, no con una promesa.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos lo que no se puede medir.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
     </div>
@@ -307,7 +308,7 @@ def inicio(base):
       <li><span class="n">1</span><h3>Triaje</h3><p class="cuando">Siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
       <li><span class="n">2</span><h3>Ficha</h3><p class="cuando">El mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
       <li><span class="n">3</span><h3>Ticket</h3><p class="cuando">Precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
-      <li><span class="n">Δ</span><h3>Delta</h3><p class="cuando">Medido contigo</p><p>Comparamos el indicador antes y después, y ajustamos. Así se queda la mejora.</p></li>
+      <li><span class="n">Δ</span><h3>Delta</h3><p class="cuando">Medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
     </ol>
   </div>
 </section>
@@ -324,7 +325,7 @@ def inicio(base):
     <div class="cat-grid">
       <div>
         <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
-        <div class="pieces" id="pieces" role="group" aria-live="polite">{''.join(piece(p) for p in PIEZAS)}</div>
+        <div class="pieces" id="pieces" role="group">{''.join(piece(p) for p in PIEZAS)}</div>
         <p class="pnote">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
       </div>
       <div class="est-wrap">
@@ -332,13 +333,15 @@ def inicio(base):
           <h3 id="t-est">Tu estimado</h3>
           <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">$80,000</output></label>
           <input type="range" id="ventas" min="20000" max="400000" step="5000" value="80000">
-          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 por hora</b></span></p>
+          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 + IVA por hora</b></span></p>
           <hr class="rule">
           <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
           <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
-          <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="monto">$0</strong></div>
-          <p class="tot" id="tot"></p>
-          <p class="msg" id="msg">Elige al menos una pieza.</p>
+          <div aria-live="polite" aria-atomic="true">
+            <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="monto">$0</strong></div>
+            <p class="tot" id="tot"></p>
+          </div>
+          <p class="msg" id="msg" role="status">Elige al menos una pieza.</p>
           <a class="btn primary" id="wa" href="https://wa.me/{WA_NUM}">Enviar mi selección por WhatsApp</a>
           <p class="note">Tarifas por hora: micro $700 + IVA y pequeña $1,400 + IVA. Empresas medianas, próximamente. Precios en pesos mexicanos. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
         </aside>
@@ -348,7 +351,7 @@ def inicio(base):
     <div class="metodo" id="metodo">
       <div class="head">
         <h2>Proceso y metodología.</h2>
-        <p class="sub">Lo que necesitas saber antes de empezar. Primero, una llamada de 15 minutos y, si hace falta, una visita sin costo de hasta 90 minutos. Después te damos por escrito qué haremos y cuántas horas autorizas.</p>
+        <p class="sub">Lo que necesitas saber antes de empezar. Primero, una llamada de 15 minutos y, si hace falta, el Triaje en tu negocio, siempre sin costo: hasta 90 min en micro y 2 h en pequeña. Después te damos por escrito qué haremos y cuántas horas autorizas.</p>
       </div>
       <div class="cols">
         <div><h3>Cuenta como hora útil</h3><ul><li>Diseño, redacción y armado de lo que te entregamos</li><li>Pruebas en celular y computadora</li><li>Publicación y configuración</li><li>Capacitación contigo o con tu equipo</li></ul></div>
@@ -416,7 +419,7 @@ def ph(base, migas, h1, lead, tipos='', variante=0, wa_msg=None):
       <h1 id="t-ph">{esc(h1)}</h1>
       {f'<p class="tipos">{esc(tipos)}</p>' if tipos else ''}
       <p class="lead">{esc(lead)}</p>
-      <div class="actions"><a class="btn primary" href="{wa_msg or WA_PRO}">Habla con un profesional</a><a class="btn ghost" href="{base}index.html#precio">Mira cuánto cuesta</a></div>
+      <div class="actions"><a class="btn primary" href="{wa_msg or WA_PRO}">Habla con un profesional</a></div>
     </div>
     <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(giro=g, x0=x0, y0=y0)}</svg>
   </div>
@@ -432,17 +435,17 @@ def industria(i, k):
         ay = ''.join(f'<article class="ay"><small>{PILAR_NOMBRE[PIEZA[n][0]]}</small><h3>{esc(n)}</h3><p>{esc(PIEZA[n][4])}</p></article>' for n in i['piezas'])
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
         return ph(base, [('index.html', 'Inicio'), ('index.html#potencial', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k,
-                  wa(f'Hola, tengo un negocio de {i["nombre"].lower()} y quiero hablar con un profesional.')) + f'''
+                  wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero hablar con un profesional.')) + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
-  <div class="head"><h2 id="t-voces">Lo que oímos de los dueños.</h2><p class="sub">Si alguna de estas preguntas te suena, empezamos por ahí.</p></div>
+  <div class="head"><h2 id="t-voces">¿Te suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
 </div></section>
 <section class="bloque" aria-labelledby="t-ayuda"><div class="wrap">
-  <div class="head"><h2 id="t-ayuda">Cómo te ayudamos.</h2><p class="sub">Piezas concretas, cada una con su indicador. Tú eliges cuáles y en qué orden.</p></div>
+  <div class="head"><h2 id="t-ayuda">Cómo te ayudamos.</h2><p class="sub">Piezas concretas que se juntan en un Ticket con su indicador. Tú eliges cuáles y en qué orden.</p></div>
   <div class="ayuda">{ay}</div>
 </div></section>
 <section class="bloque blanco" aria-labelledby="t-herr"><div class="wrap dos">
-  <div class="head"><h2 id="t-herr">Herramientas que solemos usar.</h2><p class="sub">Partimos de lo que ya tienes. Si algo no lo usas, no lo instalamos.</p></div>
+  <div class="head"><h2 id="t-herr">Herramientas que suelen usar estos negocios.</h2><p class="sub">Partimos de lo que ya tienes. Si algo no lo usas, no lo instalamos.</p></div>
   <ul class="chips">{''.join(f'<li>{esc(h)}</li>' for h in i['herramientas'])}</ul>
 </div></section>
 <section class="bloque" aria-labelledby="t-otras"><div class="wrap">
@@ -489,13 +492,13 @@ def servicios():
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Empieza: Triaje y Ficha</h2><p class="tl">Siempre sin costo.</p></div><div>
     <ul class="lista2"><li>Triaje<span>Una visita corta: doce preguntas y un caso real de tu negocio, de punta a punta. Hasta 90 min en micro y 2 h en pequeña.</span></li><li>Ficha<span>Un PDF corto, el mismo día: el problema en tus palabras, dos o tres hechos, una acción para hoy y el siguiente paso con precio y fecha.</span></li></ul>
-    <div class="actions" style="margin-top:22px"><a class="btn primary" href="{WA_TRIAJE}">Pide tu Triaje</a></div></div></article>
+    <div class="actions" style="margin-top:22px"><a class="btn primary" href="{WA_TRIAJE}">Empieza</a></div></div></article>
   <article class="svc" id="tickets"><div><h2>Tickets de mejora</h2><p class="tl">Un trabajo con precio cerrado y un indicador. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}index.html#precio">Estima tu precio</a></p></div><div><ul class="lista2">{tk}</ul></div></article>
-  <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio, botón de WhatsApp con mensaje listo y diseño que se ve bien en celular.</p></div><div class="webs">{web}</div></article>
+  <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elige por lo que quieres que haga tu cliente al entrar: escribirte, conocerte o pedir cotización. Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. La versión Plus suma extras, como una ronda más de cambios; la comparamos en el Triaje.</p></div><div class="webs">{web}</div></article>
   <article class="svc" id="canva"><div><h2>Documentos y tableros con Canva</h2><p class="tl">Con tu marca, en la cuenta de Canva de tu negocio, para que tú y tu equipo los usen, los editen y los descarguen en PDF.</p></div><div>
-    <ul class="lista2"><li>Orden<span>Lista de precios, procedimiento con lista de verificación, mapa de quién hace qué, formato de cotización y plantillas protegidas.</span></li><li>Visibilidad<span>Tablero semanal de 5 indicadores, captura semanal de 5 minutos y resumen de una página.</span></li><li>Control<span>Lista de apertura y cierre, arqueo diario, calendario de cobro y mensajes de cobranza en 3 tonos.</span></li><li>Hoja de cálculo cuando conviene<span>Registro diario, pedidos y saldos, flujo de efectivo, inventario y conciliación van en Excel u Hojas de Google.</span></li></ul></div></article>
+    <ul class="lista2"><li>Orden<span>Lista de precios, procedimiento con lista de verificación y mapa de quién hace qué. Con Plus: formato de cotización y plantillas protegidas.</span></li><li>Visibilidad<span>Tablero semanal de 5 indicadores y captura semanal de 5 minutos. Con Plus: resumen de una página y revisión a las 4 semanas.</span></li><li>Control<span>Lista de apertura y cierre, arqueo diario, calendario de cobro y mensajes de cobranza en 3 tonos. Con Plus: formato de salidas y entregas, y revisión de tus primeros 5 cierres.</span></li><li>Hoja de cálculo cuando conviene<span>Registro diario, pedidos y saldos, flujo de efectivo, inventario y conciliación van en Excel u Hojas de Google.</span></li></ul></div></article>
   <article class="svc" id="acompanamiento"><div><h2>Acompañamiento</h2><p class="tl">Hasta que tu equipo lo use solo.</p></div><div>
-    <ul class="lista2"><li>Prueba con un caso real<span>Una semana o un cierre real, y ajuste.</span></li><li>Revisión a las cuatro semanas<span>Para ajustar lo que no se está usando.</span></li><li>Capacitación<span>Para editar tus formatos y para tu encargado de caja.</span></li><li>Extras cuando hacen falta<span>Otra sección, más productos, otro procedimiento, perfil en Google Maps o una sesión extra de capacitación.</span></li></ul></div></article>
+    <ul class="lista2"><li>Prueba con un caso real<span>Una semana o un cierre real, y ajuste.</span></li><li>Revisión a las cuatro semanas (con Plus)<span>En Visibilidad, para ajustar los indicadores.</span></li><li>Capacitación<span>Para cambiar textos y fotos de tu página. Con Plus, también para editar en Canva y para tu encargado de caja.</span></li><li>Extras cuando hacen falta<span>Otra sección, más productos, otro procedimiento, perfil en Google Maps o una sesión extra de capacitación.</span></li></ul></div></article>
 </div></section>
 {cta(base)}'''
     return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Triaje y Ficha sin costo, Tickets de mejora con precio cerrado, página web, documentos con Canva y acompañamiento para MiPyMEs en Nayarit.', cuerpo)
@@ -510,15 +513,15 @@ def nosotros():
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
   <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
-  <ul class="lista2"><li>Las horas autorizadas no se rebasan<span>Sin tu autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan por escrito y se trabajan por hora.</span></li><li>Lo que entregamos es tuyo<span>Queda a nombre de tu negocio.</span></li></ul>
+  <ul class="lista2"><li>Las horas autorizadas no se rebasan<span>Sin tu autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan por escrito y se trabajan por hora.</span></li><li>Lo que entregamos queda a nombre de tu negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
 </div></section>
 <section class="bloque blanco" id="horas"><div class="wrap dos">
-  <div class="head"><h2>Horas útiles, no horas de reloj.</h2><p class="sub">Solo cobramos el trabajo que te entregamos.</p></div>
+  <div class="head"><h2>Horas útiles, no horas de reloj.</h2><p class="sub">Solo cuentan las horas de trabajo útil. Mínimo de 5 horas por Ticket.</p></div>
   <ul class="lista2"><li>Sí cuenta<span>Diseño, redacción y armado; pruebas en celular y computadora; publicación y configuración; capacitación contigo o con tu equipo.</span></li><li>No cuenta<span>Traslados, el tiempo esperando tu información o tu respuesta, y corregir errores nuestros.</span></li></ul>
 </div></section>
 <section class="bloque" id="quien"><div class="wrap dos">
   <div class="head"><h2>Quién te atiende.</h2><p class="sub">Sede en Nayarit. Atendemos por WhatsApp y, cuando hace falta, en tu negocio.</p></div>
-  <div class="persona"><span class="av"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Empieza por micro y pequeñas empresas de Tepic y Nayarit.</p></div></div>
+  <div class="persona"><span class="av"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Certeza Operativa</h3><p>Consultoría para micro y pequeñas empresas de Tepic y Nayarit; medianas, próximamente.</p></div></div>
 </div></section>
 {cta(base)}'''
     return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos: medimos antes de proponer, compromisos por escrito y horas útiles. Consultoría para MiPyMEs con sede en Nayarit.', cuerpo)

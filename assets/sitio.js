@@ -7,7 +7,7 @@
 
   /* --- Menú: cada pestaña despliega un panel informativo --- */
   var menu = $('.menu'), burger = $('.burger'), tops = $$('.mtop[aria-controls]');
-  var desk = matchMedia('(min-width: 1081px)'), hover = matchMedia('(hover: hover) and (pointer: fine)'), t = null;
+  var desk = matchMedia('(min-width: 1081px)'), hover = matchMedia('(hover: hover) and (pointer: fine)'), t = null, porHover = null;
   function closeAll(except) {
     tops.forEach(function (b) { if (b !== except) { b.setAttribute('aria-expanded', 'false'); $('#' + b.getAttribute('aria-controls')).classList.remove('open'); } });
   }
@@ -18,9 +18,15 @@
   }
   tops.forEach(function (b) {
     var li = b.parentNode;
-    b.addEventListener('click', function () { setOpen(b, b.getAttribute('aria-expanded') !== 'true'); });
-    li.addEventListener('mouseenter', function () { if (desk.matches && hover.matches) { clearTimeout(t); t = setTimeout(function () { setOpen(b, true); }, 90); } });
-    li.addEventListener('mouseleave', function () { if (desk.matches && hover.matches) { clearTimeout(t); t = setTimeout(function () { setOpen(b, false); }, 160); } });
+    b.addEventListener('click', function () {
+      clearTimeout(t);
+      if (porHover === b && b.getAttribute('aria-expanded') === 'true') { porHover = null; return; }
+      porHover = null;
+      setOpen(b, b.getAttribute('aria-expanded') !== 'true');
+    });
+    li.addEventListener('mouseenter', function () { if (desk.matches && hover.matches) { clearTimeout(t); t = setTimeout(function () { if (b.getAttribute('aria-expanded') !== 'true') porHover = b; setOpen(b, true); }, 90); } });
+    li.addEventListener('mouseleave', function () { if (desk.matches && hover.matches) { clearTimeout(t); porHover = null; t = setTimeout(function () { setOpen(b, false); }, 160); } });
+    li.addEventListener('focusout', function (e) { if (desk.matches && !li.contains(e.relatedTarget)) setOpen(b, false); });
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
@@ -34,11 +40,22 @@
     burger.setAttribute('aria-expanded', String(on));
     burger.setAttribute('aria-label', on ? 'Cerrar menú' : 'Abrir menú');
     document.body.style.overflow = on ? 'hidden' : '';
+    ['main', 'footer', '#float', '.skip'].forEach(function (s) { var n = $(s); if (n) n.inert = on; });
     if (!on) closeAll();
   }
   if (burger) burger.addEventListener('click', function () { toggleMenu(!menu.classList.contains('open')); });
-  desk.addEventListener('change', function () { if (desk.matches && menu.classList.contains('open')) toggleMenu(false); closeAll(); });
+  var alCambiar = function () { if (desk.matches && menu.classList.contains('open')) toggleMenu(false); closeAll(); };
+  if (desk.addEventListener) desk.addEventListener('change', alCambiar); else if (desk.addListener) desk.addListener(alCambiar);
   $$('.menu a[href*="#"]').forEach(function (a) { a.addEventListener('click', function () { if (menu.classList.contains('open')) toggleMenu(false); closeAll(); }); });
+
+  /* --- Barra de herramientas: se puede pausar --- */
+  var pausa = $('.pausa'), marquee = $('.marquee');
+  if (pausa && marquee) pausa.addEventListener('click', function () {
+    var on = !marquee.classList.contains('quieta');
+    marquee.classList.toggle('quieta', on);
+    pausa.setAttribute('aria-pressed', String(on));
+    pausa.textContent = on ? 'Reanudar' : 'Pausar';
+  });
 
   /* --- Botón flotante --- */
   var fl = $('#float');
@@ -69,7 +86,7 @@
   function range(v) { return v < 100000 ? 'menos de $100,000' : (v <= 250000 ? '$100,000 a $250,000' : 'más de $250,000'); }
   function calc() {
     var v = +rng.value, sz = size(v), r = RATE[sz], per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
-    $('#ventasOut').textContent = fmt(v);
+    $('#ventasOut').textContent = fmt(v); rng.setAttribute('aria-valuetext', fmt(v) + ' al mes');
     $('#tam').textContent = NAME[sz]; $('#tar').textContent = r ? fmt(r) + ' + IVA por hora' : 'próximamente';
     if (!r) {
       ['h1', 'h2', 'h3'].forEach(function (id) { $('#' + id).textContent = '—'; });
