@@ -3,431 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Certeza Operativa · Orden, visibilidad y control en Nayarit</title>
-<meta name="description" content="Consultoría para micro y pequeños negocios de Nayarit. Elige las piezas que necesitas, estima tu precio al instante y agenda tu Triaje sin costo por WhatsApp.">
+<title>Certeza Operativa · Consultoría para MiPyMEs en Nayarit</title>
+<meta name="description" content="Mejorando empresas de México. Medimos, proponemos y adaptamos herramientas sencillas a tu negocio. Empezar no cuesta: el Triaje siempre es sin costo.">
 <meta name="theme-color" content="#0b3c49">
 <link rel="canonical" href="https://keyacuevaca-dot.github.io/certeza-operativa/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preload" href="assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="assets/fonts/Outfit-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/estilo.css">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
-<meta property="og:title" content="Certeza Operativa · Orden. Visibilidad. Control.">
-<meta property="og:description" content="Consultoría para micro y pequeños negocios de Nayarit. Estima tu precio al instante. Triaje siempre sin costo.">
+<meta property="og:site_name" content="Certeza Operativa">
+<meta property="og:title" content="Certeza Operativa · Consultoría para MiPyMEs en Nayarit">
+<meta property="og:description" content="Mejorando empresas de México. Medimos, proponemos y adaptamos herramientas sencillas a tu negocio. Empezar no cuesta: el Triaje siempre es sin costo.">
 <meta property="og:url" content="https://keyacuevaca-dot.github.io/certeza-operativa/">
 <meta property="og:image" content="https://keyacuevaca-dot.github.io/certeza-operativa/assets/portada.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Certeza Operativa: orden, visibilidad y control, con una libreta, un tablero y una caja fuerte sobre fondo petróleo.">
+<meta property="og:image:alt" content="Certeza Operativa: el Delta formado por líneas y la frase Mejorando empresas de México.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Certeza Operativa","description":"Consultoría para micro y pequeños negocios de Nayarit: orden, visibilidad y control.","url":"https://keyacuevaca-dot.github.io/certeza-operativa/","image":"https://keyacuevaca-dot.github.io/certeza-operativa/assets/portada.png","logo":"https://keyacuevaca-dot.github.io/certeza-operativa/assets/favicon.svg","telephone":"+523114469363","areaServed":{"@type":"AdministrativeArea","name":"Nayarit, México"},"sameAs":["https://www.instagram.com/certezaoperativa/","https://www.facebook.com/profile.php?id=61594375394266"]}
-</script>
-<style>
-  @font-face { font-family: "Crimson Pro"; src: url(assets/fonts/CrimsonPro-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
-  @font-face { font-family: Outfit; src: url(assets/fonts/Outfit-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
-  @font-face { font-family: Outfit; src: url(assets/fonts/Outfit-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
-
-  /* ===== Sistema: petróleo de fondo, objetos claros al frente, un solo acento (oro de la marca) ===== */
-  :root {
-    --bg: #0b3c49; --bg2: #0f4a5b; --bg3: #082f3a; --bg4: #052229;
-    --line: rgba(211, 231, 233, .2);
-    --marfil: #f4eee0; --crema: #e6dbc2; --papel-line: #cfc2a2; --hielo: #d3e7e9;
-    --txt: #f4eee0; --txt2: #bcd3d6;
-    --ink: #0a2b35; --ink2: #3a545e;
-    --oro: #dec292; --oro-hi: #ebd5aa; --oro-deep: #b98f45; --oro-ink: #7a5714;
-    --teal: #2a8499; --teal-deep: #115063;
-    --obj-shadow: rgba(3, 23, 29, .38);
-    --serif: "Crimson Pro", Georgia, "Times New Roman", serif;
-    --sans: Outfit, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --section: 112px;
-    --chart-a: #1f7488;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-  body { margin: 0; background: var(--bg); color: var(--txt2); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; color: var(--txt); margin: 0; letter-spacing: -.005em; }
-  p { margin: 0; }
-  a { color: var(--oro); text-underline-offset: 4px; }
-  button { font: inherit; }
-  :focus-visible { outline: 3px solid var(--oro); outline-offset: 3px; border-radius: 6px; }
-  .cream :focus-visible { outline-color: var(--ink); }
-  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
-  .skip { position: absolute; left: -999px; top: 8px; background: var(--oro); color: var(--ink); padding: 10px 18px; border-radius: 10px; z-index: 100; }
-  .skip:focus { left: 8px; }
-  .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-  section { padding: var(--section) 0; }
-  .alt { background: var(--bg3); }
-  .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--oro); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
-
-  /* Objetos de papel: mismo lenguaje en todo el sitio (hoja clara, grosor y sombra plana) */
-  .cream { background: var(--marfil); color: var(--ink2); border-bottom: 10px solid var(--papel-line); box-shadow: 14px 16px 0 var(--obj-shadow); }
-  .cream h2, .cream h3, .cream dt, .cream b, .cream strong { color: var(--ink); }
-
-  /* Marca */
-  .brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--marfil); flex: none; }
-  .brand .mk { width: 56px; height: 43px; color: var(--oro); flex: none; }
-  .brand .w1 { display: block; font: 700 29px/1 var(--serif); letter-spacing: .07em; }
-  .brand .w2 { display: block; margin-top: 7px; font: 400 11.5px/1 var(--sans); letter-spacing: .52em; color: var(--oro); }
-  .stack { display: inline-flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: var(--marfil); }
-  .stack .mk { width: 92px; height: 70px; color: var(--oro); }
-  .stack .s1 { font: 700 46px/1 var(--serif); letter-spacing: .05em; margin-top: 14px; }
-  .stack .s2 { display: flex; align-items: center; gap: 16px; margin-top: 12px; font: 400 17px/1 var(--sans); letter-spacing: .5em; color: var(--oro); padding-left: .5em; }
-  .stack .s2 i { display: block; width: 44px; height: 2px; background: var(--oro); }
-  .stack .s3 { display: flex; align-items: center; gap: 14px; margin-top: 18px; font: 400 13px/1 var(--sans); letter-spacing: .2em; color: var(--marfil); }
-  .stack .s3 b { display: block; width: 7px; height: 7px; border: 1.5px solid var(--oro); transform: rotate(45deg); }
-
-  /* Encabezado */
-  header.site { position: sticky; top: 0; z-index: 50; transition: background-color .3s, box-shadow .3s; }
-  header.site.stuck { background: rgba(8, 47, 58, .94); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
-  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
-  nav { display: flex; align-items: center; gap: 28px; font-size: 16px; }
-  nav .links { display: flex; align-items: center; gap: 28px; }
-  nav .links a { color: var(--txt); text-decoration: none; padding: 13px 0; position: relative; }
-  nav .links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 2px; background: var(--oro); transform: scaleX(0); transform-origin: 0 50%; transition: transform .25s; }
-  nav .links a:hover::after, nav .links a.on::after { transform: scaleX(1); }
-
-  /* Botones: dicen lo que pasa al tocarlos */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 13px 28px; border-radius: 14px; border: 2px solid transparent; font-family: var(--sans); font-weight: 700; font-size: 16px; line-height: 1.2; text-decoration: none; cursor: pointer; touch-action: manipulation; transition: background-color .2s, color .2s, transform .2s, border-color .2s; }
-  .btn:active { transform: scale(.98); }
-  .btn.primary { background: var(--oro); color: var(--ink); border-color: var(--oro); }
-  .btn.primary:hover { background: var(--oro-hi); border-color: var(--oro-hi); }
-  .btn.ghost { background: transparent; color: var(--txt); border-color: rgba(244, 238, 224, .55); }
-  .btn.ghost:hover { background: rgba(244, 238, 224, .09); border-color: var(--txt); }
-  .btn.dark { background: var(--ink); color: var(--marfil); border-color: var(--ink); }
-  .btn.dark:hover { background: #12404d; border-color: #12404d; }
-  .btn.small { min-height: 44px; padding: 9px 22px; font-size: 15px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 14px; }
-
-  /* Portada */
-  .top { position: relative; overflow: hidden; background: radial-gradient(900px 620px at 78% 42%, rgba(26, 106, 128, .55), transparent 70%), var(--bg); }
-  .hero { padding: 28px 0 0; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "a art" "b art"; grid-template-rows: auto auto; align-content: center; column-gap: 24px; }
-  .hero-a { grid-area: a; align-self: end; }
-  .hero-b { grid-area: b; align-self: start; }
-  .hero-obj { grid-area: art; align-self: center; }
-  .kicker { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--txt); margin-bottom: 22px; }
-  .kicker::before { content: ""; width: 9px; height: 9px; border: 2px solid var(--oro); transform: rotate(45deg); flex: none; }
-  h1 { font-size: clamp(52px, 8vw, 76px); line-height: .94; }
-  h1 a { color: inherit; text-decoration: none; display: block; width: fit-content; transition: color .2s, transform .3s; }
-  h1 a:hover { color: var(--oro); transform: translateX(8px); }
-  .lead { font-size: 20px; line-height: 1.55; max-width: 520px; margin: 26px 0 32px; color: var(--txt); }
-  .lead em { font-style: normal; font-weight: 700; box-shadow: inset 0 -.34em 0 rgba(222, 194, 146, .4); }
-  .hero-obj { display: block; margin-right: -2vw; }
-  .hero-art { display: block; width: 100%; height: auto; max-height: 76vh; }
-  .hero-art .obj { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
-  .hero-art .o3 { animation-delay: .1s; } .hero-art .o1 { animation-delay: .18s; } .hero-art .o5 { animation-delay: .26s; }
-  .hero-art .o4 { animation-delay: .34s; } .hero-art .o2 { animation-delay: .42s; } .hero-art .o6 { animation-delay: .5s; } .hero-art .o7 { animation-delay: .56s; }
-  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 56px 0 0; padding: 0; border-top: 1px solid var(--line); }
-  .facts > div { display: flex; flex-direction: column; padding: 26px 24px 30px; border-left: 1px solid var(--line); }
-  .facts > div:first-child { border-left: 0; padding-left: 0; }
-  .facts dd { order: 1; margin: 0; font-family: var(--serif); font-weight: 700; font-size: 49px; line-height: 1; color: var(--oro); }
-  .facts dt { order: 2; margin-top: 8px; font-size: 15px; line-height: 1.35; color: var(--txt2); max-width: 190px; }
-
-  h2 { font-size: clamp(36px, 5vw, 49px); line-height: 1.04; margin-bottom: 18px; }
-  .sub { font-size: 20px; line-height: 1.55; max-width: 700px; color: var(--txt2); }
-  .head-block { max-width: 780px; margin-bottom: 48px; }
-
-  /* Vista: pantalla clara con el tablero de ejemplo */
-  .viz-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: center; }
-  .viz-grid .head-block { margin: 0; }
-  .monitor { position: relative; isolation: isolate; border-radius: 28px; padding: 18px; margin-bottom: 84px; }
-  .monitor::before { content: ""; position: absolute; left: 50%; bottom: -80px; width: 150px; height: 80px; transform: translateX(-50%); background: var(--papel-line); clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%); z-index: -1; }
-  .monitor::after { content: ""; position: absolute; left: 50%; bottom: -84px; width: 300px; height: 22px; transform: translateX(-50%); background: var(--marfil); border-radius: 11px; border-bottom: 6px solid var(--papel-line); box-shadow: 8px 10px 0 var(--obj-shadow); }
-  .screen { background: #e4f0f1; border-radius: 16px; padding: 22px 22px 14px; }
-  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 5px; background: rgba(10, 43, 53, .08); border-radius: 14px; margin-bottom: 18px; }
-  .tabs button { --ic-cut: #e4f0f1; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--ink2); border: 0; border-radius: 10px; padding: 8px 6px; min-height: 48px; cursor: pointer; font-weight: 700; font-size: 15px; transition: background-color .25s, color .25s, box-shadow .25s; }
-  .tabs button .ic { width: 22px; height: 22px; }
-  .tabs button:hover { color: var(--ink); }
-  .tabs button[aria-pressed="true"] { --ic-cut: var(--marfil); background: var(--marfil); color: var(--ink); box-shadow: 0 1px 2px rgba(10, 43, 53, .2), 0 4px 10px -4px rgba(10, 43, 53, .3); }
-  .monitor h3 { font-size: 31px; line-height: 1.1; }
-  .monitor .cap { font-size: 15px; margin: 6px 0 14px; color: var(--ink2); }
-  .chartbox { background: #fbf8ef; border: 1px solid var(--papel-line); border-radius: 12px; padding: 12px 8px 4px; position: relative; }
-  .chartbox svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .chartbox text { font-family: var(--sans); font-size: 12.5px; fill: var(--ink2); }
-  .chartbox .t-strong { fill: var(--ink); font-weight: 700; }
-  .chartbox .grid { stroke: rgba(10, 43, 53, .13); stroke-width: 1; }
-  .chartbox .axis { stroke: var(--ink2); stroke-width: 1.5; }
-  .chartbox .ca { fill: var(--chart-a); }
-  .chartbox .ca-s { stroke: var(--chart-a); }
-  .chartbox .cb { fill: rgba(10, 43, 53, .06); stroke: var(--ink); stroke-width: 2; }
-  .chartbox .chi { fill: rgba(185, 143, 69, .16); stroke: #8a6420; stroke-width: 2; stroke-dasharray: 5 4; }
-  .chartbox .ring { stroke: #fbf8ef; stroke-width: 2.5; }
-  .chartbox [data-tip] { cursor: pointer; }
-  .chartbox [data-tip]:hover { filter: brightness(1.12); }
-  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13.5px; margin: 12px 4px 2px; color: var(--ink2); }
-  .legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: -1px; margin-right: 7px; }
-  .legend i.a { background: var(--chart-a); }
-  .legend i.b { border: 2px solid var(--ink); background: transparent; }
-  .legend i.h { border: 2px dashed #8a6420; background: transparent; }
-  .monitor details { margin-top: 8px; font-size: 14px; }
-  .monitor summary { cursor: pointer; color: var(--oro-ink); font-weight: 700; padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
-  .monitor table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .monitor th, .monitor td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--papel-line); color: var(--ink); }
-  .monitor th { color: var(--oro-ink); }
-  #tip { position: fixed; z-index: 90; pointer-events: none; background: var(--ink); color: #fff; border-radius: 8px; padding: 8px 12px; font-size: 13.5px; max-width: 240px; opacity: 0; transform: translateY(4px); transition: opacity .12s, transform .12s; }
-  #tip.on { opacity: 1; transform: none; }
-  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
-  .draw.go { stroke-dashoffset: 0; transition: stroke-dashoffset 1.1s ease-out; }
-  .bar { transform-origin: 50% 100%; transform-box: fill-box; }
-  .grow .bar { animation: grow .7s ease-out both; }
-  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-
-  /* ¿Cómo podemos ayudar?: una libreta con renglones */
-  .libreta { position: relative; border-radius: 22px; padding: 52px 52px 34px 84px; }
-  .libreta::before { content: ""; position: absolute; top: -13px; left: 76px; right: 52px; height: 26px; border-radius: 6px; background: repeating-linear-gradient(90deg, var(--oro) 0 10px, transparent 10px 44px); box-shadow: inset 0 -4px 0 var(--oro-deep); }
-  .libreta::after { content: ""; position: absolute; top: 0; bottom: 0; left: 60px; width: 2px; background: rgba(185, 143, 69, .5); }
-  .sits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; }
-  .sit { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; background: transparent; color: var(--ink); border: 0; border-bottom: 2px solid rgba(207, 194, 162, .75); padding: 20px 4px 18px; cursor: pointer; min-width: 0; transition: background-color .2s; }
-  .sit:hover { background: rgba(222, 194, 146, .22); }
-  .sit .tag { display: inline-block; background: #ece0c4; color: var(--oro-ink); border-radius: 8px; padding: 2px 11px; font-size: 14px; font-weight: 700; line-height: 1.4; }
-  .sit .q { font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1.15; color: var(--ink); }
-  .sit .go { font-size: 15px; font-weight: 700; color: var(--oro-ink); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; }
-  .sit:hover .go { text-decoration-style: solid; }
-
-  /* Catálogo + estimador */
-  .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-bottom: 30px; }
-  .pillar { display: flex; flex-direction: column; text-align: left; background: var(--bg2); color: var(--txt); border: 2px solid var(--line); border-radius: 26px; padding: 0; overflow: hidden; cursor: pointer; transition: border-color .25s, background-color .25s, transform .25s; }
-  .pillar:hover { transform: translateY(-4px); border-color: rgba(222, 194, 146, .7); }
-  .pillar .art { display: block; background: radial-gradient(300px 190px at 50% 55%, rgba(42, 132, 153, .5), transparent 75%), var(--bg3); padding: 18px 12px 6px; }
-  .pillar .art svg { display: block; width: 100%; height: auto; max-height: 230px; }
-  .pillar .body { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; align-items: center; padding: 18px 24px 22px; }
-  .pillar .pt { font-family: var(--serif); font-weight: 700; font-size: 39px; line-height: 1; color: var(--txt); }
-  .pillar .ps { grid-column: 1; font-size: 15px; color: var(--txt2); }
-  .pillar .chev { grid-row: 1 / span 2; grid-column: 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--oro); color: var(--oro); font-size: 26px; line-height: 1; transition: transform .25s, background-color .25s, color .25s; }
-  .pillar[aria-pressed="true"] { border-color: var(--oro); background: var(--bg3); }
-  .pillar[aria-pressed="true"] .chev { transform: rotate(45deg); background: var(--oro); color: var(--ink); }
-  .phint { flex: 1; display: grid; place-items: center; min-height: 160px; padding: 30px; border: 2px dashed var(--line); border-radius: 18px; text-align: center; font-size: 20px; color: var(--txt2); }
-  .phint[hidden] { display: none; }
-  .cat-grid > div:first-child .pieces { align-content: start; }
-  .cat-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 44px; align-items: stretch; }
-  .cat-grid > div:first-child { display: flex; flex-direction: column; }
-  .est-wrap { align-self: start; }
-  .pieces { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-  .piece { position: relative; display: block; background: var(--marfil); color: var(--ink2); border: 2px solid transparent; border-bottom: 6px solid var(--papel-line); border-radius: 16px; padding: 20px 20px 18px 62px; cursor: pointer; box-shadow: 6px 8px 0 var(--obj-shadow); transition: border-color .2s, background-color .2s, transform .25s; }
-  .piece:hover { transform: translateY(-3px); }
-  .piece input { position: absolute; left: 20px; top: 22px; width: 26px; height: 26px; accent-color: var(--ink); cursor: pointer; }
-  .piece:has(input:checked) { background: #fbf1d6; border-color: var(--oro-deep); border-bottom-color: var(--oro-deep); }
-  .piece:has(input:focus-visible) { outline: 3px solid var(--oro); outline-offset: 3px; }
-  .piece .k { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 14px; color: var(--oro-ink); font-weight: 700; }
-  .piece .k span:last-child { color: var(--ink2); font-weight: 400; }
-  .piece b { display: block; font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1.1; color: var(--ink); margin: 6px 0 6px; }
-  .piece span.d { display: block; font-size: 15px; color: var(--ink2); line-height: 1.45; }
-  .piece[hidden] { display: none; }
-  .pnote { margin-top: 22px; font-size: 14.5px; color: var(--txt2); }
-
-  /* Estimador: un recibo (el Ticket) */
-  .est-wrap { position: sticky; top: 96px; filter: drop-shadow(12px 14px 0 var(--obj-shadow)); }
-  .est { --s: 22px; position: relative; background: var(--marfil); color: var(--ink2); padding: 34px 30px calc(34px + var(--s) * .5); border-top: 10px solid var(--oro);
-    -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--s) 100%; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--s) 100%; border-radius: 6px 6px 0 0; }
-  .est h3 { font-size: 39px; line-height: 1; margin-bottom: 20px; color: var(--ink); }
-  .est label { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; margin-bottom: 8px; }
-  .est output { font-family: var(--serif); font-weight: 700; font-size: 31px; color: var(--ink); line-height: 1; }
-  input[type=range] { width: 100%; height: 36px; accent-color: var(--teal-deep); cursor: pointer; }
-  .size { display: flex; justify-content: space-between; font-size: 14.5px; margin: 4px 0 20px; gap: 10px; }
-  .size b { color: var(--ink); }
-  .est .rule { border: 0; border-top: 3px dotted var(--papel-line); margin: 0 0 18px; }
-  .stack-bar { display: flex; height: 14px; border-radius: 8px; overflow: hidden; gap: 2px; background: #e6dbc2; margin: 6px 0 10px; }
-  .stack-bar i { display: block; height: 100%; width: 0; transition: width .5s ease; background: var(--teal-deep); }
-  .stack-bar i:nth-child(2) { background: var(--teal); }
-  .stack-bar i:nth-child(3) { background: var(--oro-deep); }
-  .brk { display: flex; justify-content: space-between; font-size: 13.5px; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
-  .price { border-top: 3px dotted var(--papel-line); padding-top: 18px; margin-top: 6px; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
-  .price .l { font-size: 14.5px; }
-  .price strong { font-family: var(--serif); font-weight: 700; font-size: 56px; line-height: .95; color: var(--ink); background: linear-gradient(transparent 62%, rgba(222, 194, 146, .85) 62%); padding: 0 4px; }
-  .est .tot { font-size: 14.5px; margin-top: 8px; min-height: 22px; }
-  .est .msg { font-size: 14.5px; min-height: 22px; margin: 10px 0 18px; }
-  .est .btn { width: 100%; }
-  .est .note { font-size: 13.5px; margin-top: 14px; color: var(--ink2); }
-
-  /* Siluetas pequeñas (íconos con relleno) */
-  .ic { display: block; width: 52px; height: 52px; fill: currentColor; flex: none; }
-
-  /* Página web: tres ventanas */
-  .webs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 36px; align-items: start; }
-  .web .win { display: block; width: 100%; height: auto; margin-bottom: 26px; }
-  .web:nth-child(2) { margin-top: 48px; }
-  .web:nth-child(3) { margin-top: 12px; }
-  .web h3 { font-size: 31px; line-height: 1.1; margin-bottom: 8px; }
-  .web p { font-size: 17px; color: var(--txt2); }
-  .web .hrs { display: flex; align-items: baseline; gap: 10px; margin: 16px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); }
-  .web .hrs strong { font-family: var(--serif); font-weight: 700; font-size: 39px; line-height: 1; color: var(--oro); }
-  .web .hrs span { font-size: 15px; color: var(--txt2); }
-  .web .plazo { font-size: 15px; }
-  .web-foot { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 20px 36px; align-items: center; justify-content: space-between; padding: 26px 32px; border: 1px solid var(--line); border-radius: 22px; background: rgba(8, 47, 58, .5); }
-  .web-foot p { max-width: 720px; font-size: 17px; color: var(--txt); }
-
-  /* Pasos */
-  .step-tabs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
-  .step-tabs button { display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 8px 24px 8px 10px; border-radius: 60px; border: 2px solid var(--line); background: transparent; color: var(--txt); font-weight: 700; font-size: 17px; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s; }
-  .step-tabs button .num { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(244, 238, 224, .14); font-family: var(--serif); font-size: 21px; }
-  .step-tabs button:hover { border-color: var(--txt); }
-  .step-tabs button[aria-selected="true"] { background: var(--marfil); color: var(--ink); border-color: var(--marfil); }
-  .step-tabs button[aria-selected="true"] .num { background: var(--ink); color: var(--marfil); }
-  .viewport { overflow: hidden; border-radius: 26px; }
-  .track { display: flex; transition: transform .55s cubic-bezier(.4, .1, .2, 1); will-change: transform; }
-  .slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 36px; align-items: center; padding: 46px 52px; border-radius: 26px; box-shadow: none; }
-  .slide h3 { font-size: clamp(39px, 5vw, 61px); line-height: 1; margin: 0 0 16px; }
-  .slide .meta { font-size: 15px; font-weight: 700; color: var(--oro-ink); margin-bottom: 8px; }
-  .slide p.big { font-size: 20px; line-height: 1.55; max-width: 520px; }
-  .slide ul { list-style: none; margin: 26px 0 0; padding: 0; max-width: 520px; }
-  .slide li { display: flex; gap: 14px; align-items: flex-start; padding: 13px 0; border-top: 2px solid rgba(207, 194, 162, .8); font-size: 17px; line-height: 1.4; color: var(--ink); }
-  .slide li:last-child { border-bottom: 2px solid rgba(207, 194, 162, .8); }
-  .slide li svg { width: 22px; height: 22px; margin-top: 2px; stroke: var(--oro-ink); fill: none; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  .slide .scene { display: block; width: 100%; height: auto; max-height: 340px; }
-
-  /* Por qué Certeza Operativa */
-  .diff { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .diff article { padding: 8px 28px 8px; border-left: 1px solid var(--line); }
-  .diff article:first-child { border-left: 0; padding-left: 0; }
-  .medal { display: grid; place-items: center; width: 96px; height: 96px; margin-bottom: 26px; border-radius: 50%; background: var(--marfil); color: var(--ink); --ic-cut: var(--marfil); border-bottom: 6px solid var(--papel-line); box-shadow: 8px 10px 0 var(--obj-shadow); }
-  .medal .ic { width: 46px; height: 46px; }
-  .diff h3 { font-size: 31px; line-height: 1.05; margin-bottom: 10px; }
-  .diff p { font-size: 17px; }
-
-  /* Contacto */
-  .contact-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; align-items: center; }
-  .contact-grid h2 { font-size: clamp(44px, 7vw, 76px); line-height: .98; }
-  h2 em { font-style: normal; color: var(--oro); }
-  .contact-grid .sub { margin-bottom: 34px; max-width: 560px; color: var(--txt); }
-  .contact-art { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; }
-  .social { display: flex; gap: 12px; list-style: none; margin: 28px 0 0; padding: 0; flex-wrap: wrap; }
-  .social a { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(244, 238, 224, .55); color: var(--txt); transition: background-color .2s, color .2s, transform .2s; }
-  .social a:hover { background: var(--marfil); color: var(--ink); transform: translateY(-2px); }
-  .social svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .social svg .f { fill: currentColor; stroke: none; }
-
-  /* Preguntas: compactas, en una libreta */
-  section.faq-s { padding: 64px 0 96px; }
-  .faq-s .libreta { padding: 46px 52px 30px 84px; }
-  .faq-s h2 { font-size: 31px; line-height: 1.1; margin-bottom: 14px; }
-  .faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin: 0; }
-  .faq > div { padding: 14px 0; border-bottom: 2px solid rgba(207, 194, 162, .75); }
-  .faq dt { font-weight: 700; font-size: 16px; line-height: 1.35; color: var(--ink); }
-  .faq dd { margin: 3px 0 0; font-size: 15.5px; line-height: 1.45; color: var(--ink2); }
-
-  /* Pie: segundo mapa del sitio */
-  footer { background: var(--bg4); color: var(--txt2); padding: 64px 0 56px; font-size: 15px; }
-  footer .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 40px 64px; align-items: start; }
-  footer h3 { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--txt); margin-bottom: 14px; }
-  footer ul { list-style: none; margin: 0; padding: 0; }
-  footer li + li { margin-top: 0; }
-  footer a { color: var(--txt2); display: inline-block; padding: 10px 0; }
-  footer .social a { padding: 0; display: grid; }
-  footer a:hover { color: var(--oro); }
-  footer .cols { display: grid; grid-template-columns: repeat(2, auto); gap: 24px 56px; justify-content: start; }
-  footer .copy { grid-column: 1 / -1; padding-top: 26px; border-top: 1px solid var(--line); }
-  footer .social { margin-top: 0; }
-  footer .social li + li { margin-top: 0; }
-  footer .social a { width: 44px; height: 44px; }
-  .float { position: fixed; right: 20px; bottom: 20px; z-index: 40; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity .3s, transform .3s; box-shadow: 0 10px 30px -8px rgba(0, 0, 0, .55); }
-  .float.on { opacity: 1; transform: none; pointer-events: auto; }
-
-  @media (max-width: 1000px) {
-    :root { --section: 76px; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "art" "b"; row-gap: 4px; }
-    .hero-b .lead { margin-top: 8px; }
-    .viz-grid, .cat-grid, .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-    .hero-obj { margin-right: 0; }
-    .hero-art { max-height: none; }
-    .est-wrap { position: static; }
-    .pillars { grid-template-columns: minmax(0, 1fr); }
-    .pillar { display: grid; grid-template-columns: 42% 1fr; }
-    .pillar .body { align-content: center; }
-    .webs { grid-template-columns: minmax(0, 1fr); gap: 44px; }
-    .web:nth-child(n) { margin-top: 0; }
-    .web { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
-    .web .win { margin: 0; }
-    .slide { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 30px 24px; }
-    .slide .scene { max-height: 260px; }
-    .diff { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 0; }
-    .diff article:nth-child(3) { border-left: 0; padding-left: 0; }
-    nav .links { display: none; }
-    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .facts > div:nth-child(3) { border-left: 0; padding-left: 0; }
-    .facts > div:nth-child(n+3) { border-top: 1px solid var(--line); }
-    footer .wrap { grid-template-columns: minmax(0, 1fr); }
-    .monitor { margin-bottom: 96px; }
-  }
-  @media (max-width: 700px) {
-    .sits { grid-template-columns: minmax(0, 1fr); }
-    .libreta, .faq-s .libreta { padding: 44px 22px 22px 46px; }
-    .libreta::before { left: 38px; right: 18px; }
-    .libreta::after { left: 30px; }
-    .faq { grid-template-columns: minmax(0, 1fr); }
-    .pieces { grid-template-columns: minmax(0, 1fr); }
-    .web { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  }
-  @media (max-width: 600px) {
-    body { font-size: 16px; }
-    .hero-obj { margin: 0 -20px; }
-    .kicker { margin-bottom: 14px; font-size: 16px; }
-    h1 { font-size: 50px; }
-    header.site .wrap { gap: 12px; }
-    header.site .btn { padding: 8px 14px; font-size: 14px; white-space: nowrap; min-height: 44px; }
-    .tabs button { font-size: 13.5px; gap: 5px; padding: 8px 2px; }
-    .tabs button .ic { width: 18px; height: 18px; }
-    .step-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-    .step-tabs button { padding: 6px 8px 6px 6px; gap: 8px; font-size: 15.5px; min-height: 50px; }
-    .step-tabs button .num { width: 30px; height: 30px; font-size: 18px; }
-    .wrap { padding: 0 20px; }
-    .brand .mk { width: 46px; height: 35px; }
-    .brand { gap: 10px; }
-    .brand .w1 { font-size: 21px; }
-    .brand .w2 { font-size: 9.5px; margin-top: 5px; letter-spacing: .46em; }
-    .stack .mk { width: 76px; height: 58px; }
-    .stack .s1 { font-size: 36px; }
-    .stack .s2 { font-size: 14px; }
-    .stack .s2 i { width: 28px; }
-    .stack .s3 { font-size: 11px; gap: 10px; letter-spacing: .16em; }
-    .lead, .sub { font-size: 18px; }
-    .pillar { grid-template-columns: minmax(0, 1fr); }
-    .pillar .body { padding: 16px 20px 20px; }
-    .sit .q { font-size: 23px; }
-    .est { padding-left: 22px; padding-right: 22px; }
-    .price strong { font-size: 46px; }
-    .slide { padding: 26px 20px; }
-    .monitor { padding: 12px; }
-    .screen { padding: 16px 14px 8px; }
-    .diff { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .diff article, .diff article:nth-child(3) { border-left: 0; padding: 0; }
-    .facts dd { font-size: 39px; }
-    .facts > div { padding: 20px 16px 22px; }
-    .btn { width: 100%; }
-    header.site .btn { width: auto; }
-    .float.btn { width: auto; right: 14px; bottom: 14px; padding: 10px 18px; min-height: 44px; font-size: 14px; }
-    footer .cols { grid-template-columns: minmax(0, 1fr); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .hero-art .obj { animation: none; }
-    .draw { stroke-dashoffset: 0; }
-    .draw.go, .grow .bar, .btn, .piece, h1 a, .stack-bar i, .track, .pillar, .step-tabs button { animation: none; transition: none; }
-  }
-</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Certeza Operativa", "description": "Consultoría para MiPyMEs con sede en Nayarit: orden, visibilidad, control y mejora continua.", "url": "https://keyacuevaca-dot.github.io/certeza-operativa/", "image": "https://keyacuevaca-dot.github.io/certeza-operativa/assets/portada.png", "logo": "https://keyacuevaca-dot.github.io/certeza-operativa/assets/favicon.svg", "telephone": "+523114469363", "areaServed": {"@type": "AdministrativeArea", "name": "Nayarit, México"}, "sameAs": ["https://www.instagram.com/certezaoperativa/", "https://www.facebook.com/profile.php?id=61594375394266"]}</script>
 </head>
 <body>
-
-<!-- Marca definitiva (vector trazado del PNG corregido) e íconos propios, sin librerías -->
 <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
   <symbol id="mark" viewBox="38 8 175 133"><path fill="currentColor" d="M125.5 12.5 165.2 72H138.5L125.5 52.5 82.8 116.5H194.9L208.5 137H42.5Z"/><path fill="currentColor" d="M140.2 74.6H166.9L173.3 84.2H146.6ZM148.1 86.8H174.8L181.2 96.4H154.5Z"/></symbol>
-  <symbol id="i-orden" viewBox="0 0 64 64">
-    <path d="M14 12h36a4 4 0 0 1 4 4v42a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/>
-    <path d="M23 4h18a3 3 0 0 1 3 3v8H20V7a3 3 0 0 1 3-3z"/>
-    <circle cx="32" cy="8.5" r="2" fill="var(--ic-cut)"/>
-    <rect x="16" y="21" width="32" height="35" rx="1.5" fill="var(--ic-cut)"/>
-    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 28.5l2.4 2.4 4.6-4.8M19.5 35.5l2.4 2.4 4.6-4.8M19.5 42.5l2.4 2.4 4.6-4.8M19.5 49.5l2.4 2.4 4.6-4.8"/></g>
-    <rect x="31" y="27.5" width="14" height="3" rx="1.5"/><rect x="31" y="34.5" width="14" height="3" rx="1.5"/><rect x="31" y="41.5" width="14" height="3" rx="1.5"/><rect x="31" y="48.5" width="14" height="3" rx="1.5"/>
-  </symbol>
-  <symbol id="i-vis" viewBox="0 0 64 64">
-    <path d="M2 32C9 20 20 13 32 13s23 7 30 19c-7 12-18 19-30 19S9 44 2 32z"/>
-    <circle cx="32" cy="32" r="12.5" fill="var(--ic-cut)"/><circle cx="32" cy="32" r="6.5"/>
-  </symbol>
-  <symbol id="i-ctl" viewBox="0 0 64 64">
-    <path d="M32 3l22 8v19c0 15-9 25-22 31C19 55 10 45 10 30V11z"/>
-    <path d="M22 32l8 8 14-16" fill="none" stroke="var(--ic-cut)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
+  <symbol id="i-orden" viewBox="0 0 64 64"><path d="M14 12h36a4 4 0 0 1 4 4v42a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/><path d="M23 4h18a3 3 0 0 1 3 3v8H20V7a3 3 0 0 1 3-3z"/><circle cx="32" cy="8.5" r="2" fill="var(--ic-cut)"/><rect x="16" y="21" width="32" height="35" rx="1.5" fill="var(--ic-cut)"/><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 28.5l2.4 2.4 4.6-4.8M19.5 35.5l2.4 2.4 4.6-4.8M19.5 42.5l2.4 2.4 4.6-4.8M19.5 49.5l2.4 2.4 4.6-4.8"/></g><rect x="31" y="27.5" width="14" height="3" rx="1.5"/><rect x="31" y="34.5" width="14" height="3" rx="1.5"/><rect x="31" y="41.5" width="14" height="3" rx="1.5"/><rect x="31" y="48.5" width="14" height="3" rx="1.5"/></symbol>
+  <symbol id="i-vis" viewBox="0 0 64 64"><path d="M2 32C9 20 20 13 32 13s23 7 30 19c-7 12-18 19-30 19S9 44 2 32z"/><circle cx="32" cy="32" r="12.5" fill="var(--ic-cut)"/><circle cx="32" cy="32" r="6.5"/></symbol>
+  <symbol id="i-ctl" viewBox="0 0 64 64"><path d="M32 3l22 8v19c0 15-9 25-22 31C19 55 10 45 10 30V11z"/><path d="M22 32l8 8 14-16" fill="none" stroke="var(--ic-cut)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mejora" viewBox="0 0 64 64"><path d="M54 34a22 22 0 1 1-6.4-15.6" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M50 6v14H36" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 22l11 19H21z"/></symbol>
+  <symbol id="i-herr" viewBox="0 0 64 64"><rect x="6" y="8" width="52" height="48" rx="6"/><rect x="12" y="20" width="16" height="9" rx="1.5" fill="var(--ic-cut)"/><rect x="32" y="20" width="20" height="9" rx="1.5" fill="var(--ic-cut)"/><rect x="12" y="33" width="16" height="9" rx="1.5" fill="var(--ic-cut)"/><rect x="32" y="33" width="20" height="9" rx="1.5" fill="var(--ic-cut)"/><rect x="12" y="46" width="16" height="5" rx="1.5" fill="var(--ic-cut)"/><rect x="32" y="46" width="20" height="5" rx="1.5" fill="var(--ic-cut)"/></symbol>
+  <symbol id="i-metodo" viewBox="0 0 64 64"><circle cx="12" cy="32" r="9"/><circle cx="32" cy="14" r="9"/><circle cx="52" cy="32" r="9"/><circle cx="32" cy="50" r="9"/><path d="M18 25l8-6M38 19l8 6M46 39l-8 6M26 45l-8-6" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
   <symbol id="i-tag" viewBox="0 0 64 64"><path d="M6 8h24l28 28-22 22L6 32z"/><circle cx="17" cy="19" r="4" fill="var(--ic-cut)"/></symbol>
   <symbol id="i-flag" viewBox="0 0 64 64"><path d="M11 4h5v57h-5z"/><path d="M16 7h38l-9 13 9 13H16z"/></symbol>
   <symbol id="i-bars" viewBox="0 0 64 64"><rect x="8" y="32" width="12" height="26" rx="2"/><rect x="26" y="18" width="12" height="40" rx="2"/><rect x="44" y="5" width="12" height="53" rx="2"/><rect x="4" y="59" width="56" height="4" rx="2"/></symbol>
@@ -436,649 +41,222 @@
   <symbol id="s-fb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path fill="currentColor" stroke="none" d="M13.1 19.5v-6.6h2.3l.4-2.6h-2.7V8.7c0-.8.3-1.3 1.4-1.3h1.4V5.2c-.3 0-1.1-.1-2.1-.1-2.1 0-3.4 1.3-3.4 3.5v1.7H8.1v2.6h2.3v6.6z"/></symbol>
   <symbol id="s-wa" viewBox="0 0 24 24"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.8 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8z"/><path fill="currentColor" stroke="none" d="M9.2 7.6c-.5.5-.9 1.5.1 3.1 1.1 1.8 3 3.3 4.9 3.9 1 .3 1.7-.2 1.9-.8l.1-.7-1.5-.8-.7.6c-1-.3-2.3-1.5-2.7-2.6l.6-.7-.7-1.6-.8-.4z"/></symbol>
   <symbol id="s-tel" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.6 3.6h2.8l1.2 3.9-2 1.4c1 2.2 2.8 4 5 5l1.4-2 3.9 1.2v2.8c0 1.6-1.3 2.9-2.9 2.9C9.6 18.5 4.6 13.5 4.3 7.1c0-1.6.7-3.5 2.3-3.5z"/></symbol>
-</svg>
-<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<symbol id="o-libreta" viewBox="0 0 262 350">
-<rect x="16" y="30" width="240" height="316" rx="18" fill="#03171D" opacity=".38"/>
-<rect x="0" y="22" width="240" height="318" rx="18" fill="#CFC2A2"/>
-<rect x="0" y="14" width="240" height="318" rx="18" fill="#F4EEE0"/>
-<rect x="72" y="0" width="96" height="46" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="3"/>
-<rect x="96" y="12" width="48" height="12" rx="6" fill="#B98F45"/>
-<rect x="32" y="70" width="120" height="16" rx="8" fill="#0A2B35"/><rect x="164" y="70" width="44" height="16" rx="8" fill="#DEC292"/>
-<rect x="32" y="112" width="32" height="32" rx="9" fill="none" stroke="#0A2B35" stroke-width="4"/><path d="M39 129l7 7 13-15" fill="none" stroke="#B98F45" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="80" y="114" width="128" height="11" rx="5.5" fill="#CFC2A2"/><rect x="80" y="133" width="70" height="8" rx="4" fill="#E6DBC2"/><rect x="32" y="164" width="32" height="32" rx="9" fill="none" stroke="#0A2B35" stroke-width="4"/><path d="M39 181l7 7 13-15" fill="none" stroke="#B98F45" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="80" y="166" width="100" height="11" rx="5.5" fill="#CFC2A2"/><rect x="80" y="185" width="70" height="8" rx="4" fill="#E6DBC2"/><rect x="32" y="216" width="32" height="32" rx="9" fill="none" stroke="#0A2B35" stroke-width="4"/><path d="M39 233l7 7 13-15" fill="none" stroke="#B98F45" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="80" y="218" width="118" height="11" rx="5.5" fill="#CFC2A2"/><rect x="80" y="237" width="70" height="8" rx="4" fill="#E6DBC2"/><rect x="32" y="268" width="32" height="32" rx="9" fill="none" stroke="#0A2B35" stroke-width="4"/><rect x="80" y="270" width="90" height="11" rx="5.5" fill="#CFC2A2"/><rect x="80" y="289" width="70" height="8" rx="4" fill="#E6DBC2"/>
-</symbol>
-<symbol id="o-tablero" viewBox="0 0 420 336">
-<rect x="18" y="22" width="396" height="252" rx="24" fill="#03171D" opacity=".38"/>
-<rect x="0" y="10" width="396" height="252" rx="24" fill="#CFC2A2"/>
-<rect x="0" y="0" width="396" height="252" rx="24" fill="#F4EEE0"/>
-<rect x="20" y="20" width="356" height="192" rx="14" fill="#D3E7E9"/>
-<circle cx="198" cy="233" r="6" fill="#DEC292"/>
-<rect x="40" y="34" width="100" height="24" rx="12" fill="#F4EEE0"/><circle cx="54" cy="46" r="5" fill="#B98F45"/><rect x="66" y="42" width="60" height="8" rx="4" fill="#CFC2A2"/>
-<path d="M40 150H356M40 110H356" stroke="#BCD8DB" stroke-width="2"/><path d="M40 190H356" stroke="#8FB9C0" stroke-width="2.5"/>
-<rect x="58" y="144" width="40" height="46" rx="7" fill="#2A8499"/><rect x="118" y="116" width="40" height="74" rx="7" fill="#2A8499"/><rect x="178" y="130" width="40" height="60" rx="7" fill="#2A8499"/><rect x="238" y="88" width="40" height="102" rx="7" fill="#2A8499"/><rect x="298" y="62" width="40" height="128" rx="7" fill="#115063"/>
-<polyline points="78,124 138,96 198,110 258,68 318,42" fill="none" stroke="#B98F45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="78" cy="124" r="6.5" fill="#F4EEE0" stroke="#B98F45" stroke-width="4"/><circle cx="138" cy="96" r="6.5" fill="#F4EEE0" stroke="#B98F45" stroke-width="4"/><circle cx="198" cy="110" r="6.5" fill="#F4EEE0" stroke="#B98F45" stroke-width="4"/><circle cx="258" cy="68" r="6.5" fill="#F4EEE0" stroke="#B98F45" stroke-width="4"/><circle cx="318" cy="42" r="6.5" fill="#F4EEE0" stroke="#B98F45" stroke-width="4"/>
-<rect x="110" y="310" width="176" height="18" rx="9" fill="#CFC2A2"/>
-<path d="M166 262H230L246 308H150Z" fill="#CFC2A2"/>
-<rect x="110" y="302" width="176" height="18" rx="9" fill="#F4EEE0"/>
-</symbol>
-<symbol id="o-lupa" viewBox="0 0 160 160">
-<path d="M100 100L142 142" stroke="#B98F45" stroke-width="27" stroke-linecap="round"/><path d="M100 100L142 142" stroke="#DEC292" stroke-width="15" stroke-linecap="round"/>
-<circle cx="64" cy="64" r="46" fill="#D3E7E9" fill-opacity=".35" stroke="#B98F45" stroke-width="22"/><circle cx="64" cy="64" r="46" fill="none" stroke="#DEC292" stroke-width="12"/>
-<path d="M36 54A30 30 0 0 1 56 34" fill="none" stroke="#F4EEE0" stroke-width="6" stroke-linecap="round"/>
-</symbol>
-<symbol id="o-caja" viewBox="0 0 300 290">
-<rect x="16" y="22" width="270" height="262" rx="22" fill="#03171D" opacity=".38"/>
-<rect x="0" y="12" width="270" height="262" rx="22" fill="#CFC2A2"/>
-<rect x="0" y="0" width="270" height="262" rx="22" fill="#F4EEE0"/>
-<rect x="22" y="22" width="226" height="218" rx="14" fill="#E6DBC2" stroke="#CFC2A2" stroke-width="3"/>
-<g transform="translate(120 131)"><circle r="72" fill="#B98F45"/><circle r="66" fill="#DEC292"/><circle r="52" fill="#F4EEE0"/><g fill="#0A2B35"><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(0)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(30)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(60)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(90)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(120)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(150)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(180)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(210)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(240)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(270)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(300)"/><rect x="-2.5" y="-47" width="5" height="11" rx="2.5" transform="rotate(330)"/></g><circle r="19" fill="#0A2B35"/><circle r="6" fill="#DEC292"/><path d="M0-19V-40" stroke="#B98F45" stroke-width="7" stroke-linecap="round"/></g>
-<rect x="212" y="96" width="24" height="72" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="3"/>
-<rect x="8" y="58" width="18" height="38" rx="7" fill="#CFC2A2"/><rect x="8" y="166" width="18" height="38" rx="7" fill="#CFC2A2"/>
-<rect x="26" y="268" width="46" height="14" rx="6" fill="#CFC2A2"/><rect x="198" y="268" width="46" height="14" rx="6" fill="#CFC2A2"/>
-</symbol>
-<symbol id="o-escudo" viewBox="0 0 124 144">
-<path d="M62 6L112 24V66C112 102 90 126 62 140 34 126 12 102 12 66V24Z" fill="#DEC292" stroke="#B98F45" stroke-width="8" stroke-linejoin="round"/>
-<path d="M38 70L55 88 88 50" fill="none" stroke="#0A2B35" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-</symbol>
-<symbol id="o-monedas" viewBox="0 0 150 124"><rect x="10" y="92" width="112" height="24" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="4"/><path d="M32 104h26" stroke="#B98F45" stroke-width="3.5" stroke-linecap="round"/><rect x="24" y="70" width="112" height="24" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="4"/><path d="M46 82h26" stroke="#B98F45" stroke-width="3.5" stroke-linecap="round"/><rect x="8" y="48" width="112" height="24" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="4"/><path d="M30 60h26" stroke="#B98F45" stroke-width="3.5" stroke-linecap="round"/><rect x="20" y="26" width="112" height="24" rx="12" fill="#DEC292" stroke="#B98F45" stroke-width="4"/><path d="M42 38h26" stroke="#B98F45" stroke-width="3.5" stroke-linecap="round"/></symbol>
-<symbol id="o-ticket" viewBox="0 0 206 352">
-<path d="M0 0H190V318l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16Z" transform="translate(14 16)" fill="#03171D" opacity=".38"/>
-<path d="M0 0H190V318l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16l-11.875 16 -11.875-16Z" fill="#F4EEE0"/>
-<text x="95" y="56" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-weight="700" font-size="30" letter-spacing="4" fill="#0A2B35">TICKET</text>
-<path d="M16 76H174" stroke="#CFC2A2" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
-<rect x="16" y="100" width="88" height="9" rx="4.5" fill="#CFC2A2"/><rect x="134" y="100" width="40" height="9" rx="4.5" fill="#0A2B35" opacity=".85"/><rect x="16" y="134" width="70" height="9" rx="4.5" fill="#CFC2A2"/><rect x="134" y="134" width="40" height="9" rx="4.5" fill="#0A2B35" opacity=".85"/><rect x="16" y="168" width="96" height="9" rx="4.5" fill="#CFC2A2"/><rect x="134" y="168" width="40" height="9" rx="4.5" fill="#0A2B35" opacity=".85"/><rect x="16" y="202" width="60" height="9" rx="4.5" fill="#CFC2A2"/><rect x="134" y="202" width="40" height="9" rx="4.5" fill="#0A2B35" opacity=".85"/>
-<path d="M16 244H174" stroke="#CFC2A2" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round"/>
-<rect x="16" y="268" width="62" height="12" rx="6" fill="#0A2B35"/><rect x="92" y="256" width="82" height="32" rx="10" fill="#DEC292" stroke="#B98F45" stroke-width="3"/>
-<rect x="16" y="296" width="3" height="16" fill="#0A2B35"/><rect x="22" y="296" width="2" height="16" fill="#0A2B35"/><rect x="27" y="296" width="4" height="16" fill="#0A2B35"/><rect x="34" y="296" width="2" height="16" fill="#0A2B35"/><rect x="39" y="296" width="2" height="16" fill="#0A2B35"/><rect x="44" y="296" width="5" height="16" fill="#0A2B35"/><rect x="52" y="296" width="2" height="16" fill="#0A2B35"/><rect x="57" y="296" width="3" height="16" fill="#0A2B35"/><rect x="63" y="296" width="2" height="16" fill="#0A2B35"/><rect x="68" y="296" width="4" height="16" fill="#0A2B35"/><rect x="75" y="296" width="3" height="16" fill="#0A2B35"/><rect x="81" y="296" width="2" height="16" fill="#0A2B35"/><rect x="86" y="296" width="5" height="16" fill="#0A2B35"/><rect x="94" y="296" width="2" height="16" fill="#0A2B35"/><rect x="99" y="296" width="3" height="16" fill="#0A2B35"/><rect x="105" y="296" width="2" height="16" fill="#0A2B35"/><rect x="110" y="296" width="4" height="16" fill="#0A2B35"/><rect x="117" y="296" width="2" height="16" fill="#0A2B35"/><rect x="122" y="296" width="3" height="16" fill="#0A2B35"/><rect x="128" y="296" width="5" height="16" fill="#0A2B35"/><rect x="136" y="296" width="2" height="16" fill="#0A2B35"/><rect x="141" y="296" width="2" height="16" fill="#0A2B35"/><rect x="146" y="296" width="4" height="16" fill="#0A2B35"/><rect x="153" y="296" width="3" height="16" fill="#0A2B35"/>
-</symbol>
-<symbol id="o-ficha" viewBox="0 0 240 304">
-<path d="M12 0H166L212 46V268a12 12 0 0 1-12 12H12A12 12 0 0 1 0 268V12A12 12 0 0 1 12 0Z" transform="translate(16 20)" fill="#03171D" opacity=".38"/>
-<path d="M12 0H166L212 46V268a12 12 0 0 1-12 12H12A12 12 0 0 1 0 268V12A12 12 0 0 1 12 0Z" fill="#F4EEE0"/>
-<path d="M166 0V34a12 12 0 0 0 12 12H212Z" fill="#CFC2A2"/>
-<rect x="26" y="40" width="112" height="16" rx="8" fill="#0A2B35"/><rect x="26" y="68" width="74" height="10" rx="5" fill="#CFC2A2"/>
-<circle cx="36" cy="119" r="10" fill="#DEC292" stroke="#B98F45" stroke-width="3"/><rect x="58" y="112" width="140" height="11" rx="5.5" fill="#CFC2A2"/><rect x="58" y="132" width="86" height="8" rx="4" fill="#E6DBC2"/><circle cx="36" cy="173" r="10" fill="#DEC292" stroke="#B98F45" stroke-width="3"/><rect x="58" y="166" width="122" height="11" rx="5.5" fill="#CFC2A2"/><rect x="58" y="186" width="75" height="8" rx="4" fill="#E6DBC2"/><circle cx="36" cy="227" r="10" fill="#DEC292" stroke="#B98F45" stroke-width="3"/><rect x="58" y="220" width="132" height="11" rx="5.5" fill="#CFC2A2"/><rect x="58" y="240" width="81" height="8" rx="4" fill="#E6DBC2"/>
-<circle cx="184" cy="244" r="38" fill="#DEC292" stroke="#B98F45" stroke-width="5"/>
-<path d="M166 244l12 12 24-26" fill="none" stroke="#0A2B35" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-</symbol>
-<symbol id="o-web1" viewBox="0 0 360 270">
-<rect x="16" y="20" width="340" height="246" rx="18" fill="#03171D" opacity=".38"/>
-<rect x="0" y="0" width="340" height="246" rx="18" fill="#F4EEE0"/>
-<path d="M0 40V18A18 18 0 0 1 18 0H322A18 18 0 0 1 340 18V40Z" fill="#E6DBC2"/>
-<circle cx="24" cy="20" r="6" fill="#B98F45"/><circle cx="44" cy="20" r="6" fill="#CFC2A2"/><circle cx="64" cy="20" r="6" fill="#CFC2A2"/>
-<rect x="92" y="11" width="206" height="18" rx="9" fill="#F4EEE0"/>
-<rect x="22" y="56" width="296" height="92" rx="12" fill="#115063"/><rect x="40" y="74" width="150" height="14" rx="7" fill="#F4EEE0"/><rect x="40" y="98" width="112" height="9" rx="4.5" fill="#7FB1BC"/><rect x="40" y="118" width="80" height="18" rx="9" fill="#DEC292"/>
-<rect x="22" y="162" width="296" height="12" rx="6" fill="#CFC2A2"/><rect x="22" y="184" width="210" height="12" rx="6" fill="#E6DBC2"/><rect x="22" y="212" width="124" height="22" rx="11" fill="#DEC292" stroke="#B98F45" stroke-width="2.5"/><circle cx="296" cy="214" r="18" fill="#2A8499"/><path d="M288 214l6 6 11-12" fill="none" stroke="#F4EEE0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</symbol>
-<symbol id="o-web2" viewBox="0 0 360 270">
-<rect x="16" y="20" width="340" height="246" rx="18" fill="#03171D" opacity=".38"/>
-<rect x="0" y="0" width="340" height="246" rx="18" fill="#F4EEE0"/>
-<path d="M0 40V18A18 18 0 0 1 18 0H322A18 18 0 0 1 340 18V40Z" fill="#E6DBC2"/>
-<circle cx="24" cy="20" r="6" fill="#B98F45"/><circle cx="44" cy="20" r="6" fill="#CFC2A2"/><circle cx="64" cy="20" r="6" fill="#CFC2A2"/>
-<rect x="92" y="11" width="206" height="18" rx="9" fill="#F4EEE0"/>
-<rect x="22" y="52" width="48" height="12" rx="6" fill="#DEC292"/><rect x="80" y="52" width="48" height="12" rx="6" fill="#CFC2A2"/><rect x="138" y="52" width="48" height="12" rx="6" fill="#CFC2A2"/><rect x="196" y="52" width="48" height="12" rx="6" fill="#CFC2A2"/><rect x="254" y="52" width="48" height="12" rx="6" fill="#CFC2A2"/><rect x="22" y="76" width="296" height="62" rx="12" fill="#115063"/><rect x="38" y="90" width="120" height="12" rx="6" fill="#F4EEE0"/><rect x="38" y="112" width="80" height="9" rx="4.5" fill="#7FB1BC"/>
-<rect x="22" y="150" width="92" height="52" rx="10" fill="#D3E7E9"/><rect x="124" y="150" width="92" height="52" rx="10" fill="#D3E7E9"/><rect x="226" y="150" width="92" height="52" rx="10" fill="#D3E7E9"/>
-<circle cx="40" cy="168" r="8" fill="#2A8499"/><circle cx="142" cy="168" r="8" fill="#2A8499"/><circle cx="244" cy="168" r="8" fill="#2A8499"/>
-<rect x="32" y="184" width="62" height="8" rx="4" fill="#A9CDD2"/><rect x="134" y="184" width="62" height="8" rx="4" fill="#A9CDD2"/><rect x="236" y="184" width="62" height="8" rx="4" fill="#A9CDD2"/>
-<rect x="22" y="214" width="296" height="12" rx="6" fill="#CFC2A2"/>
-</symbol>
-<symbol id="o-web3" viewBox="0 0 360 270">
-<rect x="16" y="20" width="340" height="246" rx="18" fill="#03171D" opacity=".38"/>
-<rect x="0" y="0" width="340" height="246" rx="18" fill="#F4EEE0"/>
-<path d="M0 40V18A18 18 0 0 1 18 0H322A18 18 0 0 1 340 18V40Z" fill="#E6DBC2"/>
-<circle cx="24" cy="20" r="6" fill="#B98F45"/><circle cx="44" cy="20" r="6" fill="#CFC2A2"/><circle cx="64" cy="20" r="6" fill="#CFC2A2"/>
-<rect x="92" y="11" width="206" height="18" rx="9" fill="#F4EEE0"/>
-<rect x="22" y="54" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="69" cy="82" r="17" fill="#2A8499"/><rect x="34" y="106" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="34" y="119" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/><rect x="122" y="54" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="169" cy="82" r="17" fill="#115063"/><rect x="134" y="106" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="134" y="119" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/><rect x="222" y="54" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="269" cy="82" r="17" fill="#2A8499"/><rect x="234" y="106" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="234" y="119" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/><rect x="22" y="146" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="69" cy="174" r="17" fill="#115063"/><rect x="34" y="198" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="34" y="211" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/><rect x="122" y="146" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="169" cy="174" r="17" fill="#2A8499"/><rect x="134" y="198" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="134" y="211" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/><rect x="222" y="146" width="94" height="84" rx="10" fill="#D3E7E9"/><circle cx="269" cy="174" r="17" fill="#115063"/><rect x="234" y="198" width="52" height="7" rx="3.5" fill="#A9CDD2"/><rect x="234" y="211" width="70" height="12" rx="6" fill="#DEC292" stroke="#B98F45" stroke-width="2"/>
-</symbol>
-<symbol id="o-telefono" viewBox="0 0 230 420">
-<rect x="20" y="22" width="210" height="396" rx="42" fill="#03171D" opacity=".38"/>
-<rect x="0" y="0" width="210" height="396" rx="42" fill="#F4EEE0"/>
-<rect x="14" y="14" width="182" height="368" rx="30" fill="#D3E7E9"/>
-<path d="M14 84V44A30 30 0 0 1 44 14H166A30 30 0 0 1 196 44V84Z" fill="#115063"/>
-<rect x="82" y="22" width="46" height="9" rx="4.5" fill="#0A2B35" opacity=".5"/>
-<circle cx="48" cy="60" r="17" fill="#DEC292" stroke="#B98F45" stroke-width="3"/><rect x="74" y="49" width="76" height="10" rx="5" fill="#F4EEE0"/><rect x="74" y="66" width="48" height="8" rx="4" fill="#7FB1BC"/>
-<rect x="28" y="104" width="124" height="54" rx="16" fill="#F4EEE0"/><rect x="42" y="120" width="82" height="9" rx="4.5" fill="#CFC2A2"/><rect x="42" y="138" width="56" height="8" rx="4" fill="#E6DBC2"/>
-<rect x="56" y="174" width="130" height="74" rx="16" fill="#DEC292" stroke="#B98F45" stroke-width="2.5"/><rect x="70" y="190" width="98" height="9" rx="4.5" fill="#0A2B35" opacity=".75"/><rect x="70" y="208" width="74" height="9" rx="4.5" fill="#0A2B35" opacity=".5"/><path d="M142 232l6 6 11-12M154 232l6 6 11-12" fill="none" stroke="#115063" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="28" y="264" width="100" height="42" rx="16" fill="#F4EEE0"/><rect x="42" y="280" width="64" height="9" rx="4.5" fill="#CFC2A2"/>
-<rect x="28" y="332" width="154" height="34" rx="17" fill="#F4EEE0"/><circle cx="162" cy="349" r="13" fill="#DEC292" stroke="#B98F45" stroke-width="2.5"/><rect x="42" y="345" width="70" height="8" rx="4" fill="#E6DBC2"/>
-</symbol>
-</svg>
+</svg><a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site">
+  <div class="wrap bar">
+    <a class="delta" href="index.html" aria-label="Certeza Operativa, inicio"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg></a>
+    <nav class="menu" aria-label="Principal">
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-lista" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <ul id="menu-lista">
+        <li><button class="mtop" type="button" aria-expanded="false" aria-controls="p-ind">Industrias<span class="chev" aria-hidden="true"></span></button>
+        <div class="panel" id="p-ind"><div class="wrap"><div class="intro"><h2>Industrias</h2><p>Cada giro tiene sus propios dolores de cabeza. Elige el tuyo y mira cómo lo ordenamos.</p><a class="link" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20hablar%20con%20un%20profesional%20de%20Certeza%20Operativa%20sobre%20mi%20negocio.">Habla con un profesional</a></div><ul class="c3"><li><a href="industrias/alimentos-y-bebidas.html"><b>Alimentos y bebidas</b><span>Restaurantes, cafeterías, panaderías y más.</span></a></li><li><a href="industrias/comercio-y-tiendas.html"><b>Comercio y tiendas</b><span>Abarrotes, ferreterías, papelerías y farmacias.</span></a></li><li><a href="industrias/distribucion-y-logistica.html"><b>Distribución y logística</b><span>Distribuidoras, repartidores y fleteras.</span></a></li><li><a href="industrias/construccion-e-ingenieria.html"><b>Construcción e ingeniería</b><span>Contratistas, herrerías y despachos de proyecto.</span></a></li><li><a href="industrias/fabricacion-y-produccion.html"><b>Fabricación y producción</b><span>Producción por lotes o por encargo.</span></a></li><li><a href="industrias/automotriz.html"><b>Automotriz</b><span>Talleres, hojalatería y refaccionarias.</span></a></li><li><a href="industrias/turismo-y-hospitalidad.html"><b>Turismo y hospitalidad</b><span>Hoteles pequeños, rentas vacacionales y tours.</span></a></li><li><a href="industrias/servicios-profesionales.html"><b>Servicios profesionales y de salud</b><span>Consultorios, despachos y estéticas.</span></a></li></ul></div></div></li>
+        <li><button class="mtop" type="button" aria-expanded="false" aria-controls="p-sol">Soluciones<span class="chev" aria-hidden="true"></span></button>
+        <div class="panel" id="p-sol"><div class="wrap"><div class="intro"><h2>Soluciones</h2><p>Cuatro resultados que un dueño nota en su día a día, y las herramientas y métodos con que los logramos.</p><a class="link" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20hablar%20con%20un%20profesional%20de%20Certeza%20Operativa%20sobre%20mi%20negocio.">Habla con un profesional</a></div><ul class="c3"><li><a href="soluciones/orden.html"><b>Orden</b><span>Cada cosa en su lugar.</span></a></li><li><a href="soluciones/visibilidad.html"><b>Visibilidad</b><span>Saber qué pasa, a tiempo.</span></a></li><li><a href="soluciones/control.html"><b>Control</b><span>Que lo cobrado cuadre.</span></a></li><li><a href="soluciones/mejora-continua.html"><b>Mejora continua</b><span>Medir, ajustar y volver a medir.</span></a></li><li><a href="soluciones/herramientas.html"><b>Herramientas</b><span>Sencillas y adaptadas a tu negocio.</span></a></li><li><a href="soluciones/metodos.html"><b>Métodos</b><span>Claros, cortos y en tu idioma.</span></a></li></ul></div></div></li>
+        <li><button class="mtop" type="button" aria-expanded="false" aria-controls="p-srv">Servicios<span class="chev" aria-hidden="true"></span></button>
+        <div class="panel" id="p-srv"><div class="wrap"><div class="intro"><h2>Servicios</h2><p>De la primera visita al acompañamiento. Empezar no cuesta.</p><a class="link" href="servicios.html">Ver todos los servicios</a></div><ul class=""><li><a href="servicios.html#empieza"><b>Empieza: Triaje y Ficha</b><span>Siempre sin costo. La Ficha, el mismo día.</span></a></li><li><a href="servicios.html#tickets"><b>Tickets de mejora</b><span>Piezas de Orden, Visibilidad y Control.</span></a></li><li><a href="servicios.html#pagina-web"><b>Página web</b><span>Para que te encuentren, te conozcan o te pidan cotización.</span></a></li><li><a href="servicios.html#canva"><b>Documentos y tableros con Canva</b><span>Con tu marca, en la cuenta de tu negocio.</span></a></li><li><a href="servicios.html#acompanamiento"><b>Acompañamiento</b><span>Revisiones y ajustes hasta que tu equipo lo use solo.</span></a></li><li><a href="index.html#precio"><b>Estima tu precio</b><span>Elige piezas y mira cuánto cuesta.</span></a></li></ul></div></div></li>
+        <li><button class="mtop" type="button" aria-expanded="false" aria-controls="p-nos">Nosotros<span class="chev" aria-hidden="true"></span></button>
+        <div class="panel" id="p-nos"><div class="wrap"><div class="intro"><h2>Nosotros</h2><p>Cómo lo hacemos, qué puedes esperar y quién te atiende.</p><a class="link" href="nosotros.html">Conoce cómo trabajamos</a></div><ul class=""><li><a href="nosotros.html#como"><b>Cómo lo hacemos</b><span>Medimos, proponemos y verificamos contigo.</span></a></li><li><a href="nosotros.html#esperar"><b>Lo que puedes esperar</b><span>Compromisos por escrito.</span></a></li><li><a href="nosotros.html#horas"><b>Horas útiles</b><span>Qué cuenta y qué no cuenta como trabajo.</span></a></li><li><a href="nosotros.html#quien"><b>Quién te atiende</b><span>Sede en Nayarit, atención por WhatsApp.</span></a></li><li><a href="index.html#preguntas"><b>Preguntas frecuentes</b><span>Lo que más nos preguntan.</span></a></li></ul></div></div></li>
+        <li class="cta"><a class="btn oro" href="index.html#empieza">Empieza</a></li>
+      </ul>
+      <a class="btn oro small" href="index.html#empieza">Empieza</a>
+    </nav>
+  </div>
+</header>
+<main id="contenido">
 
-<div class="progress" id="bar" aria-hidden="true"></div>
-<a class="skip" href="#contenido">Saltar al contenido</a>
-<div id="tip" role="status" aria-live="polite"></div>
-
-<div class="top">
-  <header class="site" id="hdr">
-    <div class="wrap">
-      <a class="brand" href="#inicio" aria-label="Certeza Operativa, inicio">
-        <svg class="mk" viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg>
-        <span><span class="w1">CERTEZA</span><span class="w2">OPERATIVA</span></span>
-      </a>
-      <nav aria-label="Principal">
-        <span class="links">
-          <a href="#catalogo">Catálogo y precio</a>
-          <a href="#web">Página web</a>
-          <a href="#como-trabajamos">Cómo trabajamos</a>
-          <a href="#preguntas">Preguntas</a>
-        </span>
-        <a class="btn primary small" href="#contacto">Agenda tu Triaje</a>
-      </nav>
+<section class="hero" aria-labelledby="t-hero">
+  <div class="wrap">
+    <div class="ha">
+      <p class="kicker">Consultoría para MiPyMEs (micro, pequeña y mediana empresa) · Sede en Nayarit</p>
+      <h1 id="t-hero">Mejorando empresas de México.</h1>
     </div>
-  </header>
-
-  <section class="hero" id="inicio">
-    <div class="wrap" id="contenido">
-      <div class="hero-grid">
-        <div class="hero-a">
-          <p class="kicker">Consultoría para micro y pequeños negocios · Nayarit</p>
-          <h1>
-            <a href="#catalogo" data-filter="orden">Orden.</a>
-            <a href="#catalogo" data-filter="visibilidad">Visibilidad.</a>
-            <a href="#catalogo" data-filter="control">Control.</a>
-          </h1>
-        </div>
-        <div class="hero-obj"><svg class="hero-art" viewBox="0 0 820 760" role="img" aria-label="Una libreta con lista de verificación, un tablero con barras y una lupa, una caja fuerte con monedas y un ticket: los objetos de tu negocio, en orden.">
-  <defs>
-    <linearGradient id="g-stage" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17697F" stop-opacity=".6"/><stop offset="1" stop-color="#0E4A5B" stop-opacity=".2"/></linearGradient>
-  </defs>
-  <path d="M410 24L800 728H20Z" fill="url(#g-stage)" stroke="#2A8499" stroke-opacity=".65" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M410 128L704 650H116Z" fill="none" stroke="#2A8499" stroke-opacity=".3" stroke-width="2" stroke-linejoin="round"/>
-  <g class="obj o1"><use href="#o-tablero" x="344" y="56" width="462" height="370"/></g>
-  <g class="obj o2"><use href="#o-lupa" x="640" y="262" width="176" height="176"/></g>
-  <g class="obj o3"><use href="#o-libreta" x="30" y="214" width="300" height="400" transform="rotate(-5 180 414)"/></g>
-  <g class="obj o4"><use href="#o-ticket" x="290" y="402" width="168" height="288" transform="rotate(5 374 546)"/></g>
-  <g class="obj o5"><use href="#o-caja" x="476" y="452" width="300" height="290"/></g>
-  <g class="obj o6"><use href="#o-escudo" x="706" y="506" width="92" height="107"/></g>
-  <g class="obj o7"><use href="#o-monedas" x="436" y="640" width="130" height="108"/></g>
-</svg>
-</div>
-        <div class="hero-b">
-          <p class="lead">Ayudamos a que el dueño sepa qué entra, qué sale y qué pasa en su negocio, con registros sencillos que su equipo usa solo. Todo problema es una <em>oportunidad</em>.</p>
-          <div class="actions">
-            <a class="btn primary" href="#catalogo">Arma y estima tu trabajo</a>
-            <a class="btn ghost" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Pide tu Triaje</a>
-          </div>
-        </div>
+    <div class="hb">
+      <p class="lead">Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.</p>
+      <ul class="cero" aria-label="Cómo empiezas">
+        <li>Empezar no cuesta</li><li>Si paras, pagas solo lo trabajado</li><li>Resultados que tú verificas</li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20hablar%20con%20un%20profesional%20de%20Certeza%20Operativa%20sobre%20mi%20negocio.">Habla con un profesional</a>
       </div>
-      <dl class="facts">
-        <div><dt>Triaje y Ficha, siempre sin costo</dt><dd>$0</dd></div>
-        <div><dt>Piezas para armar tu trabajo</dt><dd>13</dd></div>
-        <div><dt>Horas mínimas por Ticket</dt><dd>5</dd></div>
-        <div><dt>Ficha, el mismo día</dt><dd>1 día</dd></div>
-      </dl>
+      <p class="nota">Hoy atendemos micro y pequeñas empresas; medianas, próximamente.</p>
     </div>
-  </section>
-</div>
-
-<main>
-  <section class="alt" id="vista" aria-labelledby="t-vista">
-    <div class="wrap viz-grid">
-      <div class="head-block">
-        <h2 id="t-vista">Lo que vas a ver con Certeza.</h2>
-        <p class="sub">Tres vistas para entender qué cambia cuando hay Orden, Visibilidad y Control. Toca cada una. Son ejemplos ilustrativos, no datos de ningún cliente.</p>
-      </div>
-      <div class="monitor cream" id="viz">
-        <div class="screen">
-          <div class="tabs" role="group" aria-label="Qué vas a ver con Certeza">
-            <button type="button" aria-pressed="true" data-chart="orden"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg>Orden</button>
-            <button type="button" aria-pressed="false" data-chart="visibilidad"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg>Visibilidad</button>
-            <button type="button" aria-pressed="false" data-chart="control"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg>Control</button>
-          </div>
-          <h3 id="v-title"></h3>
-          <p class="cap" id="v-cap"></p>
-          <div class="chartbox" id="v-chart" role="img"></div>
-          <div class="legend" id="v-legend"></div>
-          <details><summary>Ver como tabla</summary><div id="v-table"></div></details>
+    <div class="hv">
+      <p class="sr">Ejemplos de lo que entregamos: una lista de apertura, un tablero con los cinco números de la semana, un cierre de caja que cuadra y un recordatorio de pago por WhatsApp.</p>
+      <div class="vis" aria-hidden="true">
+        <svg class="lineart" viewBox="0 0 640 600"><g><path d="M86.4 450.7Q62.1 365.8 147.8 387.2L228.5 407.3Q314.2 428.7 252.8 492.2L195.1 552.0Q133.7 615.5 109.4 530.6Z" stroke-opacity="0.10"/><path d="M86.5 445.3Q61.5 357.3 150.2 379.6L234.3 400.8Q323.0 423.1 259.3 488.8L198.9 551.0Q135.3 616.7 110.2 528.7Z" stroke-opacity="0.11"/><path d="M87.3 438.1Q62.2 347.4 153.3 370.9L241.6 393.7Q332.7 417.3 266.8 484.4L202.9 549.5Q136.9 616.6 111.7 525.9Z" stroke-opacity="0.12"/><path d="M88.9 429.2Q64.1 336.1 157.0 361.2L250.3 386.3Q343.2 411.3 275.1 479.3L206.7 547.5Q138.5 615.5 113.7 522.4Z" stroke-opacity="0.13"/><path d="M91.1 418.7Q67.2 323.8 161.4 350.5L260.2 378.6Q354.3 405.4 284.1 473.5L210.3 545.0Q140.1 613.2 116.2 518.3Z" stroke-opacity="0.14"/><path d="M94.1 406.6Q71.6 310.4 166.2 339.1L271.3 370.9Q365.9 399.5 293.8 467.1L213.7 542.2Q141.6 609.8 119.1 513.6Z" stroke-opacity="0.15"/><path d="M97.8 393.2Q77.2 296.2 171.6 326.9L283.4 363.3Q377.7 393.9 304.0 460.3L216.6 539.0Q142.9 605.3 122.3 508.3Z" stroke-opacity="0.17"/><path d="M102.3 378.5Q84.0 281.3 177.3 314.1L296.5 355.9Q389.8 388.6 314.8 453.1L219.0 535.3Q144.0 599.8 125.7 502.6Z" stroke-opacity="0.18"/><path d="M107.6 362.7Q91.9 266.0 183.5 300.8L310.2 348.9Q401.8 383.7 325.9 445.7L220.9 531.3Q144.9 593.2 129.2 496.5Z" stroke-opacity="0.20"/><path d="M113.6 346.0Q100.9 250.3 190.1 287.1L324.5 342.5Q413.7 379.2 337.2 438.1L222.1 526.8Q145.6 585.7 132.9 490.0Z" stroke-opacity="0.21"/><path d="M120.5 328.4Q110.8 234.5 197.0 273.1L339.1 336.7Q425.2 375.2 348.8 430.6L222.6 521.8Q146.2 577.2 136.5 483.3Z" stroke-opacity="0.23"/><path d="M128.2 310.3Q121.7 218.8 204.2 258.9L353.8 331.6Q436.3 371.8 360.3 423.1L222.5 516.3Q146.6 567.7 140.1 476.2Z" stroke-opacity="0.25"/><path d="M136.8 291.8Q133.4 203.4 211.7 244.7L368.5 327.4Q446.8 368.7 371.9 415.9L221.8 510.3Q146.9 557.4 143.5 469.0Z" stroke-opacity="0.27"/><path d="M146.2 273.2Q145.8 188.3 219.5 230.5L382.9 324.1Q456.5 366.2 383.2 408.9L220.5 503.7Q147.1 546.4 146.8 461.5Z" stroke-opacity="0.28"/><path d="M156.3 254.7Q158.8 173.9 227.5 216.5L396.8 321.6Q465.4 364.1 394.3 402.3L218.6 496.4Q147.4 534.6 150.0 453.9Z" stroke-opacity="0.30"/><path d="M167.1 236.5Q172.3 160.3 235.6 202.9L410.1 319.9Q473.4 362.5 404.9 396.1L216.3 488.6Q147.8 522.2 152.9 446.0Z" stroke-opacity="0.32"/><path d="M178.6 218.8Q186.0 147.6 244.0 189.7L422.4 319.1Q480.4 361.1 415.0 390.3L213.7 480.1Q148.3 509.3 155.7 438.1Z" stroke-opacity="0.34"/><path d="M190.6 202.0Q199.9 136.0 252.3 177.1L433.8 319.1Q486.2 360.1 424.5 385.0L210.8 471.2Q149.0 496.1 158.3 430.1Z" stroke-opacity="0.36"/><path d="M202.9 186.1Q213.7 125.6 260.7 165.2L444.0 319.7Q491.0 359.3 433.2 380.2L207.8 461.7Q149.9 482.6 160.8 422.0Z" stroke-opacity="0.38"/><path d="M215.5 171.5Q227.3 116.4 269.1 154.2L452.9 320.8Q494.7 358.7 441.0 375.9L204.8 451.8Q151.2 469.0 163.1 414.0Z" stroke-opacity="0.40"/><path d="M228.0 158.2Q240.6 108.5 277.3 144.2L460.5 322.5Q497.2 358.2 448.0 372.1L202.0 441.7Q152.7 455.6 165.3 406.0Z" stroke-opacity="0.42"/><path d="M240.5 146.4Q253.3 102.1 285.3 135.3L466.8 324.4Q498.7 357.7 453.9 368.7L199.4 431.4Q154.6 442.4 167.5 398.1Z" stroke-opacity="0.44"/><path d="M252.6 136.2Q265.4 97.0 292.9 127.7L471.6 326.6Q499.1 357.3 458.8 365.8L197.1 421.0Q156.8 429.6 169.6 390.4Z" stroke-opacity="0.47"/><path d="M264.1 127.7Q276.5 93.4 300.1 121.3L475.0 328.9Q498.5 356.8 462.5 363.2L195.3 410.9Q159.4 417.3 171.8 383.0Z" stroke-opacity="0.49"/><path d="M275.0 121.0Q286.8 91.2 306.7 116.3L477.0 331.2Q496.9 356.4 465.2 361.1L193.9 401.1Q162.2 405.8 174.0 376.0Z" stroke-opacity="0.51"/><path d="M284.9 116.1Q295.9 90.4 312.6 112.8L477.7 333.5Q494.5 355.9 466.7 359.2L193.0 391.8Q165.3 395.1 176.3 369.4Z" stroke-opacity="0.53"/><path d="M293.7 113.0Q303.8 91.0 317.8 110.8L477.2 335.6Q491.2 355.4 467.1 357.6L192.7 383.2Q168.5 385.5 178.6 363.5Z" stroke-opacity="0.55"/><path d="M301.2 111.7Q310.4 92.9 322.1 110.3L475.4 337.6Q487.1 354.9 466.3 356.3L192.8 375.5Q171.9 377.0 181.1 358.2Z" stroke-opacity="0.58"/><path d="M307.4 112.2Q315.6 96.2 325.4 111.3L472.6 339.3Q482.4 354.4 464.4 355.3L193.3 368.8Q175.3 369.7 183.6 353.7Z" stroke-opacity="0.60"/><path d="M312.1 114.3Q319.5 100.6 327.7 113.8L468.8 340.9Q477.0 354.1 461.5 354.6L194.3 363.3Q178.7 363.8 186.1 350.1Z" stroke-opacity="0.62"/><path d="M315.3 118.2Q321.8 106.3 328.8 117.9L464.0 342.3Q471.0 353.9 457.5 354.1L195.6 359.0Q182.0 359.3 188.6 347.4Z" stroke-opacity="0.65"/><path d="M316.8 123.6Q322.7 113.1 328.8 123.5L458.4 343.5Q464.5 353.9 452.4 354.0L197.1 356.2Q185.0 356.3 191.0 345.8Z" stroke-opacity="0.67"/><path d="M316.6 130.6Q322.1 121.0 327.6 130.5L451.9 344.8Q457.5 354.3 446.5 354.3L198.8 354.8Q187.8 354.9 193.3 345.3Z" stroke-opacity="0.70"/><path d="M314.8 139.0Q320.0 130.0 325.2 139.0L444.7 346.0Q449.9 355.0 439.5 355.0L200.5 355.0Q190.1 355.0 195.3 346.0Z" stroke-opacity="0.72"/></g><path class="flecha" d="M178 422C328 430 425 348 458 258M444 269L458 258 461 275"/></svg>
+        <div class="hc hc-lista">
+          <div class="hd"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></i><span>Apertura</span><em>Ejemplo</em></div>
+          <div class="check si"><i></i><span>Fondo de caja contado</span></div>
+          <div class="check si"><i></i><span>Precios a la vista</span></div>
+          <div class="check si"><i></i><span>Refrigeradores en temperatura</span></div>
+          <div class="check"><i></i><span>Pedido al proveedor</span></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="catalogo" aria-labelledby="t-cat">
-    <div class="wrap">
-      <div class="head-block" id="ayuda">
-        <h2 id="t-cat">Cuéntanos tu situación. Te mostramos las piezas.</h2>
-        <p class="sub">Trabajamos con negocios de muchos giros. Toca la pregunta que se parece a la tuya y abrimos las piezas que más ayudan; abajo armas tu trabajo y ves cuánto cuesta.</p>
-      </div>
-      <div class="libreta cream">
-        <div class="sits" id="sits">
-          <button type="button" class="sit" data-p="visibilidad"><span class="tag">Comercio con inventario</span><span class="q">¿Qué tienes y qué necesitas comprar?</span><span class="go">Abre Visibilidad</span></button>
-          <button type="button" class="sit" data-p="control"><span class="tag">Preparación y entrega inmediata</span><span class="q">¿Cuánto cobras y cuánto gastas?</span><span class="go">Abre Control</span></button>
-          <button type="button" class="sit" data-p="orden"><span class="tag">Servicios por cita o turno</span><span class="q">¿Se te cruzan las citas?</span><span class="go">Abre Orden</span></button>
-          <button type="button" class="sit" data-p="orden"><span class="tag">Diagnóstico y reparación</span><span class="q">¿Qué reparación sigue y qué la detiene?</span><span class="go">Abre Orden</span></button>
-          <button type="button" class="sit" data-p="visibilidad"><span class="tag">Producción por encargo</span><span class="q">¿Qué pedido toca entregar primero?</span><span class="go">Abre Visibilidad</span></button>
-          <button type="button" class="sit" data-p="visibilidad"><span class="tag">Producción por lotes</span><span class="q">¿Cuánto material se va en cada lote?</span><span class="go">Abre Visibilidad</span></button>
-          <button type="button" class="sit" data-p="orden"><span class="tag">Trabajo por proyecto</span><span class="q">¿Quién hace qué y para cuándo?</span><span class="go">Abre Orden</span></button>
-          <button type="button" class="sit" data-p="control"><span class="tag">Servicios recurrentes</span><span class="q">¿Qué servicio toca y qué falta cobrar?</span><span class="go">Abre Control</span></button>
-          <button type="button" class="sit" data-p="visibilidad"><span class="tag">Renta y uso temporal</span><span class="q">¿Qué está rentado y cuándo vuelve?</span><span class="go">Abre Visibilidad</span></button>
-          <button type="button" class="sit" data-p="visibilidad"><span class="tag">Transporte y distribución</span><span class="q">¿Qué falta entregar y a qué hora?</span><span class="go">Abre Visibilidad</span></button>
-          <button type="button" class="sit" data-p="control"><span class="tag">Intermediación</span><span class="q">¿Qué operación sigue y qué falta cobrar?</span><span class="go">Abre Control</span></button>
+        <div class="hc hc-semana">
+          <div class="hd"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg></i><span>Tu semana en 5 números</span><em>Ejemplo</em></div>
+          <div class="row"><span><span class="spark"><i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:82%"></i></span>Ventas</span><b>▲ mejor que la pasada</b></div>
+          <div class="row"><span><span class="spark"><i style="height:50%"></i><i style="height:60%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:75%"></i></span>Cobrado</span><span class="ok">En meta</span></div>
+          <div class="row"><span><span class="spark"><i style="height:70%"></i><i style="height:62%"></i><i style="height:55%"></i><i style="height:50%"></i><i style="height:40%"></i></span>Por cobrar</span><span class="warn">3 clientes</span></div>
+          <div class="row"><span><span class="spark"><i style="height:60%"></i><i style="height:70%"></i><i style="height:72%"></i><i style="height:80%"></i><i style="height:90%"></i></span>Pedidos a tiempo</span><b>9 de 10</b></div>
+          <div class="row"><span><span class="spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:40%"></i><i style="height:52%"></i><i style="height:58%"></i></span>Por pedir</span><span class="warn">2 productos</span></div>
         </div>
-      </div>
-
-      <div class="head-block" id="cotizador" style="margin-top:96px">
-        <h2>Elige lo que necesitas. Mira cuánto cuesta.</h2>
-        <p class="sub">Toca Orden, Visibilidad o Control, marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
-      </div>
-      <div class="pillars" role="group" aria-label="Elige un pilar para ver sus piezas">
-        <button type="button" class="pillar" id="tab-orden" data-p="orden" aria-pressed="false" aria-controls="pieces">
-          <span class="art"><svg viewBox="0 0 340 220" aria-hidden="true">
-            <use href="#o-ficha" x="176" y="34" width="118" height="150" transform="rotate(6 235 109)"/>
-            <use href="#o-libreta" x="62" y="12" width="154" height="206" transform="rotate(-5 139 115)"/>
-          </svg></span>
-          <span class="body"><span class="pt">Orden</span><span class="chev" aria-hidden="true">+</span><span class="ps">Cada cosa en su lugar</span></span>
-        </button>
-        <button type="button" class="pillar" id="tab-visibilidad" data-p="visibilidad" aria-pressed="false" aria-controls="pieces">
-          <span class="art"><svg viewBox="0 0 340 220" aria-hidden="true">
-            <use href="#o-tablero" x="26" y="14" width="258" height="206"/>
-            <use href="#o-lupa" x="212" y="96" width="104" height="104"/>
-          </svg></span>
-          <span class="body"><span class="pt">Visibilidad</span><span class="chev" aria-hidden="true">+</span><span class="ps">Saber qué pasa, a tiempo</span></span>
-        </button>
-        <button type="button" class="pillar" id="tab-control" data-p="control" aria-pressed="false" aria-controls="pieces">
-          <span class="art"><svg viewBox="0 0 340 220" aria-hidden="true">
-            <use href="#o-caja" x="86" y="8" width="204" height="198"/>
-            <use href="#o-monedas" x="12" y="118" width="102" height="86"/>
-            <use href="#o-escudo" x="248" y="96" width="66" height="77"/>
-          </svg></span>
-          <span class="body"><span class="pt">Control</span><span class="chev" aria-hidden="true">+</span><span class="ps">Que lo cobrado cuadre</span></span>
-        </button>
-      </div>
-
-      <div class="cat-grid">
-        <div>
-          <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
-          <div class="pieces" id="pieces" role="group" aria-live="polite">
-            <label class="piece" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label>
-            <label class="piece" data-p="orden" data-h="2" data-a="1" data-n="Cotizador"><input type="checkbox"><span class="k"><span>Orden</span><span>2 h</span></span><b>Cotizador</b><span class="d">Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.</span></label>
-            <label class="piece" data-p="orden" data-h="4" data-a="1" data-n="Procedimiento escrito"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Procedimiento escrito</b><span class="d">Mostrar cómo hacer la tarea sin depender de la memoria.</span></label>
-            <label class="piece" data-p="orden" data-h="3" data-n="Quién hace qué"><input type="checkbox"><span class="k"><span>Orden</span><span>3 h</span></span><b>Quién hace qué</b><span class="d">Que cada pendiente tenga una persona responsable.</span></label>
-            <label class="piece" data-p="orden" data-h="4" data-n="Expediente para el contador"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Expediente para el contador</b><span class="d">Tener juntos los documentos que necesita tu contador.</span></label>
-            <label class="piece" data-p="visibilidad" data-h="2" data-a="1" data-n="Control de pedidos y cobros"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>2 h</span></span><b>Control de pedidos y cobros</b><span class="d">Saber qué se pidió, qué se entregó y cuánto falta cobrar.</span></label>
-            <label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Registro diario desde el celular"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Registro diario desde el celular</b><span class="d">Guardar el dato antes de olvidarlo.</span></label>
-            <label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Flujo a 30, 60 y 90 días"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Flujo a 30, 60 y 90 días</b><span class="d">Ver si el dinero alcanzaría en las próximas fechas.</span></label>
-            <label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Tablero semanal"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Tablero semanal</b><span class="d">Ver lo más urgente sin leer todos los registros.</span></label>
-            <label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Inventario y reorden"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Inventario y reorden</b><span class="d">Tener existencias visibles y pedir antes de quedarte sin producto.</span></label>
-            <label class="piece" data-p="control" data-h="2" data-a="1" data-n="Agenda de cobranza"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Agenda de cobranza</b><span class="d">Saber a quién cobrar, cuánto y cuándo.</span></label>
-            <label class="piece" data-p="control" data-h="4" data-n="Lo cobrado contra lo depositado"><input type="checkbox"><span class="k"><span>Control</span><span>4 h</span></span><b>Lo cobrado contra lo depositado</b><span class="d">Comprobar que lo que cobraste coincide con lo que entró al banco.</span></label>
-            <label class="piece" data-p="control" data-h="2" data-a="1" data-n="Arqueo y cierre de caja"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Arqueo y cierre de caja</b><span class="d">Cerrar el día con la caja contada y comparada.</span></label>
-          </div>
-          <p class="pnote">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
+        <div class="hc hc-caja">
+          <div class="hd"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v12H3zM3 11h18M7 15h3"/></svg></i><span>Cierre de caja · hoy</span><em>Ejemplo</em></div>
+          <div class="row"><span>Ventas del día</span><b>$8,420</b></div>
+          <div class="row"><span>Efectivo y transferencias</span><b>$8,420</b></div>
+          <div class="row"><span>Diferencia</span><span class="ok">$0 · Cuadra</span></div>
         </div>
-
-        <div class="est-wrap">
-          <aside class="est" aria-labelledby="t-est">
-            <h3 id="t-est">Tu estimado</h3>
-            <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">$80,000</output></label>
-            <input type="range" id="ventas" min="20000" max="400000" step="5000" value="80000">
-            <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 por hora</b></span></p>
-            <hr class="rule">
-            <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
-            <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
-            <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="precio">$0</strong></div>
-            <p class="tot" id="tot"></p>
-            <p class="msg" id="msg">Elige al menos una pieza.</p>
-            <a class="btn dark" id="wa" href="https://wa.me/523114469363">Enviar mi selección por WhatsApp</a>
-            <p class="note">Tarifas por hora: micro $700 + IVA y pequeña $1,400 + IVA. Empresas medianas, próximamente. Precios en pesos mexicanos. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
-          </aside>
+        <div class="hc hc-wa">
+          <div class="hd"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.5-4A8 8 0 1 1 9 19.2z"/></svg></i><span>Recordatorio amable</span><em>Ejemplo</em></div>
+          <div class="bub">Hola, Sra. Lupita. Le recuerdo con gusto su saldo de $1,250, que vence el viernes. ¡Gracias por su preferencia!</div>
+          <div class="meta">9:30 <i>✓✓</i></div>
         </div>
+        <div class="hc hc-delta"><b>Δ</b>Antes y después, medido contigo</div>
       </div>
+      <p class="vis-cap">Ejemplos de lo que entregamos, con datos ilustrativos.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="alt" id="web" aria-labelledby="t-web">
-    <div class="wrap">
-      <div class="head-block">
-        <h2 id="t-web">Una página web para que te escriban, te conozcan o te pidan cotización.</h2>
-        <p class="sub">Elige por lo que quieres que haga tu cliente al entrar. Las horas son de trabajo efectivo; el precio cerrado lo recibes después del Triaje, por escrito.</p>
-      </div>
-      <div class="webs">
-        <article class="web">
-          <svg class="win" viewBox="0 0 360 270" aria-hidden="true"><use href="#o-web1" width="360" height="270"/></svg>
-          <div>
-            <h3>Página de lanzamiento</h3>
-            <p>Una sola página para que te encuentren y te escriban: oferta, qué ofreces y a quién, contacto, ubicación y datos del negocio.</p>
-            <div class="hrs"><strong>5 h</strong><span>de trabajo, versión Estándar</span></div>
-            <p class="plazo">5 a 7 días hábiles desde que recibimos lo indispensable.</p>
-          </div>
-        </article>
-        <article class="web">
-          <svg class="win" viewBox="0 0 360 270" aria-hidden="true"><use href="#o-web2" width="360" height="270"/></svg>
-          <div>
-            <h3>Sitio completo</h3>
-            <p>Hasta 5 secciones para que te conozcan antes de escribirte, por ejemplo inicio, servicios, nosotros, preguntas y contacto.</p>
-            <div class="hrs"><strong>11,5 h</strong><span>de trabajo, versión Estándar</span></div>
-            <p class="plazo">10 a 14 días hábiles desde que recibimos lo indispensable.</p>
-          </div>
-        </article>
-        <article class="web">
-          <svg class="win" viewBox="0 0 360 270" aria-hidden="true"><use href="#o-web3" width="360" height="270"/></svg>
-          <div>
-            <h3>Sitio con catálogo</h3>
-            <p>El sitio completo con tus productos, listos para pedir cotización: hasta 30 con foto, descripción y presentación, y un botón «Cotizar por WhatsApp» con el producto ya escrito.</p>
-            <div class="hrs"><strong>21 h</strong><span>de trabajo, versión Estándar</span></div>
-            <p class="plazo">15 a 20 días hábiles desde que recibimos lo indispensable.</p>
-          </div>
-        </article>
-      </div>
-      <div class="web-foot">
-        <p>Las tres incluyen tu dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en celular. La versión Plus suma extras, como una ronda más de cambios; la comparamos en el Triaje.</p>
-        <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio.">Pregunta por tu página web</a>
-      </div>
+<section class="tools" aria-label="Herramientas con las que trabajamos">
+  <div class="wrap tools-hd"><p>Partimos de las herramientas que ya usa tu negocio</p><button type="button" class="pausa" aria-pressed="false">Pausar</button></div>
+  <div class="marquee"><ul><li>Excel</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg>Hojas de Google</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp Business</li><li>Canva</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.1002 15.7957c-1.6015 0-2.8997-1.2983-2.8997-2.8998s1.2983-2.8997 2.8997-2.8997c1.6015 0 2.8998 1.2982 2.8998 2.8997 0 1.5999-1.2979 2.8998-2.8998 2.8998zm0-1.2c.9388.0006 1.7003-.7601 1.7008-1.6989.0004-.9388-.7602-1.7003-1.699-1.7007h-.0018c-.9388.0004-1.6994.7619-1.699 1.7007.0005.9381.761 1.6985 1.699 1.699zm-6.0655 1.2c-1.6014 0-2.8997-1.2983-2.8997-2.8998s1.2983-2.8997 2.8997-2.8997c1.6015 0 2.8998 1.2982 2.8998 2.8997 0 1.5999-1.2999 2.8998-2.8998 2.8998zm0-1.2c.9389.0006 1.7003-.7601 1.7008-1.6989.0005-.9388-.7602-1.7003-1.699-1.7007h-.0018c-.9388.0004-1.6994.7619-1.699 1.7007.0005.9381.761 1.6985 1.699 1.699zM11.865 12.858c0 1.6199-1.2979 2.9378-2.8977 2.9378s-2.8998-1.314-2.8998-2.9358 1.1799-2.8597 2.8998-2.8597c.6359 0 1.2239.134 1.6998.484v-1.68a.6.6 0 0 1 1.2 0v4.0537h-.002zm-2.8977 1.7399c.9388.0005 1.7002-.7602 1.7007-1.699.0005-.9388-.7602-1.7003-1.699-1.7007h-.0017c-.9389.0004-1.6995.7619-1.699 1.7007.0004.9381.7608 1.6985 1.699 1.699zm-6.0675 1.1979C1.2983 15.7957 0 14.4974 0 12.8959s1.2983-2.8997 2.8998-2.8997 2.8997 1.2982 2.8997 2.8997c0 1.5999-1.2999 2.8998-2.8997 2.8998zm0-1.2c.9388.0006 1.7002-.7601 1.7007-1.699.0005-.9387-.7602-1.7002-1.699-1.7006h-.0017c-.9388.0004-1.6995.7619-1.699 1.7007.0004.9381.7608 1.6985 1.699 1.699z"/></svg>Odoo</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg>Notion</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>Claude</li><li>ChatGPT</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg>Gemini</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></svg>Google Drive</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>Gmail</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg>Google Calendar</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.727 6h6l-6-6v6zm0 .727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zM7.91 17.318a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm0-3.273a.819.819 0 1 1 .001-1.637.819.819 0 0 1 0 1.637zm0-3.272a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm9 6.409h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818V9.273h6.818v1.363z"/></svg>Google Forms</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg>Google Maps</li><li>CONTPAQi</li><li>Aspel</li><li>Power BI</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.115 16.479a.93.927 0 0 1-.939-.886c-.002-.042-.006-.155-.103-.155-.04 0-.074.023-.113.059-.112.103-.254.206-.46.206a.816.814 0 0 1-.305-.066c-.535-.214-.542-.578-.521-.725.006-.038.007-.08-.02-.11l-.032-.03h-.034c-.027 0-.055.012-.093.039a.788.786 0 0 1-.454.16.7.699 0 0 1-.253-.05c-.708-.27-.65-.928-.617-1.126.005-.041-.005-.072-.03-.092l-.05-.04-.047.043a.728.726 0 0 1-.505.203.73.728 0 0 1-.732-.725c0-.4.328-.722.732-.722.364 0 .675.27.721.63l.026.195.11-.165c.01-.018.307-.46.852-.46.102 0 .21.016.316.05.434.13.508.52.519.68.008.094.075.1.09.1.037 0 .064-.024.083-.045a.746.744 0 0 1 .54-.225c.128 0 .263.03.402.09.69.293.379 1.158.374 1.167-.058.144-.061.207-.005.244l.027.013h.02c.03 0 .07-.014.134-.035.093-.032.235-.08.367-.08a.944.942 0 0 1 .94.93.936.934 0 0 1-.94.928zm7.302-4.171c-1.138-.98-3.768-3.24-4.481-3.77-.406-.302-.685-.462-.928-.533a1.559 1.554 0 0 0-.456-.07c-.182 0-.376.032-.58.095-.46.145-.918.505-1.362.854l-.023.018c-.414.324-.84.66-1.164.73a1.986 1.98 0 0 1-.43.049c-.362 0-.687-.104-.81-.258-.02-.025-.007-.066.04-.125l.008-.008 1-1.067c.783-.774 1.525-1.506 3.23-1.545h.085c1.062 0 2.12.469 2.24.524a7.03 7.03 0 0 0 3.056.724c1.076 0 2.188-.263 3.354-.795a9.135 9.11 0 0 0-.405-.317c-1.025.44-2.003.66-2.946.66-.962 0-1.925-.229-2.858-.68-.05-.022-1.22-.567-2.44-.57-.032 0-.065 0-.096.002-1.434.033-2.24.536-2.782.976-.528.013-.982.138-1.388.25-.361.1-.673.186-.979.185-.125 0-.35-.01-.37-.012-.35-.01-2.115-.437-3.518-.962-.143.1-.28.203-.415.31 1.466.593 3.25 1.053 3.812 1.089.157.01.323.027.491.027.372 0 .744-.103 1.104-.203.213-.059.446-.123.692-.17l-.196.194-1.017 1.087c-.08.08-.254.294-.14.557a.705.703 0 0 0 .268.292c.243.162.677.27 1.08.271.152 0 .297-.015.43-.044.427-.095.874-.448 1.349-.82.377-.296.913-.672 1.323-.782a1.494 1.49 0 0 1 .37-.05.611.61 0 0 1 .095.005c.27.034.533.125 1.003.472.835.62 4.531 3.815 4.566 3.846.002.002.238.203.22.537-.007.186-.11.352-.294.466a.902.9 0 0 1-.484.15.804.802 0 0 1-.428-.124c-.014-.01-1.28-1.157-1.746-1.543-.074-.06-.146-.115-.22-.115a.122.122 0 0 0-.096.045c-.073.09.01.212.105.294l1.48 1.47c.002 0 .184.17.204.395.012.244-.106.447-.35.606a.957.955 0 0 1-.526.171.766.764 0 0 1-.42-.127l-.214-.206a21.035 20.978 0 0 0-1.08-1.009c-.072-.058-.148-.112-.221-.112a.127.127 0 0 0-.094.038c-.033.037-.056.103.028.212a.698.696 0 0 0 .075.083l1.078 1.198c.01.01.222.26.024.511l-.038.048a1.18 1.178 0 0 1-.1.096c-.184.15-.43.164-.527.164a.8.798 0 0 1-.147-.012c-.106-.018-.178-.048-.212-.089l-.013-.013c-.06-.06-.602-.609-1.054-.98-.059-.05-.133-.11-.21-.11a.128.128 0 0 0-.096.042c-.09.096.044.24.1.293l.92 1.003a.204.204 0 0 1-.033.062c-.033.044-.144.155-.479.196a.91.907 0 0 1-.122.007c-.345 0-.712-.164-.902-.264a1.343 1.34 0 0 0 .13-.576 1.368 1.365 0 0 0-1.42-1.357c.024-.342-.025-.99-.697-1.274a1.455 1.452 0 0 0-.575-.125c-.146 0-.287.025-.42.075a1.153 1.15 0 0 0-.671-.564 1.52 1.515 0 0 0-.494-.085c-.28 0-.537.08-.767.242a1.168 1.165 0 0 0-.903-.43 1.173 1.17 0 0 0-.82.335c-.287-.217-1.425-.93-4.467-1.613a17.39 17.344 0 0 1-.692-.189 4.822 4.82 0 0 0-.077.494l.67.157c3.108.682 4.136 1.391 4.309 1.525a1.145 1.142 0 0 0-.09.442 1.16 1.158 0 0 0 1.378 1.132c.096.467.406.821.879 1.003a1.165 1.162 0 0 0 .415.08c.09 0 .179-.012.266-.034.086.22.282.493.722.668a1.233 1.23 0 0 0 .457.094c.122 0 .241-.022.355-.063a1.373 1.37 0 0 0 1.269.841c.37.002.726-.147.985-.41.221.121.688.341 1.163.341.06 0 .118-.002.175-.01.47-.059.689-.24.789-.382a.571.57 0 0 0 .048-.078c.11.032.234.058.373.058.255 0 .501-.086.75-.265.244-.174.418-.424.444-.637v-.01c.083.017.167.026.251.026.265 0 .527-.082.773-.242.48-.31.562-.715.554-.98a1.28 1.279 0 0 0 .978-.194 1.04 1.04 0 0 0 .502-.808 1.088 1.085 0 0 0-.16-.653c.804-.342 2.636-1.003 4.795-1.483a4.734 4.721 0 0 0-.067-.492 27.742 27.667 0 0 0-5.049 1.62zm5.123-.763c0 4.027-5.166 7.293-11.537 7.293-6.372 0-11.538-3.266-11.538-7.293 0-4.028 5.165-7.293 11.539-7.293 6.371 0 11.537 3.265 11.537 7.293zm.46.004c0-4.272-5.374-7.755-12-7.755S.002 7.277.002 11.55L0 12.004c0 4.533 4.695 8.203 11.999 8.203 7.347 0 12-3.67 12-8.204z"/></svg>Mercado Pago</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z"/></svg>Zapier</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg>Trello</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.033 14.649H.743a.74.74 0 0 1-.686-.458.74.74 0 0 1 .16-.808L3.19 10.41H1.06A1.06 1.06 0 0 1 0 9.35h3.957c.301 0 .57.18.686.458a.74.74 0 0 1-.161.808L1.51 13.59h2.464c.585 0 1.06.475 1.06 1.06zM24 11.338c0-1.14-.927-2.066-2.066-2.066-.61 0-1.158.265-1.537.686a2.061 2.061 0 0 0-1.536-.686c-1.14 0-2.066.926-2.066 2.066v3.311a1.06 1.06 0 0 0 1.06-1.06v-2.251a1.004 1.004 0 0 1 2.013 0v2.251c0 .586.474 1.06 1.06 1.06v-3.311a1.004 1.004 0 0 1 2.012 0v2.251c0 .586.475 1.06 1.06 1.06zM16.265 12a2.728 2.728 0 1 1-5.457 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0zm-4.82 0a2.728 2.728 0 1 1-5.458 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0z"/></svg>Zoom</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</li><li aria-hidden="true">Excel</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg>Hojas de Google</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp Business</li><li aria-hidden="true">Canva</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.1002 15.7957c-1.6015 0-2.8997-1.2983-2.8997-2.8998s1.2983-2.8997 2.8997-2.8997c1.6015 0 2.8998 1.2982 2.8998 2.8997 0 1.5999-1.2979 2.8998-2.8998 2.8998zm0-1.2c.9388.0006 1.7003-.7601 1.7008-1.6989.0004-.9388-.7602-1.7003-1.699-1.7007h-.0018c-.9388.0004-1.6994.7619-1.699 1.7007.0005.9381.761 1.6985 1.699 1.699zm-6.0655 1.2c-1.6014 0-2.8997-1.2983-2.8997-2.8998s1.2983-2.8997 2.8997-2.8997c1.6015 0 2.8998 1.2982 2.8998 2.8997 0 1.5999-1.2999 2.8998-2.8998 2.8998zm0-1.2c.9389.0006 1.7003-.7601 1.7008-1.6989.0005-.9388-.7602-1.7003-1.699-1.7007h-.0018c-.9388.0004-1.6994.7619-1.699 1.7007.0005.9381.761 1.6985 1.699 1.699zM11.865 12.858c0 1.6199-1.2979 2.9378-2.8977 2.9378s-2.8998-1.314-2.8998-2.9358 1.1799-2.8597 2.8998-2.8597c.6359 0 1.2239.134 1.6998.484v-1.68a.6.6 0 0 1 1.2 0v4.0537h-.002zm-2.8977 1.7399c.9388.0005 1.7002-.7602 1.7007-1.699.0005-.9388-.7602-1.7003-1.699-1.7007h-.0017c-.9389.0004-1.6995.7619-1.699 1.7007.0004.9381.7608 1.6985 1.699 1.699zm-6.0675 1.1979C1.2983 15.7957 0 14.4974 0 12.8959s1.2983-2.8997 2.8998-2.8997 2.8997 1.2982 2.8997 2.8997c0 1.5999-1.2999 2.8998-2.8997 2.8998zm0-1.2c.9388.0006 1.7002-.7601 1.7007-1.699.0005-.9387-.7602-1.7002-1.699-1.7006h-.0017c-.9388.0004-1.6995.7619-1.699 1.7007.0004.9381.7608 1.6985 1.699 1.699z"/></svg>Odoo</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg>Notion</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>Claude</li><li aria-hidden="true">ChatGPT</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg>Gemini</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></svg>Google Drive</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>Gmail</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg>Google Calendar</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.727 6h6l-6-6v6zm0 .727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zM7.91 17.318a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm0-3.273a.819.819 0 1 1 .001-1.637.819.819 0 0 1 0 1.637zm0-3.272a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm9 6.409h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818V9.273h6.818v1.363z"/></svg>Google Forms</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg>Google Maps</li><li aria-hidden="true">CONTPAQi</li><li aria-hidden="true">Aspel</li><li aria-hidden="true">Power BI</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.115 16.479a.93.927 0 0 1-.939-.886c-.002-.042-.006-.155-.103-.155-.04 0-.074.023-.113.059-.112.103-.254.206-.46.206a.816.814 0 0 1-.305-.066c-.535-.214-.542-.578-.521-.725.006-.038.007-.08-.02-.11l-.032-.03h-.034c-.027 0-.055.012-.093.039a.788.786 0 0 1-.454.16.7.699 0 0 1-.253-.05c-.708-.27-.65-.928-.617-1.126.005-.041-.005-.072-.03-.092l-.05-.04-.047.043a.728.726 0 0 1-.505.203.73.728 0 0 1-.732-.725c0-.4.328-.722.732-.722.364 0 .675.27.721.63l.026.195.11-.165c.01-.018.307-.46.852-.46.102 0 .21.016.316.05.434.13.508.52.519.68.008.094.075.1.09.1.037 0 .064-.024.083-.045a.746.744 0 0 1 .54-.225c.128 0 .263.03.402.09.69.293.379 1.158.374 1.167-.058.144-.061.207-.005.244l.027.013h.02c.03 0 .07-.014.134-.035.093-.032.235-.08.367-.08a.944.942 0 0 1 .94.93.936.934 0 0 1-.94.928zm7.302-4.171c-1.138-.98-3.768-3.24-4.481-3.77-.406-.302-.685-.462-.928-.533a1.559 1.554 0 0 0-.456-.07c-.182 0-.376.032-.58.095-.46.145-.918.505-1.362.854l-.023.018c-.414.324-.84.66-1.164.73a1.986 1.98 0 0 1-.43.049c-.362 0-.687-.104-.81-.258-.02-.025-.007-.066.04-.125l.008-.008 1-1.067c.783-.774 1.525-1.506 3.23-1.545h.085c1.062 0 2.12.469 2.24.524a7.03 7.03 0 0 0 3.056.724c1.076 0 2.188-.263 3.354-.795a9.135 9.11 0 0 0-.405-.317c-1.025.44-2.003.66-2.946.66-.962 0-1.925-.229-2.858-.68-.05-.022-1.22-.567-2.44-.57-.032 0-.065 0-.096.002-1.434.033-2.24.536-2.782.976-.528.013-.982.138-1.388.25-.361.1-.673.186-.979.185-.125 0-.35-.01-.37-.012-.35-.01-2.115-.437-3.518-.962-.143.1-.28.203-.415.31 1.466.593 3.25 1.053 3.812 1.089.157.01.323.027.491.027.372 0 .744-.103 1.104-.203.213-.059.446-.123.692-.17l-.196.194-1.017 1.087c-.08.08-.254.294-.14.557a.705.703 0 0 0 .268.292c.243.162.677.27 1.08.271.152 0 .297-.015.43-.044.427-.095.874-.448 1.349-.82.377-.296.913-.672 1.323-.782a1.494 1.49 0 0 1 .37-.05.611.61 0 0 1 .095.005c.27.034.533.125 1.003.472.835.62 4.531 3.815 4.566 3.846.002.002.238.203.22.537-.007.186-.11.352-.294.466a.902.9 0 0 1-.484.15.804.802 0 0 1-.428-.124c-.014-.01-1.28-1.157-1.746-1.543-.074-.06-.146-.115-.22-.115a.122.122 0 0 0-.096.045c-.073.09.01.212.105.294l1.48 1.47c.002 0 .184.17.204.395.012.244-.106.447-.35.606a.957.955 0 0 1-.526.171.766.764 0 0 1-.42-.127l-.214-.206a21.035 20.978 0 0 0-1.08-1.009c-.072-.058-.148-.112-.221-.112a.127.127 0 0 0-.094.038c-.033.037-.056.103.028.212a.698.696 0 0 0 .075.083l1.078 1.198c.01.01.222.26.024.511l-.038.048a1.18 1.178 0 0 1-.1.096c-.184.15-.43.164-.527.164a.8.798 0 0 1-.147-.012c-.106-.018-.178-.048-.212-.089l-.013-.013c-.06-.06-.602-.609-1.054-.98-.059-.05-.133-.11-.21-.11a.128.128 0 0 0-.096.042c-.09.096.044.24.1.293l.92 1.003a.204.204 0 0 1-.033.062c-.033.044-.144.155-.479.196a.91.907 0 0 1-.122.007c-.345 0-.712-.164-.902-.264a1.343 1.34 0 0 0 .13-.576 1.368 1.365 0 0 0-1.42-1.357c.024-.342-.025-.99-.697-1.274a1.455 1.452 0 0 0-.575-.125c-.146 0-.287.025-.42.075a1.153 1.15 0 0 0-.671-.564 1.52 1.515 0 0 0-.494-.085c-.28 0-.537.08-.767.242a1.168 1.165 0 0 0-.903-.43 1.173 1.17 0 0 0-.82.335c-.287-.217-1.425-.93-4.467-1.613a17.39 17.344 0 0 1-.692-.189 4.822 4.82 0 0 0-.077.494l.67.157c3.108.682 4.136 1.391 4.309 1.525a1.145 1.142 0 0 0-.09.442 1.16 1.158 0 0 0 1.378 1.132c.096.467.406.821.879 1.003a1.165 1.162 0 0 0 .415.08c.09 0 .179-.012.266-.034.086.22.282.493.722.668a1.233 1.23 0 0 0 .457.094c.122 0 .241-.022.355-.063a1.373 1.37 0 0 0 1.269.841c.37.002.726-.147.985-.41.221.121.688.341 1.163.341.06 0 .118-.002.175-.01.47-.059.689-.24.789-.382a.571.57 0 0 0 .048-.078c.11.032.234.058.373.058.255 0 .501-.086.75-.265.244-.174.418-.424.444-.637v-.01c.083.017.167.026.251.026.265 0 .527-.082.773-.242.48-.31.562-.715.554-.98a1.28 1.279 0 0 0 .978-.194 1.04 1.04 0 0 0 .502-.808 1.088 1.085 0 0 0-.16-.653c.804-.342 2.636-1.003 4.795-1.483a4.734 4.721 0 0 0-.067-.492 27.742 27.667 0 0 0-5.049 1.62zm5.123-.763c0 4.027-5.166 7.293-11.537 7.293-6.372 0-11.538-3.266-11.538-7.293 0-4.028 5.165-7.293 11.539-7.293 6.371 0 11.537 3.265 11.537 7.293zm.46.004c0-4.272-5.374-7.755-12-7.755S.002 7.277.002 11.55L0 12.004c0 4.533 4.695 8.203 11.999 8.203 7.347 0 12-3.67 12-8.204z"/></svg>Mercado Pago</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z"/></svg>Zapier</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg>Trello</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.033 14.649H.743a.74.74 0 0 1-.686-.458.74.74 0 0 1 .16-.808L3.19 10.41H1.06A1.06 1.06 0 0 1 0 9.35h3.957c.301 0 .57.18.686.458a.74.74 0 0 1-.161.808L1.51 13.59h2.464c.585 0 1.06.475 1.06 1.06zM24 11.338c0-1.14-.927-2.066-2.066-2.066-.61 0-1.158.265-1.537.686a2.061 2.061 0 0 0-1.536-.686c-1.14 0-2.066.926-2.066 2.066v3.311a1.06 1.06 0 0 0 1.06-1.06v-2.251a1.004 1.004 0 0 1 2.013 0v2.251c0 .586.474 1.06 1.06 1.06v-3.311a1.004 1.004 0 0 1 2.012 0v2.251c0 .586.475 1.06 1.06 1.06zM16.265 12a2.728 2.728 0 1 1-5.457 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0zm-4.82 0a2.728 2.728 0 1 1-5.458 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0z"/></svg>Zoom</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</li><li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</li></ul></div>
+  <p class="marcas">Marcas de sus respectivos dueños; se muestran solo como referencia, sin afiliación.</p>
+</section>
+
+<section class="oscuro full" id="ventajas" aria-labelledby="t-ventajas">
+  <div class="wrap">
+    <div class="head">
+      <h2 id="t-ventajas">Claro desde el primer día.</h2>
+      <p class="sub">Sabes cuánto cuesta, qué recibes y cómo se mide antes de decidir.</p>
     </div>
-  </section>
-
-  <section id="como-trabajamos" aria-labelledby="t-como">
-    <div class="wrap">
-      <div class="head-block">
-        <h2 id="t-como">Tres pasos. Cada uno deja algo que puedes usar.</h2>
-      </div>
-      <div class="step-tabs" role="tablist" aria-label="Los tres pasos">
-        <button type="button" role="tab" id="st-0" aria-selected="true" aria-controls="sp-0" data-i="0"><span class="num">1</span>Triaje</button>
-        <button type="button" role="tab" id="st-1" aria-selected="false" aria-controls="sp-1" data-i="1" tabindex="-1"><span class="num">2</span>Ficha</button>
-        <button type="button" role="tab" id="st-2" aria-selected="false" aria-controls="sp-2" data-i="2" tabindex="-1"><span class="num">3</span>Ticket</button>
-      </div>
-      <div class="viewport">
-        <div class="track" id="track">
-          <article class="cream slide" role="tabpanel" id="sp-0" aria-labelledby="st-0">
-            <div><p class="meta">Paso 1</p><h3>Triaje</h3><p class="big">Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p>
-              <ul>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Doce preguntas sobre tu negocio</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Un caso real, de punta a punta</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Siempre sin costo para ti</li>
-              </ul></div>
-            <svg class="scene" viewBox="0 0 330 340" aria-hidden="true"><rect x="10" y="20" width="310" height="310" rx="155" fill="#0f4a5b"/><use href="#o-libreta" x="34" y="18" width="206" height="275" transform="rotate(-4 137 155)"/><use href="#o-lupa" x="176" y="170" width="132" height="132"/></svg>
-          </article>
-          <article class="cream slide" role="tabpanel" id="sp-1" aria-labelledby="st-1">
-            <div><p class="meta">Paso 2 · El mismo día</p><h3>Ficha</h3><p class="big">Un PDF corto con lo que encontramos y lo que sigue. Lo lees en voz alta con nosotros y lo recibes ese mismo día.</p>
-              <ul>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>El problema, en tus palabras</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Dos o tres hechos</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Una acción que puedes hacer hoy</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>El siguiente paso, con precio y fecha</li>
-              </ul></div>
-            <svg class="scene" viewBox="0 0 330 340" aria-hidden="true"><rect x="10" y="20" width="310" height="310" rx="155" fill="#0f4a5b"/><use href="#o-ficha" x="48" y="16" width="232" height="294" transform="rotate(3 164 163)"/></svg>
-          </article>
-          <article class="cream slide" role="tabpanel" id="sp-2" aria-labelledby="st-2">
-            <div><p class="meta">Paso 3</p><h3>Ticket</h3><p class="big">Un trabajo con precio cerrado. Lo instalamos, tu equipo completa un ciclo solo y se da por entregado cuando lo usan sin nosotros.</p>
-              <ul>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Precio cerrado antes de empezar</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tu equipo lo usa solo</li>
-                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Si decides parar, pagas solo lo trabajado</li>
-              </ul></div>
-            <svg class="scene" viewBox="0 0 330 340" aria-hidden="true"><rect x="10" y="20" width="310" height="310" rx="155" fill="#0f4a5b"/><use href="#o-ticket" x="70" y="14" width="176" height="300" transform="rotate(-4 158 164)"/><use href="#o-monedas" x="196" y="226" width="112" height="94"/></svg>
-          </article>
-        </div>
-      </div>
+    <div class="ventajas">
+      <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Decides con información, no con una promesa.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos lo que no se puede medir.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
     </div>
-  </section>
+    <p class="pasos-t">Así trabajamos</p>
+    <ol class="pasos">
+      <li><span class="n">1</span><h3>Triaje</h3><p class="cuando">Siempre sin costo</p><p>Una visita corta: doce preguntas y recorremos un caso real de tu negocio de punta a punta.</p></li>
+      <li><span class="n">2</span><h3>Ficha</h3><p class="cuando">El mismo día</p><p>Un PDF corto con lo que encontramos, una acción para hoy y el siguiente paso con precio y fecha.</p></li>
+      <li><span class="n">3</span><h3>Ticket</h3><p class="cuando">Precio cerrado</p><p>Lo instalamos y tu equipo completa un ciclo solo. Si decides parar, pagas solo lo trabajado.</p></li>
+      <li><span class="n">Δ</span><h3>Delta</h3><p class="cuando">Medido contigo</p><p>Comparamos el indicador antes y después y ajustamos lo que no se está usando.</p></li>
+    </ol>
+  </div>
+</section>
 
-  <section class="alt" id="diferente" aria-labelledby="t-dif">
-    <div class="wrap">
-      <div class="head-block">
-        <h2 id="t-dif">Claro desde el primer día.</h2>
-      </div>
-      <div class="diff">
-        <article><span class="medal"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Sabes cuánto cuesta antes de hablar con nadie.</p></article>
-        <article><span class="medal"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><h3>Empiezas sin riesgo</h3><p>El Triaje y la Ficha siempre son sin costo. Decides con información, no con una promesa.</p></article>
-        <article><span class="medal"><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg></span><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un indicador que observamos juntos. No garantizamos resultados que no podemos medir.</p></article>
-        <article><span class="medal"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></span><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
-      </div>
+<section class="fluye" id="precio" aria-labelledby="t-precio">
+  <div class="wrap">
+    <div class="head" id="cotizador">
+      <h2 id="t-precio">Elige lo que necesitas. Mira cuánto cuesta.</h2>
+      <p class="sub">Toca Orden, Visibilidad o Control, marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
     </div>
-  </section>
-
-  <section id="contacto" aria-labelledby="t-contacto">
-    <div class="wrap contact-grid">
+    <div class="pillars" role="group" aria-label="Elige un pilar para ver sus piezas">
+      <button type="button" class="pillar" id="tab-orden" data-p="orden" aria-pressed="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg><span class="pt">Orden</span><span class="chev" aria-hidden="true">+</span><span class="ps">Cada cosa en su lugar</span></button><button type="button" class="pillar" id="tab-visibilidad" data-p="visibilidad" aria-pressed="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg><span class="pt">Visibilidad</span><span class="chev" aria-hidden="true">+</span><span class="ps">Saber qué pasa, a tiempo</span></button><button type="button" class="pillar" id="tab-control" data-p="control" aria-pressed="false" aria-controls="pieces"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg><span class="pt">Control</span><span class="chev" aria-hidden="true">+</span><span class="ps">Que lo cobrado cuadre</span></button>
+    </div>
+    <div class="cat-grid">
       <div>
-        <h2 id="t-contacto">Agenda tu <em>Triaje</em>.</h2>
-        <p class="sub">El Triaje siempre es sin costo. Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
-        <div class="actions">
-          <a class="btn primary" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Escríbenos por WhatsApp</a>
-          <a class="btn ghost" href="tel:+523114469363">Llamar al +52 311 446 9363</a>
-          <a class="btn ghost" id="share" href="#">Compartir esta página</a>
-        </div>
-        <ul class="social" aria-label="Redes y contacto">
-          <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
-        </ul>
+        <p class="phint" id="phint">Toca Orden, Visibilidad o Control para ver sus piezas y armar tu trabajo.</p>
+        <div class="pieces" id="pieces" role="group"><label class="piece" data-p="orden" data-h="1" data-n="Lista de precios o catálogo"><input type="checkbox"><span class="k"><span>Orden</span><span>1 h</span></span><b>Lista de precios o catálogo</b><span class="d">Que todos vean el mismo producto y el mismo precio.</span></label><label class="piece" data-p="orden" data-h="2" data-a="1" data-n="Cotizador"><input type="checkbox"><span class="k"><span>Orden</span><span>2 h</span></span><b>Cotizador</b><span class="d">Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.</span></label><label class="piece" data-p="orden" data-h="4" data-a="1" data-n="Procedimiento escrito"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Procedimiento escrito</b><span class="d">Mostrar cómo hacer la tarea sin depender de la memoria.</span></label><label class="piece" data-p="orden" data-h="3" data-n="Quién hace qué"><input type="checkbox"><span class="k"><span>Orden</span><span>3 h</span></span><b>Quién hace qué</b><span class="d">Que cada pendiente tenga una persona responsable.</span></label><label class="piece" data-p="orden" data-h="4" data-n="Expediente para el contador"><input type="checkbox"><span class="k"><span>Orden</span><span>4 h</span></span><b>Expediente para el contador</b><span class="d">Tener juntos los documentos que necesita tu contador.</span></label><label class="piece" data-p="visibilidad" data-h="2" data-a="1" data-n="Control de pedidos y cobros"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>2 h</span></span><b>Control de pedidos y cobros</b><span class="d">Saber qué se pidió, qué se entregó y cuánto falta cobrar.</span></label><label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Registro diario desde el celular"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Registro diario desde el celular</b><span class="d">Guardar el dato antes de olvidarlo.</span></label><label class="piece" data-p="visibilidad" data-h="4" data-a="1" data-n="Flujo a 30, 60 y 90 días"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>4 h</span></span><b>Flujo a 30, 60 y 90 días</b><span class="d">Ver si el dinero alcanzaría en las próximas fechas.</span></label><label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Tablero semanal"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Tablero semanal</b><span class="d">Ver lo más urgente sin leer todos los registros.</span></label><label class="piece" data-p="visibilidad" data-h="5" data-a="1" data-n="Inventario y reorden"><input type="checkbox"><span class="k"><span>Visibilidad</span><span>5 h</span></span><b>Inventario y reorden</b><span class="d">Tener existencias visibles y pedir antes de quedarte sin producto.</span></label><label class="piece" data-p="control" data-h="2" data-a="1" data-n="Agenda de cobranza"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Agenda de cobranza</b><span class="d">Saber a quién cobrar, cuánto y cuándo.</span></label><label class="piece" data-p="control" data-h="4" data-n="Lo cobrado contra lo depositado"><input type="checkbox"><span class="k"><span>Control</span><span>4 h</span></span><b>Lo cobrado contra lo depositado</b><span class="d">Comprobar que lo que cobraste coincide con lo que entró al banco.</span></label><label class="piece" data-p="control" data-h="2" data-a="1" data-n="Arqueo y cierre de caja"><input type="checkbox"><span class="k"><span>Control</span><span>2 h</span></span><b>Arqueo y cierre de caja</b><span class="d">Cerrar el día con la caja contada y comparada.</span></label></div>
+        <p class="pnote">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
       </div>
-      <svg class="contact-art" viewBox="0 0 430 480" aria-hidden="true">
-        <use href="#o-ticket" x="2" y="150" width="152" height="260" transform="rotate(-8 78 280)"/>
-        <use href="#o-telefono" x="150" y="14" width="250" height="456" transform="rotate(4 275 242)"/>
-        <use href="#o-escudo" x="334" y="344" width="92" height="107"/>
-      </svg>
+      <div class="est-wrap">
+        <aside class="est" aria-labelledby="t-est">
+          <h3 id="t-est">Tu estimado</h3>
+          <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">$80,000</output></label>
+          <input type="range" id="ventas" min="20000" max="400000" step="5000" value="80000">
+          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 + IVA por hora</b></span></p>
+          <hr class="rule">
+          <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
+          <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
+          <div aria-live="polite" aria-atomic="true">
+            <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="monto">$0</strong></div>
+            <p class="tot" id="tot"></p>
+          </div>
+          <p class="msg" id="msg" role="status">Elige al menos una pieza.</p>
+          <a class="btn primary" id="wa" href="https://wa.me/523114469363">Enviar mi selección por WhatsApp</a>
+          <p class="note">Tarifas por hora: micro $700 + IVA y pequeña $1,400 + IVA. Empresas medianas, próximamente. Precios en pesos mexicanos. Mínimo de 5 horas por Ticket. Se paga una parte al firmar y el saldo al aceptar la vista previa. Nada de esto se guarda: solo se arma el mensaje en tu teléfono.</p>
+        </aside>
+      </div>
     </div>
-  </section>
 
-  <section class="faq-s" id="preguntas" aria-labelledby="t-faq">
-    <div class="wrap">
-      <div class="libreta cream">
-        <h2 id="t-faq">Preguntas frecuentes</h2>
-        <dl class="faq">
-          <div><dt>¿Cuánto cuesta el Triaje?</dt><dd>Siempre sin costo, y la Ficha también. Dura hasta 90 min en micro, 2 h en pequeña.</dd></div>
-          <div><dt>¿Cuánto pago y cuándo?</dt><dd>Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.</dd></div>
-          <div><dt>¿Tengo que cambiar lo que uso?</dt><dd>No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.</dd></div>
-          <div><dt>¿Me garantizan resultados?</dt><dd>No prometemos lo que no se puede medir: cada trabajo tiene un indicador.</dd></div>
-          <div><dt>¿Y si decido parar?</dt><dd>Pagas solo lo trabajado.</dd></div>
-          <div><dt>¿Cuándo termina un trabajo?</dt><dd>Cuando tu equipo completa un ciclo sin nosotros.</dd></div>
-        </dl>
+    <div class="metodo" id="metodo">
+      <div class="head">
+        <h2>Proceso y metodología.</h2>
+        <p class="sub">Lo que necesitas saber antes de empezar. Primero, una llamada de 15 minutos y, si hace falta, el Triaje en tu negocio, siempre sin costo: hasta 90 min en micro y 2 h en pequeña. Después te damos por escrito qué haremos y cuántas horas autorizas.</p>
       </div>
+      <div class="cols">
+        <div><h3>Cuenta como hora útil</h3><ul><li>Diseño, redacción y armado de lo que te entregamos</li><li>Pruebas en celular y computadora</li><li>Publicación y configuración</li><li>Capacitación contigo o con tu equipo</li></ul></div>
+        <div class="no"><h3>No cuenta</h3><ul><li>Traslados</li><li>El tiempo esperando tu información o tu respuesta</li><li>Corregir errores nuestros</li></ul></div>
+        <div class="espera"><h3>Lo que puedes esperar</h3><ul><li>Las horas autorizadas no se rebasan sin tu autorización por escrito</li><li>Cada bloque de trabajo queda registrado con fecha y evidencia; puedes pedir el registro</li><li>Lo que entregamos queda a nombre de tu negocio</li></ul></div>
+      </div>
+      <h3 class="etapas-t">Por qué no se entrega el mismo día</h3>
+      <p class="sub">Cada etapa necesita tu información o tu visto bueno, y los cambios se hacen con calma para que salgan bien.</p>
+      <ol class="etapas">
+        <li class="tu"><span class="q">1</span><small>Tú</small><p>Nos entregas lo indispensable</p></li>
+        <li><span class="q">2</span><small>Nosotros</small><p>Estructura y textos</p></li>
+        <li class="tu"><span class="q">3</span><small>Tú</small><p>Revisas y apruebas</p></li>
+        <li><span class="q">4</span><small>Nosotros</small><p>Diseño, armado y pruebas</p></li>
+        <li class="tu"><span class="q">5</span><small>Tú</small><p>Revisión final</p></li>
+        <li class="ambos"><span class="q">6</span><small>Ambos</small><p>Publicación y capacitación</p></li>
+      </ol>
     </div>
-  </section>
+  </div>
+</section>
+
+<section id="potencial" aria-labelledby="t-pot">
+  <div class="wrap">
+    <div class="head">
+      <h2 id="t-pot">Optimiza tu potencial.</h2>
+      <p class="sub">Cuatro frentes y lo que hacemos en cada uno. Tú eliges por dónde empezar.</p>
+    </div>
+    <div class="potencial"><article class="pot"><svg class="ic" aria-hidden="true"><use href="#i-orden"/></svg><h3>Orden</h3><p class="tl">Cada cosa en su lugar.</p><ul><li>Lista de precios o catálogo</li><li>Cotizador con tu marca</li><li>Procedimientos con lista de verificación</li><li>Quién hace qué</li><li>Expediente para el contador</li></ul><a class="link" href="soluciones/orden.html">Conoce Orden</a></article><article class="pot"><svg class="ic" aria-hidden="true"><use href="#i-vis"/></svg><h3>Visibilidad</h3><p class="tl">Saber qué pasa, a tiempo.</p><ul><li>Registro diario desde el celular</li><li>Control de pedidos y cobros</li><li>Tablero semanal</li><li>Flujo a 30, 60 y 90 días</li><li>Inventario y reorden</li></ul><a class="link" href="soluciones/visibilidad.html">Conoce Visibilidad</a></article><article class="pot"><svg class="ic" aria-hidden="true"><use href="#i-ctl"/></svg><h3>Control</h3><p class="tl">Que lo cobrado cuadre.</p><ul><li>Arqueo y cierre de caja</li><li>Lo cobrado contra lo depositado</li><li>Agenda de cobranza</li><li>Mensajes de cobranza para WhatsApp</li><li>Lista de apertura y cierre</li></ul><a class="link" href="soluciones/control.html">Conoce Control</a></article><article class="pot"><svg class="ic" aria-hidden="true"><use href="#i-mejora"/></svg><h3>Mejora continua</h3><p class="tl">Medir, ajustar y volver a medir.</p><ul><li>Un indicador por trabajo, antes y después</li><li>Prueba con un caso real y ajuste</li><li>Se entrega cuando tu equipo lo usa solo</li><li>Revisiones extra cuando las necesitas (con Plus)</li><li>Herramientas y métodos a tu medida</li></ul><a class="link" href="soluciones/mejora-continua.html">Conoce Mejora continua</a></article></div>
+    <div class="giros"><span>Por giro:</span><a href="industrias/alimentos-y-bebidas.html">Alimentos y bebidas</a><a href="industrias/comercio-y-tiendas.html">Comercio y tiendas</a><a href="industrias/distribucion-y-logistica.html">Distribución y logística</a><a href="industrias/construccion-e-ingenieria.html">Construcción e ingeniería</a><a href="industrias/fabricacion-y-produccion.html">Fabricación y producción</a><a href="industrias/automotriz.html">Automotriz</a><a href="industrias/turismo-y-hospitalidad.html">Turismo y hospitalidad</a><a href="industrias/servicios-profesionales.html">Servicios profesionales y de salud</a></div>
+  </div>
+</section>
+
+<section class="oscuro empieza" id="empieza" aria-labelledby="t-empieza">
+  <div class="wrap">
+    <div>
+      <h2 id="t-empieza">Empieza <em>hoy</em>.</h2>
+      <p class="sub">El Triaje siempre es sin costo. Cuéntanos de tu negocio y te decimos si podemos ayudarte.</p>
+      <div class="actions">
+        <a class="btn oro" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20empezar%20con%20un%20Triaje%20sin%20costo%20para%20mi%20negocio.">Habla con un profesional</a>
+        <a class="btn ghost" href="tel:+523114469363">Llamar al +52 311 446 9363</a>
+        <a class="btn ghost" id="share" href="#">Compartir esta página</a>
+      </div>
+      <ul class="social" aria-label="Redes y contacto"><li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li><li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li></ul>
+    </div>
+    <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true"><g><path d="M183.4 355.3Q266.4 325.1 251.1 412.1L236.6 494.0Q221.3 581.0 153.6 524.2L89.9 470.7Q22.3 414.0 105.3 383.7Z" stroke-opacity="0.10"/><path d="M187.8 346.7Q274.1 315.0 258.3 405.5L243.4 491.6Q227.6 582.1 157.1 523.2L90.1 467.2Q19.6 408.4 105.8 376.7Z" stroke-opacity="0.11"/><path d="M193.3 336.8Q282.0 303.6 266.4 397.1L251.2 488.4Q235.7 581.9 162.5 521.7L91.0 462.8Q17.8 402.6 106.6 369.3Z" stroke-opacity="0.12"/><path d="M199.6 326.0Q290.1 290.9 275.2 386.8L260.1 484.6Q245.2 580.5 169.6 519.7L92.5 457.6Q16.9 396.9 107.3 361.8Z" stroke-opacity="0.13"/><path d="M206.8 314.2Q298.1 277.2 284.5 374.8L269.8 480.3Q256.2 577.8 178.5 517.3L94.5 451.8Q16.9 391.3 108.1 354.3Z" stroke-opacity="0.15"/><path d="M214.7 301.7Q305.8 262.7 294.0 361.2L280.3 475.5Q268.5 573.9 189.1 514.5L97.0 445.4Q17.7 386.0 108.8 347.0Z" stroke-opacity="0.16"/><path d="M223.0 288.6Q313.1 247.6 303.5 346.2L291.4 470.3Q281.8 568.8 201.3 511.2L99.9 438.7Q19.3 381.1 109.5 340.2Z" stroke-opacity="0.18"/><path d="M231.7 275.0Q320.0 232.2 312.9 330.0L303.1 464.8Q296.1 562.6 214.9 507.6L103.0 431.7Q21.9 376.7 110.1 333.9Z" stroke-opacity="0.20"/><path d="M240.6 261.0Q326.1 216.6 321.8 312.8L315.3 459.0Q311.0 555.3 229.9 503.4L106.5 424.7Q25.3 372.9 110.7 328.5Z" stroke-opacity="0.22"/><path d="M249.6 246.8Q331.5 201.1 330.2 294.9L327.9 453.1Q326.5 546.9 246.0 498.8L110.1 417.7Q29.6 369.6 111.5 323.9Z" stroke-opacity="0.24"/><path d="M258.5 232.5Q336.2 185.9 337.7 276.5L340.7 446.9Q342.2 537.5 263.0 493.6L113.9 410.9Q34.7 367.0 112.4 320.3Z" stroke-opacity="0.26"/><path d="M267.2 218.4Q340.0 171.3 344.4 257.9L353.6 440.6Q358.0 527.2 280.8 487.7L117.9 404.4Q40.8 364.9 113.5 317.8Z" stroke-opacity="0.28"/><path d="M275.5 204.5Q342.9 157.5 349.9 239.4L366.5 434.2Q373.5 516.1 299.1 481.2L122.1 398.2Q47.6 363.3 115.1 316.3Z" stroke-opacity="0.30"/><path d="M283.3 191.1Q345.1 144.7 354.4 221.4L379.4 427.7Q388.6 504.4 317.6 474.1L126.4 392.6Q55.3 362.3 117.1 315.9Z" stroke-opacity="0.32"/><path d="M290.5 178.2Q346.4 133.0 357.6 204.0L391.9 421.1Q403.1 492.1 336.0 466.3L130.8 387.5Q63.7 361.7 119.6 316.4Z" stroke-opacity="0.34"/><path d="M297.1 166.2Q347.1 122.7 359.7 187.7L404.0 414.5Q416.6 479.5 354.0 458.0L135.5 382.9Q72.8 361.4 122.8 317.9Z" stroke-opacity="0.36"/><path d="M302.9 155.1Q347.0 113.8 360.7 172.6L415.4 407.8Q429.1 466.7 371.3 449.1L140.3 378.9Q82.4 361.3 126.6 320.0Z" stroke-opacity="0.39"/><path d="M308.0 145.1Q346.5 106.4 360.7 159.1L426.1 401.2Q440.4 453.9 387.6 439.9L145.2 375.5Q92.5 361.5 131.0 322.8Z" stroke-opacity="0.41"/><path d="M312.3 136.4Q345.4 100.7 359.8 147.2L435.9 394.7Q450.2 441.3 402.7 430.4L150.4 372.6Q102.9 361.7 136.0 326.0Z" stroke-opacity="0.43"/><path d="M315.8 129.1Q344.0 96.6 358.0 137.3L444.5 388.3Q458.5 429.0 416.3 420.8L155.6 370.2Q113.4 362.0 141.6 329.5Z" stroke-opacity="0.46"/><path d="M318.5 123.3Q342.3 94.2 355.6 129.3L451.9 382.2Q465.3 417.4 428.1 411.4L161.0 368.3Q123.8 362.3 147.6 333.1Z" stroke-opacity="0.48"/><path d="M320.5 119.2Q340.3 93.4 352.8 123.4L457.8 376.5Q470.3 406.5 438.1 402.3L166.4 366.7Q134.1 362.5 153.9 336.7Z" stroke-opacity="0.51"/><path d="M321.9 116.8Q338.2 94.2 349.6 119.6L462.2 371.2Q473.6 396.6 445.9 393.7L171.8 365.5Q144.1 362.7 160.4 340.1Z" stroke-opacity="0.53"/><path d="M322.6 116.1Q335.9 96.6 346.1 118.0L465.0 366.4Q475.2 387.7 451.7 385.9L177.0 364.6Q153.5 362.8 166.8 343.3Z" stroke-opacity="0.56"/><path d="M322.7 117.3Q333.6 100.6 342.6 118.4L466.1 362.4Q475.1 380.2 455.2 379.1L182.1 364.0Q162.2 362.9 173.1 346.2Z" stroke-opacity="0.58"/><path d="M322.2 120.2Q331.2 105.9 339.1 120.8L465.4 359.1Q473.3 374.0 456.4 373.4L186.9 363.6Q170.0 363.0 179.0 348.7Z" stroke-opacity="0.61"/><path d="M321.2 124.9Q328.6 112.6 335.5 125.2L462.9 356.8Q469.8 369.3 455.5 369.0L191.2 363.5Q176.9 363.2 184.3 350.9Z" stroke-opacity="0.64"/><path d="M319.6 131.3Q326.0 120.6 332.1 131.4L458.6 355.4Q464.7 366.2 452.3 366.1L195.0 363.7Q182.6 363.5 188.9 352.8Z" stroke-opacity="0.66"/><path d="M317.5 139.3Q323.1 129.7 328.6 139.4L452.5 355.1Q458.1 364.8 446.9 364.7L198.1 364.1Q187.0 364.1 192.6 354.5Z" stroke-opacity="0.69"/><path d="M314.8 149.0Q320.0 140.0 325.2 149.0L444.7 356.0Q449.9 365.0 439.5 365.0L200.5 365.0Q190.1 365.0 195.3 356.0Z" stroke-opacity="0.72"/></g><path class="flecha" d="M178 432C328 440 425 358 458 268M444 279L458 268 461 285"/></svg>
+  </div>
+</section>
+
+<section class="faq-s" id="preguntas" aria-labelledby="t-faq">
+  <div class="wrap">
+    <h2 id="t-faq">Preguntas frecuentes</h2>
+    <dl class="faq"><div><dt>¿Cuánto cuesta el Triaje?</dt><dd>Siempre sin costo, y la Ficha también. Dura hasta 90 min en micro y 2 h en pequeña.</dd></div><div><dt>¿Cuánto pago y cuándo?</dt><dd>Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.</dd></div><div><dt>¿Tengo que cambiar lo que uso?</dt><dd>No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.</dd></div><div><dt>¿Me garantizan resultados?</dt><dd>No prometemos lo que no se puede medir: cada trabajo tiene un indicador.</dd></div><div><dt>¿Y si decido parar?</dt><dd>Pagas solo lo trabajado.</dd></div><div><dt>¿Cuándo termina un trabajo?</dt><dd>Cuando tu equipo completa un ciclo sin nosotros.</dd></div></dl>
+  </div>
+</section>
 </main>
-
 <footer>
   <div class="wrap">
-    <a class="stack" href="#inicio" aria-label="Certeza Operativa, volver al inicio">
-      <svg class="mk" viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="s1">CERTEZA</span>
-      <span class="s2"><i></i>OPERATIVA<i></i></span>
-      <span class="s3">ORDEN <b></b> VISIBILIDAD <b></b> CONTROL</span>
-    </a>
-    <div class="cols">
+    <div class="top">
       <div>
-        <h3>Navegar</h3>
-        <ul>
-          <li><a href="#catalogo">Catálogo y precio</a></li>
-          <li><a href="#web">Página web</a></li>
-          <li><a href="#como-trabajamos">Cómo trabajamos</a></li>
-          <li><a href="#preguntas">Preguntas</a></li>
-          <li><a href="#contacto">Agenda tu Triaje</a></li>
-        </ul>
+        <a class="marca" href="index.html" aria-label="Certeza Operativa, volver al inicio"><svg viewBox="38 8 175 133" aria-hidden="true"><use href="#mark"/></svg><span>CERTEZA<small>OPERATIVA</small></span></a>
+        <ul class="social" aria-label="Redes y contacto"><li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li><li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li><li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li><li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamar al +52 311 446 9363"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li></ul>
       </div>
-      <div>
-        <h3>Contacto</h3>
-        <ul>
-          <li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa.">WhatsApp</a></li>
-          <li><a href="tel:+523114469363">+52 311 446 9363</a></li>
-          <li>Nayarit, México</li>
-        </ul>
-      </div>
+      <div><h3>Industrias</h3><ul><li><a href="industrias/alimentos-y-bebidas.html">Alimentos y bebidas</a></li><li><a href="industrias/comercio-y-tiendas.html">Comercio y tiendas</a></li><li><a href="industrias/distribucion-y-logistica.html">Distribución y logística</a></li><li><a href="industrias/construccion-e-ingenieria.html">Construcción e ingeniería</a></li><li><a href="industrias/fabricacion-y-produccion.html">Fabricación y producción</a></li><li><a href="industrias/automotriz.html">Automotriz</a></li><li><a href="industrias/turismo-y-hospitalidad.html">Turismo y hospitalidad</a></li><li><a href="industrias/servicios-profesionales.html">Servicios profesionales y de salud</a></li></ul></div>
+      <div><h3>Soluciones</h3><ul><li><a href="soluciones/orden.html">Orden</a></li><li><a href="soluciones/visibilidad.html">Visibilidad</a></li><li><a href="soluciones/control.html">Control</a></li><li><a href="soluciones/mejora-continua.html">Mejora continua</a></li><li><a href="soluciones/herramientas.html">Herramientas</a></li><li><a href="soluciones/metodos.html">Métodos</a></li></ul></div>
+      <div><h3>Servicios</h3><ul><li><a href="servicios.html#empieza">Empieza: Triaje y Ficha</a></li><li><a href="servicios.html#tickets">Tickets de mejora</a></li><li><a href="servicios.html#pagina-web">Página web</a></li><li><a href="servicios.html#canva">Documentos con Canva</a></li><li><a href="index.html#precio">Estima tu precio</a></li></ul></div>
+      <div><h3>Nosotros</h3><ul><li><a href="nosotros.html#como">Cómo lo hacemos</a></li><li><a href="nosotros.html#esperar">Lo que puedes esperar</a></li><li><a href="nosotros.html#quien">Quién te atiende</a></li><li><a href="index.html#preguntas">Preguntas frecuentes</a></li><li><a href="index.html#empieza">Empieza</a></li></ul></div>
     </div>
-    <ul class="social" aria-label="Redes y contacto">
-      <li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li>
-      <li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li>
-      <li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li>
-      <li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamadas"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li>
-    </ul>
-    <p class="copy">© 2026 Certeza Operativa · Nayarit, México</p>
+    <div class="legal">
+      <p>© 2026 Certeza Operativa · Sede en Nayarit, México · +52 311 446 9363</p>
+      <p>Los nombres de herramientas mencionados son marcas de sus dueños; se muestran solo como referencia de lo que ya usan los negocios. Certeza Operativa no está afiliada a ellas.</p>
+    </div>
   </div>
 </footer>
-
-<a class="btn primary float" id="float" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20agendar%20un%20Triaje%20para%20mi%20negocio.">Triaje por WhatsApp</a>
-
-<script>
-(function () {
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var fmt = function (n) { return '$' + Math.round(n).toLocaleString('es-MX'); };
-
-  /* --- Al bajar: progreso, encabezado, botón flotante, parallax --- */
-  var bar = $('#bar'), hdr = $('#hdr'), fl = $('#float'), ticking = false;
-  function onScroll() {
-    var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
-    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
-    hdr.classList.toggle('stuck', y > 20);
-    fl.classList.toggle('on', y > 700);
-    ticking = false;
-  }
-  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  onScroll();
-
-  /* --- Navegación activa --- */
-  var links = $$('nav .links a');
-  if ('IntersectionObserver' in window) {
-    var so = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    ['catalogo', 'web', 'como-trabajamos', 'preguntas'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
-  }
-
-  /* --- Gráficas ilustrativas (SVG propio, sin librerías) --- */
-  var tip = $('#tip');
-  function showTip(el, x, y) { tip.textContent = el.getAttribute('data-tip'); tip.classList.add('on'); var w = tip.offsetWidth; tip.style.left = Math.max(8, Math.min(innerWidth - w - 8, x - w / 2)) + 'px'; tip.style.top = Math.max(8, y - tip.offsetHeight - 14) + 'px'; }
-  function hideTip() { tip.classList.remove('on'); }
-  var holder = $('#v-chart');
-  holder.addEventListener('pointerover', function (e) { var t = e.target.closest('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); });
-  holder.addEventListener('pointermove', function (e) { var t = e.target.closest('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); else hideTip(); });
-  holder.addEventListener('pointerleave', hideTip);
-
-  var CH = {
-    orden: { title: 'Pendientes sin responsable', cap: 'Ejemplo ilustrativo: cada semana, menos tareas sin dueño. No son datos de ningún cliente.', type: 'line', labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6'], a: [9, 7, 6, 3, 1, 0], max: 10, unit: 'pendientes', name: 'Pendientes sin responsable', end: 'ninguno sin dueño' },
-    visibilidad: { title: 'Dinero previsto a 30, 60 y 90 días', cap: 'Ejemplo ilustrativo, en miles de pesos. Ves a tiempo cuándo podría faltar dinero.', type: 'bars', labels: ['Hoy', '30 días', '60 días', '90 días'], a: [18, 22, 15, 9], max: 25, min: 12, name: 'Saldo previsto' },
-    control: { title: 'Lo cobrado contra lo depositado', cap: 'Ejemplo ilustrativo, en miles de pesos por semana. La diferencia salta a la vista.', type: 'pair', labels: ['S1', 'S2', 'S3', 'S4'], a: [12, 14, 13, 15], b: [12, 14, 10, 15], max: 16, an: 'Cobrado', bn: 'Depositado' }
-  };
-  var cur = 'orden', M = { l: 38, r: 14, t: 18, b: 34 };
-  function grid(W, H, max, step) {
-    var s = '', iH = H - M.t - M.b;
-    for (var v = 0; v <= max; v += step) { var y = M.t + iH - v / max * iH; s += '<line class="grid" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (M.l - 8) + '" y="' + (y + 4) + '" text-anchor="end">' + v + '</text>'; }
-    return s;
-  }
-  function draw() {
-    var c = CH[cur], W = Math.max(280, holder.clientWidth - 16), H = Math.round(Math.min(300, W * .62)), iW = W - M.l - M.r, iH = H - M.t - M.b, n = c.labels.length, s = '', i;
-    var X = function (k) { return M.l + (k + .5) * iW / n; }, Y = function (v) { return M.t + iH - v / c.max * iH; };
-    s += grid(W, H, c.max, c.max <= 10 ? 5 : (c.max <= 16 ? 4 : 5));
-    for (i = 0; i < n; i++) s += '<text x="' + X(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + c.labels[i] + '</text>';
-    if (c.type === 'line') {
-      var pts = c.a.map(function (v, k) { return X(k) + ',' + Y(v); });
-      s += '<polyline class="draw ca-s" pathLength="1" points="' + pts.join(' ') + '" fill="none" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>';
-      c.a.forEach(function (v, k) { s += '<circle class="ca ring" data-tip="' + c.labels[k] + ': ' + v + ' ' + c.unit + '" cx="' + X(k) + '" cy="' + Y(v) + '" r="6.5"/>'; });
-      s += '<text class="t-strong" x="' + (W - M.r) + '" y="' + (M.t + 16) + '" text-anchor="end">Meta: ' + c.end + '</text>';
-    } else if (c.type === 'bars') {
-      var bw = Math.min(54, iW / n * .56);
-      s += '<line class="axis" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + Y(c.min) + '" y2="' + Y(c.min) + '" stroke-dasharray="6 5"/><text x="' + (W - M.r) + '" y="' + (Y(c.min) - 7) + '" text-anchor="end">Lo mínimo que necesitas: $' + c.min + ' mil</text>';
-      c.a.forEach(function (v, k) {
-        var low = v < c.min, h = iH - (Y(v) - M.t);
-        s += '<rect class="bar ' + (low ? 'chi' : 'ca') + '" data-tip="' + c.labels[k] + ': $' + v + ' mil' + (low ? ' (por debajo del mínimo)' : '') + '" x="' + (X(k) - bw / 2) + '" y="' + Y(v) + '" width="' + bw + '" height="' + h + '" rx="5"/><text class="t-strong" x="' + X(k) + '" y="' + (Y(v) - 8) + '" text-anchor="middle">$' + v + ' mil</text>';
-      });
-      s += '<text class="t-strong" x="' + X(3) + '" y="' + (Y(c.a[3]) + 22) + '" text-anchor="middle">▲ Aquí faltaría</text>';
-    } else {
-      var gw = iW / n, bw2 = Math.min(30, gw * .3);
-      c.a.forEach(function (v, k) {
-        var d = c.b[k], gap = v !== d;
-        s += '<rect class="bar ca" data-tip="' + c.labels[k] + ' · ' + c.an + ': $' + v + ' mil" x="' + (X(k) - bw2 - 2) + '" y="' + Y(v) + '" width="' + bw2 + '" height="' + (iH - (Y(v) - M.t)) + '" rx="4"/>';
-        s += '<rect class="bar cb" data-tip="' + c.labels[k] + ' · ' + c.bn + ': $' + d + ' mil' + (gap ? ' (faltan $' + (v - d) + ' mil por explicar)' : '') + '" x="' + (X(k) + 2) + '" y="' + Y(d) + '" width="' + bw2 + '" height="' + (iH - (Y(d) - M.t)) + '" rx="4"/>';
-        if (gap) s += '<text class="t-strong" x="' + X(k) + '" y="' + (Y(v) - 10) + '" text-anchor="middle">▲ No cuadra: $' + (v - d) + ' mil</text>';
-      });
-    }
-    holder.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" aria-hidden="true">' + s + '</svg>';
-    holder.setAttribute('aria-label', c.title + '. ' + c.cap);
-    $('#v-title').textContent = c.title; $('#v-cap').textContent = c.cap;
-    $('#v-legend').innerHTML = c.type === 'pair' ? '<span><i class="a"></i>' + c.an + '</span><span><i class="b"></i>' + c.bn + '</span>' : (c.type === 'bars' ? '<span><i class="a"></i>' + c.name + ' (miles de pesos)</span><span><i class="h"></i>Por debajo del mínimo</span>' : '<span><i class="a"></i>' + c.name + '</span>');
-    var rows = c.labels.map(function (l, k) { return '<tr><td>' + l + '</td><td>' + c.a[k] + '</td>' + (c.b ? '<td>' + c.b[k] + '</td>' : '') + '</tr>'; }).join('');
-    $('#v-table').innerHTML = '<table><thead><tr><th>Periodo</th><th>' + (c.an || c.name) + '</th>' + (c.b ? '<th>' + c.bn + '</th>' : '') + '</tr></thead><tbody>' + rows + '</tbody></table>';
-    var svg = $('svg', holder); holder.classList.remove('grow'); if (!reduce) { var ln = $('.draw', svg); requestAnimationFrame(function () { requestAnimationFrame(function () { if (ln) ln.classList.add('go'); holder.classList.add('grow'); }); }); } else { var l2 = $('.draw', svg); if (l2) l2.classList.add('go'); }
-  }
-  $$('#viz [data-chart]').forEach(function (b) {
-    b.addEventListener('click', function () { cur = b.dataset.chart; $$('#viz [data-chart]').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); }); draw(); });
-  });
-  var rz;
-  draw();
-  addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(draw, 150); });
-
-  /* --- Catálogo + estimador --- */
-  var FACT = { micro: 1, pequena: 1, mediana: 1 }, RATE = { micro: 700, pequena: 1400, mediana: 0 }, NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' }, IVA = 0.16;
-  var WA = 'https://wa.me/523114469363?text=';
-  var pieces = $$('.piece'), rng = $('#ventas'), FL0 = { href: fl.href, text: fl.textContent };
-  function size(v) { return v < 100000 ? 'micro' : (v <= 250000 ? 'pequena' : 'mediana'); }
-  function range(v) { return v < 100000 ? 'menos de $100,000' : (v <= 250000 ? '$100,000 a $250,000' : 'más de $250,000'); }
-  function calc() {
-    var v = +rng.value, sz = size(v), f = FACT[sz], r = RATE[sz], per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
-    $('#ventasOut').textContent = fmt(v);
-    $('#tam').textContent = NAME[sz]; $('#tar').textContent = r ? fmt(r) + ' + IVA por hora' : 'próximamente';
-    if (!r) {
-      ['h1', 'h2', 'h3'].forEach(function (id) { $('#' + id).textContent = '—'; });
-      ['s1', 's2', 's3'].forEach(function (id) { $('#' + id).style.width = '0'; });
-      $('#hrs').textContent = '—'; $('#precio').textContent = '—'; $('#tot').textContent = '';
-      $('#msg').textContent = 'Por ahora atendemos negocios micro y pequeños, hasta $250,000 de ventas al mes. Escríbenos y te avisamos cuando abramos para empresas medianas.';
-      var lk = WA + encodeURIComponent('Hola, mi negocio vende más de $250,000 al mes. Avísenme cuando atiendan empresas medianas.');
-      $('#wa').href = lk; fl.href = lk; fl.textContent = FL0.text;
-      return;
-    }
-    pieces.forEach(function (p) { if ($('input', p).checked) { per[p.dataset.p] += +p.dataset.h * f; if (p.dataset.a) adopt = true; sel.push(p.dataset.n); } });
-    var base = per.orden + per.visibilidad + per.control, tot = Math.round((base + (adopt ? .5 : 0)) * 4) / 4, billed = Math.max(5, tot), n = sel.length;
-    var show = function (x) { return (Math.round(x * 4) / 4).toString().replace('.', ',') + ' h'; };
-    ['orden', 'visibilidad', 'control'].forEach(function (k, i) { $('#h' + (i + 1)).textContent = show(per[k]); $('#s' + (i + 1)).style.width = (base > 0 ? per[k] / base * 100 : 0) + '%'; });
-    $('#hrs').textContent = n ? show(billed) + (adopt ? ' (incluye 0,5 h de adopción)' : '') : '0 h';
-    $('#precio').textContent = n ? fmt(billed * r) : '$0';
-    $('#tot').textContent = n ? 'Total con IVA (16%): ' + fmt(billed * r * (1 + IVA)) : '';
-    $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (tot < 5 ? 'El mínimo por Ticket es de 5 h: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega tras el Triaje.');
-    var txt = 'Hola, quiero cotizar un trabajo con CERTEZA. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' + IVA (' + show(billed) + ').' : 'Quiero agendar un Triaje.');
-    var link = WA + encodeURIComponent(txt);
-    $('#wa').href = link;
-    fl.href = n ? link : FL0.href;
-    fl.textContent = n ? 'Estimado ' + fmt(billed * r) + ' · Enviar por WhatsApp' : FL0.text;
-  }
-  rng.addEventListener('input', calc);
-  $$('input', $('#pieces')).forEach(function (i) { i.addEventListener('change', calc); });
-  calc();
-
-  /* Pilares: tocar un recuadro abre sus piezas; tocarlo otra vez las cierra */
-  var openP = null;
-  function openPillar(p) {
-    openP = p;
-    $$('.pillar').forEach(function (b) { b.setAttribute('aria-pressed', String(!!p && b.dataset.p === p)); });
-    pieces.forEach(function (x) { x.hidden = !p || x.dataset.p !== p; });
-    $('#phint').hidden = !!p;
-    if (p) $('#pieces').setAttribute('aria-labelledby', 'tab-' + p); else $('#pieces').removeAttribute('aria-labelledby');
-  }
-  $$('.pillar').forEach(function (b) { b.addEventListener('click', function () { openPillar(openP === b.dataset.p ? null : b.dataset.p); }); });
-  $$('[data-filter]').forEach(function (a) { a.addEventListener('click', function () { openPillar(a.dataset.filter); }); });
-  $$('.sit').forEach(function (b) {
-    b.addEventListener('click', function () {
-      openPillar(b.dataset.p);
-      var t = $('#cotizador'); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    });
-  });
-  openPillar(null);
-
-  /* Pasos: pestañas que desplazan el contenido */
-  var stabs = $$('.step-tabs [role=tab]'), spanels = $$('.slide'), track = $('#track');
-  function goStep(i, focus) {
-    track.style.transform = 'translateX(' + (-100 * i) + '%)';
-    stabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
-    spanels.forEach(function (s, k) { if (k === i) s.removeAttribute('inert'); else s.setAttribute('inert', ''); s.setAttribute('aria-hidden', String(k !== i)); });
-    if (focus) stabs[i].focus();
-  }
-  stabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { goStep(i); });
-    t.addEventListener('keydown', function (e) {
-      var k = e.key === 'ArrowRight' ? 1 : (e.key === 'ArrowLeft' ? -1 : 0);
-      if (k) { e.preventDefault(); goStep((i + k + stabs.length) % stabs.length, true); }
-    });
-  });
-  goStep(0);
-
-  /* --- Compartir --- */
-  $('#share').addEventListener('click', function (e) {
-    e.preventDefault();
-    var url = location.href.split('#')[0].split('?')[0], text = 'Certeza Operativa: orden, visibilidad y control para tu negocio. Estima tu precio al instante.';
-    if (navigator.share) { navigator.share({ title: 'Certeza Operativa', text: text, url: url }).catch(function () {}); }
-    else { open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener'); }
-  });
-})();
-</script>
+<a class="btn oro float" id="float" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20hablar%20con%20un%20profesional%20de%20Certeza%20Operativa%20sobre%20mi%20negocio.">Habla con un profesional</a>
+<script src="assets/sitio.js" defer></script>
 </body>
 </html>
