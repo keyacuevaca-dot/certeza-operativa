@@ -1,0 +1,82 @@
+{
+  "_nota": "NEGOCIO INVENTADO para la demostración. Nombre, teléfono, dirección, precios y fotos no son reales.",
+
+  "vista_previa": true,
+  "cinta": "Ejemplo con un negocio inventado: los datos no son reales.",
+
+  "nombre": "Autolavado Gota Azul",
+  "giro": "Autolavado",
+  "tipo_schema": "AutoWash",
+  "frase": "Lavado a mano, aspirado de interiores y encerado, sin cita, en Tepic.",
+  "descripcion_corta": "Autolavado en Tepic: lavado a mano, aspirado de interiores, lavado de motor y encerado. Sin cita. Escríbanos por WhatsApp.",
+  "desde": 2018,
+  "diferenciadores": ["Lavado a mano", "Sin cita", "Sala de espera con sombra", "Autos, camionetas y motos"],
+
+  "whatsapp": "3110000000",
+  "telefono": "3110000000",
+  "mensaje_whatsapp": "Hola, vi su página. Quiero lavar mi auto, ¿me da informes?",
+
+  "ciudad": "Tepic",
+  "estado": "Nayarit",
+  "pais": "MX",
+  "zona_horaria": "America/Mazatlan",
+  "atencion": "local",
+  "direccion": {
+    "calle": "Av. Ejemplo 100",
+    "colonia": "Centro",
+    "cp": "63000",
+    "referencia": "A media cuadra de la tienda de la esquina, portón azul."
+  },
+  "geo": { "lat": 21.5085, "lng": -104.8946 },
+  "mapa_url": "",
+  "areas_servicio": [],
+
+  "horario": {
+    "lun": [["08:00", "18:00"]],
+    "mar": [["08:00", "18:00"]],
+    "mie": [["08:00", "18:00"]],
+    "jue": [["08:00", "18:00"]],
+    "vie": [["08:00", "18:00"]],
+    "sab": [["08:00", "18:00"]],
+    "dom": [["08:00", "14:00"]]
+  },
+  "horario_especial": "Cerrado el 25 de diciembre y el 1 de enero.",
+
+  "servicios": [
+    { "nombre": "Lavado exterior a mano", "descripcion": "Carrocería, rines y llantas con shampoo neutro y secado con microfibra.",
+      "precio": { "monto": 120, "unidad": "por auto", "iva": "incluido", "vigencia": "2026-12-31" } },
+    { "nombre": "Lavado completo", "descripcion": "Exterior a mano más aspirado, tablero y vidrios por dentro.",
+      "precio": { "monto": 180, "unidad": "por auto", "iva": "incluido", "vigencia": "2026-12-31" } },
+    { "nombre": "Lavado de motor", "descripcion": "Desengrasado con cuidado de las partes eléctricas.", "precio": {} },
+    { "nombre": "Encerado", "descripcion": "Cera en pasta aplicada a mano para proteger la pintura.", "precio": {} },
+    { "nombre": "Lavado de vestiduras", "descripcion": "Asientos y alfombras con máquina de inyección y extracción.", "precio": {} },
+    { "nombre": "Camionetas y motos", "descripcion": "Los mismos servicios para camionetas, SUV y motocicletas.", "precio": {} }
+  ],
+  "formas_pago": ["efectivo", "transferencia"],
+
+  "colores": { "principal": "#14506E", "acento": "#F2B33D" },
+  "logo": "logo.png",
+  "fotos": [
+    { "archivo": "fachada.jpg", "alt": "Fachada del autolavado con su letrero" },
+    { "archivo": "lavado.jpg", "alt": "Empleado lavando a mano una camioneta" },
+    { "archivo": "interior.jpg", "alt": "Aspirado del interior de un auto" },
+    { "archivo": "terminado.jpg", "alt": "Auto terminado y encerado a la salida" }
+  ],
+
+  "redes": { "facebook": "", "instagram": "", "tiktok": "" },
+  "dominio": "",
+  "credito": false,
+
+  "google": {
+    "categoria_principal": "Lavado de autos",
+    "categorias_adicionales": ["Servicio de detallado de autos"],
+    "atributos": ["Pago con transferencia", "Estacionamiento en el lugar"],
+    "_nota": "Nombres de categoría por confirmar en la lista de Google al escribir «lavado»."
+  },
+  "equipo_trabajo": "hidrolavadora, aspiradora industrial, máquina de vestiduras, cubetas y productos de limpieza",
+  "whatsapp_business": {
+    "categoria": "Automotriz",
+    "correo": ""
+  },
+  "textos": {}
+}
