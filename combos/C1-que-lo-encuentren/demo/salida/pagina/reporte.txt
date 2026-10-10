@@ -1,0 +1,5 @@
+Página de lanzamiento · Autolavado Gota Azul · 2026-10-10 20:58
+
+Pendientes y avisos:
+1. Sin dominio: la vista previa en Facebook y WhatsApp necesita la dirección final (dominio) para mostrar la foto. Vuelva a construir cuando se publique.
+2. Está en vista previa (cinta y noindex). Para publicar: "vista_previa": false, con el sí del cliente.

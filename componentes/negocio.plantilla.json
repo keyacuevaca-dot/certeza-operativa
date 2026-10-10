@@ -1,0 +1,109 @@
+{
+  "_instrucciones": "Copie este archivo a la carpeta del cliente como negocio.json y llénelo con la ficha de datos. Lo que no tenga, déjelo vacío (\"\" o []): no se inventa. Las claves que empiezan con _ son notas y no se publican.",
+
+  "vista_previa": true,
+  "_vista_previa": "true = cinta «Vista previa» y noindex. Cámbielo a false solo cuando el cliente autorice publicar.",
+
+  "nombre": "",
+  "_nombre": "Exactamente como dice el letrero. Sin ciudad, lema ni palabras clave (regla de Google).",
+  "giro": "",
+  "tipo_schema": "LocalBusiness",
+  "_tipo_schema": "Tipo de schema.org más preciso. Ejemplos: AutoWash, AutoRepair, Restaurant, HairSalon, Store, Dentist. Si duda, LocalBusiness.",
+  "frase": "",
+  "_frase": "Una línea que diga qué hace y dónde. Va bajo el nombre.",
+  "descripcion_corta": "",
+  "_descripcion_corta": "Hasta 155 caracteres. Sale en Google bajo el título de la página.",
+  "desde": "",
+  "diferenciadores": [],
+  "_diferenciadores": "De 2 a 4 cosas que el dueño puede sostener. Nada de «el mejor», garantías ni descuentos sin confirmar.",
+
+  "whatsapp": "",
+  "_whatsapp": "10 dígitos del número de WhatsApp Business, sin 52, espacios ni guiones. Ejemplo: 3111234567.",
+  "telefono": "",
+  "_telefono": "10 dígitos. Si es el mismo que WhatsApp, repítalo.",
+  "mensaje_whatsapp": "Hola, vi su página y quiero información.",
+
+  "ciudad": "Tepic",
+  "estado": "Nayarit",
+  "pais": "MX",
+  "zona_horaria": "America/Mazatlan",
+  "atencion": "local",
+  "_atencion": "local = los clientes van al negocio; area = el negocio va al cliente (dirección oculta); ambos = las dos cosas.",
+  "direccion": {
+    "calle": "",
+    "colonia": "",
+    "cp": "",
+    "referencia": ""
+  },
+  "geo": {
+    "lat": null,
+    "lng": null
+  },
+  "_geo": "Coordenadas del pin. En Google Maps: mantenga presionado el punto y copie los dos números.",
+  "mapa_url": "",
+  "_mapa_url": "Enlace de su ficha de Google Maps (botón Compartir) en cuanto exista. Mientras, se usa el pin.",
+  "areas_servicio": [],
+
+  "horario": {
+    "lun": [["", ""]],
+    "mar": [["", ""]],
+    "mie": [["", ""]],
+    "jue": [["", ""]],
+    "vie": [["", ""]],
+    "sab": [["", ""]],
+    "dom": []
+  },
+  "_horario": "Formato 24 h, HH:MM. Día cerrado = []. Horario partido = [[\"09:00\",\"14:00\"],[\"16:00\",\"19:00\"]].",
+  "horario_especial": "",
+
+  "servicios": [
+    {
+      "nombre": "",
+      "descripcion": "",
+      "precio": {
+        "monto": null,
+        "unidad": "",
+        "iva": "",
+        "vigencia": ""
+      }
+    }
+  ],
+  "_servicios": "De 3 a 8. El precio se publica solo con monto, unidad, IVA (incluido o más IVA) y vigencia AAAA-MM-DD sin vencer; si falta algo, se omite y la página dice «Pregunte el precio por WhatsApp».",
+  "formas_pago": [],
+  "_formas_pago": "Solo las que el dueño confirme (efectivo, transferencia, tarjeta...).",
+
+  "colores": {
+    "principal": "#1D4E6B",
+    "acento": "#F2B33D"
+  },
+  "logo": "",
+  "_logo": "Archivo dentro de fotos/ (PNG o SVG). Vacío si no hay.",
+  "fotos": [
+    { "archivo": "", "alt": "" }
+  ],
+  "_fotos": "De 3 a 5, dentro de fotos/. La primera es la fachada con letrero y sirve de vista previa en redes. alt = qué se ve, en una frase.",
+
+  "redes": {
+    "facebook": "",
+    "instagram": "",
+    "tiktok": ""
+  },
+  "dominio": "",
+  "_dominio": "Con https://, por ejemplo https://www.autolavadoejemplo.mx. Vacío mientras no se compre.",
+  "credito": false,
+
+  "google": {
+    "categoria_principal": "",
+    "categorias_adicionales": [],
+    "atributos": []
+  },
+  "_google": "Categorías tal como aparecen en la lista de Google al escribir; se eligen en la app, no se inventan.",
+  "equipo_trabajo": "",
+  "_equipo_trabajo": "Herramientas o equipo que se verán en el video de verificación de Google.",
+  "whatsapp_business": {
+    "categoria": "",
+    "correo": ""
+  },
+  "textos": {},
+  "_textos": "Para cambiar un texto generado de P1 sin tocar el código: \"bienvenida\", \"ausencia\", \"descripcion_google\", \"descripcion_whatsapp\" o \"rapidas\" (lista de [atajo, texto])."
+}
