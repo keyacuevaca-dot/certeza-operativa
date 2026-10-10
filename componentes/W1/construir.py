@@ -338,7 +338,7 @@ def construir(ruta_json, salida=None):
     cinta = (f'<p class="cinta">Vista previa: esta página todavía no está publicada. {esc(n.get("cinta") or "")}</p>'
              if preview else '')
     og_img = (url_base + 'img/vista-previa.jpg') if fotos else ''
-    meta_og = [f'<meta property="og:type" content="website">',
+    meta_og = ['<meta property="og:type" content="website">',
                f'<meta property="og:title" content="{esc(titulo)}">',
                f'<meta property="og:description" content="{esc(desc)}">',
                '<meta property="og:locale" content="es_MX">',
