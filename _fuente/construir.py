@@ -4,7 +4,7 @@
 import json, math, os
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZAS, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES
+from contenido import WA_NUM, TEL, PIEZAS, PIEZA, PILAR_NOMBRE, COMBOS, INDUSTRIAS, SOLUCIONES
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
@@ -17,6 +17,15 @@ def wa(msg):
 
 WA_PRO = wa('Hola, quiero hablar con un profesional de Certeza Operativa sobre mi negocio.')
 WA_TRIAJE = wa('Hola, quiero empezar con un Triaje sin costo para mi negocio.')
+
+# Deslizador de ventas al mes: pasos finos abajo (micro, hasta $100,000) y más amplios arriba, para que en celular
+# cada tamaño tenga espacio. El último paso es «más de $1,000,000» (aún no atendemos ese tamaño). sitio.js lee la lista.
+VENTAS_PASOS = list(range(20000, 100001, 10000)) + list(range(125000, 300001, 25000)) + list(range(350000, 1000001, 50000)) + [1050000]
+VENTAS_INICIO = 80000
+
+
+def pesos(n):
+    return f'${n:,}'
 
 # ---------- Silueta propia: el Delta que se forma con líneas (mejora continua) ----------
 def _tri(cx, cy, s, rot):
@@ -203,8 +212,9 @@ def pagina(ruta, titulo, desc, cuerpo, extra_head=''):
 
 def inicio(base):
     def piece(p):
-        pil, h, a, n, d = p
-        return f'<label class="piece" data-p="{pil}" data-h="{h}"{" data-a=\"1\"" if a else ""} data-n="{esc(n)}"><input type="checkbox"><b>{esc(n)}</b><span class="k">{h} h</span><span class="d">{esc(d)}</span></label>'
+        # El precio visible (.k) lo escribe sitio.js según el tamaño del negocio; aquí solo van los datos.
+        pil, (micro, peq), a, n, d = p
+        return f'<label class="piece" data-p="{pil}" data-micro="{micro}" data-peq="{peq}"{" data-a=\"1\"" if a else ""} data-n="{esc(n)}"><input type="checkbox"><b>{esc(n)}</b><span class="k"></span><span class="d">{esc(d)}</span></label>'
     pots = [
         ('orden', 'i-orden', 'Cada cosa en su lugar.', ['Lista de precios o catálogo', 'Cotizador con tu marca', 'Procedimientos con lista de verificación', 'Quién hace qué', 'Expediente para el contador']),
         ('visibilidad', 'i-vis', 'Saber qué pasa, a tiempo.', ['Registro diario desde el celular', 'Control de pedidos y cobros', 'Tablero semanal', 'Flujo a 30, 60 y 90 días', 'Inventario y reorden']),
@@ -227,7 +237,7 @@ def inicio(base):
              ('Δ', 'Medimos la mejora', 'Delta · antes y después', 'Comparamos el número de antes con el de hoy. Lo que funcionó queda escrito y, si quieres, elegimos juntos el siguiente problema.')]
     faq = [('¿Cuánto cuesta el Triaje?', 'Siempre sin costo, y la Ficha también. Dura hasta 90 min en micro y 2 h en pequeña.'),
            ('¿Qué significan Triaje, Ficha, Ticket y Delta?', 'Triaje es la primera visita, sin costo. Ficha es el plan en una hoja. Ticket es el trabajo con precio cerrado. Delta es la diferencia entre el número de antes y el de después.'),
-           ('¿Cuánto pago y cuándo?', 'Precio cerrado antes de empezar: una parte al firmar y el saldo al aceptar la vista previa.'),
+           ('¿Cuánto pago y cuándo?', 'Precio cerrado antes de empezar: un anticipo al iniciar y el resto por avances, todo por escrito.'),
            ('¿Qué papeles necesito?', 'Pocos y de tu negocio, por ejemplo tu estado de cuenta, notas o un conteo. Te damos la lista en la Ficha y solo usamos lo del negocio.'),
            ('¿Tengo que cambiar lo que uso?', 'No. Ordenamos lo que ya haces, en papel o celular. No operamos tu negocio.'),
            ('¿Me garantizan resultados?', 'No garantizamos ventas ni ganancias. Por escrito te damos precio cerrado y un número que medimos antes y después. El trabajo termina cuando tu equipo lo usa solo.'),
@@ -267,7 +277,7 @@ def inicio(base):
       <p class="sub">Sabes cuánto cuesta, qué recibes y cómo se mide antes de decidir.</p>
     </div>
     <div class="ventajas">
-      <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio a la vista</h3><p>Tarifas publicadas y estimador en línea. Conoce una estimación antes de contactarnos.</p></article>
+      <article><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><h3>Precio cerrado</h3><p>Estimado en línea por solución y precio final por escrito antes de empezar.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><h3>Revisión inicial sin costo</h3><p>La primera visita (Triaje) y el plan en una hoja (Ficha) siempre son sin costo. Decides con información, no con una promesa.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg><h3>Se mide, no se promete</h3><p>Cada trabajo tiene un número que medimos juntos, antes y después. No garantizamos lo que no se puede medir.</p></article>
       <article><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><h3>Cerca de ti</h3><p>Hablamos tu idioma, sin siglas, y atendemos por WhatsApp a negocios de Nayarit.</p></article>
@@ -287,29 +297,29 @@ def inicio(base):
   <div class="wrap">
     <div class="head" id="cotizador">
       <h2 id="t-precio">Elige lo que necesitas. Mira cuánto cuesta.</h2>
-      <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Cada trabajo es de 5 horas como mínimo. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
+      <p class="sub">Marca las piezas que resuelven tu problema y tu estimado se actualiza al instante. Es orientativo: el precio cerrado lo recibes después del Triaje, por escrito.</p>
     </div>
     <div class="cat-grid">
       <div>
         <div class="pieces" id="pieces" role="group">{''.join(f'<p class="grupo">{PILAR_NOMBRE[k]}</p>' + ''.join(piece(p) for p in PIEZAS if p[0] == k) for k in ('orden', 'visibilidad', 'control'))}</div>
-        <p class="pnote">Las horas son estimaciones para un negocio micro. Se cotizan con tu caso real después del Triaje.</p>
+        <p class="pnote">¿Prefieres algo ya armado? <a class="link" href="{base}servicios.html#soluciones-listas">Mira las Soluciones listas</a></p>
       </div>
       <div class="est-wrap">
         <aside class="est" aria-labelledby="t-est">
           <h3 id="t-est">Tu estimado</h3>
-          <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">$80,000</output></label>
-          <input type="range" id="ventas" min="20000" max="400000" step="5000" value="80000">
-          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span><span>Tarifa: <b id="tar">$700 + IVA por hora</b></span></p>
+          <label for="ventas"><span>Ventas al mes</span><output id="ventasOut" for="ventas">{pesos(VENTAS_INICIO)}</output></label>
+          <input type="range" id="ventas" min="0" max="{len(VENTAS_PASOS) - 1}" step="1" value="{VENTAS_PASOS.index(VENTAS_INICIO)}" data-pasos="{','.join(map(str, VENTAS_PASOS))}">
+          <p class="size"><span>Tamaño: <b id="tam">Micro</b></span></p>
           <hr class="rule">
           <div class="stack-bar" aria-hidden="true"><i id="s1"></i><i id="s2"></i><i id="s3"></i></div>
-          <div class="brk"><span>Orden <b id="h1">0 h</b></span><span>Visibilidad <b id="h2">0 h</b></span><span>Control <b id="h3">0 h</b></span></div>
+          <div class="brk"><span>Orden <b id="m1">$0</b></span><span>Visibilidad <b id="m2">$0</b></span><span>Control <b id="m3">$0</b></span></div>
           <div aria-live="polite" aria-atomic="true">
-            <div class="price"><span class="l">Estimado + IVA<br><span id="hrs">0 h</span></span><strong id="monto">$0</strong></div>
+            <div class="price"><span class="l">Estimado<br><span id="det">Sin piezas</span></span><strong id="monto">$0<small> + IVA</small></strong></div>
             <p class="tot" id="tot"></p>
           </div>
           <p class="msg" id="msg" role="status">Elige al menos una pieza.</p>
           <a class="btn primary" id="wa" href="https://wa.me/{WA_NUM}">Enviar mi selección por WhatsApp</a>
-          <p class="note">Precios en pesos, más IVA: micro $700 y pequeña $1,400 por hora. Mínimo 5 horas por trabajo. El precio final te lo damos por escrito. Nada de esto se guarda.</p>
+          <p class="note">Precios en pesos, más IVA. Es un estimado: el precio cerrado te lo damos por escrito después del Triaje. Nada de esto se guarda.</p>
         </aside>
       </div>
     </div>
@@ -436,11 +446,11 @@ def solucion(s, k):
 
 def servicios():
     def cuerpo(base):
-        webs = [('Página de lanzamiento', 'Una sola página para que te encuentren y te escriban: oferta, qué ofreces y a quién, contacto, ubicación y datos del negocio.', '5 h', '5 a 7 días hábiles'),
-                ('Sitio completo', 'Hasta 5 secciones para que te conozcan antes de escribirte, por ejemplo inicio, servicios, nosotros, preguntas y contacto.', '11,5 h', '10 a 14 días hábiles'),
-                ('Sitio con catálogo', 'El sitio completo con tus productos, listos para pedir cotización: hasta 30 con foto, descripción y presentación.', '21 h', '15 a 20 días hábiles')]
-        web = ''.join(f'<article class="ay"><h3>{a}</h3><p>{b}</p><em>Lista en {d}.</em></article>' for a, b, c, d in webs)
-        tk = ''.join(f'<li>{esc(n)}<span>{PILAR_NOMBRE[p]} · {esc(d)}</span></li>' for p, h, a, n, d in PIEZAS)
+        webs = [('Página de lanzamiento', 'Una sola página para que te encuentren y te escriban: oferta, qué ofreces y a quién, contacto, ubicación y datos del negocio.', '5 a 7 días hábiles'),
+                ('Sitio completo', 'Hasta 5 secciones para que te conozcan antes de escribirte, por ejemplo inicio, servicios, nosotros, preguntas y contacto.', '10 a 14 días hábiles'),
+                ('Sitio con catálogo', 'El sitio completo con tus productos, listos para pedir cotización: hasta 30 con foto, descripción y presentación.', '15 a 20 días hábiles')]
+        web = ''.join(f'<article class="ay"><h3>{a}</h3><p>{b}</p><em>Lista en {d}.</em></article>' for a, b, d in webs)
+        combos = ''.join(f'''<article class="ay combo" id="{c['ancla']}"><h3>{esc(c['nombre'])}</h3><p class="quien">Para {esc(c['quien'][0].lower() + c['quien'][1:])}</p><p class="promesa">{esc(c['promesa'])}</p><ul class="checks">{''.join(f'<li>{esc(x)}</li>' for x in c['puntos'])}</ul><a class="btn primary" href="{esc(wa(f'Hola, me interesa “{c["nombre"]}”'))}" aria-label="Me interesa «{esc(c['nombre'])}», escribir por WhatsApp">Me interesa</a></article>''' for c in COMBOS)
         return ph(base, [('index.html', 'Inicio'), (None, 'Servicios')], 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta y cada trabajo tiene precio cerrado antes de empezar.', '', 2) + f'''
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Empieza: Triaje y Ficha</h2><p class="tl">Siempre sin costo.</p></div><div>
@@ -452,6 +462,10 @@ def servicios():
     <ul class="lista2"><li>Orden<span>Lista de precios, procedimientos y quién hace qué.</span></li><li>Visibilidad<span>Tablero de la semana con 5 números.</span></li><li>Control<span>Cierre de caja, calendario de cobro y mensajes de cobranza listos.</span></li></ul></div></article>
   <article class="svc" id="acompanamiento"><div><h2>Acompañamiento</h2><p class="tl">Hasta que tu equipo lo use solo.</p></div><div>
     <ul class="lista2"><li>Prueba con un caso real<span>Lo usamos contigo una semana o un cierre real, y ajustamos.</span></li><li>Capacitación<span>Para que tú y tu equipo lo usen sin nosotros.</span></li><li>Extras cuando hacen falta<span>Más secciones, más productos o tu perfil en Google Maps.</span></li></ul></div></article>
+</div></section>
+<section class="bloque" id="soluciones-listas" aria-labelledby="t-listas"><div class="wrap">
+  <div class="head"><h2 id="t-listas">Soluciones listas</h2><p class="sub">Ya armadas para los problemas más comunes. Elige la que se parece a tu caso y escríbenos por WhatsApp; el precio cerrado te lo damos por escrito después del Triaje.</p></div>
+  <div class="ayuda combos">{combos}</div>
 </div></section>
 {cta(base)}'''
     return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Triaje y Ficha sin costo, Tickets de mejora con precio cerrado, página web, documentos con Canva y acompañamiento para MiPyMEs en Nayarit.', cuerpo)

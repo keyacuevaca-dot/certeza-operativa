@@ -37,7 +37,7 @@ Sin recursos externos (ni fuentes, ni mapas incrustados, ni librerías): por eso
 Total: 5:00 h.
 
 Si el cliente también contrató el perfil de Google y WhatsApp, use el armado del combo
-(`combos/C1-que-lo-encuentren/armar.py`), que hace W1 y P1 con el mismo `negocio.json`.
+(`combos/S1-que-lo-encuentren/armar.py`), que hace W1 y P1 con el mismo `negocio.json`.
 
 ## Reglas que el script ya cuida
 

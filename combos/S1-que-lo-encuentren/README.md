@@ -1,4 +1,4 @@
-# C1 · Que lo encuentren
+# S1 · Que lo encuentren
 
 Documento interno. Al cliente se le muestra como **«Que lo encuentren»**, sin códigos ni horas por partida.
 
@@ -36,7 +36,7 @@ Google puede tardar días en verificar la ficha; la entrega no depende de eso: s
 1. Una sola vez: `pip install -r componentes/requirements.txt`.
 2. Cree la carpeta del cliente fuera de lo que se sube a GitHub: `clientes/<negocio>/` (está en `.gitignore`
    porque el repositorio es público). Dentro: `negocio.json` (copia de `componentes/negocio.plantilla.json`) y `fotos/`.
-3. Arme todo: `python3 combos/C1-que-lo-encuentren/armar.py clientes/<negocio>/negocio.json`
+3. Arme todo: `python3 combos/S1-que-lo-encuentren/armar.py clientes/<negocio>/negocio.json`
 4. Abra `clientes/<negocio>/salida/index.html`: enlaza la página, los textos, la guía, la tarjeta, los PDF y la lista de pendientes.
 5. Siga los pasos de `componentes/W1/README.md` (5 h) y `componentes/P1/README.md` (2 h).
 
@@ -45,7 +45,7 @@ Google puede tardar días en verificar la ficha; la entrega no depende de eso: s
 Nombre, teléfono (311 000 0000), dirección, precios, logo y fotos son inventados; las fotos son marcadores que dicen
 «Foto de ejemplo». Datos en `demo/negocio.json`; resultado en `demo/salida/`.
 
-1. Volver a armar: `python3 combos/C1-que-lo-encuentren/armar.py combos/C1-que-lo-encuentren/demo/negocio.json`
+1. Volver a armar: `python3 combos/S1-que-lo-encuentren/armar.py combos/S1-que-lo-encuentren/demo/negocio.json`
 2. Ver: `demo/salida/index.html`, `demo/salida/pagina/index.html`, `demo/salida/perfil/guia.pdf` y `tarjeta.pdf`.
 
 Probado el 10-oct-2026 (hora no especificada):

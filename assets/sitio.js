@@ -67,39 +67,51 @@
     else open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener');
   });
 
-  /* --- Catálogo + estimador (solo en el inicio) --- */
+  /* --- Catálogo + estimador (solo en el inicio) ---
+     Precio cerrado por solución: cada pieza trae su precio por tamaño (data-micro, data-peq), en pesos más IVA.
+     Estimado = suma de las piezas + adopción si alguna marcada lleva data-a; nunca menos del mínimo del tamaño. */
   var rng = $('#ventas');
   if (!rng) return;
-  var RATE = { micro: 700, pequena: 1400, mediana: 0 }, NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' }, IVA = 0.16;
+  var NAME = { micro: 'Micro', pequena: 'Pequeña', mediana: 'Mediana' }, IVA = 0.16;
+  var ADOP = { micro: 200, pequena: 350 }, MIN = { micro: 1750, pequena: 3500 }, MICRO = 100000, TOPE = 1000000;
+  var PASOS = rng.dataset.pasos.split(',').map(Number);
   var WA = 'https://wa.me/523114469363?text=';
-  var pieces = $$('.piece'), FL0 = fl ? { href: fl.href, text: fl.textContent } : null;
-  function size(v) { return v < 100000 ? 'micro' : (v <= 250000 ? 'pequena' : 'mediana'); }
-  function range(v) { return v < 100000 ? 'menos de $100,000' : (v <= 250000 ? '$100,000 a $250,000' : 'más de $250,000'); }
+  var pieces = $$('.piece'), btn = $('#wa'), BTN0 = btn.textContent, FL0 = fl ? { href: fl.href, text: fl.textContent } : null;
+  function size(v) { return v <= MICRO ? 'micro' : (v <= TOPE ? 'pequena' : 'mediana'); }
+  function range(v) { return v <= MICRO ? 'hasta $100,000' : (v <= TOPE ? '$100,001 a $1,000,000' : 'más de $1,000,000'); }
+  function precio(p, sz) { return +(sz === 'micro' ? p.dataset.micro : p.dataset.peq); }
   function calc() {
-    var v = +rng.value, sz = size(v), r = RATE[sz], per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
-    $('#ventasOut').textContent = fmt(v); rng.setAttribute('aria-valuetext', fmt(v) + ' al mes');
-    $('#tam').textContent = NAME[sz]; $('#tar').textContent = r ? fmt(r) + ' + IVA por hora' : 'próximamente';
-    if (!r) {
-      ['h1', 'h2', 'h3'].forEach(function (id) { $('#' + id).textContent = '—'; });
+    var v = PASOS[+rng.value], sz = size(v), per = { orden: 0, visibilidad: 0, control: 0 }, adopt = false, sel = [];
+    var vt = v > TOPE ? 'Más de ' + fmt(TOPE) : fmt(v);
+    $('#ventasOut').textContent = vt; rng.setAttribute('aria-valuetext', vt + ' al mes');
+    $('#tam').textContent = NAME[sz];
+    if (sz === 'mediana') {
+      pieces.forEach(function (p) { $('.k', p).textContent = '—'; });
+      ['m1', 'm2', 'm3'].forEach(function (id) { $('#' + id).textContent = '—'; });
       ['s1', 's2', 's3'].forEach(function (id) { $('#' + id).style.width = '0'; });
-      $('#hrs').textContent = '—'; $('#monto').textContent = '—'; $('#tot').textContent = '';
-      $('#msg').textContent = 'Por ahora atendemos negocios micro y pequeños, hasta $250,000 de ventas al mes. Escríbenos y te avisamos cuando abramos para empresas medianas.';
-      var lk = WA + encodeURIComponent('Hola, mi negocio vende más de $250,000 al mes. Avísenme cuando atiendan empresas medianas.');
-      $('#wa').href = lk; if (fl) { fl.href = lk; fl.textContent = FL0.text; }
+      $('#det').textContent = ''; $('#monto').textContent = '—'; $('#tot').textContent = '';
+      $('#msg').textContent = 'Por ahora atendemos negocios micro y pequeños, hasta $1,000,000 de ventas al mes.';
+      var lk = WA + encodeURIComponent('Hola, mi negocio vende más de $1,000,000 al mes. Avísenme cuando atiendan empresas medianas.');
+      btn.href = lk; btn.textContent = 'Escríbenos por WhatsApp';
+      if (fl) { fl.href = lk; fl.textContent = FL0.text; }
       return;
     }
-    pieces.forEach(function (p) { if ($('input', p).checked) { per[p.dataset.p] += +p.dataset.h; if (p.dataset.a) adopt = true; sel.push(p.dataset.n); } });
-    var base = per.orden + per.visibilidad + per.control, tot = Math.round((base + (adopt ? .5 : 0)) * 4) / 4, billed = Math.max(5, tot), n = sel.length;
-    var show = function (x) { return (Math.round(x * 4) / 4).toString().replace('.', ',') + ' h'; };
-    ['orden', 'visibilidad', 'control'].forEach(function (k, i) { $('#h' + (i + 1)).textContent = show(per[k]); $('#s' + (i + 1)).style.width = (base > 0 ? per[k] / base * 100 : 0) + '%'; });
-    $('#hrs').textContent = n ? show(billed) + (adopt ? ' (incluye 0,5 h de adopción)' : '') : '0 h';
-    $('#monto').textContent = n ? fmt(billed * r) : '$0';
-    $('#tot').textContent = n ? 'Total con IVA (16%): ' + fmt(billed * r * (1 + IVA)) : '';
-    $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (tot < 5 ? 'El mínimo por Ticket es de 5 h: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega después del Triaje.');
-    var txt = 'Hola, quiero cotizar un trabajo con Certeza Operativa. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado orientativo: ' + fmt(billed * r) + ' + IVA (' + show(billed) + ').' : 'Quiero empezar con un Triaje sin costo.');
+    pieces.forEach(function (p) {
+      var x = precio(p, sz);
+      $('.k', p).textContent = fmt(x);
+      if ($('input', p).checked) { per[p.dataset.p] += x; if (p.dataset.a) adopt = true; sel.push(p.dataset.n); }
+    });
+    var base = per.orden + per.visibilidad + per.control, n = sel.length;
+    var suma = base + (adopt ? ADOP[sz] : 0), est = n ? Math.max(MIN[sz], suma) : 0, minimo = n && suma < MIN[sz];
+    ['orden', 'visibilidad', 'control'].forEach(function (k, i) { $('#m' + (i + 1)).textContent = fmt(per[k]); $('#s' + (i + 1)).style.width = (base > 0 ? per[k] / base * 100 : 0) + '%'; });
+    $('#det').textContent = !n ? 'Sin piezas' : n + (n === 1 ? ' pieza' : ' piezas') + (minimo ? ' · mínimo por trabajo' : (adopt ? ' · incluye ' + fmt(ADOP[sz]) + ' de adopción' : ''));
+    $('#monto').innerHTML = fmt(est) + '<small> + IVA</small>';
+    $('#tot').textContent = n ? 'Total con IVA (16\u00a0%): ' + fmt(est * (1 + IVA)) : '';
+    $('#msg').textContent = !n ? 'Elige al menos una pieza.' : (minimo ? 'El mínimo por trabajo es de ' + fmt(MIN[sz]) + ' + IVA: súmale otra pieza y aprovechas mejor el trabajo.' : 'Listo. Este es un estimado; el precio cerrado llega después del Triaje.');
+    var txt = 'Hola, quiero cotizar un trabajo con Certeza Operativa. Ventas al mes: ' + range(v) + '. ' + (n ? 'Piezas: ' + sel.join(', ') + '. Estimado: ' + fmt(est) + ' + IVA.' : 'Quiero empezar con un Triaje sin costo.');
     var link = WA + encodeURIComponent(txt);
-    $('#wa').href = link;
-    if (fl) { fl.href = n ? link : FL0.href; fl.textContent = n ? 'Estimado ' + fmt(billed * r) + ' · Enviar por WhatsApp' : FL0.text; }
+    btn.href = link; btn.textContent = BTN0;
+    if (fl) { fl.href = n ? link : FL0.href; fl.textContent = n ? 'Estimado ' + fmt(est) + ' + IVA · Enviar por WhatsApp' : FL0.text; }
   }
   rng.addEventListener('input', calc);
   $$('input', $('#pieces')).forEach(function (i) { i.addEventListener('change', calc); });

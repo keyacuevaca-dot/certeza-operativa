@@ -159,7 +159,7 @@ h2 { font-size: clamp(36px, 4.6vw, 52px); line-height: 1.04; margin-bottom: 18px
 .piece:has(input:checked) { border-color: var(--azul); background: var(--fondo); box-shadow: inset 0 0 0 1px var(--azul); }
 .piece:has(input:focus-visible) { outline: 3px solid var(--boton); outline-offset: 3px; }
 .piece .k { position: absolute; right: 16px; top: 16px; font-size: 13.5px; color: var(--texto-2); }
-.piece b { display: block; font-family: var(--serif); font-size: 23px; line-height: 1.12; color: var(--azul); margin: 0 34px 6px 0; }
+.piece b { display: block; font-family: var(--serif); font-size: 23px; line-height: 1.12; color: var(--azul); margin: 0 52px 6px 0; }
 .piece span.d { display: block; font-size: 15px; line-height: 1.45; color: var(--texto-2); }
 .piece[hidden] { display: none; }
 .pnote { margin-top: 18px; font-size: 14.5px; color: var(--texto-2); }
@@ -169,7 +169,7 @@ h2 { font-size: clamp(36px, 4.6vw, 52px); line-height: 1.04; margin-bottom: 18px
 .est { --s: 22px; position: relative; background: var(--blanco); color: var(--texto); padding: 32px 28px calc(32px + var(--s) * .5); border-top: 8px solid var(--azul); border-radius: 6px 6px 0 0;
   -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--s) 100%; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--s) 100%; }
 .est h3 { font-size: 36px; line-height: 1; margin-bottom: 18px; }
-.est label { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; margin-bottom: 6px; }
+.est label { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 12px; font-size: 16px; margin-bottom: 6px; }
 .est output { font-family: var(--serif); font-weight: 700; font-size: 30px; color: var(--azul); line-height: 1; }
 input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor: pointer; }
 .size { display: flex; justify-content: space-between; gap: 10px; font-size: 14.5px; margin: 2px 0 18px; }
@@ -184,6 +184,7 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 .price { display: flex; justify-content: space-between; align-items: end; gap: 12px; border-top: 2px dashed var(--linea); padding-top: 16px; }
 .price .l { font-size: 14.5px; }
 .price strong { font-family: var(--serif); font-size: 54px; line-height: .95; color: var(--azul); background: linear-gradient(transparent 64%, rgba(222, 194, 146, .7) 64%); padding: 0 4px; }
+.price strong small { font-family: var(--sans); font-size: 16px; font-weight: 700; white-space: nowrap; }
 .est .tot, .est .msg { font-size: 14.5px; min-height: 22px; }
 .est .tot { margin-top: 8px; font-weight: 700; color: var(--azul); font-size: 15.5px; }
 .est .msg { margin: 10px 0 16px; }
@@ -307,6 +308,14 @@ input[type=range] { width: 100%; height: 36px; accent-color: var(--azul); cursor
 .webs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .webs .ay strong { display: block; margin-top: 12px; font-family: var(--serif); font-size: 30px; color: var(--azul); }
 .webs .ay em { font-style: normal; font-size: 14.5px; color: var(--texto-2); }
+/* Soluciones listas (servicios.html): una tarjeta por combo, con ancla propia para anuncios */
+.combo { display: flex; flex-direction: column; }
+.combo .quien { font-size: 14.5px; font-weight: 700; margin-bottom: 10px; }
+.combo .promesa { color: var(--texto); margin-bottom: 16px; }
+.combo .checks { margin-bottom: 22px; }
+.combo .checks li { font-size: 15.5px; }
+.combo .btn { width: 100%; margin-top: auto; }
+.combos .combo:target { border-color: var(--azul); box-shadow: inset 0 0 0 1px var(--azul); }
 .persona { display: flex; gap: 22px; align-items: center; }
 .persona .av { display: grid; place-items: center; flex: none; width: 88px; height: 88px; border-radius: 50%; background: var(--tinta); color: var(--oro); }
 .persona .av svg { width: 50px; height: 38px; }
@@ -361,6 +370,7 @@ footer .social a { width: 42px; height: 42px; }
   .metodo .cols { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .etapas { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
   .ayuda, .webs { grid-template-columns: minmax(0, 1fr); }
+  .ayuda.combos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   footer .top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   footer .top > :first-child { grid-column: 1 / -1; }
   .full { min-height: 0; }
@@ -391,7 +401,7 @@ footer .social a { width: 42px; height: 42px; }
   .mejora-band { padding: 28px 22px 24px; }
   .mejora-band h3 { font-size: 28px; }
   .ventajas { gap: 30px; margin-bottom: 64px; }
-  .pieces { grid-template-columns: minmax(0, 1fr); }
+  .pieces, .ayuda.combos { grid-template-columns: minmax(0, 1fr); }
   .etapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .est { padding-left: 20px; padding-right: 20px; }
   .price { flex-wrap: wrap; }
