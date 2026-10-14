@@ -5,24 +5,88 @@
 WA_NUM = '523114469363'
 TEL = '+52 311 446 9363'
 
-# Piezas del estimador (horas para negocio micro). Fuente: página publicada, oct-2026.
+# Piezas del estimador. Precio cerrado por solución: (micro, pequeña) en pesos, más IVA.
+# El tercer dato marca las piezas que suman adopción en el estimador (assets/sitio.js). Fuente: Kevin, 14-oct-2026.
 PIEZAS = [
-    ('orden', 1, False, 'Lista de precios o catálogo', 'Que todos vean el mismo producto y el mismo precio.'),
-    ('orden', 2, True, 'Cotizador', 'Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.'),
-    ('orden', 4, True, 'Procedimiento escrito', 'Mostrar cómo hacer la tarea sin depender de la memoria.'),
-    ('orden', 3, False, 'Quién hace qué', 'Que cada pendiente tenga una persona responsable.'),
-    ('orden', 4, False, 'Expediente para el contador', 'Tener juntos los documentos que necesita tu contador.'),
-    ('visibilidad', 2, True, 'Control de pedidos y cobros', 'Saber qué se pidió, qué se entregó y cuánto falta cobrar.'),
-    ('visibilidad', 4, True, 'Registro diario desde el celular', 'Guardar el dato antes de olvidarlo.'),
-    ('visibilidad', 4, True, 'Flujo a 30, 60 y 90 días', 'Ver si el dinero alcanzaría en las próximas fechas.'),
-    ('visibilidad', 5, True, 'Tablero semanal', 'Ver lo más urgente sin leer todos los registros.'),
-    ('visibilidad', 5, True, 'Inventario y reorden', 'Tener existencias visibles y pedir antes de quedarte sin producto.'),
-    ('control', 2, True, 'Agenda de cobranza', 'Saber a quién cobrar, cuánto y cuándo.'),
-    ('control', 4, False, 'Lo cobrado contra lo depositado', 'Comprobar que lo que cobraste coincide con lo que entró al banco.'),
-    ('control', 2, True, 'Arqueo y cierre de caja', 'Cerrar el día con la caja contada y comparada.'),
+    ('orden', (350, 1000), False, 'Lista de precios o catálogo', 'Que todos vean el mismo producto y el mismo precio.'),
+    ('orden', (700, 2000), True, 'Cotizador', 'Decir qué se entrega, cuánto cuesta y hasta cuándo vale el precio.'),
+    ('orden', (1400, 4000), True, 'Procedimiento escrito', 'Mostrar cómo hacer la tarea sin depender de la memoria.'),
+    ('orden', (1050, 3000), False, 'Quién hace qué', 'Que cada pendiente tenga una persona responsable.'),
+    ('orden', (1400, 4000), False, 'Expediente para el contador', 'Tener juntos los documentos que necesita tu contador.'),
+    ('visibilidad', (700, 2000), True, 'Control de pedidos y cobros', 'Saber qué se pidió, qué se entregó y cuánto falta cobrar.'),
+    ('visibilidad', (1400, 4000), True, 'Registro diario desde el celular', 'Guardar el dato antes de olvidarlo.'),
+    ('visibilidad', (1400, 4000), True, 'Flujo a 30, 60 y 90 días', 'Ver si el dinero alcanzaría en las próximas fechas.'),
+    ('visibilidad', (1750, 5000), True, 'Tablero semanal', 'Ver lo más urgente sin leer todos los registros.'),
+    ('visibilidad', (1750, 5000), True, 'Inventario y reorden', 'Tener existencias visibles y pedir antes de quedarte sin producto.'),
+    ('control', (700, 2000), True, 'Agenda de cobranza', 'Saber a quién cobrar, cuánto y cuándo.'),
+    ('control', (1400, 4000), False, 'Lo cobrado contra lo depositado', 'Comprobar que lo que cobraste coincide con lo que entró al banco.'),
+    ('control', (700, 2000), True, 'Arqueo y cierre de caja', 'Cerrar el día con la caja contada y comparada.'),
 ]
 PIEZA = {p[3]: p for p in PIEZAS}
 PILAR_NOMBRE = {'orden': 'Orden', 'visibilidad': 'Visibilidad', 'control': 'Control', 'mejora': 'Mejora continua'}
+
+# ---------------- Soluciones listas (servicios.html#soluciones-listas) ----------------
+# Una tarjeta por combo. Al cliente no se le muestran el código ni el precio; el código vive solo aquí, junto a su nombre.
+# Textos adaptados a «tú». El ancla es la que Kevin definió para anuncios (servicios.html#<ancla>); no cambiarla.
+# Fuente: Kevin, 14-oct-2026.
+COMBOS = [
+    dict(codigo='A1', nombre='Cobra lo que te deben', ancla='cobre-lo-que-le-deben',  # A1 · Cobre lo que le deben
+         quien='Comercios, talleres y servicios que fían o dan crédito.',
+         promesa='Ten claro quién te debe, cuánto y desde cuándo, y cobra sin pelearte.',
+         puntos=['Lista de lo que te deben, con fechas', 'Agenda para cobrar a cada quien', 'Mensajes listos para cobrar con respeto']),
+    dict(codigo='A2', nombre='Caja que cuadra', ancla='caja-que-cuadra',  # A2 · Caja que cuadra
+         quien='Tiendas, comida y negocios con caja diaria.',
+         promesa='Cierra la caja sin dudas y ten claro cuánto entró y salió cada día.',
+         puntos=['Cierre de caja con lista de apertura', 'Registro diario desde el celular', 'Resumen semanal sin esperar al fin de mes']),
+    dict(codigo='A3', nombre='Cotiza sin errores', ancla='cotice-sin-errores',  # A3 · Cotice sin errores
+         quien='Talleres, servicios y comercios que cotizan seguido.',
+         promesa='Precios claros y cotizaciones sin errores en minutos.',
+         puntos=['Lista de precios con tu marca', 'Cotizador que no se equivoca en sumas', 'Menos mensajes de «¿cuánto cuesta?»']),
+    dict(codigo='A4', nombre='Inventario bajo control', ancla='inventario-bajo-control',  # A4 · Inventario bajo control
+         quien='Tiendas, refaccionarias y ferreterías.',
+         promesa='Ten claro qué pedir y qué no mover, antes de que falte.',
+         puntos=['Existencias con punto de reorden', 'Lo que no se mueve, a la vista', 'Borrador de pedido listo']),
+    dict(codigo='A5', nombre='Tu negocio camina sin ti', ancla='su-negocio-camina-sin-usted',  # A5 · Su negocio camina sin usted
+         quien='Dueños que no pueden faltar.',
+         promesa='Cada quien sabe qué le toca y cómo hacerlo, aunque tú no estés.',
+         puntos=['Quién hace qué y a quién se escala', 'La tarea clave escrita paso a paso', 'Lista de verificación para tu equipo']),
+    dict(codigo='A6', nombre='Llega ordenado al contador', ancla='llegue-ordenado-al-contador',  # A6 · Llegue ordenado al contador
+         quien='Negocios que empiezan a formalizarse.',
+         promesa='Tus ingresos y gastos ordenados, mes por mes.',
+         puntos=['Carpeta con comprobantes clasificados', 'Resumen por mes', 'Registro diario desde el celular']),
+    dict(codigo='B1', nombre='Lo encuentran y le pagan', ancla='lo-encuentran-y-le-pagan',  # B1 · Lo encuentran y le pagan
+         quien='Negocios con clientes de crédito que quieren más clientes.',
+         promesa='Que te encuentren en Google, Facebook e Instagram, y que te paguen a tiempo.',
+         puntos=['Página, ficha de Google Maps y redes listas', 'WhatsApp con respuestas automáticas', 'Control de lo que te deben y agenda de cobro']),
+    dict(codigo='B2', nombre='Vitrina y ventas', ancla='vitrina-y-ventas',  # B2 · Vitrina y ventas
+         quien='Comercios y talleres que cotizan por WhatsApp.',
+         promesa='Que te encuentren en internet y cotices en minutos.',
+         puntos=['Página, Google Maps y redes listas', 'Lista de precios para WhatsApp', 'Cotizador sin errores']),
+    dict(codigo='B3', nombre='Comida en orden y en el mapa', ancla='comida-en-orden-y-en-el-mapa',  # B3 · Comida en orden y en el mapa
+         quien='Restaurantes, cocinas y antojitos.',
+         promesa='Tu negocio en el mapa, tu menú a la mano y la caja cuadrada cada noche.',
+         puntos=['Página, Google Maps y redes listas', 'Menú o lista de precios con tu marca', 'Cierre de caja diario']),
+    dict(codigo='B4', nombre='Negocio completo', ancla='negocio-completo',  # B4 · Negocio completo
+         quien='Negocios pequeños listos para crecer.',
+         promesa='Presencia completa, cotizaciones rápidas y cobranza al día.',
+         puntos=['Sitio de hasta 5 secciones, Google Maps y redes', 'Cotizador sin errores', 'Control de cobros y agenda de cobranza']),
+    dict(codigo='S1', nombre='Que lo encuentren', ancla='que-lo-encuentren',  # S1 · Que lo encuentren (kit: combos/S1-que-lo-encuentren)
+         quien='Negocios que no aparecen o aparecen incompletos en Google.',
+         promesa='Que te encuentren en Google y te escriban por WhatsApp con un toque.',
+         puntos=['Tu ficha de Google Maps completa', 'Página con botón de WhatsApp', 'WhatsApp Business con respuestas listas']),
+    dict(codigo='S2', nombre='Página y redes', ancla='pagina-y-redes',  # S2 · Página y redes
+         quien='Negocios que venden por redes.',
+         promesa='Google, Facebook, Instagram y WhatsApp conectados y listos.',
+         puntos=['Página con botón de WhatsApp', 'Ficha de Google Maps completa', 'Facebook e Instagram conectados']),
+    dict(codigo='S3', nombre='Sitio completo', ancla='sitio-completo',  # S3 · Sitio completo
+         quien='Negocios con varios servicios.',
+         promesa='Un sitio que responde las preguntas de siempre antes de que te las hagan.',
+         puntos=['Sitio de hasta 5 secciones', 'Ficha de Google Maps completa', 'Facebook e Instagram conectados']),
+    dict(codigo='S4', nombre='Catálogo en línea', ancla='catalogo-en-linea',  # S4 · Catálogo en línea
+         quien='Negocios con productos que se cotizan.',
+         promesa='Tus productos en línea y los pedidos de cotización ordenados.',
+         puntos=['Hasta 30 productos con foto', 'Botón de cotización por WhatsApp', 'Ficha de Google Maps completa']),
+]
 
 # ---------------- Industrias ----------------
 INDUSTRIAS = [

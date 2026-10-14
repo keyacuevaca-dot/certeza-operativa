@@ -1,5 +1,5 @@
-# «Que lo encuentren»: arma en un solo paso la página (W1) y el perfil de Google y WhatsApp (P1).
-# Uso:   python3 combos/C1-que-lo-encuentren/armar.py ruta/a/negocio.json [--sin-pdf]
+# S1 · Que lo encuentren: arma en un solo paso la página (W1) y el perfil de Google y WhatsApp (P1).
+# Uso:   python3 combos/S1-que-lo-encuentren/armar.py ruta/a/negocio.json [--sin-pdf]
 # Resultado en <carpeta del json>/salida/:
 #   pagina/   la página lista para publicar
 #   perfil/   textos, guía, tarjeta con QR (y sus PDF si hay Chrome o Chromium en la computadora)
