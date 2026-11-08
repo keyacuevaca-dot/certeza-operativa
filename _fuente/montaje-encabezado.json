@@ -1,0 +1,31 @@
+{
+ "imagen": "1672x941",
+ "esquinas_px_1x": {
+  "sup_izq": [
+   584.3,
+   94.0
+  ],
+  "sup_der": [
+   1318.0,
+   50.2
+  ],
+  "inf_der": [
+   1312.3,
+   502.6
+  ],
+  "inf_izq": [
+   584.3,
+   466.0
+  ]
+ },
+ "puntos_usados": {
+  "arriba": 176,
+  "abajo": 76,
+  "izquierda": 25,
+  "derecha": 39
+ },
+ "nota": "Las esquinas inferiores quedan tapadas por las personas; se calculan como cruce de los bordes visibles.",
+ "desplazamiento_derecha_px_1x": 240,
+ "nota_desplazamiento": "La escena se recorre 240 px a la derecha para dejar a las personas del lado derecho, como en la referencia; el hueco izquierdo se rellena con el borde reflejado y desenfocado, bajo el degradado.",
+ "diapositiva": "Ajuste de luz: contraste y saturación -7 %, desenfoque 0.5 px (a 1x), reflejo según el brillo de la pantalla original. Foto ampliada x2 con Real-ESRGAN antes del montaje."
+}
