@@ -77,11 +77,9 @@ def social(extra=False):
     return f'<ul class="social" aria-label="Redes y contacto">{lis}</ul>'
 
 
-def boton_wa(cls='btn primary', href=None, corto=False, id_=''):
-    # Un solo botón en todo el sitio: WhatsApp. «corto» deja visible solo «Escríbanos» en celulares muy angostos.
-    txt = '<span>Escríbanos<span class="lg"> por WhatsApp</span></span>' if corto else 'Escríbanos por WhatsApp'
-    ida = f' id="{id_}"' if id_ else ''
-    return f'<a class="{cls}"{ida} href="{href or WA_PRO}"><svg class="ic-wa" viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg>{txt}</a>'
+def boton_wa(href=None):
+    # Un solo botón de WhatsApp por página, al cierre. Estilo «wa»: gris claro, letra Bitter, sin ícono.
+    return f'<a class="btn wa" href="{href or WA_PRO}">Escríbanos por WhatsApp</a>'
 
 
 def head(titulo, desc, ruta, base, extra=''):
@@ -125,9 +123,7 @@ def _barra(base, lista):
       <button class="burger" type="button" aria-expanded="false" aria-controls="menu-lista" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul id="menu-lista">
         {lista}
-        <li class="cta">{boton_wa()}</li>
       </ul>
-      {boton_wa('btn primary small', corto=True)}
     </nav>
   </div>
 </header>
@@ -160,7 +156,7 @@ def menu(base, actual):
         ('nosotros.html#quien', 'Quién le atiende', 'Sede en Nayarit, atención por WhatsApp.'),
         ('index.html#preguntas', 'Preguntas frecuentes', 'Lo que más nos preguntan.')])
     def top(pid, nombre, h, p, lista, cls='', ver=None):
-        verlink = f'<a class="link" href="{base}{ver[0]}">{esc(ver[1])}</a>' if ver else f'<a class="link" href="{WA_PRO}">Escríbanos por WhatsApp</a>'
+        verlink = f'<a class="link" href="{base}{ver[0]}">{esc(ver[1])}</a>' if ver else ''
         return f'''<li><button class="mtop" type="button" aria-expanded="false" aria-controls="{pid}">{nombre}<span class="chev" aria-hidden="true"></span></button>
         <div class="panel" id="{pid}"><div class="wrap"><div class="intro"><h2>{esc(h)}</h2><p>{esc(p)}</p>{verlink}</div><ul class="{cls}">{lista}</ul></div></div></li>'''
     return _barra(base, '\n        '.join([
@@ -190,7 +186,6 @@ def pie(base):
     </div>
   </div>
 </footer>
-{boton_wa('btn primary float', id_='float')}
 <script src="{base}assets/sitio.js" defer></script>
 </body>
 </html>
@@ -235,7 +230,6 @@ def inicio(base):
       <h1 id="t-hero">Su negocio en orden, a la vista y con la caja cuadrada.</h1>
       <p class="lead">Vemos cómo trabaja hoy, le decimos qué se le está yendo y lo resolvemos con herramientas sencillas que su equipo usa solo.</p>
       <div class="actions">
-        {boton_wa()}
         <a class="btn ghost" href="#que">Vea qué resolvemos</a>
       </div>
       <ul class="confianza" aria-label="Lo que le aseguramos"><li>Primera visita sin costo</li><li>Precio cerrado por escrito antes de empezar</li><li>Lo entregado es de su negocio</li></ul>
@@ -326,7 +320,7 @@ def catalogo():
 
 
 # ---------- Páginas internas ----------
-def ph(base, migas, h1, lead, tipos='', variante=0, wa_msg=None):
+def ph(base, migas, h1, lead, tipos='', variante=0):
     m = ''.join(f'<li><a href="{base}{h}">{esc(n)}</a></li>' if h else f'<li aria-current="page">{esc(n)}</li>' for h, n in migas)
     giros = [(-46, 230, 410), (40, 250, 400), (-30, 240, 420), (52, 220, 400)]
     g, x0, y0 = giros[variante % 4]
@@ -337,23 +331,21 @@ def ph(base, migas, h1, lead, tipos='', variante=0, wa_msg=None):
       <h1 id="t-ph">{esc(h1)}</h1>
       {f'<p class="tipos">{esc(tipos)}</p>' if tipos else ''}
       <p class="lead">{esc(lead)}</p>
-      <div class="actions">{boton_wa(href=wa_msg)}</div>
     </div>
     <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(giro=g, x0=x0, y0=y0)}</svg>
   </div>
 </section>'''
 
 
-def cta(base, titulo='Empiece con una plática de 15 minutos, sin costo.'):
-    return f'''<section class="oscuro cta-band"><div class="wrap"><h2>{esc(titulo)}</h2><div class="actions">{boton_wa(href=WA_PLATICA)}</div></div></section>'''
+def cta(base, titulo='Empiece con una plática de 15 minutos, sin costo.', href=WA_PLATICA):
+    return f'''<section class="oscuro cta-band"><div class="wrap"><h2>{esc(titulo)}</h2><div class="actions">{boton_wa(href=href)}</div></div></section>'''
 
 
 def industria(i, k):
     def cuerpo(base):
         ay = ''.join(f'<article class="ay"><small>{PILAR_NOMBRE[PIEZA[n][0]]}</small><h3>{esc(n)}</h3><p>{esc(PIEZA[n][2])}</p></article>' for n in i['piezas'])
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k,
-                  wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero platicar con Certeza Operativa.')) + f'''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k) + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
   <div class="head"><h2 id="t-voces">¿Le suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
@@ -371,7 +363,7 @@ def industria(i, k):
   <h2 id="t-otras" style="font-size:30px">Otras industrias</h2>
   <div class="otros">{otros}</div>
 </div></section>
-{cta(base)}'''
+{cta(base, href=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero platicar con Certeza Operativa.'))}'''
     return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{i["lead"]} Para micro y pequeños negocios de Nayarit.', cuerpo)
 
 
@@ -410,7 +402,7 @@ def servicios():
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Primera visita sin costo</h2><p class="tl">Y su plan en una hoja, el mismo día.</p></div><div>
     <ul class="lista2"><li>Primera visita<span>Una visita corta: doce preguntas y un caso real de su negocio, de punta a punta. También platicamos con alguien de su equipo. Hasta 90 minutos en micro y 2 horas en pequeña.</span></li><li>Plan en una hoja<span>El mismo día de la visita. Trae el problema en sus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
-    <div class="actions" style="margin-top:22px">{boton_wa(href=WA_PLATICA)}</div></div></article>
+    </div></article>
   <article class="svc" id="trabajos"><div><h2>Trabajos con precio cerrado</h2><p class="tl">Cada trabajo tiene precio cerrado y un número que medimos antes y después. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
   <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elija por lo que quiere que haga su cliente al entrar: escribirle, conocerlo o pedirle cotización. Las tres incluyen su dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en el celular. Hay versión con más extras; se la explicamos en la primera visita.</p></div><div class="webs">{web}</div></article>
   <article class="svc" id="canva"><div><h2>Documentos y tableros con Canva</h2><p class="tl">Con su marca, en la cuenta de Canva de su negocio, para que usted y su equipo los usen, los editen y los descarguen en PDF.</p></div><div>
