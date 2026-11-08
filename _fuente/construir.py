@@ -105,9 +105,9 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta name="theme-color" content="#1E2328">
 <link rel="canonical" href="{url}">
 <link rel="icon" type="image/svg+xml" href="{base}assets/favicon.svg">
-<link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="{base}assets/fonts/Outfit-Regular.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="{base}assets/fonts/Outfit-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{base}assets/fonts/Outfit-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{base}assets/fonts/Outfit-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{base}assets/estilo.css?v={V_CSS}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -115,10 +115,10 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITIO}assets/portada.png">
+<meta property="og:image" content="{SITIO}assets/portada-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Certeza Operativa: el triángulo de la marca formado por líneas y la frase Mejorando empresas de México.">
+<meta property="og:image:alt" content="Certeza Operativa: Evoluciona tu negocio. Consultoría para negocios de Nayarit, con dos personas revisando un esquema de mejora en un monitor.">
 <meta name="twitter:card" content="summary_large_image">
 {extra}</head>
 <body>
@@ -427,16 +427,17 @@ def nosotros():
 
 def portada_jsonld():
     data = {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Certeza Operativa",
-            "description": "Ordenamos micro y pequeños negocios de Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet.",
-            "url": SITIO, "image": SITIO + "assets/portada.png", "logo": SITIO + "assets/favicon.svg", "telephone": "+523114469363",
+            "description": "Consultoría operativa para negocios de 2 a 250 trabajadores en Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet.",
+            "url": SITIO, "image": SITIO + "assets/portada-v2.jpg", "logo": SITIO + "assets/favicon.svg", "telephone": "+523114469363",
             "areaServed": {"@type": "AdministrativeArea", "name": "Nayarit, México"},
+            "address": {"@type": "PostalAddress", "addressLocality": "Tepic", "addressRegion": "Nayarit", "addressCountry": "MX"},
             "sameAs": [h for h, _, _ in SOC]}
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>\n'
 
 
 if __name__ == '__main__':
-    rutas = [pagina('index.html', 'Certeza Operativa · Su negocio en orden, en Nayarit',
-                    'Para micro y pequeños negocios de Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet. Primera visita sin costo y precio cerrado por escrito antes de empezar.',
+    rutas = [pagina('index.html', 'Certeza Operativa · Consultoría para negocios en Nayarit',
+                    'Ordenamos cobranza, caja, inventario y cotizaciones de negocios de 2 a 250 trabajadores en Nayarit. Primera visita sin costo y precio cerrado por escrito.',
                     inicio, portada_jsonld(), barra=menu_simple)]
     rutas.append(catalogo())
     rutas += [industria(i, k) for k, i in enumerate(INDUSTRIAS)]

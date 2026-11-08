@@ -1,9 +1,9 @@
 /* Certeza Operativa · estilos compartidos por todas las páginas.
    Color por bandas: petróleo (oscuro) y claro se alternan para que cada pregunta del dueño sea un bloque aparte.
    Turquesa solo sobre fondo oscuro; turquesa hondo solo sobre fondo claro. El oro queda únicamente en la marca. */
-@font-face { font-family: "Crimson Pro"; src: url(fonts/CrimsonPro-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
-@font-face { font-family: Outfit; src: url(fonts/Outfit-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: Outfit; src: url(fonts/Outfit-Bold.ttf) format("truetype"); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: "Crimson Pro"; src: url(fonts/CrimsonPro-Bold.woff2) format("woff2"), url(fonts/CrimsonPro-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: Outfit; src: url(fonts/Outfit-Regular.woff2) format("woff2"), url(fonts/Outfit-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Outfit; src: url(fonts/Outfit-Bold.woff2) format("woff2"), url(fonts/Outfit-Bold.ttf) format("truetype"); font-weight: 600 700; font-display: swap; }
 @font-face { font-family: Bitter; src: url(fonts/Bitter-Medium.woff2) format("woff2"); font-weight: 500; font-display: swap; }
 
 :root {
@@ -295,7 +295,7 @@ footer .m-nombre text { font-family: var(--sans); font-size: 30px; fill: var(--t
   .lead, .sub { font-size: 17px; }
   .rejilla, .cat-cols, .cat-pie, .voces, .lista2 { grid-template-columns: minmax(0, 1fr); }
   .lista2.num { grid-auto-flow: row; grid-template-rows: none; }
-  .pregunta { min-height: 0; }
+  .pregunta { min-height: 0; font-size: 21px; padding: 18px 20px; }
   .cat-col > h2 { font-size: 28px; }
   .btn { width: 100%; }
   .cta-band .actions { width: 100%; }
@@ -334,4 +334,10 @@ a { transition: color .15s, text-decoration-color .15s; }
 @media (prefers-reduced-motion: reduce) {
   .js .hero .anim, .js .hero-foto { animation: none; }
   .rv { opacity: 1; transform: none; transition: none; }
+}
+
+/* Preguntas frecuentes en escritorio: título a la izquierda y respuestas a la derecha, sin media pantalla vacía */
+@media (min-width: 1081px) {
+  #preguntas .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 48px; align-items: start; }
+  #preguntas .faq { max-width: none; }
 }
