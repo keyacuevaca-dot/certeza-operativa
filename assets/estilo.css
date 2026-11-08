@@ -16,7 +16,7 @@
   --claro: #F5F5F5; --tarjeta-clara: #FFFFFF; --borde-claro: #DBDCDD;
   --tinta: #1E2328; --tinta-2: #5D6164; --turquesa-hondo: #4A6178;
   /* Marca: triángulo en plata metálica (degradado #g-metal en el sprite). Triángulo suelto, sin el nombre: dentro de un cuadro */
-  --oro: #DEC292; --caja: #3C4147; --caja-borde: #585E64;
+  --oro: #DEC292; --caja: #2E3338; --caja-borde: #484E54;
   /* Alias de los nombres anteriores, para no romper páginas que aún los usen */
   --fondo: var(--claro); --blanco: var(--tarjeta-clara); --hielo: #ECEDEE; --linea: var(--borde-claro);
   --azul: var(--tinta); --texto: var(--tinta); --texto-2: var(--tinta-2);
@@ -80,8 +80,9 @@ section { padding: var(--banda) 0; }
 /* ===== Encabezado ===== */
 header.site { position: sticky; top: 0; z-index: 60; background: var(--petroleo); color: var(--texto-claro); border-bottom: 1px solid var(--linea-oscura); }
 header.site .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: var(--hdr); }
-.logo { --w: 52px; display: grid; place-items: center; flex: none; width: calc(var(--w) + 6px); height: calc(var(--w) + 6px); background: var(--caja); border: 1px solid var(--caja-borde); border-radius: 12px; line-height: 0; }
-.logo svg { width: calc(var(--w) * .72); height: calc(var(--w) * .72 * .76); }
+.logo { --w: 52px; display: grid; place-items: center; flex: none; width: calc((var(--w) + 6px) * .82); height: calc((var(--w) + 6px) * .82); background: var(--caja); border: 1px solid var(--caja-borde); border-radius: 10px; line-height: 0; }
+/* translateY: centrado óptico; el triángulo pesa abajo y, centrado exacto, se ve bajo */
+.logo svg { width: calc(var(--w) * .72); height: calc(var(--w) * .72 * .76); transform: translateY(-7%); }
 .menu { display: flex; align-items: center; gap: 4px; height: 100%; }
 .menu > ul { display: flex; align-items: stretch; gap: 2px; list-style: none; margin: 0; padding: 0; height: 100%; }
 .menu > ul > li { display: flex; align-items: center; }
@@ -229,7 +230,7 @@ header.site .bar { display: flex; align-items: center; justify-content: space-be
 .dos { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
 .dos .head { margin-bottom: 0; }
 .mide { display: flex; gap: 18px; align-items: flex-start; background: var(--petroleo); color: var(--texto-claro-2); border-radius: 6px; padding: 26px 28px; }
-.mide svg { flex: none; box-sizing: border-box; width: 64px; height: 64px; padding: 14px 11px; background: var(--caja); border: 1px solid var(--caja-borde); border-radius: 14px; }
+.mide svg { flex: none; box-sizing: border-box; width: 53px; height: 53px; padding: 8px 5.5px 12px; background: var(--caja); border: 1px solid var(--caja-borde); border-radius: 12px; }
 .mide h3 { color: var(--texto-claro); font-size: 26px; margin-bottom: 6px; }
 .otros { display: flex; flex-wrap: wrap; gap: 10px; }
 .otros a { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 16px; border-radius: 6px; border: 1px solid var(--borde-claro); background: var(--tarjeta-clara); font-size: 15px; text-decoration: none; color: var(--tinta); }
@@ -244,8 +245,8 @@ header.site .bar { display: flex; align-items: center; justify-content: space-be
 .webs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .webs .ay em { display: block; margin-top: 12px; font-style: normal; font-size: 14.5px; color: var(--tinta-2); }
 .persona { display: flex; gap: 22px; align-items: center; }
-.persona .av { display: grid; place-items: center; flex: none; width: 88px; height: 88px; border-radius: 20px; background: var(--caja); border: 1px solid var(--caja-borde); }
-.persona .av svg { width: 50px; height: 38px; }
+.persona .av { display: grid; place-items: center; flex: none; width: 72px; height: 72px; border-radius: 16px; background: var(--caja); border: 1px solid var(--caja-borde); }
+.persona .av svg { width: 50px; height: 38px; transform: translateY(-7%); }
 
 /* Pie */
 footer { background: var(--petroleo); color: var(--texto-claro-2); padding: 64px 0 40px; font-size: 15px; border-top: 1px solid var(--linea-oscura); }
