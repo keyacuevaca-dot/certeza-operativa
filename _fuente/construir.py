@@ -1,7 +1,7 @@
 # Genera las páginas estáticas del sitio (GitHub Pages, sin compilación en el servidor).
 # Uso: python _fuente/construir.py   → reescribe index.html, catalogo.html, servicios.html, nosotros.html,
 #      industrias/*.html, soluciones/*.html y sitemap.xml. La carpeta _fuente no se publica.
-import json, math, os
+import hashlib, json, math, os
 from html import escape as esc
 from urllib.parse import quote
 from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA
@@ -9,6 +9,14 @@ from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
 ANIO = 2026
+
+
+def _ver(ruta):
+    # Huella corta del archivo: cambia cuando cambia el contenido y obliga al navegador a bajar la versión nueva
+    return hashlib.md5(open(os.path.join(RAIZ, ruta), 'rb').read()).hexdigest()[:8]
+
+
+V_CSS, V_JS = _ver('assets/estilo.css'), _ver('assets/sitio.js')
 
 
 def wa(msg):
@@ -97,7 +105,7 @@ def head(titulo, desc, ruta, base, extra=''):
 <link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="{base}assets/fonts/Outfit-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="{base}assets/fonts/Outfit-Bold.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="{base}assets/estilo.css">
+<link rel="stylesheet" href="{base}assets/estilo.css?v={V_CSS}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="Certeza Operativa">
@@ -186,7 +194,7 @@ def pie(base):
     </div>
   </div>
 </footer>
-<script src="{base}assets/sitio.js" defer></script>
+<script src="{base}assets/sitio.js?v={V_JS}" defer></script>
 </body>
 </html>
 '''
