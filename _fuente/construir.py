@@ -25,6 +25,7 @@ def wa(msg):
 
 WA_PRO = wa('Hola, quiero platicar con Certeza Operativa sobre mi negocio.')
 WA_PLATICA = wa('Hola, quiero agendar una plática de 15 minutos sin costo para mi negocio.')
+WA_INFO = wa('Hola, quiero informes de Certeza Operativa.')
 
 # ---------- Silueta propia: el Delta que se forma con líneas (mejora continua) ----------
 def _tri(cx, cy, s, rot):
@@ -98,6 +99,7 @@ def head(titulo, desc, ruta, base, extra=''):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#1E2328">
@@ -145,6 +147,7 @@ def _barra(base, actual=''):
 <header class="site">
   <div class="wrap bar">
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <a class="nombre-barra" href="{base}index.html">Certeza Operativa</a>
     <a class="logo" href="{base}index.html" aria-label="Certeza Operativa, inicio"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></a>
   </div>
   <nav class="menu-panel" id="menu-panel" aria-label="Principal">
@@ -212,17 +215,18 @@ def inicio(base):
            ('¿Atienden fuera de Tepic?', 'Atendemos negocios de Nayarit por WhatsApp; la visita se acuerda en la primera plática.')]
     return f'''
 <section class="oscuro hero" aria-labelledby="t-hero">
+  <img class="hero-foto" src="{base}assets/encabezado.webp" srcset="{base}assets/encabezado-1200.webp 1200w, {base}assets/encabezado.webp 1672w" sizes="100vw" width="1672" height="865" fetchpriority="high" alt="Dos personas revisan en un monitor un esquema de las etapas de un negocio: orden, visibilidad, control y mejora continua.">
   <div class="wrap">
-    <div>
-      <p class="kicker">Para micro y pequeños negocios de Nayarit</p>
-      <h1 id="t-hero">Su negocio en orden, a la vista y con la caja cuadrada.</h1>
-      <p class="lead">Vemos cómo trabaja hoy, le decimos qué se le está yendo y lo resolvemos con herramientas sencillas que su equipo usa solo.</p>
+    <div class="hero-txt">
+      <p class="kicker anim" style="--i:0">Para negocios de 2 a 250 trabajadores.</p>
+      <h1 id="t-hero" class="anim" style="--i:1"><span class="acento">Evoluciona</span> <span>tu negocio</span></h1>
+      <p class="hero-pregunta anim" style="--i:2">¿Transformas o te conformas?</p>
+      <p class="lead anim" style="--i:3">Vemos cómo trabajas hoy, te decimos qué se te está yendo y lo resolvemos con herramientas sencillas que tu equipo usa solo.</p>
       <div class="actions">
-        <a class="btn ghost" href="#que">Vea qué resolvemos</a>
+        <a class="btn blanco anim" style="--i:4" href="#que">Encuentra tu siguiente mejora</a>
+        <a class="btn ghost anim" style="--i:5" href="{WA_INFO}">Escríbenos por WhatsApp</a>
       </div>
-      <ul class="confianza" aria-label="Lo que le aseguramos"><li>Primera visita sin costo</li><li>Precio cerrado por escrito antes de empezar</li><li>Lo entregado es de su negocio</li></ul>
     </div>
-    <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(x0=170, y0=470, dx=150, dy=190, s0=150)}</svg>
   </div>
 </section>
 

@@ -23,5 +23,29 @@
     $$('a', panel).forEach(function (a) { a.addEventListener('click', function () { abrir(false); }); });
   }
 
+  /* --- Aparición al bajar: encabezados de sección y tarjetas (una tras otra), una sola vez.
+     Lo que ya se ve al cargar no se esconde; sin JS o con movimiento reducido no se marca nada. --- */
+  var rejillas = '.rejilla, .pasos, .ayuda, .voces, .lista2, .cat-col > ul, .cat-pie, .chips, .otros, .faq, .webs';
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (vistos) {
+      vistos.forEach(function (v) {
+        if (!v.isIntersecting) return;
+        var el = v.target, d = parseInt(el.style.getPropertyValue('--rv-d'), 10) || 0;
+        io.unobserve(el);
+        el.classList.add('rv-in');
+        setTimeout(function () { el.classList.remove('rv', 'rv-in'); el.style.removeProperty('--rv-d'); }, 700 + d);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    var alto = innerHeight;
+    $$('main section:not(.hero) .head, main .remate, main .mas, main .mide, main .persona, main .svc, main .cta-band h2, main .cierre h2, main .cierre .actions, ' +
+       rejillas.split(', ').map(function (r) { return 'main ' + r + ' > *'; }).join(', ')).forEach(function (el) {
+      if (el.getBoundingClientRect().top < alto) return;
+      var p = el.parentNode;
+      if (p.matches && p.matches(rejillas)) el.style.setProperty('--rv-d', (Array.prototype.indexOf.call(p.children, el) % 6) * 90 + 'ms');
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+
   if (reduce) document.documentElement.classList.add('rm');
 })();
