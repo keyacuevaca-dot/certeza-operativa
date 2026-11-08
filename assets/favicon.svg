@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#1E2328"/>
-  <g transform="translate(8.5 12.5) scale(.2575)" fill="#DEC292"><g transform="translate(-42.5 -12.5)"><path d="M125.5 12.5 165.2 72H138.5L125.5 52.5 82.8 116.5H194.9L208.5 137H42.5Z"/><path d="M140.2 74.6H166.9L173.3 84.2H146.6ZM148.1 86.8H174.8L181.2 96.4H154.5Z"/></g></g>
+  <defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="38" y1="8" x2="213" y2="141"><stop offset="0" stop-color="#F4F6F8"/><stop offset=".55" stop-color="#C3CBD4"/><stop offset="1" stop-color="#8A96A3"/></linearGradient></defs>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#3C4147" stroke="#585E64" stroke-width="2"/>
+  <g transform="translate(8.5 12.5) scale(.2575)" fill="url(#g)"><g transform="translate(-42.5 -12.5)"><path d="M125.5 12.5 165.2 72H138.5L125.5 52.5 82.8 116.5H194.9L208.5 137H42.5Z"/><path d="M140.2 74.6H166.9L173.3 84.2H146.6ZM148.1 86.8H174.8L181.2 96.4H154.5Z"/></g></g>
 </svg>
