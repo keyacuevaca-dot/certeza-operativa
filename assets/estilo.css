@@ -7,17 +7,18 @@
 @font-face { font-family: Bitter; src: url(fonts/Bitter-Medium.woff2) format("woff2"); font-weight: 500; font-display: swap; }
 
 :root {
-  /* Bandas oscuras */
-  --petroleo: #0D3441; --petroleo-2: #123F4D; --linea-oscura: #21505F;
-  --texto-claro: #EAF2F4; --texto-claro-2: #C9DCE1; --nota-oscura: #9DBBC4;
-  --turquesa: #28B7B5; --sobre-turquesa: #06262F;
+  /* Paleta A · Grafito y acero (elegida por Kevin). Los nombres de variable se conservan para no romper el CSS. */
+  /* Bandas oscuras: fondo grafito, letra clara, secundario acero */
+  --petroleo: #1E2328; --petroleo-2: #2B2F34; --linea-oscura: #404449;
+  --texto-claro: #F1F3F5; --texto-claro-2: #CFD2D4; --nota-oscura: #A9ACAF;
+  --turquesa: #9FB4C7; --sobre-turquesa: #1E2328;
   /* Bandas claras */
-  --claro: #F3F6F6; --tarjeta-clara: #FFFFFF; --borde-claro: #D5E0E2;
-  --tinta: #12343C; --tinta-2: #3D5A62; --turquesa-hondo: #0E7C7B;
+  --claro: #F5F5F5; --tarjeta-clara: #FFFFFF; --borde-claro: #DBDCDD;
+  --tinta: #1E2328; --tinta-2: #5D6164; --turquesa-hondo: #4A6178;
   /* Marca (solo el triángulo del logo) */
   --oro: #DEC292;
   /* Alias de los nombres anteriores, para no romper páginas que aún los usen */
-  --fondo: var(--claro); --blanco: var(--tarjeta-clara); --hielo: #E6EEEF; --linea: var(--borde-claro);
+  --fondo: var(--claro); --blanco: var(--tarjeta-clara); --hielo: #ECEDEE; --linea: var(--borde-claro);
   --azul: var(--tinta); --texto: var(--tinta); --texto-2: var(--tinta-2);
   --boton: var(--turquesa); --sobre-boton: var(--sobre-turquesa); --oro-deep: var(--turquesa-hondo);
   --en-azul: var(--texto-claro); --en-azul-2: var(--texto-claro-2); --en-azul-3: var(--nota-oscura);
@@ -59,12 +60,12 @@ section { padding: var(--banda) 0; }
 /* Botones */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 24px; border-radius: 6px; border: 2px solid transparent; font-family: var(--sans); font-weight: 600; font-size: 16px; line-height: 1.2; text-decoration: none; cursor: pointer; touch-action: manipulation; transition: background-color .2s, color .2s, border-color .2s; }
 .btn.primary, .oscuro .btn.primary { background: var(--turquesa); color: var(--sobre-turquesa); border-color: var(--turquesa); }
-.btn.primary:hover { background: #3CC6C4; border-color: #3CC6C4; }
+.btn.primary:hover { background: #B5C6D5; border-color: #B5C6D5; }
 .claro .btn.primary, .bloque .btn.primary, .ph .btn.primary { border-color: var(--turquesa-hondo); }
 .btn.ghost { background: transparent; color: var(--tinta); border-color: var(--tinta-2); }
-.btn.ghost:hover { border-color: var(--tinta); background: rgba(18, 52, 60, .05); }
+.btn.ghost:hover { border-color: var(--tinta); background: rgba(30, 35, 40, .05); }
 .oscuro .btn.ghost { color: var(--texto-claro); border-color: var(--nota-oscura); }
-.oscuro .btn.ghost:hover { border-color: var(--texto-claro); background: rgba(234, 242, 244, .08); }
+.oscuro .btn.ghost:hover { border-color: var(--texto-claro); background: rgba(241, 243, 245, .08); }
 .btn.small { padding: 10px 20px; font-size: 15px; }
 /* Botón único de WhatsApp: gris claro, letra Bitter (referencia elegida por Kevin) */
 .btn.wa, .oscuro .btn.wa { background: #CBD3DD; color: #25303B; border: 1px solid #919AA4; border-radius: 8px; font-family: Bitter, Georgia, serif; font-weight: 500; font-size: 18px; min-height: 52px; padding: 13px 32px; }
@@ -85,7 +86,7 @@ header.site .bar { display: flex; align-items: center; justify-content: space-be
 .menu > ul { display: flex; align-items: stretch; gap: 2px; list-style: none; margin: 0; padding: 0; height: 100%; }
 .menu > ul > li { display: flex; align-items: center; }
 .mtop { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px; border: 0; border-radius: 6px; background: transparent; color: var(--texto-claro); font-size: 16px; font-weight: 400; cursor: pointer; text-decoration: none; transition: background-color .2s; }
-.mtop:hover, .mtop[aria-expanded="true"] { background: rgba(234, 242, 244, .1); }
+.mtop:hover, .mtop[aria-expanded="true"] { background: rgba(241, 243, 245, .1); }
 .mtop .chev { width: 10px; height: 10px; border-right: 2px solid var(--turquesa); border-bottom: 2px solid var(--turquesa); transform: translateY(-2px) rotate(45deg); transition: transform .25s; }
 .mtop[aria-expanded="true"] .chev { transform: translateY(2px) rotate(-135deg); }
 .menu > .btn { margin-left: 14px; }
@@ -97,7 +98,7 @@ header.site .bar { display: flex; align-items: center; justify-content: space-be
 .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Panel desplegable de las páginas internas */
-.panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--tarjeta-clara); color: var(--tinta); box-shadow: 0 24px 48px -24px rgba(5, 34, 41, .45); border-top: 3px solid var(--turquesa); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .22s, transform .22s, visibility 0s linear .22s; }
+.panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--tarjeta-clara); color: var(--tinta); box-shadow: 0 24px 48px -24px rgba(12, 14, 17, .45); border-top: 3px solid var(--turquesa); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .22s, transform .22s, visibility 0s linear .22s; }
 .panel.open { opacity: 1; visibility: visible; transform: none; transition: opacity .22s, transform .22s; }
 .panel .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 48px; padding-top: 32px; padding-bottom: 36px; }
 .panel .intro h2 { font-size: 30px; line-height: 1.1; margin-bottom: 10px; }
@@ -264,7 +265,7 @@ footer .legal p { max-width: 760px; }
 .social a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--linea-oscura); color: var(--texto-claro); transition: background-color .2s, color .2s; }
 .social a:hover { background: var(--texto-claro); color: var(--petroleo); }
 .social svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.float { position: fixed; right: 20px; bottom: 20px; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(16px); pointer-events: none; transition: opacity .3s, transform .3s, visibility 0s linear .3s; box-shadow: 0 12px 30px -10px rgba(5, 34, 41, .55); }
+.float { position: fixed; right: 20px; bottom: 20px; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(16px); pointer-events: none; transition: opacity .3s, transform .3s, visibility 0s linear .3s; box-shadow: 0 12px 30px -10px rgba(12, 14, 17, .55); }
 .float.on { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition: opacity .3s, transform .3s; }
 
 /* ===== Adaptación ===== */

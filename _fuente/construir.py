@@ -91,7 +91,7 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#0D3441">
+<meta name="theme-color" content="#1E2328">
 <link rel="canonical" href="{url}">
 <link rel="icon" type="image/svg+xml" href="{base}assets/favicon.svg">
 <link rel="preload" href="{base}assets/fonts/CrimsonPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
