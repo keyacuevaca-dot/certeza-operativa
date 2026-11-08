@@ -123,76 +123,52 @@ def head(titulo, desc, ruta, base, extra=''):
 '''
 
 
-def _barra(base, lista):
+# Menú único para todas las páginas: tres líneas a la izquierda, triángulo a la derecha.
+# Solo enlaza lo público: qué resolvemos, industrias, cómo trabajamos y preguntas.
+def _menu_bloques(base):
+    pre = f'{base}index.html'
+    return [
+        ('Qué resolvemos', '', [(f'{base}catalogo.html#f{k}', f['familia']) for k, f in enumerate(CATALOGO)] + [(f'{base}catalogo.html', 'Catálogo completo')]),
+        ('Industrias', 'mp-ind', [(f'{base}industrias/{i["slug"]}.html', i['nombre']) for i in INDUSTRIAS]),
+        ('Cómo trabajamos', '', [(f'{pre}#como', 'Primera visita sin costo'), (f'{base}nosotros.html#como', 'Cómo lo hacemos'),
+                                 (f'{base}nosotros.html#esperar', 'Lo que puede esperar'), (f'{base}nosotros.html#quien', 'Quién le atiende')]),
+        ('Preguntas', 'mp-pie', [(f'{pre}#preguntas', 'Preguntas frecuentes'), (WA_PRO, 'Escríbanos por WhatsApp')]),
+    ]
+
+
+def _barra(base, actual=''):
+    def li(href, txt):
+        cur = ' aria-current="page"' if actual and href == f'{base}{actual}' else ''
+        return f'<li><a href="{href}"{cur}>{esc(txt)}</a></li>'
+    bloques = ''.join(f'<div class="mp-b {cls}"><p class="mp-t">{esc(t)}</p><ul>{"".join(li(h, x) for h, x in links)}</ul></div>' for t, cls, links in _menu_bloques(base))
     return f'''<a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site">
   <div class="wrap bar">
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú"><span></span><span></span><span></span></button>
     <a class="logo" href="{base}index.html" aria-label="Certeza Operativa, inicio"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></a>
-    <nav class="menu" aria-label="Principal">
-      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-lista" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-      <ul id="menu-lista">
-        {lista}
-      </ul>
-    </nav>
   </div>
+  <nav class="menu-panel" id="menu-panel" aria-label="Principal">
+    <div class="wrap mp">{bloques}</div>
+  </nav>
+  <div class="menu-velo" aria-hidden="true"></div>
 </header>
 '''
 
 
 def menu_simple(base):
-    # Inicio y catálogo: tres enlaces y un botón
-    pre = f'{base}index.html'
-    return _barra(base, ''.join(f'<li><a class="mtop" href="{pre}#{a}">{t}</a></li>' for a, t in [('que', 'Qué resolvemos'), ('como', 'Cómo trabajamos'), ('preguntas', 'Preguntas')]))
+    return _barra(base)
 
 
 def menu(base, actual):
-    # Páginas internas: conservan los paneles desplegables
-    def item(href, b, s, ruta):
-        cur = ' aria-current="page"' if ruta == actual else ''
-        return f'<li><a href="{base}{href}"{cur}><b>{esc(b)}</b><span>{esc(s)}</span></a></li>'
-    ind = ''.join(item(f'industrias/{i["slug"]}.html', i['nombre'], i['corto'], f'industrias/{i["slug"]}.html') for i in INDUSTRIAS)
-    sol = ''.join(item(f'soluciones/{s["slug"]}.html', s['nombre'], s['tl'], f'soluciones/{s["slug"]}.html') for s in SOLUCIONES)
-    srv = ''.join(item(h, b, s, '') for h, b, s in [
-        ('catalogo.html', 'Catálogo de trabajos', 'Catorce trabajos con precio cerrado.'),
-        ('servicios.html#empieza', 'Primera visita sin costo', 'Y su plan en una hoja, el mismo día.'),
-        ('servicios.html#trabajos', 'Trabajos con precio cerrado', 'Para ordenar, ver y controlar su negocio.'),
-        ('servicios.html#pagina-web', 'Página web', 'Para que lo encuentren, lo conozcan o le pidan cotización.'),
-        ('servicios.html#canva', 'Documentos y tableros con Canva', 'Con su marca, en la cuenta de su negocio.'),
-        ('servicios.html#acompanamiento', 'Acompañamiento', 'Revisiones y ajustes hasta que su equipo lo use solo.')])
-    nos = ''.join(item(h, b, s, '') for h, b, s in [
-        ('nosotros.html#como', 'Cómo lo hacemos', 'Medimos, proponemos y verificamos con usted.'),
-        ('nosotros.html#esperar', 'Lo que puede esperar', 'Compromisos por escrito.'),
-        ('nosotros.html#quien', 'Quién le atiende', 'Sede en Nayarit, atención por WhatsApp.'),
-        ('index.html#preguntas', 'Preguntas frecuentes', 'Lo que más nos preguntan.')])
-    def top(pid, nombre, h, p, lista, cls='', ver=None):
-        verlink = f'<a class="link" href="{base}{ver[0]}">{esc(ver[1])}</a>' if ver else ''
-        return f'''<li><button class="mtop" type="button" aria-expanded="false" aria-controls="{pid}">{nombre}<span class="chev" aria-hidden="true"></span></button>
-        <div class="panel" id="{pid}"><div class="wrap"><div class="intro"><h2>{esc(h)}</h2><p>{esc(p)}</p>{verlink}</div><ul class="{cls}">{lista}</ul></div></div></li>'''
-    return _barra(base, '\n        '.join([
-        top('p-ind', 'Industrias', 'Industrias', 'Cada giro tiene sus propios dolores de cabeza. Elija el suyo y vea cómo lo ordenamos.', ind, 'c3'),
-        top('p-sol', 'Soluciones', 'Soluciones', 'Cuatro resultados que un dueño nota en su día a día, y las herramientas y métodos con que los logramos.', sol, 'c3'),
-        top('p-srv', 'Servicios', 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta.', srv, '', ('catalogo.html', 'Vea el catálogo completo')),
-        top('p-nos', 'Nosotros', 'Nosotros', 'Cómo lo hacemos, qué puede esperar y quién le atiende.', nos, '', ('nosotros.html', 'Conozca cómo trabajamos'))]))
+    return _barra(base, actual)
 
 
 def pie(base):
-    col = lambda t, links: f'<div><h3>{t}</h3><ul>' + ''.join(f'<li><a href="{base}{h}">{esc(n)}</a></li>' for h, n in links) + '</ul></div>'
+    # Cierre de página: solo el imagotipo y los contactos, centrados
     return f'''<footer>
-  <div class="wrap">
-    <div class="top">
-      <div>
-        <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg class="m-logo" viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><svg class="m-nombre" viewBox="0 0 433.6 118" aria-hidden="true"><use href="#certeza" width="433.6" height="72.8"/><text x="0" y="114" textLength="433.6" lengthAdjust="spacing">OPERATIVA</text></svg></a>
-        {social(True)}
-      </div>
-      {col('Industrias', [(f'industrias/{i["slug"]}.html', i['nombre']) for i in INDUSTRIAS])}
-      {col('Soluciones', [(f'soluciones/{s["slug"]}.html', s['nombre']) for s in SOLUCIONES])}
-      {col('Servicios', [('catalogo.html', 'Catálogo de trabajos'), ('servicios.html#empieza', 'Primera visita sin costo'), ('servicios.html#trabajos', 'Trabajos con precio cerrado'), ('servicios.html#pagina-web', 'Página web'), ('servicios.html#canva', 'Documentos con Canva')])}
-      {col('Nosotros', [('nosotros.html#como', 'Cómo lo hacemos'), ('nosotros.html#esperar', 'Lo que puede esperar'), ('nosotros.html#quien', 'Quién le atiende'), ('index.html#preguntas', 'Preguntas frecuentes'), ('index.html#empieza', 'Empiece aquí')])}
-    </div>
-    <div class="legal">
-      <p>© {ANIO} Certeza Operativa · Tepic, Nayarit · WhatsApp 311 446 9363</p>
-      <p>Los nombres de herramientas mencionados son marcas de sus dueños; se muestran solo como referencia de lo que ya usan los negocios. Certeza Operativa no está afiliada a ellas.</p>
-    </div>
+  <div class="wrap pie">
+    <a class="marca" href="{base}index.html" aria-label="Certeza Operativa, volver al inicio"><svg class="m-logo" viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><svg class="m-nombre" viewBox="0 0 433.6 118" aria-hidden="true"><use href="#certeza" width="433.6" height="72.8"/><text x="0" y="114" textLength="433.6" lengthAdjust="spacing">OPERATIVA</text></svg></a>
+    {social(True)}
   </div>
 </footer>
 <script src="{base}assets/sitio.js?v={V_JS}" defer></script>
@@ -208,6 +184,9 @@ def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None):
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     open(dst, 'w', encoding='utf-8').write(html)
     return ruta
+
+
+NOINDEX = '<meta name="robots" content="noindex">\n'
 
 
 def horas_txt(h):
@@ -398,7 +377,7 @@ def solucion(s, k):
   <div class="otros">{otros}</div>
 </div></section>
 {cta(base)}'''
-    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo)
+    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head=NOINDEX)
 
 
 def servicios():
@@ -420,7 +399,7 @@ def servicios():
     <ul class="lista2"><li>Prueba con un caso real<span>Lo usamos con usted una semana o un cierre real, y ajustamos.</span></li><li>Capacitación<span>Para que usted y su equipo lo usen sin nosotros.</span></li><li>Extras cuando hacen falta<span>Más secciones, más productos o su perfil en Google Maps.</span></li></ul></div></article>
 </div></section>
 {cta(base)}'''
-    return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Primera visita sin costo, trabajos con precio cerrado, página web, documentos con Canva y acompañamiento para micro y pequeños negocios de Nayarit.', cuerpo)
+    return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Primera visita sin costo, trabajos con precio cerrado, página web, documentos con Canva y acompañamiento para micro y pequeños negocios de Nayarit.', cuerpo, extra_head=NOINDEX)
 
 
 def nosotros():
@@ -459,6 +438,6 @@ if __name__ == '__main__':
     rutas += [industria(i, k) for k, i in enumerate(INDUSTRIAS)]
     rutas += [solucion(s, k) for k, s in enumerate(SOLUCIONES)]
     rutas += [servicios(), nosotros()]
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITIO}{"" if r == "index.html" else r}</loc></url>\n' for r in rutas) + '</urlset>\n'
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITIO}{"" if r == "index.html" else r}</loc></url>\n' for r in rutas if not (r.startswith('soluciones/') or r == 'servicios.html')) + '</urlset>\n'
     open(os.path.join(RAIZ, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
     print('\n'.join(rutas))
