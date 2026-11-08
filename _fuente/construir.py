@@ -215,7 +215,7 @@ def inicio(base):
            ('¿Atienden fuera de Tepic?', 'Atendemos negocios de Nayarit por WhatsApp; la visita se acuerda en la primera plática.')]
     return f'''
 <section class="oscuro hero" aria-labelledby="t-hero">
-  <img class="hero-foto" src="{base}assets/encabezado.webp" srcset="{base}assets/encabezado-1200.webp 1200w, {base}assets/encabezado.webp 1672w" sizes="100vw" width="1672" height="865" fetchpriority="high" alt="Dos personas revisan en un monitor un esquema de las etapas de un negocio: orden, visibilidad, control y mejora continua.">
+  <img class="hero-foto" src="{base}assets/encabezado.webp" srcset="{base}assets/encabezado-1200.webp 1200w, {base}assets/encabezado.webp 2400w" sizes="100vw" width="2400" height="1242" fetchpriority="high" alt="Dos personas revisan en un monitor un esquema de las etapas de un negocio: orden, visibilidad, control y mejora continua.">
   <div class="wrap">
     <div class="hero-txt">
       <p class="kicker anim" style="--i:0">Para negocios de 2 a 250 trabajadores.</p>
