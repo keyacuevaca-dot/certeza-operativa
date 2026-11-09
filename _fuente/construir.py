@@ -4,7 +4,7 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, FRASE_J, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = SITIO_URL
@@ -26,6 +26,7 @@ def wa(msg):
 WA_PRO = wa('Hola, quiero platicar con Certeza Operativa sobre mi negocio.')
 WA_PLATICA = wa('Hola, quiero agendar una plática de 15 minutos sin costo para mi negocio.')
 WA_INFO = wa('Hola, quiero informes de Certeza Operativa.')
+WA_COTIZA = wa('Hola, quiero una cotización sin costo para mi negocio.')
 
 # ---------- Silueta propia: el Delta que se forma con líneas (mejora continua) ----------
 def _tri(cx, cy, s, rot):
@@ -214,6 +215,14 @@ ICONOS = {
     'check': '<circle cx="24" cy="24" r="18"/><path d="M16 24.5l5.5 5.5L33 18"/>',
     'brujula': '<circle cx="24" cy="24" r="18"/><path d="M31 17l-4 10-10 4 4-10z"/>',
 }
+
+# Íconos de la frase de inicio: cuadrícula de 24, trazo blanco de 1.8 dentro de un cuadro grafito (mismo peso en los cuatro)
+ICONOS_FJ = {
+    'reloj': '<circle cx="12" cy="12" r="8.6"/><path d="M12 6.8V12l4.2 2.6"/>',
+    'corazon': '<circle cx="12" cy="4.4" r="2"/><path d="M12 20.2l-6.3-6.2a4 4 0 0 1 5.66-5.66l.64.64.64-.64A4 4 0 0 1 18.3 14z"/>',
+    'red': '<circle cx="12" cy="4.6" r="1.9"/><path d="M8.9 10.2a3.1 2.8 0 0 1 6.2 0"/><circle cx="5.6" cy="14.4" r="1.9"/><path d="M2.5 20a3.1 2.8 0 0 1 6.2 0"/><circle cx="18.4" cy="14.4" r="1.9"/><path d="M15.3 20a3.1 2.8 0 0 1 6.2 0"/><path d="M12 11.6v2.2l-2.4 1.5M12 13.8l2.4 1.5"/>',
+    'crece': '<path d="M3.8 13.6l5-5 3.2 3.2 7.4-7.4"/><path d="M14.4 4.4h5v5"/><path d="M6.4 19.2l3.6-3.6M11.4 19.6l3.2-3.2"/>',
+}
 FLECHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
 
@@ -257,7 +266,7 @@ def frase_j():
     # Sin JS se queda en «control». El lector de pantalla oye la frase fija.
     F = FRASE_J
     fija = f'{F["antes"]} {F["gira"][0]}, {F["despues"]}'
-    items = ''.join(f'<li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true">{ICONOS[i]}</svg><h3>{esc(t)}</h3><p>{esc(x)}</p></li>'
+    items = ''.join(f'<li><span class="fj-ico" aria-hidden="true"><svg viewBox="0 0 24 24">{ICONOS_FJ[i]}</svg></span><h3>{esc(t)}</h3><p>{esc(x)}</p></li>'
                     for t, x, i in F['resultados'])
     return f'''<section class="claro frase-j" aria-labelledby="t-frase">
   <div class="wrap">
@@ -267,12 +276,20 @@ def frase_j():
 </section>'''
 
 
+def cadena_pasos():
+    # «Cómo trabajamos»: siete pasos en cadena, en dos tramos (lo que no cuesta y el trabajo)
+    n, tramos = 0, ''
+    for titulo, clase, pasos in PASOS:
+        lis = ''
+        for h, p in pasos:
+            n += 1
+            lis += f'<li><span class="es-num" aria-hidden="true">{n}</span><h3>{esc(h)}</h3><p>{esc(p)}</p></li>'
+        tramos += f'<div class="tramo {clase}"><p class="tramo-t">{esc(titulo)}</p><ol class="eslabones" start="{n - len(pasos) + 1}">{lis}</ol></div>'
+    return f'<div class="cadena">{tramos}</div>'
+
+
 def inicio(base):
     _familias_sin_uso = ''.join(f'''<li class="tarjeta familia"><h3>{esc(f["familia"])}</h3><p class="tl">{esc(f["sub"])}</p><ul>{''.join(f'<li><b>{esc(t["nombre"])}</b><span>{esc(t["promesa"])}</span></li>' for t in f["trabajos"])}</ul></li>''' for f in CATALOGO)
-    pasos = [('Platicamos 15 minutos.', 'Por WhatsApp o llamada. Sin costo.'),
-             ('Visitamos su negocio.', 'Vemos un caso real con sus papeles. Sin costo.'),
-             ('Precio cerrado por escrito.', 'No cambia sin su autorización por escrito.'),
-             ('Su equipo lo usa solo.', 'Medimos un número antes y después.')]
     caso = [('Cómo estaba', '[POR LLENAR] Giro del negocio y el problema en palabras del dueño, con el número de antes.'),
             ('Qué se entregó', '[POR LLENAR] El trabajo con precio cerrado y lo que quedó en manos del equipo.'),
             ('Qué cambió', '[POR LLENAR] El mismo número, medido después, y desde cuándo el equipo lo usa solo.')]
@@ -290,8 +307,7 @@ def inicio(base):
       <p class="hero-pregunta anim" style="--i:2">¿Transformas o te conformas?</p>
       <p class="lead anim" style="--i:3">Vemos cómo trabajas hoy, te decimos qué se te está yendo y lo resolvemos con herramientas sencillas que tu equipo usa solo.</p>
       <div class="actions">
-        <a class="btn blanco anim" style="--i:4" href="#que">Encuentra tu siguiente mejora</a>
-        <a class="btn ghost anim" style="--i:5" href="{WA_INFO}">Escríbenos por WhatsApp</a>
+        <a class="btn wa anim" style="--i:4" href="{WA_COTIZA}">Cotiza sin costo</a>
       </div>
     </div>
   </div>
@@ -305,18 +321,22 @@ def inicio(base):
   <div class="wrap">
     <div class="head"><h2 id="t-que">¿Qué necesita su negocio?</h2></div>
     <ul class="necesidades">{''.join(f'<li>{tarjeta_necesidad(base, n)}</li>' for n in NECESIDADES)}</ul>
-    <div class="que-pie">
-      <p class="que-ayuda"><span>{esc(AUTODIAGNOSTICO['entrada_pregunta'])}</span> <a class="btn ghost" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_boton'])}</a></p>
-      <p class="mas"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p>
-    </div>
+    <p class="que-pie"><a class="btn ghost" href="{base}catalogo.html">Vea el catálogo completo</a></p>
+  </div>
+</section>
+
+<section class="ad-banda" aria-labelledby="t-ad-banda">
+  <div class="wrap ad-banda-in">
+    <div class="ad-banda-txt"><h2 id="t-ad-banda">{esc(AUTODIAGNOSTICO['banda_titulo'])}</h2><p>{esc(AUTODIAGNOSTICO['banda_texto'])}</p></div>
+    <a class="btn blanco" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_boton'])}</a>
   </div>
 </section>
 
 <section class="claro" id="como" aria-labelledby="t-como">
   <div class="wrap">
-    <div class="head"><h2 id="t-como">Cómo trabajamos</h2></div>
-    <ol class="pasos">{''.join(f'<li><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in pasos)}</ol>
-    <p class="nota" style="margin-top:28px">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
+    <div class="head"><h2 id="t-como">Cómo trabajamos</h2><p class="como-sub">Siete pasos en cadena. Los tres primeros no le cuestan.</p></div>
+    {cadena_pasos()}
+    <p class="nota como-nota">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
   </div>
 </section>
 

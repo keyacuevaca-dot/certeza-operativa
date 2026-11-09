@@ -12,7 +12,7 @@
 <link rel="preload" href="assets/fonts/CrimsonPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Outfit-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Outfit-Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/estilo.css?v=68683629">
+<link rel="stylesheet" href="assets/estilo.css?v=45814ef0">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="Certeza Operativa">
@@ -58,8 +58,7 @@
       <p class="hero-pregunta anim" style="--i:2">¿Transformas o te conformas?</p>
       <p class="lead anim" style="--i:3">Vemos cómo trabajas hoy, te decimos qué se te está yendo y lo resolvemos con herramientas sencillas que tu equipo usa solo.</p>
       <div class="actions">
-        <a class="btn blanco anim" style="--i:4" href="#que">Encuentra tu siguiente mejora</a>
-        <a class="btn ghost anim" style="--i:5" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa.">Escríbenos por WhatsApp</a>
+        <a class="btn wa anim" style="--i:4" href="https://wa.me/523114469363?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20sin%20costo%20para%20mi%20negocio.">Cotiza sin costo</a>
       </div>
     </div>
   </div>
@@ -81,7 +80,7 @@
 <section class="claro frase-j" aria-labelledby="t-frase">
   <div class="wrap">
     <h2 class="fj-frase" id="t-frase"><span class="sr">Más control, menos sorpresas.</span><span class="fj-l1" aria-hidden="true">Más <span class="fj-gira" data-gira="control|orden|visibilidad"><span>control</span></span>,</span><span class="fj-l2" aria-hidden="true">menos sorpresas.</span></h2>
-    <ul class="fj-items"><li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="25" r="17"/><path d="M24 14v11l7 5M19 5h10"/></svg><h3>Tiempo</h3><p>Deja de resolver lo mismo todos los días.</p></li><li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M16 24.5l5.5 5.5L33 18"/></svg><h3>Tranquilidad</h3><p>La caja cuadra y sabe por qué.</p></li><li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 41h38"/><rect x="8" y="30" width="6" height="11" rx="1"/><rect x="19" y="24" width="6" height="17" rx="1"/><rect x="30" y="18" width="6" height="23" rx="1"/><path d="M7 21l9-7 7 4 15-11"/><path d="M32 7h6v6"/></svg><h3>Claridad</h3><p>Sabe qué pedir y a quién cobrar.</p></li><li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M31 17l-4 10-10 4 4-10z"/></svg><h3>Rumbo</h3><p>Decide qué sigue con sus propios números.</p></li></ul>
+    <ul class="fj-items"><li><span class="fj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 6.8V12l4.2 2.6"/></svg></span><h3>Tiempo</h3><p>No tiene que resolver lo mismo todos los días.</p></li><li><span class="fj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.4" r="2"/><path d="M12 20.2l-6.3-6.2a4 4 0 0 1 5.66-5.66l.64.64.64-.64A4 4 0 0 1 18.3 14z"/></svg></span><h3>Tranquilidad</h3><p>El dinero con rastro, nada se pierde.</p></li><li><span class="fj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.6" r="1.9"/><path d="M8.9 10.2a3.1 2.8 0 0 1 6.2 0"/><circle cx="5.6" cy="14.4" r="1.9"/><path d="M2.5 20a3.1 2.8 0 0 1 6.2 0"/><circle cx="18.4" cy="14.4" r="1.9"/><path d="M15.3 20a3.1 2.8 0 0 1 6.2 0"/><path d="M12 11.6v2.2l-2.4 1.5M12 13.8l2.4 1.5"/></svg></span><h3>Claridad</h3><p>Anticipe cada movimiento.</p></li><li><span class="fj-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.8 13.6l5-5 3.2 3.2 7.4-7.4"/><path d="M14.4 4.4h5v5"/><path d="M6.4 19.2l3.6-3.6M11.4 19.6l3.2-3.2"/></svg></span><h3>Rumbo</h3><p>Crecimiento visible y al alcance.</p></li></ul>
   </div>
 </section>
 
@@ -89,18 +88,22 @@
   <div class="wrap">
     <div class="head"><h2 id="t-que">¿Qué necesita su negocio?</h2></div>
     <ul class="necesidades"><li><a class="necesidad" href="soluciones/control.html" data-titulo="Cobros y caja"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="17" cy="11" rx="11" ry="4"/><path d="M6 11v18c0 2.2 4.9 4 11 4s11-1.8 11-4V11"/><path d="M6 17c0 2.2 4.9 4 11 4s11-1.8 11-4M6 23c0 2.2 4.9 4 11 4s11-1.8 11-4"/><circle cx="37" cy="35" r="7.5"/><path d="M33.6 35.2l2.4 2.4 4.6-4.8"/></svg><h3>Cobros y caja</h3><p>Quién le debe, cuánto, y cierres que cuadran.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="catalogo.html#su-negocio-camina-sin-usted" data-titulo="Equipo y procesos"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="10" r="5"/><circle cx="10" cy="37" r="5"/><circle cx="24" cy="37" r="5"/><circle cx="38" cy="37" r="5"/><path d="M24 15v17M10 32v-9h28v9"/></svg><h3>Equipo y procesos</h3><p>Quién hace qué y cómo, aunque usted no esté.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="catalogo.html#inventario-bajo-control" data-titulo="Inventario y compras"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M7 14 24 6l17 8v18l-17 9-17-9z"/><path d="M7 14l17 8 17-8M24 22v19"/><path d="M11 28.5l3.2 3.2 5.6-5.8"/></svg><h3>Inventario y compras</h3><p>Existencias a la vista y pedidos antes de que falte.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="catalogo.html#cotice-sin-errores" data-titulo="Precios y cotizaciones"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M25.2 5.2A4 4 0 0 0 22.3 4H8a4 4 0 0 0-4 4v14.3a4 4 0 0 0 1.2 2.9l17.4 17.4a4.8 4.8 0 0 0 6.8 0l13.2-13.2a4.8 4.8 0 0 0 0-6.8z"/><circle cx="15" cy="15" r="3"/></svg><h3>Precios y cotizaciones</h3><p>Lista de precios y cotizaciones sin errores.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="catalogo.html#llegue-ordenado-al-contador" data-titulo="Contador en orden"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 14a3 3 0 0 1 3-3h9l4 4h19a3 3 0 0 1 3 3v19a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M17 21h10l5 5v10H17z"/><path d="M27 21v5h5M21 30h7M21 33.5h5"/></svg><h3>Contador en orden</h3><p>Ingresos, gastos y comprobantes de cada mes.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="soluciones/visibilidad.html" data-titulo="Números del dueño"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 41h38"/><rect x="8" y="30" width="6" height="11" rx="1"/><rect x="19" y="24" width="6" height="17" rx="1"/><rect x="30" y="18" width="6" height="23" rx="1"/><path d="M7 21l9-7 7 4 15-11"/><path d="M32 7h6v6"/></svg><h3>Números del dueño</h3><p>Cuánto entra, cuánto sale y si le alcanza.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="catalogo.html#f2" data-titulo="Presencia digital"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="32" rx="3"/><path d="M4 15h40"/><circle cx="9" cy="11.5" r="1"/><circle cx="13" cy="11.5" r="1"/><path d="M24 36s-7-6.2-7-11.5a7 7 0 0 1 14 0C31 29.8 24 36 24 36z"/><circle cx="24" cy="24.5" r="2.4"/></svg><h3>Presencia digital</h3><p>Página, Google Maps y redes, con WhatsApp a un toque.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="soluciones/marketing-digital.html" data-titulo="Marketing digital"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 20v8a2 2 0 0 0 2 2h4l10 7V11l-10 7H7a2 2 0 0 0-2 2z"/><path d="M11 30l2 8h4l-1.5-7"/><circle cx="36" cy="24" r="8"/><circle cx="36" cy="24" r="3.5"/></svg><h3>Marketing digital</h3><p>Marca, publicaciones y campañas con un objetivo medible.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li><li><a class="necesidad" href="soluciones/ia-y-automatizacion.html" data-titulo="IA y automatización"><svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="14" width="20" height="20" rx="2"/><rect x="19" y="19" width="10" height="10" rx="1"/><path d="M19 8v6M24 8v6M29 8v6M19 34v6M24 34v6M29 34v6M8 19h6M8 24h6M8 29h6M34 19h6M34 24h6M34 29h6"/></svg><h3>IA y automatización</h3><p>Respuestas, recordatorios y documentos con menos trabajo a mano.</p><span class="nec-flecha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li></ul>
-    <div class="que-pie">
-      <p class="que-ayuda"><span>¿No sabe por dónde empezar?</span> <a class="btn ghost" href="autodiagnostico.html">Haga el autodiagnóstico</a></p>
-      <p class="mas"><a class="link" href="catalogo.html">Vea el catálogo completo</a></p>
-    </div>
+    <p class="que-pie"><a class="btn ghost" href="catalogo.html">Vea el catálogo completo</a></p>
+  </div>
+</section>
+
+<section class="ad-banda" aria-labelledby="t-ad-banda">
+  <div class="wrap ad-banda-in">
+    <div class="ad-banda-txt"><h2 id="t-ad-banda">Autodiagnóstico de 2 minutos</h2><p>7 pasos para saber qué conviene resolver primero en su negocio. No guardamos sus respuestas.</p></div>
+    <a class="btn blanco" href="autodiagnostico.html">Haga el autodiagnóstico</a>
   </div>
 </section>
 
 <section class="claro" id="como" aria-labelledby="t-como">
   <div class="wrap">
-    <div class="head"><h2 id="t-como">Cómo trabajamos</h2></div>
-    <ol class="pasos"><li><h3>Platicamos 15 minutos.</h3><p>Por WhatsApp o llamada. Sin costo.</p></li><li><h3>Visitamos su negocio.</h3><p>Vemos un caso real con sus papeles. Sin costo.</p></li><li><h3>Precio cerrado por escrito.</h3><p>No cambia sin su autorización por escrito.</p></li><li><h3>Su equipo lo usa solo.</h3><p>Medimos un número antes y después.</p></li></ol>
-    <p class="nota" style="margin-top:28px">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
+    <div class="head"><h2 id="t-como">Cómo trabajamos</h2><p class="como-sub">Siete pasos en cadena. Los tres primeros no le cuestan.</p></div>
+    <div class="cadena"><div class="tramo tramo-gratis"><p class="tramo-t">Sin costo</p><ol class="eslabones" start="1"><li><span class="es-num" aria-hidden="true">1</span><h3>Platicamos</h3><p>15 minutos, por WhatsApp o llamada.</p></li><li><span class="es-num" aria-hidden="true">2</span><h3>Visitamos su negocio</h3><p>Vemos un caso real con sus papeles.</p></li><li><span class="es-num" aria-hidden="true">3</span><h3>Precio cerrado por escrito</h3><p>No cambia sin su autorización.</p></li></ol></div><div class="tramo tramo-trabajo"><p class="tramo-t">El trabajo</p><ol class="eslabones" start="4"><li><span class="es-num" aria-hidden="true">4</span><h3>Instalamos</h3><p>Las herramientas, a nombre de su negocio.</p></li><li><span class="es-num" aria-hidden="true">5</span><h3>Adaptamos</h3><p>A la forma en que trabaja su equipo.</p></li><li><span class="es-num" aria-hidden="true">6</span><h3>Capacitamos</h3><p>Hasta que su equipo lo usa solo.</p></li><li><span class="es-num" aria-hidden="true">7</span><h3>Damos soporte</h3><p>Y medimos un número antes y después.</p></li></ol></div></div>
+    <p class="nota como-nota">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
   </div>
 </section>
 
@@ -134,6 +137,6 @@
     <ul class="social" aria-label="Redes y contacto"><li><a href="https://www.instagram.com/certezaoperativa/" target="_blank" rel="noopener" aria-label="Instagram de Certeza Operativa" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-ig"/></svg></a></li><li><a href="https://www.facebook.com/profile.php?id=61594375394266" target="_blank" rel="noopener" aria-label="Facebook de Certeza Operativa" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-fb"/></svg></a></li><li><a href="https://wa.me/523114469363?text=Hola%2C%20quiero%20informes%20de%20Certeza%20Operativa." target="_blank" rel="noopener" aria-label="WhatsApp: +52 311 446 9363" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg></a></li><li><a href="tel:+523114469363" aria-label="Llamar al +52 311 446 9363" title="Llamar al +52 311 446 9363"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-tel"/></svg></a></li></ul>
   </div>
 </footer>
-<script src="assets/sitio.js?v=299ab31b" defer></script>
+<script src="assets/sitio.js?v=66bc7eef" defer></script>
 </body>
 </html>
