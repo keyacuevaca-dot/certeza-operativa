@@ -346,7 +346,7 @@ a { transition: color .15s, text-decoration-color .15s; }
 /* ===== Cinta «Trabajamos con:» (inicio). Forma fija por defecto; se mueve solo con .js y sin movimiento reducido ===== */
 .cinta { padding: 0; background: var(--petroleo-2); border-top: 1px solid var(--linea-oscura); border-bottom: 1px solid var(--linea-oscura); font-family: var(--sans); font-size: 15px; }
 .cinta-in { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "et vista"; align-items: center; gap: 4px 16px; min-height: 42px; padding-block: 8px; }
-.cinta-et { grid-area: et; margin: 0; font-weight: 600; color: var(--texto-claro); white-space: nowrap; }
+.cinta-et { grid-area: et; justify-self: start; margin: 0; padding: 5px 12px; border: 1px solid var(--turquesa); border-radius: 8px; line-height: 1.2; font-weight: 600; color: var(--texto-claro); white-space: nowrap; }
 .cinta-vista { grid-area: vista; min-width: 0; }
 .cinta-lista { display: flex; flex-wrap: wrap; align-items: center; list-style: none; margin: 0; padding: 0; line-height: 1.6; }
 .cinta-lista li { display: flex; align-items: center; white-space: nowrap; }
@@ -385,6 +385,6 @@ a { transition: color .15s, text-decoration-color .15s; }
 }
 /* Alto total con las líneas de 1 px: 44 px en escritorio y 40 px en celular */
 @media (prefers-reduced-motion: no-preference) and (max-width: 760px) { .js .cinta-in { height: 38px; } }
-@media (max-width: 420px) { .cinta-et { font-size: 13px; } }
+@media (max-width: 420px) { .cinta-et { font-size: 13px; padding: 4px 8px; } }
 /* Línea «ver también» debajo del encabezado de algunas industrias */
 .ver-tambien { padding: 18px 0; border-bottom: 1px solid var(--borde-claro); }
