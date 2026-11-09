@@ -314,7 +314,7 @@ html.menu-abierto .menu-velo { opacity: 1; visibility: visible; transition: opac
 /* Cada enlace lleva el emblema de su página, el mismo de la escena del encabezado */
 .otros a { gap: 10px; }
 .otros-ico { flex: none; width: 20px; height: 20px; margin-left: -4px; fill: none; stroke: var(--tinta-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.otros-ico-a { stroke: var(--acento-encabezado); }
+.otros-ico .ico-a, .cinta-ico .ico-a { stroke: var(--acento-encabezado); }
 .cta-band { padding: 64px 0; }
 .cta-band .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; }
 .cta-band h2 { margin: 0; max-width: 720px; }
@@ -451,6 +451,9 @@ a { transition: color .15s, text-decoration-color .15s; }
 .cinta-lista li { display: flex; }
 .cinta-lista a { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border: 1px solid var(--caja-borde); border-radius: 8px; background: var(--caja); color: var(--texto-claro-2); line-height: 1; white-space: nowrap; text-decoration: none; transition: color .18s, border-color .18s; }
 .cinta-lista a:hover, .cinta-lista a:focus-visible { color: var(--texto-claro); border-color: var(--turquesa); }
+/* Cada giro lleva el emblema de su industria, el mismo de la escena de su página */
+.cinta-lista a { gap: 8px; padding-left: 10px; }
+.cinta-ico { flex: none; width: 16px; height: 16px; fill: none; stroke: var(--texto-claro-2); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .cinta-lista.cinta-copia { display: none; }
 @keyframes cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: no-preference) {

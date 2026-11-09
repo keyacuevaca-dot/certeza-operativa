@@ -41,6 +41,8 @@ EMBLEMAS = {
                '<path d="M14.8 9.4c1.1-.5 2.3-.8 3.7-.9M14.8 12.6c1.1-.5 2.3-.8 3.7-.9"/>'),
     'megafono': ('<path d="M4 10v4a1.5 1.5 0 0 0 1.5 1.5h2L14 19V5L7.5 8.5h-2A1.5 1.5 0 0 0 4 10z"/><path d="M7.5 15.5l1.4 4h2.4l-1-3.6"/>',
                  '<path d="M17.5 9a4 4 0 0 1 0 6M19.8 6.8a7.2 7.2 0 0 1 0 10.4"/>'),
+    'tijeras': ('<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.4 7.8 20 16.5M8.4 16.2 20 7.5"/>', ''),
+    'birrete': ('<path d="M2.5 9.5 12 5l9.5 4.5L12 14z"/><path d="M6.5 11.6V16c0 1.4 2.5 2.8 5.5 2.8s5.5-1.4 5.5-2.8v-4.4"/>', '<path d="M21.5 9.5v5"/>'),
     'chip': ('<rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/>',
              '<rect x="9.5" y="9.5" width="5" height="5" rx="1"/>'),
 }
@@ -526,11 +528,15 @@ def acento(slug, titulo):
     return a, palabra, b
 
 
-def icono_chip(slug):
-    """Emblema pequeño (24 px) para los enlaces «Otras industrias» y «Otras soluciones»."""
-    emblema = TEMAS.get(slug, (None, None, None))[1]
+def icono(emblema, clase='otros-ico'):
+    """Emblema pequeño en línea (cuadrícula de 24), con su trazo en turquesa aparte."""
     if emblema not in EMBLEMAS:
         return ''
     base, acento_ = EMBLEMAS[emblema]
-    extra = f'<g class="otros-ico-a">{acento_}</g>' if acento_ else ''
-    return f'<svg class="otros-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{base}{extra}</svg>'
+    extra = f'<g class="ico-a">{acento_}</g>' if acento_ else ''
+    return f'<svg class="{clase}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{base}{extra}</svg>'
+
+
+def icono_chip(slug, clase='otros-ico'):
+    """Emblema de la página `slug` para los enlaces «Otras industrias», «Otras soluciones» y la cinta de giros."""
+    return icono(TEMAS.get(slug, (None, None, None))[1], clase)

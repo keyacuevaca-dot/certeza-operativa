@@ -4,7 +4,7 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from escenas import escena, acento as acento_titulo, icono_chip
+from escenas import escena, acento as acento_titulo, icono, icono_chip
 from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -94,8 +94,42 @@ def boton_wa(href=None):
     return f'<a class="btn wa" href="{href or WA_PRO}">Escríbanos por WhatsApp</a>'
 
 
-def head(titulo, desc, ruta, base, extra=''):
+IMAGEN_GENERAL = ('assets/compartir.jpg', 'Certeza Operativa: Evoluciona tu negocio. Dos personas revisan en un monitor un esquema de mejora de un negocio.')
+
+
+def tarjeta(slug, alt):
+    # Imagen para compartir de la página (la genera _fuente/tarjetas.py); si no existe, se usa la general
+    ruta = f'assets/compartir/{slug}.jpg'
+    return (f'{ruta}?v={_ver(ruta)}', alt) if os.path.exists(os.path.join(RAIZ, ruta)) else None
+
+
+def datos_tarjeta(slug):
+    # (pastilla, título, frase) de la imagen para compartir; la frase también va en su texto alternativo
+    for i in INDUSTRIAS:
+        if i['slug'] == slug:
+            partes = i['tipos'].rstrip('.').split(', ')
+            frase = i['tipos']
+            for k in (3, 2, 1):
+                if len(partes) > k:
+                    # «, y más» cuando el último giro ya lleva «y» (p. ej. «cómputo y celulares, y más»)
+                    frase = ', '.join(partes[:k]) + (', y más.' if ' y ' in partes[k - 1] else ' y más.')
+                if len(frase) <= 64:
+                    break
+            return 'Industrias', i['nombre'], frase
+    for s in SOLUCIONES:
+        if s['slug'] == slug:
+            return 'Soluciones', s['nombre'], s['tl']
+    return 'Nosotros', 'Cómo lo hacemos', 'Medimos antes de proponer.'
+
+
+def imagen_de(slug):
+    _, titulo, frase = datos_tarjeta(slug)
+    return tarjeta(slug, f'{titulo} · Certeza Operativa. {frase}')
+
+
+def head(titulo, desc, ruta, base, extra='', imagen=None):
     url = SITIO + ('' if ruta == 'index.html' else ruta)
+    img, img_alt = imagen or IMAGEN_GENERAL
     # Contador Umami Cloud: solo si UMAMI_ID tiene valor (fragmento oficial: cloud.umami.is/script.js con data-website-id)
     umami = f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{esc(UMAMI_ID)}"></script>\n' if UMAMI_ID else ''
     return f'''<!doctype html>
@@ -119,10 +153,10 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITIO}assets/compartir.jpg">
+<meta property="og:image" content="{SITIO}{img}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Certeza Operativa: Evoluciona tu negocio. Dos personas revisan en un monitor un esquema de mejora de un negocio.">
+<meta property="og:image:alt" content="{esc(img_alt)}">
 <meta name="twitter:card" content="summary_large_image">
 {umami}{extra}</head>
 <body>
@@ -184,9 +218,9 @@ def pie(base):
 '''
 
 
-def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None):
+def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None, imagen=None):
     base = '../' * ruta.count('/')
-    html = head(titulo, desc, ruta, base, extra_head) + sprite() + (barra(base) if barra else menu(base, ruta)) + '<main id="contenido">\n' + cuerpo(base) + '\n</main>\n' + pie(base)
+    html = head(titulo, desc, ruta, base, extra_head, imagen) + sprite() + (barra(base) if barra else menu(base, ruta)) + '<main id="contenido">\n' + cuerpo(base) + '\n</main>\n' + pie(base)
     dst = os.path.join(RAIZ, ruta)
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     open(dst, 'w', encoding='utf-8').write(html)
@@ -293,12 +327,17 @@ def ancla(texto):
 
 
 # ---------- Inicio ----------
+# Giros de la cinta que comparten página pero tienen su propio emblema; los demás llevan el de su industria
+ICONO_CINTA = {'Servicios personales': 'tijeras', 'Educación y membresías': 'birrete'}
+
+
 def cinta(base):
     # Cinta de giros entre la portada y la frase «Más control, menos sorpresas.»: una sola línea que corre. Dos copias para que la vuelta no salte;
     # la segunda no se lee ni se enfoca. Sin JS o con movimiento reducido queda fija en una línea que se desliza con el dedo.
     def lista(copia):
         extra = ' tabindex="-1"' if copia else ''
-        return ''.join(f'<li><a href="{base}industrias/{slug}.html"{extra}>{esc(n)}</a></li>' for n, slug in CINTA)
+        return ''.join(f'<li><a href="{base}industrias/{slug}.html"{extra}>{icono(ICONO_CINTA[n], "cinta-ico") if n in ICONO_CINTA else icono_chip(slug, "cinta-ico")}{esc(n)}</a></li>'
+                       for n, slug in CINTA)
     return f'''<section class="cinta" aria-label="Giros con los que trabajamos">
   <div class="wrap cinta-in">
     <div class="cinta-vista">
@@ -515,7 +554,7 @@ def industria(i, k):
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base, href=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero platicar con Certeza Operativa.'))}'''
-    return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{i["lead"]} Para micro y pequeños negocios de Nayarit.', cuerpo)
+    return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{i["lead"]} Para micro y pequeños negocios de Nayarit.', cuerpo, imagen=imagen_de(i['slug']))
 
 
 def solucion(s, k):
@@ -542,7 +581,7 @@ def solucion(s, k):
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base)}'''
-    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head='' if s['slug'] in SOLUCIONES_INDEXADAS else NOINDEX)
+    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head='' if s['slug'] in SOLUCIONES_INDEXADAS else NOINDEX, imagen=imagen_de(s['slug']))
 
 
 def servicios():
@@ -584,7 +623,7 @@ def nosotros():
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base)}'''
-    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en siete pasos, del diagnóstico breve sin costo al seguimiento hasta que esté listo. Compromisos por escrito. Sede en Tepic, Nayarit.', cuerpo)
+    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en siete pasos, del diagnóstico breve sin costo al seguimiento hasta que esté listo. Compromisos por escrito. Sede en Tepic, Nayarit.', cuerpo, imagen=imagen_de('nosotros'))
 
 
 def portada_jsonld():
