@@ -4,7 +4,7 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = SITIO_URL
@@ -194,10 +194,6 @@ def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None):
 
 NOINDEX = '<meta name="robots" content="noindex">\n'
 SOLUCIONES_INDEXADAS = {'marketing-digital', 'ia-y-automatizacion'}
-
-
-def horas_txt(h):
-    return f'{h:g}'.replace('.', ',')
 
 
 # ---------- Íconos de línea de «¿Qué necesita su negocio?» (SVG propio, trazo con currentColor, sin relleno) ----------
@@ -406,13 +402,12 @@ def catalogo():
     # franja del autodiagnóstico y un solo botón al final. Las tarjetas no se levantan: no llevan a otra página.
     def trabajo(t):
         a = ancla(t['nombre'])
-        h = horas_txt(t['horas'])
-        pct = round(t['horas'] / HORAS_ESCALA * 100, 1)
         puntos = ''.join(f'<li>{esc(x)}</li>' for x in t['puntos'])
+        # «Qué incluye» abierto por omisión; en celular sitio.js lo pliega (en escritorio siempre se ve)
         return (f'<li class="trabajo" id="{a}"><div class="tr-cab">{cuadro(ICONO_TRABAJO.get(a, "lista"))}<p class="gancho">{esc(t["gancho"])}</p></div>'
-                f'<h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p><ul class="tr-puntos">{puntos}</ul>'
-                f'<div class="tr-pie"><p class="para"><b>Para:</b> {esc(t["para"])}</p>'
-                f'<div class="horas"><small aria-hidden="true">{h} horas útiles</small><div class="barra" role="img" aria-label="{h} horas útiles"><i style="width:{pct:g}%"></i></div></div></div></li>')
+                f'<h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p>'
+                f'<details class="tr-incluye" open><summary>Qué incluye</summary><ul class="tr-puntos">{puntos}</ul></details>'
+                f'<div class="tr-pie"><p class="para"><b>Para:</b> {esc(t["para"])}</p></div></li>')
 
     def cuerpo(base):
         nav = ''.join(f'<li><a href="#f{k}">{esc(f["familia"])} <span>{len(f["trabajos"])}</span></a></li>' for k, f in enumerate(CATALOGO))

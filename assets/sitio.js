@@ -71,6 +71,23 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(arrancar); else arrancar();
   }
 
+  /* --- Catálogo: en celular «Qué incluye» se pliega; la tarjeta a la que se llega por enlace queda abierta.
+     En escritorio siempre está abierto. Sin JS se ve todo. --- */
+  var incluye = $$('.tr-incluye');
+  if (incluye.length) {
+    var cel = matchMedia('(max-width: 760px)');
+    var ajustar = function () {
+      var destino = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+      incluye.forEach(function (d) { d.open = !cel.matches || !!(destino && destino.contains(d)); });
+    };
+    ajustar();
+    if (cel.addEventListener) cel.addEventListener('change', ajustar); else if (cel.addListener) cel.addListener(ajustar);
+    addEventListener('hashchange', function () {
+      var t = location.hash ? document.getElementById(location.hash.slice(1)) : null, d = t && $('.tr-incluye', t);
+      if (d) d.open = true;
+    });
+  }
+
   /* --- Cinta de giros: una sola línea que corre de derecha a izquierda a 32 px por segundo, sin etiqueta ni botón
      (decisión de Kevin). Se detiene mientras el cursor está encima o un giro tiene el foco del teclado. --- */
   var cinta = $('.cinta'), lista = $('.cinta-lista');
