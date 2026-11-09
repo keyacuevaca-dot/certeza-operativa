@@ -343,40 +343,29 @@ a { transition: color .15s, text-decoration-color .15s; }
 
 /* ===== Cinta «Trabajamos con:» (inicio). Forma fija por defecto; se mueve solo con .js y sin movimiento reducido ===== */
 .cinta { padding: 0; background: var(--petroleo-2); border-top: 1px solid var(--linea-oscura); border-bottom: 1px solid var(--linea-oscura); font-family: var(--sans); font-size: 15px; }
-/* «Trabajamos con:» y el botón de pausa juntos a la izquierda; cada giro en su propio cuadro redondeado */
-.cinta-in { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "et vista"; align-items: center; gap: 8px 16px; min-height: 50px; padding-block: 10px; }
-.cinta-et { grid-area: et; justify-self: start; display: inline-flex; align-items: center; height: 30px; margin: 0; padding: 0 12px; border: 1px solid var(--turquesa); border-radius: 8px; line-height: 1; font-weight: 600; color: var(--texto-claro); white-space: nowrap; }
-.cinta-vista { grid-area: vista; min-width: 0; }
-.cinta-lista { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+/* Una sola línea de giros, cada uno en su cuadro redondeado, a todo lo ancho de la banda (sin etiqueta ni botón) */
+.cinta .wrap.cinta-in { max-width: none; display: flex; align-items: center; min-height: 50px; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+.cinta-vista { min-width: 0; width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); }
+.cinta-vista::-webkit-scrollbar { display: none; }
+.cinta-pista { display: flex; width: max-content; }
+.cinta-lista { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0 8px 0 0; }
 .cinta-lista li { display: flex; }
 .cinta-lista a { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border: 1px solid var(--caja-borde); border-radius: 8px; background: var(--caja); color: var(--texto-claro-2); line-height: 1; white-space: nowrap; text-decoration: none; transition: color .18s, border-color .18s; }
 .cinta-lista a:hover, .cinta-lista a:focus-visible { color: var(--texto-claro); border-color: var(--turquesa); }
-.cinta-lista.cinta-copia, .cinta-pausa { display: none; }
-.cinta-pausa { grid-area: boton; place-items: center; width: 30px; height: 30px; padding: 0; border: 1px solid var(--turquesa); border-radius: 8px; background: transparent; color: var(--texto-claro); line-height: 1; cursor: pointer; transition: background-color .18s; }
-.cinta-pausa:hover { background: rgba(241, 243, 245, .08); }
-.cinta-pausa svg { width: 12px; height: 12px; fill: currentColor; }
-.cinta-pausa .cp-play { display: none; }
-.cinta-pausa[aria-pressed="true"] .cp-pausa { display: none; }
-.cinta-pausa[aria-pressed="true"] .cp-play { display: block; }
+.cinta-lista.cinta-copia { display: none; }
 @keyframes cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: no-preference) {
-  .js .cinta-in { grid-template-columns: auto auto minmax(0, 1fr); grid-template-areas: "et boton vista"; column-gap: 8px; height: 50px; min-height: 0; padding-block: 0; }
-  .js .cinta-vista { margin-left: 8px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 32px), transparent); }
-  .js .cinta-pista { display: flex; width: max-content; animation: cinta var(--cinta-dur, 60s) linear infinite; }
-  .js .cinta-lista { flex-wrap: nowrap; padding-right: 8px; }
+  .js .cinta .wrap.cinta-in { height: 50px; min-height: 0; padding: 0; }
+  .js .cinta-vista { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
+  .js .cinta-pista { animation: cinta var(--cinta-dur, 60s) linear infinite; }
   .js .cinta-lista.cinta-copia { display: flex; }
-  .js .cinta-pausa { display: grid; }
-  .js .cinta:hover .cinta-pista, .js .cinta-vista:focus-within .cinta-pista, .js .cinta.pausada .cinta-pista { animation-play-state: paused; }
+  .js .cinta:hover .cinta-pista, .js .cinta-vista:focus-within .cinta-pista { animation-play-state: paused; }
 }
 @media (max-width: 760px) {
   .cinta { font-size: 14px; }
-  /* Forma fija en celular (sin JS o con movimiento reducido): etiqueta arriba y los cuadros debajo */
-  .cinta-in { grid-template-columns: minmax(0, 1fr); grid-template-areas: "et" "vista"; }
-  .cinta-et, .cinta-lista a, .cinta-pausa { height: 28px; }
-  .cinta-pausa { width: 28px; }
+  .cinta-lista a { height: 28px; }
 }
-@media (prefers-reduced-motion: no-preference) and (max-width: 760px) { .js .cinta-in { height: 46px; } }
-@media (max-width: 420px) { .cinta-et { font-size: 13px; padding: 0 9px; } }
+@media (prefers-reduced-motion: no-preference) and (max-width: 760px) { .js .cinta .wrap.cinta-in { height: 46px; } }
 /* Línea «ver también» debajo del encabezado de algunas industrias */
 .ver-tambien { padding: 18px 0; border-bottom: 1px solid var(--borde-claro); }
 
@@ -440,7 +429,7 @@ a { transition: color .15s, text-decoration-color .15s; }
 .fj-frase { margin: 0 auto 56px; max-width: 980px; font-family: var(--sans); font-weight: 700; font-size: min(76px, 10.2vw); line-height: 1.08; letter-spacing: -.028em; color: var(--tinta); }
 .fj-l1, .fj-l2 { display: block; }
 .fj-l1 { white-space: nowrap; }
-/* Una sola columna del ancho de la caja: la palabra visible queda centrada en su caja y la coma va justo después */
+/* Una sola columna del ancho de la caja: la palabra visible queda centrada en su caja */
 .fj-gira { display: inline-grid; grid-template-columns: minmax(0, 1fr); justify-items: center; color: var(--turquesa-hondo); transition: width .35s ease; }
 .fj-gira > span { grid-area: 1 / 1; white-space: nowrap; transition: opacity .3s ease; }
 .fj-gira > span.fuera { opacity: 0; }
