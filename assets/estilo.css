@@ -203,9 +203,9 @@ html.menu-abierto .menu-velo { opacity: 1; visibility: visible; transition: opac
 .tr-pie { display: grid; gap: 10px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--borde-claro); }
 .trabajo .para { margin: 0; font-size: 14px; line-height: 1.45; color: var(--tinta-2); }
 .trabajo .para b { color: var(--tinta); font-weight: 600; }
-.horas small { display: block; margin-bottom: 6px; font-size: 13.5px; color: var(--tinta-2); }
-.barra { height: 8px; border-radius: 4px; background: var(--claro); border: 1px solid var(--borde-claro); overflow: hidden; }
-.barra i { display: block; height: 100%; background: var(--turquesa-hondo); }
+/* «Qué incluye»: en escritorio siempre abierto y sin rótulo; en celular se pliega y se abre al tocar */
+.tr-incluye > summary { display: none; }
+.tr-incluye > summary::-webkit-details-marker { display: none; }
 /* Cierre: dos datos con ícono y un solo botón */
 .cat-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .cat-dato { display: grid; align-content: start; gap: 12px; padding: 26px; border-radius: 16px; background: var(--petroleo-2); border: 1px solid var(--linea-oscura); }
@@ -227,6 +227,11 @@ html.menu-abierto .menu-velo { opacity: 1; visibility: visible; transition: opac
   .cat-grupo .head h2 { font-size: 28px; }
   .cat-rejilla, .cat-rejilla.n4 { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .trabajo { padding: 20px; }
+  .tr-incluye > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-top: 2px; padding: 0 14px; border: 1px solid var(--borde-claro); border-radius: 10px; font-size: 15px; font-weight: 600; color: var(--tinta); cursor: pointer; list-style: none; }
+  .tr-incluye > summary::after { content: ""; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s; }
+  .tr-incluye[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+  .tr-incluye[open] > summary { margin-bottom: 8px; }
+  .tr-incluye > summary:focus-visible { outline: 2px solid var(--turquesa-hondo); outline-offset: 2px; }
   .cat-info { grid-template-columns: minmax(0, 1fr); }
   .cat-cta { margin-top: 40px; }
   .cat-cta .btn { width: 100%; }
