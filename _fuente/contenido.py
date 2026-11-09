@@ -214,6 +214,21 @@ NECESIDADES = [
     ('IA y automatización', 'Respuestas, recordatorios y documentos con menos trabajo a mano.', 'soluciones/ia-y-automatizacion.html', 'chip'),
 ]
 
+# Frase entre la cinta y «¿Qué necesita su negocio?» (sustituye a «¿Le pasa esto?»).
+# Combinación elegida por Kevin en el configurador: J · T5 · R3 · C1 · A3 · F2 · S3 · íconos.
+FRASE_J = dict(
+    antes='Más',
+    gira=['control', 'orden', 'visibilidad'],  # la palabra que cambia sola, cada 3 s y sin detenerse (decisión de Kevin)
+    despues='menos sorpresas.',
+    resultados=[
+        # (título, texto, ícono)
+        ('Tiempo', 'Deja de resolver lo mismo todos los días.', 'reloj'),
+        ('Tranquilidad', 'La caja cuadra y sabe por qué.', 'check'),
+        ('Claridad', 'Sabe qué pedir y a quién cobrar.', 'grafica'),
+        ('Rumbo', 'Decide qué sigue con sus propios números.', 'brujula'),
+    ],
+)
+
 # ---------------- Fase 4: sitio, contador y autodiagnóstico ----------------
 # Dirección completa del sitio: si cambia el dominio, se cambia solo esta línea.
 SITIO_URL = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
