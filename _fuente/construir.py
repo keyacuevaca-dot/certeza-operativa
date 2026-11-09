@@ -90,7 +90,8 @@ def social(extra=False):
 
 
 def boton_wa(href=None):
-    # Un solo botón de WhatsApp por página, al cierre. Estilo «wa»: gris claro, letra Bitter, sin ícono.
+    # Botón de WhatsApp del cierre de cada página. Estilo «wa»: gris claro, letra Bitter, sin ícono.
+    # En los encabezados va además «Cotiza sin costo» (decisión de Kevin), como en inicio.
     return f'<a class="btn wa" href="{href or WA_PRO}">Escríbanos por WhatsApp</a>'
 
 
@@ -501,7 +502,7 @@ def catalogo():
 
 
 # ---------- Páginas internas ----------
-def ph(base, migas, h1, lead, tipos='', variante=0, tema=None):
+def ph(base, migas, h1, lead, tipos='', variante=0, tema=None, cta=None):
     # Encabezado de página interna. Con `tema`, lleva su escena propia (escenas.py) y una palabra del título en turquesa.
     m = ''.join(f'<li><a href="{base}{h}">{esc(n)}</a></li>' if h else f'<li aria-current="page">{esc(n)}</li>' for h, n in migas)
     arte = escena(tema) if tema else None
@@ -518,6 +519,7 @@ def ph(base, migas, h1, lead, tipos='', variante=0, tema=None):
       <h1 id="t-ph">{titulo}</h1>
       {f'<p class="tipos">{esc(tipos)}</p>' if tipos else ''}
       <p class="lead">{esc(lead)}</p>
+      {f'<div class="actions"><a class="btn wa" href="{cta}">Cotiza sin costo</a></div>' if cta else ''}
     </div>
     {arte}
   </div>
@@ -534,7 +536,8 @@ def industria(i, k):
         otros = ''.join(f'<a href="{o["slug"]}.html">{icono_chip(o["slug"])}{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
         vt = i.get('ver_tambien')
         ver = f'<div class="ver-tambien"><div class="wrap"><a class="link" href="{vt[0]}.html">{esc(vt[1])}</a></div></div>' if vt else ''
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k, tema=i['slug']) + ver + f'''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k, tema=i['slug'],
+                  cta=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero una cotización sin costo.')) + ver + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
   <div class="head"><h2 id="t-voces">¿Le suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
@@ -562,7 +565,8 @@ def solucion(s, k):
         otros = ''.join(f'<a href="{o["slug"]}.html">{icono_chip(o["slug"])}{esc(o["nombre"])}</a>' for o in SOLUCIONES if o is not s)
         ent = ''.join(f'<li>{esc(a)}<span>{esc(b)}</span></li>' for a, b in s['entregables'])
         no_inc = f'<p class="no-incluye"><b>No incluye:</b> {esc(s["no_incluye"])}</p>' if s.get('no_incluye') else ''
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1, tema=s['slug']) + f'''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1, tema=s['slug'],
+                  cta=wa(f'Hola, vi la solución «{s["nombre"]}» y quiero una cotización sin costo para mi negocio.')) + f'''
 <section class="bloque blanco" aria-labelledby="t-suena"><div class="wrap">
   <div class="head"><h2 id="t-suena">¿Le suena?</h2></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in s['voces'])}</ul>
@@ -608,7 +612,7 @@ def servicios():
 
 def nosotros():
     def cuerpo(base):
-        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros') + f'''
+        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros', cta=WA_COTIZA) + f'''
 <section class="bloque blanco" id="como"><div class="wrap">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de su negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
   {cadena_pasos()}

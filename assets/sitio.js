@@ -107,6 +107,7 @@
   function evento(n, d) { try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(n, d); } catch (e) {} }
   function lugar(a) {
     if (a.closest('.hero')) return 'portada';
+    if (a.closest('.ph')) return 'encabezado';
     if (a.closest('header.site')) return 'barra';
     if (a.closest('.cinta')) return 'cinta';
     if (a.closest('#que')) return 'tarjetas';
