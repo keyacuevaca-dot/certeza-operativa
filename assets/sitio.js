@@ -96,6 +96,13 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(velocidad); else velocidad();
   }
 
+  /* --- Escenas de los encabezados: su movimiento continuo se pausa cuando no están a la vista (ahorra batería) --- */
+  var escenas = $$('.ph .escena');
+  if (escenas.length && !reduce && 'IntersectionObserver' in window) {
+    var vigia = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('e-pausa', !e.isIntersecting); }); });
+    escenas.forEach(function (s) { vigia.observe(s); });
+  }
+
   /* --- Contador (Umami Cloud): eventos sin datos de la persona; si Umami no cargó, no pasa nada --- */
   function evento(n, d) { try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(n, d); } catch (e) {} }
   function lugar(a) {
