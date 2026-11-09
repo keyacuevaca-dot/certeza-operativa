@@ -223,6 +223,48 @@ ICONOS_FJ = {
     'red': '<circle cx="12" cy="4.6" r="1.9"/><path d="M8.9 10.2a3.1 2.8 0 0 1 6.2 0"/><circle cx="5.6" cy="14.4" r="1.9"/><path d="M2.5 20a3.1 2.8 0 0 1 6.2 0"/><circle cx="18.4" cy="14.4" r="1.9"/><path d="M15.3 20a3.1 2.8 0 0 1 6.2 0"/><path d="M12 11.6v2.2l-2.4 1.5M12 13.8l2.4 1.5"/>',
     'crece': '<path d="M3.8 13.6l5-5 3.2 3.2 7.4-7.4"/><path d="M14.4 4.4h5v5"/><path d="M6.4 19.2l3.6-3.6M11.4 19.6l3.2-3.2"/>',
 }
+
+# Íconos del catálogo: misma familia que los de la frase de inicio (cuadrícula de 24, trazo blanco de 1.8 en cuadro)
+ICONOS_CAT = {
+    'lista': '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h3.5"/>',
+    'monedas': '<ellipse cx="10" cy="6" rx="6" ry="2.4"/><path d="M4 6v9c0 1.3 2.7 2.4 6 2.4M16 6v4"/><path d="M4 10.5c0 1.3 2.7 2.4 6 2.4"/><circle cx="17" cy="16.5" r="4"/><path d="M15.3 16.6l1.2 1.2 2.2-2.4"/>',
+    'caja': '<path d="M3.5 7.5 12 3.5l8.5 4v9L12 20.5l-8.5-4z"/><path d="M3.5 7.5 12 11.5l8.5-4M12 11.5v9"/>',
+    'etiqueta': '<path d="M12.6 3.6a2 2 0 0 0-1.4-.6H5a2 2 0 0 0-2 2v6.2a2 2 0 0 0 .6 1.4l8.4 8.4a2.4 2.4 0 0 0 3.4 0l5.6-5.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.6" cy="7.6" r="1.6"/>',
+    'red': ICONOS_FJ['red'],
+    'carpeta': '<path d="M3 7a2 2 0 0 1 2-2h4.5l2 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8.5 13h7M8.5 16.5h4.5"/>',
+    'pin-pago': '<path d="M12 21s-6.5-5.6-6.5-10.4a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><path d="M9.6 10.6l1.7 1.7 3.2-3.4"/>',
+    'tienda': '<path d="M4.5 10.5V20h15v-9.5"/><path d="M3 10l1.6-5.5h14.8L21 10"/><path d="M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M10 20v-5h4v5"/>',
+    'cubiertos': '<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10"/><path d="M17 21V3c-2.2 1.4-3.5 3.8-3.5 6.5V13H17"/>',
+    'capas': '<path d="M12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 12l9 4.5 9-4.5M3 16.5 12 21l9-4.5"/>',
+    'pin': '<path d="M12 21s-6.5-5.6-6.5-10.4a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.4"/>',
+    'redes': '<circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6"/>',
+    'navegador': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.5h18"/><path d="M7 13h6M7 16.5h10"/>',
+    'bolsa': '<path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+    'reloj': ICONOS_FJ['reloj'],
+    'prohibido': '<circle cx="12" cy="12" r="8.6"/><path d="M5.9 5.9l12.2 12.2"/>',
+}
+# Ícono de cada trabajo del catálogo, por su ancla
+ICONO_TRABAJO = {
+    'cobre-lo-que-le-deben': 'lista', 'caja-que-cuadra': 'monedas', 'inventario-bajo-control': 'caja',
+    'cotice-sin-errores': 'etiqueta', 'su-negocio-camina-sin-usted': 'red', 'llegue-ordenado-al-contador': 'carpeta',
+    'lo-encuentran-y-le-pagan': 'pin-pago', 'vitrina-y-ventas': 'tienda', 'comida-en-orden-y-en-el-mapa': 'cubiertos',
+    'negocio-completo': 'capas', 'que-lo-encuentren': 'pin', 'pagina-y-redes': 'redes', 'sitio-completo': 'navegador',
+    'catalogo-en-linea': 'bolsa',
+}
+
+
+def cuadro(icono):
+    # Cuadro de ícono: figura blanca en cuadro grafito (en bandas oscuras, el cuadro se aclara)
+    return f'<span class="cuadro" aria-hidden="true"><svg viewBox="0 0 24 24">{ICONOS_CAT[icono]}</svg></span>'
+
+
+def banda_autodiagnostico(base):
+    return f'''<section class="ad-banda" aria-labelledby="t-ad-banda">
+  <div class="wrap ad-banda-in">
+    <div class="ad-banda-txt"><h2 id="t-ad-banda">{esc(AUTODIAGNOSTICO['banda_titulo'])}</h2><p>{esc(AUTODIAGNOSTICO['banda_texto'])}</p></div>
+    <a class="btn blanco" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_boton'])}</a>
+  </div>
+</section>'''
 FLECHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
 
@@ -323,12 +365,7 @@ def inicio(base):
   </div>
 </section>
 
-<section class="ad-banda" aria-labelledby="t-ad-banda">
-  <div class="wrap ad-banda-in">
-    <div class="ad-banda-txt"><h2 id="t-ad-banda">{esc(AUTODIAGNOSTICO['banda_titulo'])}</h2><p>{esc(AUTODIAGNOSTICO['banda_texto'])}</p></div>
-    <a class="btn blanco" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_boton'])}</a>
-  </div>
-</section>
+{banda_autodiagnostico(base)}
 
 <section class="claro" id="como" aria-labelledby="t-como">
   <div class="wrap">
@@ -365,30 +402,47 @@ def inicio(base):
 
 # ---------- Catálogo ----------
 def catalogo():
+    # Misma lógica que la portada: botones que saltan a cada familia, tarjetas parejas con ícono en cuadro,
+    # franja del autodiagnóstico y un solo botón al final. Las tarjetas no se levantan: no llevan a otra página.
     def trabajo(t):
+        a = ancla(t['nombre'])
         h = horas_txt(t['horas'])
         pct = round(t['horas'] / HORAS_ESCALA * 100, 1)
-        return f'''<li class="tarjeta trabajo" id="{ancla(t["nombre"])}"><p class="gancho">{esc(t["gancho"])}</p><h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p><ul>{''.join(f'<li>{esc(p)}</li>' for p in t["puntos"])}</ul><p class="para"><b>Para:</b> {esc(t["para"])}</p><div class="horas"><small aria-hidden="true">{h} horas útiles</small><div class="barra" role="img" aria-label="{h} horas útiles"><i style="width:{pct:g}%"></i></div></div></li>'''
+        puntos = ''.join(f'<li>{esc(x)}</li>' for x in t['puntos'])
+        return (f'<li class="trabajo" id="{a}"><div class="tr-cab">{cuadro(ICONO_TRABAJO.get(a, "lista"))}<p class="gancho">{esc(t["gancho"])}</p></div>'
+                f'<h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p><ul class="tr-puntos">{puntos}</ul>'
+                f'<div class="tr-pie"><p class="para"><b>Para:</b> {esc(t["para"])}</p>'
+                f'<div class="horas"><small aria-hidden="true">{h} horas útiles</small><div class="barra" role="img" aria-label="{h} horas útiles"><i style="width:{pct:g}%"></i></div></div></div></li>')
 
     def cuerpo(base):
-        cols = ''.join(f'''<section class="cat-col" aria-labelledby="f{k}"><h2 id="f{k}">{esc(f["familia"])}</h2><p class="sub">{esc(f["sub"])}</p><ul>{''.join(trabajo(t) for t in f["trabajos"])}</ul></section>''' for k, f in enumerate(CATALOGO))
+        nav = ''.join(f'<li><a href="#f{k}">{esc(f["familia"])} <span>{len(f["trabajos"])}</span></a></li>' for k, f in enumerate(CATALOGO))
+        grupos = ''.join(f'''<section class="cat-grupo" aria-labelledby="f{k}"><div class="head"><h2 id="f{k}">{esc(f["familia"])}</h2><p class="sub">{esc(f["sub"])}</p></div><ul class="cat-rejilla n{len(f["trabajos"])}">{''.join(trabajo(t) for t in f["trabajos"])}</ul></section>''' for k, f in enumerate(CATALOGO))
         return f'''
 <section class="oscuro cat-intro" aria-labelledby="t-cat">
   <div class="wrap">
     <h1 id="t-cat">Elija lo que necesita su negocio</h1>
     <p class="lead">Catorce trabajos con precio cerrado. Cada uno empieza por el problema que usted ya conoce y termina cuando su equipo lo usa solo.</p>
+    <nav class="cat-nav" aria-label="Familias de trabajos"><ul>{nav}</ul></nav>
   </div>
 </section>
 
-<div class="claro" style="padding:var(--banda) 0">
-  <div class="wrap cat-cols">{cols}</div>
+<div class="claro cat-cuerpo">
+  <div class="wrap">{grupos}</div>
 </div>
 
-<section class="oscuro" aria-label="Antes de elegir">
-  <div class="wrap cat-pie">
-    <div class="tarjeta"><h2>Horas útiles</h2><p>Las que dejan algo entregado, registradas con evidencia. No se rebasan sin su autorización por escrito. Cada trabajo es de 5 horas como mínimo.</p></div>
-    <div class="tarjeta"><h2>Lo que no hacemos</h2><ul><li>Contabilidad ni declaraciones.</li><li>Asesoría legal.</li><li>Google Maps suelto: siempre va dentro de un trabajo.</li></ul></div>
-    <div class="tarjeta" id="empieza"><h2>Empiece sin costo</h2><p>La primera plática y la visita son sin costo. Le damos el precio cerrado por escrito después de la visita.</p>{boton_wa(href=WA_PLATICA)}</div>
+{banda_autodiagnostico(base)}
+
+<section class="oscuro cat-cierre" aria-labelledby="t-cat-cierre">
+  <div class="wrap">
+    <div class="cat-info">
+      <div class="cat-dato">{cuadro('reloj')}<h2>Horas útiles</h2><p>Las que dejan algo entregado, registradas con evidencia. No se rebasan sin su autorización por escrito. Cada trabajo es de 5 horas como mínimo.</p></div>
+      <div class="cat-dato">{cuadro('prohibido')}<h2>Lo que no hacemos</h2><ul><li>Contabilidad ni declaraciones.</li><li>Asesoría legal.</li><li>Google Maps suelto: siempre va dentro de un trabajo.</li></ul></div>
+    </div>
+    <div class="cat-cta" id="empieza">
+      <h2 id="t-cat-cierre">Empiece sin costo</h2>
+      <p>La primera plática y la visita no cuestan. Le damos el precio cerrado por escrito después de la visita.</p>
+      <div class="actions"><a class="btn wa" href="{WA_COTIZA}">Cotiza sin costo</a></div>
+    </div>
   </div>
 </section>'''
     return pagina('catalogo.html', 'Catálogo de trabajos · Certeza Operativa',
