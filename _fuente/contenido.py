@@ -177,4 +177,80 @@ SOLUCIONES = [
                       ('Listas de verificación', 'Para que una tarea salga igual sin depender de la memoria.'),
                       ('Tableros visuales', 'Pocos números, a la vista, revisados cada semana.')],
          mide=('Mejora medida antes y después', 'El número de cada trabajo, antes y después. Usted lo verifica.')),
+    dict(slug='marketing-digital', nombre='Marketing digital', tl='Que lo conozcan y le escriban.',
+         lead='Publicar sin plan cansa y no trae clientes. Le armamos una marca que se reconoce, publicaciones con un objetivo y campañas medidas, para que más personas lo encuentren y le escriban.',
+         voces=['Publico cuando me acuerdo y no pasa nada.', 'Mi logo y mis colores cambian en cada publicación.', 'Pagué anuncios y no supe si sirvieron.'],
+         entregables=[('Imagen de marca básica', 'Logo limpio, colores y letras, aplicados a todas sus piezas.'),
+                      ('Piezas para redes', 'Publicaciones, historias, menús y flyers con su marca.'),
+                      ('Calendario mensual', 'Qué se publica, cuándo y para qué. Usted lo aprueba antes de publicar.'),
+                      ('Campañas en Facebook e Instagram', 'Las armamos y las medimos. Usted autoriza el monto y lo paga directo a Meta.'),
+                      ('Que lo encuentren en Google', 'Ficha de Google Maps optimizada, reseñas y textos de su página pensados para su zona.'),
+                      ('Seguimiento automático a clientes', 'Mensajes de WhatsApp Business para cotizaciones sin respuesta y clientes que no regresan.')],
+         mide=('Clientes que le escriben', 'Contamos cuántos clientes le escriben por semana antes de empezar y después de un mes. La meta la fijamos con usted.'),
+         no_incluye='No pagamos ni adelantamos publicidad, no publicamos nada sin su aprobación, no respondemos los mensajes del día a día y no prometemos seguidores ni ventas. Sus cuentas quedan a su nombre. La página web está en el catálogo, en «Que lo encuentren».'),
+    dict(slug='ia-y-automatizacion', nombre='IA y automatización', tl='Menos trabajo a mano.',
+         lead='Contestar lo mismo, pasar datos de un papel a otro y acordarse de cobrar quita horas. Configuramos herramientas que ya existen para que esas tareas salgan solas y usted solo revise.',
+         voces=['Contesto las mismas preguntas todo el día.', 'Paso a la computadora lo que anotamos en papel.', 'Se me olvida cobrar o pedir a tiempo.'],
+         entregables=[('Respuestas automáticas en WhatsApp', 'Bienvenida, horario, catálogo y mensajes listos para cobrar.'),
+                      ('Asistente de IA en sus redes', 'El asistente de Meta para negocios, con sus productos, horarios y preguntas frecuentes, en WhatsApp, Instagram y Messenger, cuando Meta lo active en su cuenta.'),
+                      ('Formularios y recordatorios', 'Lo que su equipo captura en el celular cae solo en una hoja, con avisos de cobro y de reorden.'),
+                      ('Asistente de IA para su oficina', 'ChatGPT, Gemini o Claude con instrucciones escritas para cotizar, redactar y resumir. Usted revisa antes de enviar.'),
+                      ('Excel con botones', 'Un libro de Excel donde cada tarea se hace con un botón.')],
+         mide=('Horas en tareas repetidas', 'Medimos cuánto tiempo a la semana se va en contestar lo mismo, pasar datos y recordar cobros, antes y después. La meta la fijamos con usted.'),
+         no_incluye='No desarrollamos programas propios ni programación a la medida: usamos herramientas que ya existen. La IA no decide sola: precios, descuentos y respuestas delicadas los revisa usted. Las cuentas y licencias quedan a su nombre.'),
 ]
+
+# Sección «¿Qué necesita su negocio?» de inicio
+NECESIDADES = [
+    # (título, texto, enlace, ícono)
+    ('Cobros y caja', 'Quién le debe, cuánto, y cierres que cuadran.', 'soluciones/control.html', 'monedas'),
+    ('Equipo y procesos', 'Quién hace qué y cómo, aunque usted no esté.', 'catalogo.html#su-negocio-camina-sin-usted', 'organigrama'),
+    ('Inventario y compras', 'Existencias a la vista y pedidos antes de que falte.', 'catalogo.html#inventario-bajo-control', 'caja'),
+    ('Precios y cotizaciones', 'Lista de precios y cotizaciones sin errores.', 'catalogo.html#cotice-sin-errores', 'etiqueta'),
+    ('Contador en orden', 'Ingresos, gastos y comprobantes de cada mes.', 'catalogo.html#llegue-ordenado-al-contador', 'carpeta'),
+    ('Números del dueño', 'Cuánto entra, cuánto sale y si le alcanza.', 'soluciones/visibilidad.html', 'grafica'),
+    ('Presencia digital', 'Página, Google Maps y redes, con WhatsApp a un toque.', 'catalogo.html#f2', 'navegador'),
+    ('Marketing digital', 'Marca, publicaciones y campañas con un objetivo medible.', 'soluciones/marketing-digital.html', 'megafono'),
+    ('IA y automatización', 'Respuestas, recordatorios y documentos con menos trabajo a mano.', 'soluciones/ia-y-automatizacion.html', 'chip'),
+]
+
+# ---------------- Fase 4: sitio, contador y autodiagnóstico ----------------
+# Dirección completa del sitio: si cambia el dominio, se cambia solo esta línea.
+SITIO_URL = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
+
+# Identificador del sitio en Umami Cloud (plan gratuito). Vacío: no se carga el contador.
+UMAMI_ID = ''
+
+# Autodiagnóstico (autodiagnostico.html). Las opciones de los pasos 2 y 3 salen de CINTA y NECESIDADES.
+AUTODIAGNOSTICO = dict(
+    titulo='Autodiagnóstico',
+    intro='7 pasos, 2 minutos. No guardamos sus respuestas.',
+    pasos=[
+        dict(clave='personas', pregunta='¿Cuántas personas trabajan en su negocio, contándolo a usted?', opciones=['1 a 10', '11 a 50', '51 a 250', 'Más de 250']),
+        dict(clave='giro', pregunta='¿De qué es su negocio?', opciones='CINTA', extra='Otro'),
+        dict(clave='primero', pregunta='¿Qué necesita resolver primero?', opciones='NECESIDADES', extra='Todavía no lo sé'),
+        dict(clave='rapido', pregunta='Conteste rápido', respuestas=['Sí', 'A veces', 'No'], preguntas=[
+            ('¿Sabe hoy quién le debe, cuánto y desde cuándo?', 'Cobros y caja'),
+            ('¿Sabe cada semana cuánto entró, cuánto salió y si le alcanza?', 'Números del dueño'),
+            ('¿Su negocio trabaja igual cuando usted no está?', 'Equipo y procesos'),
+            ('¿Sabe qué se le va a acabar antes de que se acabe?', 'Inventario y compras'),
+            ('¿Lo encuentran en Google Maps y le escriben por WhatsApp?', 'Presencia digital')]),
+        dict(clave='cuando', pregunta='¿Para cuándo lo necesita?', opciones=['Lo antes posible', 'En menos de 3 meses', 'En 3 a 6 meses', 'Solo estoy viendo opciones']),
+        dict(clave='presupuesto', pregunta='¿Ya tiene un presupuesto para resolverlo?', opciones=['Sí, ya lo tengo', 'Tengo una idea', 'Todavía no']),
+        dict(clave='contacto', pregunta='¿Cómo prefiere que le contactemos?', opciones=['WhatsApp', 'Llamada', 'Correo']),
+    ],
+    siguiente='Siguiente',
+    resultado='Esto es lo que vemos en su negocio',
+    va_bien='Su negocio va bien en lo básico. Lo siguiente puede ser:',
+    va_bien_sugeridas=['Marketing digital', 'IA y automatización'],
+    ver_industria='Vea cómo trabajamos con negocios de {categoria}',
+    mas_250='Trabajamos con negocios de hasta 250 personas. Escríbanos y vemos si podemos ayudarle.',
+    boton_wa='Mandar mi resultado por WhatsApp',
+    reiniciar='Volver a empezar',
+    sin_js='Para hacer el autodiagnóstico, active JavaScript o escríbanos por WhatsApp.',
+    mensaje=['Hola, hice el autodiagnóstico de su página.', 'Giro: {giro}', 'Personas: {personas}', 'Quiero resolver primero: {primero}',
+             'También me salió: {lista}', 'Para cuándo: {cuando}', 'Presupuesto: {presupuesto}', 'Prefiero que me contacten por: {contacto}'],
+    entrada_pregunta='¿No sabe por dónde empezar?',
+    entrada_boton='Haga el autodiagnóstico',
+    entrada_cierre='O haga el autodiagnóstico de 2 minutos',
+)
