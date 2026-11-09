@@ -71,10 +71,11 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(arrancar); else arrancar();
   }
 
-  /* --- Cinta «Trabajamos con:»: ~40 px por segundo y botón de pausa (WCAG 2.2.2) --- */
+  /* --- Cinta «Trabajamos con:»: corre de derecha a izquierda a 32 px por segundo (20 % más lento que antes)
+     y tiene botón de pausa junto a la etiqueta (WCAG 2.2.2) --- */
   var cinta = $('.cinta'), pausa = $('.cinta-pausa'), lista = $('.cinta-lista');
   if (cinta && pausa && lista && !reduce) {
-    var velocidad = function () { cinta.style.setProperty('--cinta-dur', Math.min(70, Math.max(45, lista.scrollWidth / 40)).toFixed(1) + 's'); };
+    var velocidad = function () { cinta.style.setProperty('--cinta-dur', Math.max(30, lista.scrollWidth / 32).toFixed(1) + 's'); };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(velocidad); else velocidad();
     pausa.addEventListener('click', function () {
       var on = pausa.getAttribute('aria-pressed') !== 'true';

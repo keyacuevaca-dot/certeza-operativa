@@ -221,13 +221,28 @@ FRASE_J = dict(
     gira=['control', 'orden', 'visibilidad'],  # la palabra que cambia sola, cada 3 s y sin detenerse (decisión de Kevin)
     despues='menos sorpresas.',
     resultados=[
-        # (título, texto, ícono)
-        ('Tiempo', 'Deja de resolver lo mismo todos los días.', 'reloj'),
-        ('Tranquilidad', 'La caja cuadra y sabe por qué.', 'check'),
-        ('Claridad', 'Sabe qué pedir y a quién cobrar.', 'grafica'),
-        ('Rumbo', 'Decide qué sigue con sus propios números.', 'brujula'),
+        # (título, texto, ícono de ICONOS_FJ). Textos base de Kevin.
+        ('Tiempo', 'No tiene que resolver lo mismo todos los días.', 'reloj'),
+        ('Tranquilidad', 'El dinero con rastro, nada se pierde.', 'corazon'),
+        ('Claridad', 'Anticipe cada movimiento.', 'red'),
+        ('Rumbo', 'Crecimiento visible y al alcance.', 'crece'),
     ],
 )
+
+# «Cómo trabajamos» de inicio: siete pasos en cadena, en dos tramos. (título del tramo, clase, [(paso, detalle)])
+PASOS = [
+    ('Sin costo', 'tramo-gratis', [
+        ('Platicamos', '15 minutos, por WhatsApp o llamada.'),
+        ('Visitamos su negocio', 'Vemos un caso real con sus papeles.'),
+        ('Precio cerrado por escrito', 'No cambia sin su autorización.'),
+    ]),
+    ('El trabajo', 'tramo-trabajo', [
+        ('Instalamos', 'Las herramientas, a nombre de su negocio.'),
+        ('Adaptamos', 'A la forma en que trabaja su equipo.'),
+        ('Capacitamos', 'Hasta que su equipo lo usa solo.'),
+        ('Damos soporte', 'Y medimos un número antes y después.'),
+    ]),
+]
 
 # ---------------- Fase 4: sitio, contador y autodiagnóstico ----------------
 # Dirección completa del sitio: si cambia el dominio, se cambia solo esta línea.
@@ -265,7 +280,8 @@ AUTODIAGNOSTICO = dict(
     sin_js='Para hacer el autodiagnóstico, active JavaScript o escríbanos por WhatsApp.',
     mensaje=['Hola, hice el autodiagnóstico de su página.', 'Giro: {giro}', 'Personas: {personas}', 'Quiero resolver primero: {primero}',
              'También me salió: {lista}', 'Para cuándo: {cuando}', 'Presupuesto: {presupuesto}', 'Prefiero que me contacten por: {contacto}'],
-    entrada_pregunta='¿No sabe por dónde empezar?',
     entrada_boton='Haga el autodiagnóstico',
+    banda_titulo='Autodiagnóstico de 2 minutos',
+    banda_texto='7 pasos para saber qué conviene resolver primero en su negocio. No guardamos sus respuestas.',
     entrada_cierre='O haga el autodiagnóstico de 2 minutos',
 )
