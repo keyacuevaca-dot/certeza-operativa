@@ -25,7 +25,7 @@
 
   /* --- Aparición al bajar: encabezados de sección y tarjetas (una tras otra), una sola vez.
      Lo que ya se ve al cargar no se esconde; sin JS o con movimiento reducido no se marca nada. --- */
-  var rejillas = '.necesidades, .fj-items, .rejilla, .pasos, .ayuda, .voces, .lista2, .cat-col > ul, .cat-pie, .chips, .otros, .faq, .webs';
+  var rejillas = '.necesidades, .fj-items, .rejilla, .pasos, .ayuda, .voces, .lista2, .cat-rejilla, .cat-info, .chips, .otros, .faq, .webs';
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (vistos) {
       vistos.forEach(function (v) {
