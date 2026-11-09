@@ -1,10 +1,10 @@
 # Genera las páginas estáticas del sitio (GitHub Pages, sin compilación en el servidor).
 # Uso: python _fuente/construir.py   → reescribe index.html, catalogo.html, servicios.html, nosotros.html,
 #      industrias/*.html, soluciones/*.html y sitemap.xml. La carpeta _fuente no se publica.
-import hashlib, json, math, os
+import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
@@ -190,10 +190,39 @@ def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None):
 
 
 NOINDEX = '<meta name="robots" content="noindex">\n'
+SOLUCIONES_INDEXADAS = {'marketing-digital', 'ia-y-automatizacion'}
 
 
 def horas_txt(h):
     return f'{h:g}'.replace('.', ',')
+
+
+# ---------- Íconos de línea de «¿Qué necesita su negocio?» (SVG propio, trazo con currentColor, sin relleno) ----------
+ICONOS = {
+    'monedas': '<ellipse cx="17" cy="11" rx="11" ry="4"/><path d="M6 11v18c0 2.2 4.9 4 11 4s11-1.8 11-4V11"/><path d="M6 17c0 2.2 4.9 4 11 4s11-1.8 11-4M6 23c0 2.2 4.9 4 11 4s11-1.8 11-4"/><circle cx="37" cy="35" r="7.5"/><path d="M33.6 35.2l2.4 2.4 4.6-4.8"/>',
+    'organigrama': '<circle cx="24" cy="10" r="5"/><circle cx="10" cy="37" r="5"/><circle cx="24" cy="37" r="5"/><circle cx="38" cy="37" r="5"/><path d="M24 15v17M10 32v-9h28v9"/>',
+    'caja': '<path d="M7 14 24 6l17 8v18l-17 9-17-9z"/><path d="M7 14l17 8 17-8M24 22v19"/><path d="M11 28.5l3.2 3.2 5.6-5.8"/>',
+    'etiqueta': '<path d="M25.2 5.2A4 4 0 0 0 22.3 4H8a4 4 0 0 0-4 4v14.3a4 4 0 0 0 1.2 2.9l17.4 17.4a4.8 4.8 0 0 0 6.8 0l13.2-13.2a4.8 4.8 0 0 0 0-6.8z"/><circle cx="15" cy="15" r="3"/>',
+    'carpeta': '<path d="M5 14a3 3 0 0 1 3-3h9l4 4h19a3 3 0 0 1 3 3v19a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M17 21h10l5 5v10H17z"/><path d="M27 21v5h5M21 30h7M21 33.5h5"/>',
+    'grafica': '<path d="M5 41h38"/><rect x="8" y="30" width="6" height="11" rx="1"/><rect x="19" y="24" width="6" height="17" rx="1"/><rect x="30" y="18" width="6" height="23" rx="1"/><path d="M7 21l9-7 7 4 15-11"/><path d="M32 7h6v6"/>',
+    'navegador': '<rect x="4" y="8" width="40" height="32" rx="3"/><path d="M4 15h40"/><circle cx="9" cy="11.5" r="1"/><circle cx="13" cy="11.5" r="1"/><path d="M24 36s-7-6.2-7-11.5a7 7 0 0 1 14 0C31 29.8 24 36 24 36z"/><circle cx="24" cy="24.5" r="2.4"/>',
+    'megafono': '<path d="M5 20v8a2 2 0 0 0 2 2h4l10 7V11l-10 7H7a2 2 0 0 0-2 2z"/><path d="M11 30l2 8h4l-1.5-7"/><circle cx="36" cy="24" r="8"/><circle cx="36" cy="24" r="3.5"/>',
+    'chip': '<rect x="14" y="14" width="20" height="20" rx="2"/><rect x="19" y="19" width="10" height="10" rx="1"/><path d="M19 8v6M24 8v6M29 8v6M19 34v6M24 34v6M29 34v6M8 19h6M8 24h6M8 29h6M34 19h6M34 24h6M34 29h6"/>',
+}
+FLECHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+
+
+def tarjeta_necesidad(base, n, extra=''):
+    titulo, texto, enlace, icono = n
+    return (f'<a class="necesidad" href="{base}{enlace}" data-titulo="{esc(titulo)}"{extra}>'
+            f'<svg class="nec-ico" viewBox="0 0 48 48" aria-hidden="true">{ICONOS[icono]}</svg>'
+            f'<h3>{esc(titulo)}</h3><p>{esc(texto)}</p><span class="nec-flecha">{FLECHA}</span></a>')
+
+
+def ancla(texto):
+    # id a partir del nombre: minúsculas, sin acentos ni signos y con guiones
+    t = unicodedata.normalize('NFKD', texto).encode('ascii', 'ignore').decode().lower()
+    return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
 
 
 # ---------- Inicio ----------
@@ -221,7 +250,7 @@ def cinta(base):
 def inicio(base):
     preguntas = ['¿Le deben y no sabe cuánto?', '¿Su caja no cuadra al cierre?', '¿Se le acaba lo que más vende?',
                  '¿Todo pasa por usted?', '¿Le preguntan precios todo el día?', '¿Aparece su negocio en Google Maps?']
-    familias = ''.join(f'''<li class="tarjeta familia"><h3>{esc(f["familia"])}</h3><p class="tl">{esc(f["sub"])}</p><ul>{''.join(f'<li><b>{esc(t["nombre"])}</b><span>{esc(t["promesa"])}</span></li>' for t in f["trabajos"])}</ul></li>''' for f in CATALOGO)
+    _familias_sin_uso = ''.join(f'''<li class="tarjeta familia"><h3>{esc(f["familia"])}</h3><p class="tl">{esc(f["sub"])}</p><ul>{''.join(f'<li><b>{esc(t["nombre"])}</b><span>{esc(t["promesa"])}</span></li>' for t in f["trabajos"])}</ul></li>''' for f in CATALOGO)
     pasos = [('Platicamos 15 minutos.', 'Por WhatsApp o llamada. Sin costo.'),
              ('Visitamos su negocio.', 'Vemos un caso real con sus papeles. Sin costo.'),
              ('Precio cerrado por escrito.', 'No cambia sin su autorización por escrito.'),
@@ -262,9 +291,11 @@ def inicio(base):
 
 <section class="oscuro" id="que" aria-labelledby="t-que">
   <div class="wrap">
-    <div class="head"><h2 id="t-que">Qué resolvemos</h2></div>
-    <ul class="rejilla">{familias}</ul>
-    <p class="mas"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p>
+    <div class="head"><h2 id="t-que">¿Qué necesita su negocio?</h2></div>
+    <ul class="necesidades">{''.join(f'<li>{tarjeta_necesidad(base, n)}</li>' for n in NECESIDADES)}</ul>
+    <div class="que-pie">
+      <p class="mas"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p>
+    </div>
   </div>
 </section>
 
@@ -305,7 +336,7 @@ def catalogo():
     def trabajo(t):
         h = horas_txt(t['horas'])
         pct = round(t['horas'] / HORAS_ESCALA * 100, 1)
-        return f'''<li class="tarjeta trabajo"><p class="gancho">{esc(t["gancho"])}</p><h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p><ul>{''.join(f'<li>{esc(p)}</li>' for p in t["puntos"])}</ul><p class="para"><b>Para:</b> {esc(t["para"])}</p><div class="horas"><small aria-hidden="true">{h} horas útiles</small><div class="barra" role="img" aria-label="{h} horas útiles"><i style="width:{pct:g}%"></i></div></div></li>'''
+        return f'''<li class="tarjeta trabajo" id="{ancla(t["nombre"])}"><p class="gancho">{esc(t["gancho"])}</p><h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p><ul>{''.join(f'<li>{esc(p)}</li>' for p in t["puntos"])}</ul><p class="para"><b>Para:</b> {esc(t["para"])}</p><div class="horas"><small aria-hidden="true">{h} horas útiles</small><div class="barra" role="img" aria-label="{h} horas útiles"><i style="width:{pct:g}%"></i></div></div></li>'''
 
     def cuerpo(base):
         cols = ''.join(f'''<section class="cat-col" aria-labelledby="f{k}"><h2 id="f{k}">{esc(f["familia"])}</h2><p class="sub">{esc(f["sub"])}</p><ul>{''.join(trabajo(t) for t in f["trabajos"])}</ul></section>''' for k, f in enumerate(CATALOGO))
@@ -387,6 +418,7 @@ def solucion(s, k):
     def cuerpo(base):
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in SOLUCIONES if o is not s)
         ent = ''.join(f'<li>{esc(a)}<span>{esc(b)}</span></li>' for a, b in s['entregables'])
+        no_inc = f'<p class="no-incluye"><b>No incluye:</b> {esc(s["no_incluye"])}</p>' if s.get('no_incluye') else ''
         return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1) + f'''
 <section class="bloque blanco" aria-labelledby="t-suena"><div class="wrap">
   <div class="head"><h2 id="t-suena">¿Le suena?</h2></div>
@@ -394,7 +426,7 @@ def solucion(s, k):
 </div></section>
 <section class="bloque" aria-labelledby="t-ent"><div class="wrap dos">
   <div class="head"><h2 id="t-ent">Lo que entregamos.</h2><p class="sub">Sencillo, con su marca y pensado para que su equipo lo use sin nosotros.</p></div>
-  <ul class="lista2">{ent}</ul>
+  <div><ul class="lista2">{ent}</ul>{no_inc}</div>
 </div></section>
 <section class="bloque blanco" aria-labelledby="t-mide"><div class="wrap dos">
   <div class="head"><h2 id="t-mide">Cómo sabemos que funcionó.</h2><p class="sub">Cada trabajo tiene un número que importa. Lo medimos con usted antes y después.</p></div>
@@ -405,7 +437,7 @@ def solucion(s, k):
   <div class="otros">{otros}</div>
 </div></section>
 {cta(base)}'''
-    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head=NOINDEX)
+    return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head='' if s['slug'] in SOLUCIONES_INDEXADAS else NOINDEX)
 
 
 def servicios():
@@ -467,6 +499,6 @@ if __name__ == '__main__':
     rutas += [industria(i, k) for k, i in enumerate(INDUSTRIAS)]
     rutas += [solucion(s, k) for k, s in enumerate(SOLUCIONES)]
     rutas += [servicios(), nosotros()]
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITIO}{"" if r == "index.html" else r}</loc></url>\n' for r in rutas if not (r.startswith('soluciones/') or r == 'servicios.html')) + '</urlset>\n'
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITIO}{"" if r == "index.html" else r}</loc></url>\n' for r in rutas if not ((r.startswith('soluciones/') and r[11:-5] not in SOLUCIONES_INDEXADAS) or r == 'servicios.html')) + '</urlset>\n'
     open(os.path.join(RAIZ, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
     print('\n'.join(rutas))

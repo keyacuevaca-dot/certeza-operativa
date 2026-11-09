@@ -388,3 +388,24 @@ a { transition: color .15s, text-decoration-color .15s; }
 @media (max-width: 420px) { .cinta-et { font-size: 13px; padding: 4px 8px; } }
 /* Línea «ver también» debajo del encabezado de algunas industrias */
 .ver-tambien { padding: 18px 0; border-bottom: 1px solid var(--borde-claro); }
+
+/* ===== «¿Qué necesita su negocio?»: 9 tarjetas-enlace en la banda oscura ===== */
+.necesidades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+.necesidades > li { display: flex; min-width: 0; }
+.oscuro .necesidad { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 16px; background: var(--petroleo-2); border: 1px solid var(--linea-oscura); color: var(--texto-claro-2); text-decoration: none; transition: border-color .18s; }
+.necesidad h3 { margin: 8px 0 0; font-family: var(--sans); font-weight: 700; font-size: 22px; line-height: 1.2; color: var(--texto-claro); }
+.necesidad p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--texto-claro-2); }
+.nec-ico { width: 52px; height: 52px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; color: var(--acento-encabezado); }
+.nec-flecha { margin-top: auto; align-self: flex-end; display: inline-flex; padding-top: 6px; color: var(--texto-claro); transition: transform .18s; }
+.nec-flecha svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.oscuro .necesidad:hover, .oscuro .necesidad:focus-visible { border-color: var(--acento-encabezado); }
+.necesidad:hover .nec-flecha, .necesidad:focus-visible .nec-flecha { transform: translateX(4px); }
+.oscuro .necesidad:focus-visible { outline: 2px solid var(--acento-encabezado); outline-offset: 3px; }
+.que-pie { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: 32px; }
+.que-pie .mas { margin: 0; }
+@media (max-width: 1080px) { .necesidades { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .necesidades { grid-template-columns: minmax(0, 1fr); gap: 14px; } .oscuro .necesidad { padding: 22px; } }
+@media (prefers-reduced-motion: reduce) { .necesidad:hover .nec-flecha, .necesidad:focus-visible .nec-flecha { transform: none; } .oscuro .necesidad, .nec-flecha { transition: none; } }
+/* «No incluye:» al final de «Lo que entregamos.» en algunas soluciones */
+.no-incluye { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--borde-claro); font-size: 15.5px; line-height: 1.55; color: var(--tinta-2); }
+.no-incluye b { color: var(--tinta); }
