@@ -563,9 +563,9 @@ def servicios():
 def nosotros():
     def cuerpo(base):
         return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3) + f'''
-<section class="bloque blanco" id="como"><div class="wrap dos">
+<section class="bloque blanco" id="como"><div class="wrap">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de su negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
-  <ol class="lista2 num"><li>Lo visitamos<span>La primera visita es sin costo y dura hasta 90 minutos. Doce preguntas, un caso real y una plática con alguien de su equipo.</span></li><li>Le damos un plan en una hoja<span>El mismo día de la visita, con una acción gratis para hoy y la lista corta de papeles.</span></li><li>Medimos su punto de partida<span>Elegimos un solo número que importe y lo medimos con sus papeles, no de memoria.</span></li><li>Lo resolvemos con precio cerrado<span>Si la causa resulta otra, le cotizamos de nuevo por escrito antes de empezar.</span></li><li>Su equipo lo usa solo<span>Capacitamos a quien lo va a usar. Termina cuando su equipo completa un ciclo sin nosotros.</span></li><li>Medimos la mejora<span>Comparamos el número de antes con el de hoy. Lo que funcionó queda escrito.</span></li></ol>
+  {cadena_pasos()}
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
   <div class="head"><h2>Lo que puede esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
@@ -577,7 +577,7 @@ def nosotros():
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base)}'''
-    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en seis pasos, de la primera visita sin costo a medir la mejora. Compromisos por escrito. Sede en Tepic, Nayarit.', cuerpo)
+    return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en siete pasos, del diagnóstico breve sin costo al seguimiento hasta que esté listo. Compromisos por escrito. Sede en Tepic, Nayarit.', cuerpo)
 
 
 def portada_jsonld():
