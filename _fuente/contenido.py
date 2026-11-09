@@ -221,11 +221,11 @@ FRASE_J = dict(
     gira=['control', 'orden', 'visibilidad'],  # la palabra que cambia sola, cada 3 s y sin detenerse (decisión de Kevin)
     despues='menos sorpresas.',
     resultados=[
-        # (título, texto, ícono de ICONOS_FJ). Textos base de Kevin.
+        # (título, texto, ícono de ICONOS_FJ). Textos pulidos, elegidos por Kevin.
         ('Tiempo', 'No tiene que resolver lo mismo todos los días.', 'reloj'),
-        ('Tranquilidad', 'El dinero con rastro, nada se pierde.', 'corazon'),
-        ('Claridad', 'Anticipe cada movimiento.', 'red'),
-        ('Rumbo', 'Crecimiento visible y al alcance.', 'crece'),
+        ('Tranquilidad', 'Cada peso con rastro: nada se pierde.', 'corazon'),
+        ('Claridad', 'Anticipe compras, cobros y pagos.', 'red'),
+        ('Rumbo', 'Su crecimiento, visible y a su alcance.', 'crece'),
     ],
 )
 
