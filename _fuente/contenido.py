@@ -213,3 +213,44 @@ NECESIDADES = [
     ('Marketing digital', 'Marca, publicaciones y campañas con un objetivo medible.', 'soluciones/marketing-digital.html', 'megafono'),
     ('IA y automatización', 'Respuestas, recordatorios y documentos con menos trabajo a mano.', 'soluciones/ia-y-automatizacion.html', 'chip'),
 ]
+
+# ---------------- Fase 4: sitio, contador y autodiagnóstico ----------------
+# Dirección completa del sitio: si cambia el dominio, se cambia solo esta línea.
+SITIO_URL = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
+
+# Identificador del sitio en Umami Cloud (plan gratuito). Vacío: no se carga el contador.
+UMAMI_ID = ''
+
+# Autodiagnóstico (autodiagnostico.html). Las opciones de los pasos 2 y 3 salen de CINTA y NECESIDADES.
+AUTODIAGNOSTICO = dict(
+    titulo='Autodiagnóstico',
+    intro='7 pasos, 2 minutos. No guardamos sus respuestas.',
+    pasos=[
+        dict(clave='personas', pregunta='¿Cuántas personas trabajan en su negocio, contándolo a usted?', opciones=['1 a 10', '11 a 50', '51 a 250', 'Más de 250']),
+        dict(clave='giro', pregunta='¿De qué es su negocio?', opciones='CINTA', extra='Otro'),
+        dict(clave='primero', pregunta='¿Qué necesita resolver primero?', opciones='NECESIDADES', extra='Todavía no lo sé'),
+        dict(clave='rapido', pregunta='Conteste rápido', respuestas=['Sí', 'A veces', 'No'], preguntas=[
+            ('¿Sabe hoy quién le debe, cuánto y desde cuándo?', 'Cobros y caja'),
+            ('¿Sabe cada semana cuánto entró, cuánto salió y si le alcanza?', 'Números del dueño'),
+            ('¿Su negocio trabaja igual cuando usted no está?', 'Equipo y procesos'),
+            ('¿Sabe qué se le va a acabar antes de que se acabe?', 'Inventario y compras'),
+            ('¿Lo encuentran en Google Maps y le escriben por WhatsApp?', 'Presencia digital')]),
+        dict(clave='cuando', pregunta='¿Para cuándo lo necesita?', opciones=['Lo antes posible', 'En menos de 3 meses', 'En 3 a 6 meses', 'Solo estoy viendo opciones']),
+        dict(clave='presupuesto', pregunta='¿Ya tiene un presupuesto para resolverlo?', opciones=['Sí, ya lo tengo', 'Tengo una idea', 'Todavía no']),
+        dict(clave='contacto', pregunta='¿Cómo prefiere que le contactemos?', opciones=['WhatsApp', 'Llamada', 'Correo']),
+    ],
+    siguiente='Siguiente',
+    resultado='Esto es lo que vemos en su negocio',
+    va_bien='Su negocio va bien en lo básico. Lo siguiente puede ser:',
+    va_bien_sugeridas=['Marketing digital', 'IA y automatización'],
+    ver_industria='Vea cómo trabajamos con negocios de {categoria}',
+    mas_250='Trabajamos con negocios de hasta 250 personas. Escríbanos y vemos si podemos ayudarle.',
+    boton_wa='Mandar mi resultado por WhatsApp',
+    reiniciar='Volver a empezar',
+    sin_js='Para hacer el autodiagnóstico, active JavaScript o escríbanos por WhatsApp.',
+    mensaje=['Hola, hice el autodiagnóstico de su página.', 'Giro: {giro}', 'Personas: {personas}', 'Quiero resolver primero: {primero}',
+             'También me salió: {lista}', 'Para cuándo: {cuando}', 'Presupuesto: {presupuesto}', 'Prefiero que me contacten por: {contacto}'],
+    entrada_pregunta='¿No sabe por dónde empezar?',
+    entrada_boton='Haga el autodiagnóstico',
+    entrada_cierre='O haga el autodiagnóstico de 2 minutos',
+)

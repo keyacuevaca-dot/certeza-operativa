@@ -60,5 +60,32 @@
     });
   }
 
+  /* --- Contador (Umami Cloud): eventos sin datos de la persona; si Umami no cargó, no pasa nada --- */
+  function evento(n, d) { try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(n, d); } catch (e) {} }
+  function lugar(a) {
+    if (a.closest('.hero')) return 'portada';
+    if (a.closest('header.site')) return 'barra';
+    if (a.closest('.cinta')) return 'cinta';
+    if (a.closest('#que')) return 'tarjetas';
+    if (a.closest('.ad')) return 'autodiagnostico';
+    if (a.closest('.float')) return 'boton-flotante';
+    if (a.closest('footer')) return 'pie';
+    if (location.pathname.indexOf('/industrias/') > -1) return 'industria';
+    if (location.pathname.indexOf('/soluciones/') > -1) return 'solucion';
+    return 'cierre';
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    if ((a.getAttribute('href') || '').indexOf('wa.me/') > -1) {
+      evento('whatsapp', { lugar: lugar(a) });
+      if (a.hasAttribute('data-ad-wa')) evento('autodiagnostico-whatsapp');
+    } else if (a.classList.contains('necesidad') && a.closest('#que')) {
+      evento('tarjeta-necesidad', { titulo: a.getAttribute('data-titulo') });
+    } else if (a.closest('.cinta-lista')) {
+      evento('cinta', { nombre: a.textContent.trim() });
+    }
+  });
+
   if (reduce) document.documentElement.classList.add('rm');
 })();

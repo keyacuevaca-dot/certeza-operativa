@@ -4,10 +4,10 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
+SITIO = SITIO_URL
 ANIO = 2026
 
 
@@ -16,7 +16,7 @@ def _ver(ruta):
     return hashlib.md5(open(os.path.join(RAIZ, ruta), 'rb').read()).hexdigest()[:8]
 
 
-V_CSS, V_JS = _ver('assets/estilo.css'), _ver('assets/sitio.js')
+V_CSS, V_JS, V_AD = _ver('assets/estilo.css'), _ver('assets/sitio.js'), _ver('assets/autodiagnostico.js')
 
 
 def wa(msg):
@@ -94,6 +94,8 @@ def boton_wa(href=None):
 
 def head(titulo, desc, ruta, base, extra=''):
     url = SITIO + ('' if ruta == 'index.html' else ruta)
+    # Contador Umami Cloud: solo si UMAMI_ID tiene valor (fragmento oficial: cloud.umami.is/script.js con data-website-id)
+    umami = f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{esc(UMAMI_ID)}"></script>\n' if UMAMI_ID else ''
     return f'''<!doctype html>
 <html lang="es-MX">
 <head>
@@ -115,12 +117,12 @@ def head(titulo, desc, ruta, base, extra=''):
 <meta property="og:title" content="{esc(titulo)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITIO}assets/portada-v2.jpg">
+<meta property="og:image" content="{SITIO}assets/compartir.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Certeza Operativa: Evoluciona tu negocio. Consultoría para negocios de Nayarit, con dos personas revisando un esquema de mejora en un monitor.">
+<meta property="og:image:alt" content="Certeza Operativa: Evoluciona tu negocio. Dos personas revisan en un monitor un esquema de mejora de un negocio.">
 <meta name="twitter:card" content="summary_large_image">
-{extra}</head>
+{umami}{extra}</head>
 <body>
 '''
 
@@ -294,6 +296,7 @@ def inicio(base):
     <div class="head"><h2 id="t-que">¿Qué necesita su negocio?</h2></div>
     <ul class="necesidades">{''.join(f'<li>{tarjeta_necesidad(base, n)}</li>' for n in NECESIDADES)}</ul>
     <div class="que-pie">
+      <p class="que-ayuda"><span>{esc(AUTODIAGNOSTICO['entrada_pregunta'])}</span> <a class="btn ghost" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_boton'])}</a></p>
       <p class="mas"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p>
     </div>
   </div>
@@ -326,6 +329,7 @@ def inicio(base):
   <div class="wrap">
     <h2 id="t-empieza">Empiece con una plática de 15 minutos</h2>
     <div class="actions">{boton_wa(href=WA_PLATICA)}</div>
+    <p class="cierre-alt"><a class="link" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_cierre'])}</a></p>
     <p class="nota">Certeza Operativa · WhatsApp 311 446 9363 · Tepic, Nayarit</p>
   </div>
 </section>'''
@@ -482,13 +486,82 @@ def nosotros():
 
 
 def portada_jsonld():
-    data = {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Certeza Operativa",
-            "description": "Consultoría operativa para negocios de 2 a 250 trabajadores en Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet.",
-            "url": SITIO, "image": SITIO + "assets/portada-v2.jpg", "logo": SITIO + "assets/favicon.svg", "telephone": "+523114469363",
-            "areaServed": {"@type": "AdministrativeArea", "name": "Nayarit, México"},
+    # Ficha local para Google: sin calle ni código postal; horario de todos los días de 10:00 a 20:30
+    red = {i: h for h, _, i in SOC}
+    data = {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Certeza Operativa", "url": SITIO,
+            "logo": SITIO + "assets/marca-definitiva.png", "image": SITIO + "assets/compartir.jpg", "telephone": "+52 311 446 9363",
             "address": {"@type": "PostalAddress", "addressLocality": "Tepic", "addressRegion": "Nayarit", "addressCountry": "MX"},
-            "sameAs": [h for h, _, _ in SOC]}
+            "areaServed": {"@type": "State", "name": "Nayarit"},
+            "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "20:30"}],
+            "sameAs": [red['s-fb'], red['s-ig']]}
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>\n'
+
+
+# ---------- Autodiagnóstico ----------
+def autodiagnostico():
+    A = AUTODIAGNOSTICO
+
+    def opcion(nombre, k, texto, clase='ad-op'):
+        i = f'ad-{nombre}-{k}'
+        circ = '<span class="ad-circ" aria-hidden="true"></span>' if clase == 'ad-op' else ''
+        return f'<label class="{clase}" for="{i}"><input type="radio" id="{i}" name="{nombre}" value="{esc(texto)}"><span class="ad-txt">{esc(texto)}</span>{circ}</label>'
+
+    def opciones_de(p):
+        if p['opciones'] == 'CINTA':
+            return [n for n, _ in CINTA] + [p['extra']]
+        if p['opciones'] == 'NECESIDADES':
+            return [n[0] for n in NECESIDADES] + [p['extra']]
+        return p['opciones']
+
+    def cuerpo(base):
+        pasos = ''
+        for k, p in enumerate(A['pasos']):
+            if p['clave'] == 'rapido':
+                dentro = ''.join(f'<fieldset class="ad-q ad-g"><legend>{esc(q)}</legend><div class="ad-tri">'
+                                 + ''.join(opcion(f'r{j}', m, r, 'ad-op3') for m, r in enumerate(p['respuestas'])) + '</div></fieldset>'
+                                 for j, (q, _) in enumerate(p['preguntas']))
+                unica = ''
+            else:
+                dentro = '<div class="ad-ops ad-g">' + ''.join(opcion(p['clave'], m, t) for m, t in enumerate(opciones_de(p))) + '</div>'
+                unica = ' data-unica'
+            pasos += (f'<fieldset class="ad-paso" data-paso="{k + 1}"{unica}{" hidden" if k else ""}>'
+                      f'<legend class="ad-preg" tabindex="-1">{esc(p["pregunta"])}</legend>{dentro}</fieldset>')
+        rap = next(p for p in A['pasos'] if p['clave'] == 'rapido')
+        datos = {'wa': WA_NUM, 'base': base, 'cinta': {n: slug for n, slug in CINTA}, 'rapido': [n for _, n in rap['preguntas']],
+                 'va_bien': A['va_bien_sugeridas'], 'no_se': A['pasos'][2]['extra'], 'mas_250': A['pasos'][0]['opciones'][-1],
+                 'ver_industria': A['ver_industria'], 'mensaje': A['mensaje']}
+        tarjetas = ''.join(tarjeta_necesidad(base, n, ' hidden') for n in NECESIDADES)
+        return f'''
+<section class="oscuro ad" aria-labelledby="t-ad">
+  <div class="wrap ad-wrap">
+    <h1 id="t-ad">{esc(A['titulo'])}</h1>
+    <p class="ad-intro">{esc(A['intro'])}</p>
+    <div class="ad-sin-js"><p>{esc(A['sin_js'])}</p>{boton_wa(href=WA_INFO)}</div>
+    <div class="ad-app">
+      <div class="ad-nav">
+        <button type="button" class="ad-atras" aria-label="Regresar al paso anterior" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <div class="ad-avance" role="progressbar" aria-label="Avance del autodiagnóstico" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" aria-valuetext="Paso 1 de 7">{'<i></i>' * 7}</div>
+        <a class="ad-cerrar" href="{base}index.html" aria-label="Salir del autodiagnóstico y volver al inicio">×</a>
+      </div>
+      <form class="ad-form" id="ad-form" novalidate>
+        {pasos}
+        <div class="ad-pie"><button type="submit" class="btn blanco ad-sig" disabled>{esc(A['siguiente'])}</button></div>
+      </form>
+      <section class="ad-res" aria-labelledby="t-ad-res" hidden>
+        <h2 id="t-ad-res" tabindex="-1">{esc(A['resultado'])}</h2>
+        <p class="ad-aviso" hidden>{esc(A['mas_250'])}</p>
+        <p class="ad-bien" hidden>{esc(A['va_bien'])}</p>
+        <div class="ad-tarjetas">{tarjetas}</div>
+        <p class="ad-ind" hidden><a class="link" href="{base}index.html">.</a></p>
+        <div class="actions"><a class="btn wa" data-ad-wa href="{WA_INFO}">{esc(A['boton_wa'])}</a><button type="button" class="btn ghost ad-otra">{esc(A['reiniciar'])}</button></div>
+      </section>
+    </div>
+  </div>
+</section>
+<script type="application/json" id="ad-datos">{json.dumps(datos, ensure_ascii=False).replace('</', '<\\/')}</script>
+<script src="{base}assets/autodiagnostico.js?v={V_AD}" defer></script>'''
+    return pagina('autodiagnostico.html', 'Autodiagnóstico · Certeza Operativa',
+                  '7 pasos y 2 minutos para saber qué conviene resolver primero en su negocio. No guardamos sus respuestas.', cuerpo)
 
 
 if __name__ == '__main__':
@@ -498,7 +571,7 @@ if __name__ == '__main__':
     rutas.append(catalogo())
     rutas += [industria(i, k) for k, i in enumerate(INDUSTRIAS)]
     rutas += [solucion(s, k) for k, s in enumerate(SOLUCIONES)]
-    rutas += [servicios(), nosotros()]
+    rutas += [servicios(), nosotros(), autodiagnostico()]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITIO}{"" if r == "index.html" else r}</loc></url>\n' for r in rutas if not ((r.startswith('soluciones/') and r[11:-5] not in SOLUCIONES_INDEXADAS) or r == 'servicios.html')) + '</urlset>\n'
     open(os.path.join(RAIZ, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
     print('\n'.join(rutas))
