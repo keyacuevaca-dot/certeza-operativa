@@ -407,16 +407,17 @@ def catalogo():
         return (f'<li class="trabajo" id="{a}"><div class="tr-cab">{cuadro(ICONO_TRABAJO.get(a, "lista"))}<p class="gancho">{esc(t["gancho"])}</p></div>'
                 f'<h3>{esc(t["nombre"])}</h3><p class="promesa">{esc(t["promesa"])}</p>'
                 f'<details class="tr-incluye" open><summary>Qué incluye</summary><ul class="tr-puntos">{puntos}</ul></details>'
-                f'<div class="tr-pie"><p class="para"><b>Para:</b> {esc(t["para"])}</p></div></li>')
+                f'<div class="tr-pie"><p class="para"><span>Para</span>{esc(t["para"])}</p></div></li>')
 
     def cuerpo(base):
         nav = ''.join(f'<li><a href="#f{k}">{esc(f["familia"])} <span>{len(f["trabajos"])}</span></a></li>' for k, f in enumerate(CATALOGO))
-        grupos = ''.join(f'''<section class="cat-grupo" aria-labelledby="f{k}"><div class="head"><h2 id="f{k}">{esc(f["familia"])}</h2><p class="sub">{esc(f["sub"])}</p></div><ul class="cat-rejilla n{len(f["trabajos"])}">{''.join(trabajo(t) for t in f["trabajos"])}</ul></section>''' for k, f in enumerate(CATALOGO))
+        grupos = ''.join(f'''<section class="cat-grupo" aria-labelledby="f{k}"><div class="head"><div class="cat-titulo"><h2 id="f{k}">{esc(f["familia"])}</h2><span class="cat-cuenta">{len(f["trabajos"])} trabajos</span></div><p class="sub">{esc(f["sub"])}</p></div><ul class="cat-rejilla n{len(f["trabajos"])}">{''.join(trabajo(t) for t in f["trabajos"])}</ul></section>''' for k, f in enumerate(CATALOGO))
         return f'''
 <section class="oscuro cat-intro" aria-labelledby="t-cat">
   <div class="wrap">
-    <h1 id="t-cat">Elija lo que necesita su negocio</h1>
-    <p class="lead">Catorce trabajos con precio cerrado. Cada uno empieza por el problema que usted ya conoce y termina cuando su equipo lo usa solo.</p>
+    <p class="cat-pastilla">Catálogo de trabajos</p>
+    <h1 id="t-cat">Elija lo que <span class="acento">necesita</span> su negocio</h1>
+    <p class="lead">Catorce trabajos con <span class="resalte">precio cerrado</span>. Cada uno empieza por el problema que usted ya conoce y termina cuando su equipo lo usa solo.</p>
     <nav class="cat-nav" aria-label="Familias de trabajos"><ul>{nav}</ul></nav>
   </div>
 </section>
