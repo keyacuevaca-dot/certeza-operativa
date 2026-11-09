@@ -232,15 +232,15 @@ FRASE_J = dict(
 # «Cómo trabajamos» de inicio: siete pasos en cadena, en dos tramos. (título del tramo, clase, [(paso, detalle)])
 PASOS = [
     ('Sin costo', 'tramo-gratis', [
-        ('Platicamos', '15 minutos, por WhatsApp o llamada.'),
-        ('Visitamos su negocio', 'Vemos un caso real con sus papeles.'),
-        ('Precio cerrado por escrito', 'No cambia sin su autorización.'),
+        ('Diagnóstico breve', '15 minutos, por WhatsApp o llamada.'),
+        ('Análisis contextual', 'Vemos un caso real, con su perspectiva.'),
+        ('Precio cerrado por escrito', 'Acuerdo de extremo a extremo, y con su autorización.'),
     ]),
     ('El trabajo', 'tramo-trabajo', [
         ('Instalamos', 'Las herramientas, a nombre de su negocio.'),
         ('Adaptamos', 'A la forma en que trabaja su equipo.'),
         ('Capacitamos', 'Hasta que su equipo lo usa solo.'),
-        ('Damos soporte', 'Y medimos un número antes y después.'),
+        ('Damos soporte', 'Seguimiento de cerca hasta que esté listo.'),
     ]),
 ]
 
@@ -282,6 +282,6 @@ AUTODIAGNOSTICO = dict(
              'También me salió: {lista}', 'Para cuándo: {cuando}', 'Presupuesto: {presupuesto}', 'Prefiero que me contacten por: {contacto}'],
     entrada_boton='Haga el autodiagnóstico',
     banda_titulo='Autodiagnóstico de 2 minutos',
-    banda_texto='7 pasos para saber qué conviene resolver primero en su negocio. No guardamos sus respuestas.',
+    banda_texto='7 pasos para saber qué conviene resolver primero en su negocio.',
     entrada_cierre='O haga el autodiagnóstico de 2 minutos',
 )

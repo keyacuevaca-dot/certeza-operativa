@@ -71,18 +71,12 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(arrancar); else arrancar();
   }
 
-  /* --- Cinta «Trabajamos con:»: corre de derecha a izquierda a 32 px por segundo (20 % más lento que antes)
-     y tiene botón de pausa junto a la etiqueta (WCAG 2.2.2) --- */
-  var cinta = $('.cinta'), pausa = $('.cinta-pausa'), lista = $('.cinta-lista');
-  if (cinta && pausa && lista && !reduce) {
+  /* --- Cinta de giros: una sola línea que corre de derecha a izquierda a 32 px por segundo, sin etiqueta ni botón
+     (decisión de Kevin). Se detiene mientras el cursor está encima o un giro tiene el foco del teclado. --- */
+  var cinta = $('.cinta'), lista = $('.cinta-lista');
+  if (cinta && lista && !reduce) {
     var velocidad = function () { cinta.style.setProperty('--cinta-dur', Math.max(30, lista.scrollWidth / 32).toFixed(1) + 's'); };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(velocidad); else velocidad();
-    pausa.addEventListener('click', function () {
-      var on = pausa.getAttribute('aria-pressed') !== 'true';
-      pausa.setAttribute('aria-pressed', String(on));
-      pausa.setAttribute('aria-label', on ? 'Reanudar la cinta' : 'Pausar la cinta');
-      cinta.classList.toggle('pausada', on);
-    });
   }
 
   /* --- Contador (Umami Cloud): eventos sin datos de la persona; si Umami no cargó, no pasa nada --- */

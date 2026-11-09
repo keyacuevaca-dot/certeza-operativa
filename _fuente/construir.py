@@ -241,15 +241,13 @@ def ancla(texto):
 
 # ---------- Inicio ----------
 def cinta(base):
-    # Cinta «Trabajamos con:» entre la portada y la frase «Más control, menos sorpresas.». Dos copias para que la vuelta no salte;
-    # la segunda no se lee ni se enfoca. Sin JS o con movimiento reducido queda fija en 2 o 3 renglones.
+    # Cinta de giros entre la portada y la frase «Más control, menos sorpresas.»: una sola línea que corre. Dos copias para que la vuelta no salte;
+    # la segunda no se lee ni se enfoca. Sin JS o con movimiento reducido queda fija en una línea que se desliza con el dedo.
     def lista(copia):
         extra = ' tabindex="-1"' if copia else ''
         return ''.join(f'<li><a href="{base}industrias/{slug}.html"{extra}>{esc(n)}</a></li>' for n, slug in CINTA)
     return f'''<section class="cinta" aria-label="Giros con los que trabajamos">
   <div class="wrap cinta-in">
-    <p class="cinta-et">Trabajamos con:</p>
-    <button class="cinta-pausa" type="button" aria-pressed="false" aria-label="Pausar la cinta"><svg class="cp-pausa" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="3" height="9" rx=".6"/><rect x="7" y="1.5" width="3" height="9" rx=".6"/></svg><svg class="cp-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.6v8.8a.5.5 0 0 0 .76.43l7.2-4.4a.5.5 0 0 0 0-.86l-7.2-4.4A.5.5 0 0 0 3 1.6z"/></svg></button>
     <div class="cinta-vista">
       <div class="cinta-pista">
         <ul class="cinta-lista">{lista(False)}</ul>
@@ -270,7 +268,7 @@ def frase_j():
                     for t, x, i in F['resultados'])
     return f'''<section class="claro frase-j" aria-labelledby="t-frase">
   <div class="wrap">
-    <h2 class="fj-frase" id="t-frase"><span class="sr">{esc(fija)}</span><span class="fj-l1" aria-hidden="true">{esc(F["antes"])} <span class="fj-gira" data-gira="{esc("|".join(F["gira"]))}"><span>{esc(F["gira"][0])}</span></span>,</span><span class="fj-l2" aria-hidden="true">{esc(F["despues"])}</span></h2>
+    <h2 class="fj-frase" id="t-frase"><span class="sr">{esc(fija)}</span><span class="fj-l1" aria-hidden="true">{esc(F["antes"])} <span class="fj-gira" data-gira="{esc("|".join(F["gira"]))}"><span>{esc(F["gira"][0])}</span></span></span><span class="fj-l2" aria-hidden="true">{esc(F["despues"])}</span></h2>
     <ul class="fj-items">{items}</ul>
   </div>
 </section>'''
