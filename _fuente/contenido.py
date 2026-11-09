@@ -81,6 +81,41 @@ INDUSTRIAS = [
          voces=['¿Se me cruzan las citas?', '¿Qué servicio toca y qué falta cobrar?', '¿Quién da seguimiento a cada cliente?', '¿Cuántos clientes regresan?'],
          piezas=['Agenda de cobranza', 'Quién hace qué', 'Tablero semanal', 'Lista de precios o catálogo', 'Registro diario desde el celular', 'Expediente para el contador'],
          herramientas=['Google Calendar', 'WhatsApp Business', 'Hojas de Google', 'Google Forms', 'Notion', 'Zoom']),
+    dict(slug='reparacion-y-mantenimiento', corto='Equipos, cómputo, lavanderías y mantenimiento.', nombre='Reparación y mantenimiento',
+         tipos='Reparación de electrodomésticos, cómputo y celulares, refrigeración y aire acondicionado, lavanderías y tintorerías, cerrajerías y mantenimiento de inmuebles.',
+         lead='Trabajos que entran a revisión, refacciones que hay que pedir y clientes que preguntan «¿ya quedó?». Le ayudamos a que cada trabajo tenga su orden, su presupuesto autorizado y su fecha de entrega, y a que nada se quede sin cobrar.',
+         voces=['¿Qué trabajos tengo pendientes y desde cuándo?', '¿El cliente ya autorizó el presupuesto?', '¿Qué refacciones hay que pedir?', '¿Qué se entrega hoy y qué falta cobrar?'],
+         piezas=['Control de pedidos y cobros', 'Cotizador', 'Inventario y reorden', 'Procedimiento escrito', 'Agenda de cobranza', 'Registro diario desde el celular'],
+         herramientas=['Hojas de Google', 'Excel', 'WhatsApp Business', 'Google Calendar', 'Google Forms', 'Mercado Pago'],
+         ver_tambien=('automotriz', '¿Tiene un taller de autos? Vea la página Automotriz.')),
+    dict(slug='campo-y-pesca', corto='Huertas, ranchos, granjas y cooperativas pesqueras.', nombre='Campo y pesca',
+         tipos='Productores de frutas y hortalizas, ranchos ganaderos, granjas avícolas y acuícolas, apicultores y cooperativas pesqueras.',
+         lead='Cosechas y capturas que dependen de la temporada, jornales que se pagan cada semana e insumos que se compran por adelantado. Le ayudamos a registrar lo que produce, lo que gasta y lo que le pagan, para que sepa cuánto le dejó cada temporada.',
+         voces=['¿Cuánto me costó producir este ciclo?', '¿Cuánto se pagó de jornales esta semana?', '¿Qué me falta cobrar de lo que entregué?', '¿Me alcanza el dinero hasta la siguiente temporada?'],
+         piezas=['Registro diario desde el celular', 'Flujo a 30, 60 y 90 días', 'Control de pedidos y cobros', 'Inventario y reorden', 'Quién hace qué', 'Expediente para el contador'],
+         herramientas=['Hojas de Google', 'Excel', 'WhatsApp Business', 'Google Forms', 'Google Drive', 'Mercado Pago']),
+    dict(slug='limpieza-y-seguridad', corto='Limpieza, jardinería, fumigación y vigilancia.', nombre='Limpieza y seguridad',
+         tipos='Empresas de limpieza, jardinería, control de plagas, recolección de residuos y vigilancia de instalaciones.',
+         lead='Cuadrillas en varios lugares a la vez, turnos que hay que cubrir y clientes que pagan cada mes. Le ayudamos a ver quién está en cada servicio, qué material se usó y qué cliente falta por cobrar.',
+         voces=['¿Quién cubre cada turno y cada servicio?', '¿Cuánto material se gasta con cada cliente?', '¿Qué cliente no ha pagado este mes?', '¿Cómo compruebo que el servicio se hizo?'],
+         piezas=['Quién hace qué', 'Registro diario desde el celular', 'Agenda de cobranza', 'Inventario y reorden', 'Procedimiento escrito', 'Tablero semanal'],
+         herramientas=['Hojas de Google', 'WhatsApp Business', 'Google Forms', 'Google Calendar', 'Google Maps', 'Excel']),
+]
+
+# Cinta «Trabajamos con:» de la página de inicio (nombre corto, slug de la página de industria)
+CINTA = [
+    ('Comercio', 'comercio-y-tiendas'),
+    ('Alimentos y bebidas', 'alimentos-y-bebidas'),
+    ('Reparación y mantenimiento', 'reparacion-y-mantenimiento'),
+    ('Servicios personales', 'servicios-profesionales'),
+    ('Servicios profesionales', 'servicios-profesionales'),
+    ('Hospedaje y eventos', 'turismo-y-hospitalidad'),
+    ('Construcción', 'construccion-e-ingenieria'),
+    ('Manufactura', 'fabricacion-y-produccion'),
+    ('Distribución y logística', 'distribucion-y-logistica'),
+    ('Educación y membresías', 'servicios-profesionales'),
+    ('Campo y pesca', 'campo-y-pesca'),
+    ('Limpieza y seguridad', 'limpieza-y-seguridad'),
 ]
 
 # ---------------- Soluciones ----------------
