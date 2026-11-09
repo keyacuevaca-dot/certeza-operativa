@@ -238,6 +238,20 @@ ICONOS_CAT = {
     'bolsa': '<path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
     'reloj': ICONOS_FJ['reloj'],
     'prohibido': '<circle cx="12" cy="12" r="8.6"/><path d="M5.9 5.9l12.2 12.2"/>',
+    'check': '<circle cx="12" cy="12" r="8.6"/><path d="M8.3 12.3l2.6 2.6 4.9-5.2"/>',
+    'crece': ICONOS_FJ['crece'],
+    'calculadora': '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8v3H8z"/><path d="M8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01"/>',
+    'celular': '<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/><path d="M9.6 9.6l1.7 1.7 3.1-3.2"/>',
+    'calendario': '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 16.5h.01M12 16.5h.01"/>',
+    'tablero': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/><path d="M12 16.5l2.2-2.6 2 1.6 2.3-3"/>',
+}
+# Ícono de cada pieza (industrias, «Cómo le ayudamos»)
+ICONO_PIEZA = {
+    'Lista de precios o catálogo': 'etiqueta', 'Cotizador': 'calculadora', 'Procedimiento escrito': 'lista',
+    'Quién hace qué': 'red', 'Expediente para el contador': 'carpeta', 'Control de pedidos y cobros': 'bolsa',
+    'Registro diario desde el celular': 'celular', 'Flujo a 30, 60 y 90 días': 'crece', 'Tablero semanal': 'tablero',
+    'Inventario y reorden': 'caja', 'Agenda de cobranza': 'calendario', 'Lo cobrado contra lo depositado': 'check',
+    'Arqueo y cierre de caja': 'monedas',
 }
 # Ícono de cada trabajo del catálogo, por su ancla
 ICONO_TRABAJO = {
@@ -451,7 +465,7 @@ def ph(base, migas, h1, lead, tipos='', variante=0):
     m = ''.join(f'<li><a href="{base}{h}">{esc(n)}</a></li>' if h else f'<li aria-current="page">{esc(n)}</li>' for h, n in migas)
     giros = [(-46, 230, 410), (40, 250, 400), (-30, 240, 420), (52, 220, 400)]
     g, x0, y0 = giros[variante % 4]
-    return f'''<section class="ph" aria-labelledby="t-ph">
+    return f'''<section class="oscuro ph" aria-labelledby="t-ph">
   <div class="wrap">
     <div>
       <nav aria-label="Ruta"><ol class="migas">{m}</ol></nav>
@@ -470,7 +484,7 @@ def cta(base, titulo='Empiece con una plática de 15 minutos, sin costo.', href=
 
 def industria(i, k):
     def cuerpo(base):
-        ay = ''.join(f'<article class="ay"><small>{PILAR_NOMBRE[PIEZA[n][0]]}</small><h3>{esc(n)}</h3><p>{esc(PIEZA[n][2])}</p></article>' for n in i['piezas'])
+        ay = ''.join(f'<article class="ay pieza"><div class="pz-cab">{cuadro(ICONO_PIEZA.get(n, "lista"))}<span class="pilar">{PILAR_NOMBRE[PIEZA[n][0]]}</span></div><h3>{esc(n)}</h3><p>{esc(PIEZA[n][2])}</p></article>' for n in i['piezas'])
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
         vt = i.get('ver_tambien')
         ver = f'<div class="ver-tambien"><div class="wrap"><a class="link" href="{vt[0]}.html">{esc(vt[1])}</a></div></div>' if vt else ''
@@ -492,6 +506,7 @@ def industria(i, k):
   <h2 id="t-otras" style="font-size:30px">Otras industrias</h2>
   <div class="otros">{otros}</div>
 </div></section>
+{banda_autodiagnostico(base)}
 {cta(base, href=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero platicar con Certeza Operativa.'))}'''
     return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{i["lead"]} Para micro y pequeños negocios de Nayarit.', cuerpo)
 
@@ -518,6 +533,7 @@ def solucion(s, k):
   <h2 id="t-otras" style="font-size:30px">Otras soluciones</h2>
   <div class="otros">{otros}</div>
 </div></section>
+{banda_autodiagnostico(base)}
 {cta(base)}'''
     return pagina(f'soluciones/{s["slug"]}.html', f'{s["nombre"]} · Certeza Operativa', f'{s["lead"]}', cuerpo, extra_head='' if s['slug'] in SOLUCIONES_INDEXADAS else NOINDEX)
 
@@ -557,8 +573,9 @@ def nosotros():
 </div></section>
 <section class="bloque blanco" id="quien"><div class="wrap dos">
   <div class="head"><h2>Quién le atiende.</h2><p class="sub">Sede en Tepic, Nayarit. Atendemos por WhatsApp y, cuando hace falta, en su negocio.</p></div>
-  <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3 style="font-size:28px">Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeños negocios de Tepic y Nayarit.</p></div></div>
+  <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3>Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeños negocios de Tepic y Nayarit.</p></div></div>
 </div></section>
+{banda_autodiagnostico(base)}
 {cta(base)}'''
     return pagina('nosotros.html', 'Nosotros · Certeza Operativa', 'Cómo trabajamos en seis pasos, de la primera visita sin costo a medir la mejora. Compromisos por escrito. Sede en Tepic, Nayarit.', cuerpo)
 
