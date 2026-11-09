@@ -4,7 +4,7 @@
 import hashlib, json, math, os
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
@@ -197,6 +197,26 @@ def horas_txt(h):
 
 
 # ---------- Inicio ----------
+def cinta(base):
+    # Cinta «Trabajamos con:» entre la portada y «¿Le pasa esto?». Dos copias para que la vuelta no salte;
+    # la segunda no se lee ni se enfoca. Sin JS o con movimiento reducido queda fija en 2 o 3 renglones.
+    def lista(copia):
+        extra = ' tabindex="-1"' if copia else ''
+        return ''.join(f'<li><a href="{base}industrias/{slug}.html"{extra}>{esc(n)}</a></li>' for n, slug in CINTA)
+    return f'''<section class="cinta" aria-label="Giros con los que trabajamos">
+  <div class="wrap cinta-in">
+    <p class="cinta-et">Trabajamos con:</p>
+    <button class="cinta-pausa" type="button" aria-pressed="false" aria-label="Pausar la cinta"><svg class="cp-pausa" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="3" height="9" rx=".6"/><rect x="7" y="1.5" width="3" height="9" rx=".6"/></svg><svg class="cp-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.6v8.8a.5.5 0 0 0 .76.43l7.2-4.4a.5.5 0 0 0 0-.86l-7.2-4.4A.5.5 0 0 0 3 1.6z"/></svg></button>
+    <div class="cinta-vista">
+      <div class="cinta-pista">
+        <ul class="cinta-lista">{lista(False)}</ul>
+        <ul class="cinta-lista cinta-copia" aria-hidden="true">{lista(True)}</ul>
+      </div>
+    </div>
+  </div>
+</section>'''
+
+
 # Cada banda responde una sola pregunta del dueño: ¿es para mí?, ¿qué obtengo?, ¿cuánto arriesgo?, ¿por qué les creo?, ¿cómo empiezo?
 def inicio(base):
     preguntas = ['¿Le deben y no sabe cuánto?', '¿Su caja no cuadra al cierre?', '¿Se le acaba lo que más vende?',
@@ -229,6 +249,8 @@ def inicio(base):
     </div>
   </div>
 </section>
+
+{cinta(base)}
 
 <section class="claro" aria-labelledby="t-pasa">
   <div class="wrap">
@@ -337,7 +359,9 @@ def industria(i, k):
     def cuerpo(base):
         ay = ''.join(f'<article class="ay"><small>{PILAR_NOMBRE[PIEZA[n][0]]}</small><h3>{esc(n)}</h3><p>{esc(PIEZA[n][2])}</p></article>' for n in i['piezas'])
         otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k) + f'''
+        vt = i.get('ver_tambien')
+        ver = f'<div class="ver-tambien"><div class="wrap"><a class="link" href="{vt[0]}.html">{esc(vt[1])}</a></div></div>' if vt else ''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k) + ver + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
   <div class="head"><h2 id="t-voces">¿Le suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
