@@ -4,7 +4,7 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, HORAS_ESCALA, CINTA, NECESIDADES, FRASE_J, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = SITIO_URL
@@ -210,6 +210,9 @@ ICONOS = {
     'navegador': '<rect x="4" y="8" width="40" height="32" rx="3"/><path d="M4 15h40"/><circle cx="9" cy="11.5" r="1"/><circle cx="13" cy="11.5" r="1"/><path d="M24 36s-7-6.2-7-11.5a7 7 0 0 1 14 0C31 29.8 24 36 24 36z"/><circle cx="24" cy="24.5" r="2.4"/>',
     'megafono': '<path d="M5 20v8a2 2 0 0 0 2 2h4l10 7V11l-10 7H7a2 2 0 0 0-2 2z"/><path d="M11 30l2 8h4l-1.5-7"/><circle cx="36" cy="24" r="8"/><circle cx="36" cy="24" r="3.5"/>',
     'chip': '<rect x="14" y="14" width="20" height="20" rx="2"/><rect x="19" y="19" width="10" height="10" rx="1"/><path d="M19 8v6M24 8v6M29 8v6M19 34v6M24 34v6M29 34v6M8 19h6M8 24h6M8 29h6M34 19h6M34 24h6M34 29h6"/>',
+    'reloj': '<circle cx="24" cy="25" r="17"/><path d="M24 14v11l7 5M19 5h10"/>',
+    'check': '<circle cx="24" cy="24" r="18"/><path d="M16 24.5l5.5 5.5L33 18"/>',
+    'brujula': '<circle cx="24" cy="24" r="18"/><path d="M31 17l-4 10-10 4 4-10z"/>',
 }
 FLECHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
@@ -229,7 +232,7 @@ def ancla(texto):
 
 # ---------- Inicio ----------
 def cinta(base):
-    # Cinta «Trabajamos con:» entre la portada y «¿Le pasa esto?». Dos copias para que la vuelta no salte;
+    # Cinta «Trabajamos con:» entre la portada y la frase «Más control, menos sorpresas.». Dos copias para que la vuelta no salte;
     # la segunda no se lee ni se enfoca. Sin JS o con movimiento reducido queda fija en 2 o 3 renglones.
     def lista(copia):
         extra = ' tabindex="-1"' if copia else ''
@@ -249,9 +252,22 @@ def cinta(base):
 
 
 # Cada banda responde una sola pregunta del dueño: ¿es para mí?, ¿qué obtengo?, ¿cuánto arriesgo?, ¿por qué les creo?, ¿cómo empiezo?
+def frase_j():
+    # «Más control, menos sorpresas.»: la palabra se desvanece y cambia sola (sitio.js) a «orden» y «visibilidad», cada 3 s.
+    # Sin JS se queda en «control». El lector de pantalla oye la frase fija.
+    F = FRASE_J
+    fija = f'{F["antes"]} {F["gira"][0]}, {F["despues"]}'
+    items = ''.join(f'<li><svg class="fj-ico" viewBox="0 0 48 48" aria-hidden="true">{ICONOS[i]}</svg><h3>{esc(t)}</h3><p>{esc(x)}</p></li>'
+                    for t, x, i in F['resultados'])
+    return f'''<section class="claro frase-j" aria-labelledby="t-frase">
+  <div class="wrap">
+    <h2 class="fj-frase" id="t-frase"><span class="sr">{esc(fija)}</span><span class="fj-l1" aria-hidden="true">{esc(F["antes"])} <span class="fj-gira" data-gira="{esc("|".join(F["gira"]))}"><span>{esc(F["gira"][0])}</span></span>,</span><span class="fj-l2" aria-hidden="true">{esc(F["despues"])}</span></h2>
+    <ul class="fj-items">{items}</ul>
+  </div>
+</section>'''
+
+
 def inicio(base):
-    preguntas = ['¿Le deben y no sabe cuánto?', '¿Su caja no cuadra al cierre?', '¿Se le acaba lo que más vende?',
-                 '¿Todo pasa por usted?', '¿Le preguntan precios todo el día?', '¿Aparece su negocio en Google Maps?']
     _familias_sin_uso = ''.join(f'''<li class="tarjeta familia"><h3>{esc(f["familia"])}</h3><p class="tl">{esc(f["sub"])}</p><ul>{''.join(f'<li><b>{esc(t["nombre"])}</b><span>{esc(t["promesa"])}</span></li>' for t in f["trabajos"])}</ul></li>''' for f in CATALOGO)
     pasos = [('Platicamos 15 minutos.', 'Por WhatsApp o llamada. Sin costo.'),
              ('Visitamos su negocio.', 'Vemos un caso real con sus papeles. Sin costo.'),
@@ -283,13 +299,7 @@ def inicio(base):
 
 {cinta(base)}
 
-<section class="claro" aria-labelledby="t-pasa">
-  <div class="wrap">
-    <div class="head"><h2 id="t-pasa">¿Le pasa esto?</h2></div>
-    <ul class="rejilla">{''.join(f'<li class="tarjeta pregunta">{esc(p)}</li>' for p in preguntas)}</ul>
-    <p class="remate">Si dijo sí a alguna, tenemos un trabajo con precio cerrado para eso.</p>
-  </div>
-</section>
+{frase_j()}
 
 <section class="oscuro" id="que" aria-labelledby="t-que">
   <div class="wrap">

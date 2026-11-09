@@ -25,7 +25,7 @@
 
   /* --- Aparición al bajar: encabezados de sección y tarjetas (una tras otra), una sola vez.
      Lo que ya se ve al cargar no se esconde; sin JS o con movimiento reducido no se marca nada. --- */
-  var rejillas = '.necesidades, .rejilla, .pasos, .ayuda, .voces, .lista2, .cat-col > ul, .cat-pie, .chips, .otros, .faq, .webs';
+  var rejillas = '.necesidades, .fj-items, .rejilla, .pasos, .ayuda, .voces, .lista2, .cat-col > ul, .cat-pie, .chips, .otros, .faq, .webs';
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (vistos) {
       vistos.forEach(function (v) {
@@ -37,7 +37,7 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     var alto = innerHeight;
-    $$('main section:not(.hero) .head, main .remate, main .mas, main .mide, main .persona, main .svc, main .cta-band h2, main .cierre h2, main .cierre .actions, ' +
+    $$('main section:not(.hero) .head, main .fj-frase, main .mas, main .mide, main .persona, main .svc, main .cta-band h2, main .cierre h2, main .cierre .actions, ' +
        rejillas.split(', ').map(function (r) { return 'main ' + r + ' > *'; }).join(', ')).forEach(function (el) {
       if (el.getBoundingClientRect().top < alto) return;
       var p = el.parentNode;
@@ -45,6 +45,24 @@
       el.classList.add('rv');
       io.observe(el);
     });
+  }
+
+  /* --- Frase «Más control, menos sorpresas.»: cada 3 s la palabra se desvanece y cambia a «orden» y «visibilidad»,
+     sin detenerse (decisión de Kevin). Es un cambio de opacidad, sin desplazamiento. Sin JS se queda en «control». --- */
+  var gira = $('.fj-gira');
+  var palabras = gira ? (gira.getAttribute('data-gira') || '').split('|').filter(Boolean) : [];
+  if (gira && palabras.length > 1) {
+    gira.innerHTML = palabras.map(function (p, k) { return '<span' + (k ? ' class="fuera"' : '') + '>' + p.replace(/[&<>"]/g, '') + '</span>'; }).join('');
+    var piezas = $$('span', gira), anchos = [], actual = 0;
+    var medir = function () { anchos = piezas.map(function (s) { return Math.ceil(s.getBoundingClientRect().width); }); gira.style.width = anchos[actual] + 'px'; };
+    var cambiar = function () {
+      if (document.hidden) return;
+      var sig = (actual + 1) % piezas.length;
+      piezas[actual].classList.add('fuera');
+      setTimeout(function () { gira.style.width = anchos[sig] + 'px'; piezas[sig].classList.remove('fuera'); actual = sig; }, 300);
+    };
+    var arrancar = function () { medir(); setInterval(cambiar, 3000); addEventListener('resize', medir); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(arrancar); else arrancar();
   }
 
   /* --- Cinta «Trabajamos con:»: ~40 px por segundo y botón de pausa (WCAG 2.2.2) --- */

@@ -144,8 +144,6 @@ html.menu-abierto .menu-velo { opacity: 1; visibility: visible; transition: opac
 .rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
 .tarjeta { background: var(--tarjeta-clara); border: 1px solid var(--borde-claro); border-radius: 6px; padding: 24px; }
 .oscuro .tarjeta { background: var(--petroleo-2); border-color: var(--linea-oscura); }
-.pregunta { display: flex; align-items: center; min-height: 112px; font-family: var(--serif); font-weight: 700; font-size: 27px; line-height: 1.15; color: var(--tinta); }
-.remate { margin-top: 32px; font-size: 19px; font-weight: 600; color: var(--tinta); }
 
 .familia h3 { margin-bottom: 6px; }
 .familia .tl { font-size: 15px; color: var(--nota-oscura); margin-bottom: 16px; }
@@ -295,7 +293,6 @@ footer .m-nombre text { font-family: var(--sans); font-size: 30px; fill: var(--t
   .lead, .sub { font-size: 17px; }
   .rejilla, .cat-cols, .cat-pie, .voces, .lista2 { grid-template-columns: minmax(0, 1fr); }
   .lista2.num { grid-auto-flow: row; grid-template-rows: none; }
-  .pregunta { min-height: 0; font-size: 21px; padding: 18px 20px; }
   .cat-col > h2 { font-size: 28px; }
   .btn { width: 100%; }
   .cta-band .actions { width: 100%; }
@@ -406,6 +403,27 @@ a { transition: color .15s, text-decoration-color .15s; }
 @media (max-width: 1080px) { .necesidades { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .necesidades { grid-template-columns: minmax(0, 1fr); gap: 14px; } .oscuro .necesidad { padding: 22px; } }
 @media (prefers-reduced-motion: reduce) { .necesidad:hover .nec-flecha, .necesidad:focus-visible .nec-flecha { transform: none; } .oscuro .necesidad, .nec-flecha { transition: none; } }
+/* Frase «Más control, menos sorpresas.» (alternativa J: banda clara, centrada, Outfit negrita monumental, con íconos).
+   La palabra que cambia va en acero y se desvanece; su caja cambia de ancho con suavidad para que la línea centrada no salte. */
+.frase-j { text-align: center; }
+.fj-frase { margin: 0 auto 56px; max-width: 980px; font-family: var(--sans); font-weight: 700; font-size: min(76px, 10.2vw); line-height: 1.08; letter-spacing: -.028em; color: var(--tinta); }
+.fj-l1, .fj-l2 { display: block; }
+.fj-gira { display: inline-grid; justify-items: center; color: var(--turquesa-hondo); transition: width .35s ease; }
+.fj-gira > span { grid-area: 1 / 1; white-space: nowrap; transition: opacity .3s ease; }
+.fj-gira > span.fuera { opacity: 0; }
+.fj-items { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
+.fj-items li { display: grid; justify-items: center; align-content: start; gap: 6px; }
+.fj-items li::before { content: ""; width: 32px; height: 2px; margin-bottom: 10px; background: var(--tinta); }
+.fj-ico { width: 34px; height: 34px; margin-bottom: 4px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; color: var(--turquesa-hondo); }
+.fj-items h3 { margin: 0; font-family: var(--sans); font-weight: 700; font-size: 20px; line-height: 1.2; }
+.fj-items p { margin: 0; max-width: 30ch; font-size: 16px; line-height: 1.5; color: var(--tinta-2); }
+@media (max-width: 760px) {
+  .fj-frase { margin-bottom: 36px; }
+  .fj-items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 16px; }
+  .fj-items h3 { font-size: 18px; }
+  .fj-items p { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .fj-gira { transition: none; } }
 /* «No incluye:» al final de «Lo que entregamos.» en algunas soluciones */
 .no-incluye { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--borde-claro); font-size: 15.5px; line-height: 1.55; color: var(--tinta-2); }
 .no-incluye b { color: var(--tinta); }
