@@ -4,6 +4,7 @@
 import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
+from escenas import escena, acento as acento_titulo, icono_chip
 from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -461,19 +462,25 @@ def catalogo():
 
 
 # ---------- Páginas internas ----------
-def ph(base, migas, h1, lead, tipos='', variante=0):
+def ph(base, migas, h1, lead, tipos='', variante=0, tema=None):
+    # Encabezado de página interna. Con `tema`, lleva su escena propia (escenas.py) y una palabra del título en turquesa.
     m = ''.join(f'<li><a href="{base}{h}">{esc(n)}</a></li>' if h else f'<li aria-current="page">{esc(n)}</li>' for h, n in migas)
-    giros = [(-46, 230, 410), (40, 250, 400), (-30, 240, 420), (52, 220, 400)]
-    g, x0, y0 = giros[variante % 4]
-    return f'''<section class="oscuro ph" aria-labelledby="t-ph">
+    arte = escena(tema) if tema else None
+    if not arte:
+        giros = [(-46, 230, 410), (40, 250, 400), (-30, 240, 420), (52, 220, 400)]
+        g, x0, y0 = giros[variante % 4]
+        arte = f'<svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(giro=g, x0=x0, y0=y0)}</svg>'
+    partes = acento_titulo(tema, h1) if tema else None
+    titulo = f'{esc(partes[0])}<span class="acento">{esc(partes[1])}</span>{esc(partes[2])}' if partes else esc(h1)
+    return f'''<section class="oscuro ph{f' ph-{tema}' if tema else ''}" aria-labelledby="t-ph">
   <div class="wrap">
     <div>
       <nav aria-label="Ruta"><ol class="migas">{m}</ol></nav>
-      <h1 id="t-ph">{esc(h1)}</h1>
+      <h1 id="t-ph">{titulo}</h1>
       {f'<p class="tipos">{esc(tipos)}</p>' if tipos else ''}
       <p class="lead">{esc(lead)}</p>
     </div>
-    <svg class="lineart" viewBox="0 0 640 600" aria-hidden="true">{lineart(giro=g, x0=x0, y0=y0)}</svg>
+    {arte}
   </div>
 </section>'''
 
@@ -485,10 +492,10 @@ def cta(base, titulo='Empiece con una plática de 15 minutos, sin costo.', href=
 def industria(i, k):
     def cuerpo(base):
         ay = ''.join(f'<article class="ay pieza"><div class="pz-cab">{cuadro(ICONO_PIEZA.get(n, "lista"))}<span class="pilar">{PILAR_NOMBRE[PIEZA[n][0]]}</span></div><h3>{esc(n)}</h3><p>{esc(PIEZA[n][2])}</p></article>' for n in i['piezas'])
-        otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
+        otros = ''.join(f'<a href="{o["slug"]}.html">{icono_chip(o["slug"])}{esc(o["nombre"])}</a>' for o in INDUSTRIAS if o is not i)
         vt = i.get('ver_tambien')
         ver = f'<div class="ver-tambien"><div class="wrap"><a class="link" href="{vt[0]}.html">{esc(vt[1])}</a></div></div>' if vt else ''
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k) + ver + f'''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k, tema=i['slug']) + ver + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
   <div class="head"><h2 id="t-voces">¿Le suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
@@ -513,10 +520,10 @@ def industria(i, k):
 
 def solucion(s, k):
     def cuerpo(base):
-        otros = ''.join(f'<a href="{o["slug"]}.html">{esc(o["nombre"])}</a>' for o in SOLUCIONES if o is not s)
+        otros = ''.join(f'<a href="{o["slug"]}.html">{icono_chip(o["slug"])}{esc(o["nombre"])}</a>' for o in SOLUCIONES if o is not s)
         ent = ''.join(f'<li>{esc(a)}<span>{esc(b)}</span></li>' for a, b in s['entregables'])
         no_inc = f'<p class="no-incluye"><b>No incluye:</b> {esc(s["no_incluye"])}</p>' if s.get('no_incluye') else ''
-        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1) + f'''
+        return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1, tema=s['slug']) + f'''
 <section class="bloque blanco" aria-labelledby="t-suena"><div class="wrap">
   <div class="head"><h2 id="t-suena">¿Le suena?</h2></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in s['voces'])}</ul>
@@ -562,7 +569,7 @@ def servicios():
 
 def nosotros():
     def cuerpo(base):
-        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3) + f'''
+        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros') + f'''
 <section class="bloque blanco" id="como"><div class="wrap">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de su negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
   {cadena_pasos()}
