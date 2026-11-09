@@ -61,7 +61,13 @@
       piezas[actual].classList.add('fuera');
       setTimeout(function () { gira.style.width = anchos[sig] + 'px'; piezas[sig].classList.remove('fuera'); actual = sig; }, 300);
     };
-    var arrancar = function () { medir(); setInterval(cambiar, 3000); addEventListener('resize', medir); };
+    var arrancar = function () {
+      medir();
+      /* Si la letra termina de cargar después (o cambia el tamaño), cada palabra cambia de ancho y se vuelve a medir */
+      if ('ResizeObserver' in window) { var ro = new ResizeObserver(medir); piezas.forEach(function (s) { ro.observe(s); }); }
+      else addEventListener('resize', medir);
+      setInterval(cambiar, 3000);
+    };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(arrancar); else arrancar();
   }
 

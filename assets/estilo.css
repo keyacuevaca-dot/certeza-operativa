@@ -408,7 +408,9 @@ a { transition: color .15s, text-decoration-color .15s; }
 .frase-j { text-align: center; }
 .fj-frase { margin: 0 auto 56px; max-width: 980px; font-family: var(--sans); font-weight: 700; font-size: min(76px, 10.2vw); line-height: 1.08; letter-spacing: -.028em; color: var(--tinta); }
 .fj-l1, .fj-l2 { display: block; }
-.fj-gira { display: inline-grid; justify-items: center; color: var(--turquesa-hondo); transition: width .35s ease; }
+.fj-l1 { white-space: nowrap; }
+/* Una sola columna del ancho de la caja: la palabra visible queda centrada en su caja y la coma va justo después */
+.fj-gira { display: inline-grid; grid-template-columns: minmax(0, 1fr); justify-items: center; color: var(--turquesa-hondo); transition: width .35s ease; }
 .fj-gira > span { grid-area: 1 / 1; white-space: nowrap; transition: opacity .3s ease; }
 .fj-gira > span.fuera { opacity: 0; }
 .fj-items { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
