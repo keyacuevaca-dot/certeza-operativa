@@ -539,16 +539,16 @@ def industria(i, k):
         return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Industrias'), (None, i['nombre'])], i['nombre'], i['lead'], i['tipos'], k, tema=i['slug'],
                   cta=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero una cotización sin costo.')) + ver + f'''
 <section class="bloque blanco" aria-labelledby="t-voces"><div class="wrap">
-  <div class="head"><h2 id="t-voces">¿Le suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
+  <div class="head"><h2 id="t-voces">¿Te suena alguna de estas preguntas?</h2><p class="sub">Si sí, empezamos por ahí.</p></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in i['voces'])}</ul>
 </div></section>
 <section class="bloque" aria-labelledby="t-ayuda"><div class="wrap">
-  <div class="head"><h2 id="t-ayuda">Cómo le ayudamos.</h2><p class="sub">Piezas concretas que se juntan en un trabajo con precio cerrado y un número que medimos antes y después. Usted elige cuáles y en qué orden.</p></div>
+  <div class="head"><h2 id="t-ayuda">Cómo te ayudamos.</h2><p class="sub">Piezas concretas que se juntan en un trabajo con precio cerrado y un número que medimos antes y después. Tú eliges cuáles y en qué orden.</p></div>
   <div class="ayuda">{ay}</div>
-  <p class="mas"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p>
+  <p class="mas"><a class="link" href="{base}catalogo.html">Ver el catálogo completo</a></p>
 </div></section>
 <section class="bloque blanco" aria-labelledby="t-herr"><div class="wrap dos">
-  <div class="head"><h2 id="t-herr">Herramientas que suelen usar estos negocios.</h2><p class="sub">Partimos de lo que ya tiene. Si algo no lo usa, no lo instalamos.</p></div>
+  <div class="head"><h2 id="t-herr">Herramientas que suelen usar estos negocios.</h2><p class="sub">Partimos de lo que ya tienes. Si algo no lo usas, no lo instalamos.</p></div>
   <ul class="chips">{''.join(f'<li>{esc(h)}</li>' for h in i['herramientas'])}</ul>
 </div></section>
 <section class="bloque" aria-labelledby="t-otras"><div class="wrap">
@@ -568,15 +568,15 @@ def solucion(s, k):
         return ph(base, [('index.html', 'Inicio'), ('index.html#que', 'Soluciones'), (None, s['nombre'])], s['nombre'], s['lead'], s['tl'], k + 1, tema=s['slug'],
                   cta=wa(f'Hola, vi la solución «{s["nombre"]}» y quiero una cotización sin costo para mi negocio.')) + f'''
 <section class="bloque blanco" aria-labelledby="t-suena"><div class="wrap">
-  <div class="head"><h2 id="t-suena">¿Le suena?</h2></div>
+  <div class="head"><h2 id="t-suena">¿Te suena?</h2></div>
   <ul class="voces">{''.join(f'<li>{esc(v)}</li>' for v in s['voces'])}</ul>
 </div></section>
 <section class="bloque" aria-labelledby="t-ent"><div class="wrap dos">
-  <div class="head"><h2 id="t-ent">Lo que entregamos.</h2><p class="sub">Sencillo, con su marca y pensado para que su equipo lo use sin nosotros.</p></div>
+  <div class="head"><h2 id="t-ent">Lo que entregamos.</h2><p class="sub">Sencillo, con tu marca y pensado para que tu equipo lo use sin nosotros.</p></div>
   <div><ul class="lista2">{ent}</ul>{no_inc}</div>
 </div></section>
 <section class="bloque blanco" aria-labelledby="t-mide"><div class="wrap dos">
-  <div class="head"><h2 id="t-mide">Cómo sabemos que funcionó.</h2><p class="sub">Cada trabajo tiene un número que importa. Lo medimos con usted antes y después.</p></div>
+  <div class="head"><h2 id="t-mide">Cómo sabemos que funcionó.</h2><p class="sub">Cada trabajo tiene un número que importa. Lo medimos contigo antes y después.</p></div>
   <div class="mide"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg><div><h3>{esc(s['mide'][0])}</h3><p>{esc(s['mide'][1])}</p></div></div>
 </div></section>
 <section class="bloque" aria-labelledby="t-otras"><div class="wrap">
@@ -612,17 +612,17 @@ def servicios():
 
 def nosotros():
     def cuerpo(base):
-        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a su operación. Usted verifica cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros', cta=WA_COTIZA) + f'''
+        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros', cta=WA_COTIZA) + f'''
 <section class="bloque blanco" id="como"><div class="wrap">
-  <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de su negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
+  <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de tu negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
   {cadena_pasos()}
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
-  <div class="head"><h2>Lo que puede esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
-  <ul class="lista2"><li>Las horas útiles autorizadas no se rebasan<span>Sin su autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puede pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan y se cotizan por escrito antes de hacerlos.</span></li><li>Lo que entregamos queda a nombre de su negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
+  <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
+  <ul class="lista2"><li>Las horas útiles autorizadas no se rebasan<span>Sin tu autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan y se cotizan por escrito antes de hacerlos.</span></li><li>Lo que entregamos queda a nombre de tu negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
 </div></section>
 <section class="bloque blanco" id="quien"><div class="wrap dos">
-  <div class="head"><h2>Quién le atiende.</h2><p class="sub">Sede en Tepic, Nayarit. Atendemos por WhatsApp y, cuando hace falta, en su negocio.</p></div>
+  <div class="head"><h2>Quién te atiende.</h2><p class="sub">Sede en Tepic, Nayarit. Atendemos por WhatsApp y, cuando hace falta, en tu negocio.</p></div>
   <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3>Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeños negocios de Tepic y Nayarit.</p></div></div>
 </div></section>
 {banda_autodiagnostico(base)}
@@ -706,7 +706,7 @@ def autodiagnostico():
 <script type="application/json" id="ad-datos">{json.dumps(datos, ensure_ascii=False).replace('</', '<\\/')}</script>
 <script src="{base}assets/autodiagnostico.js?v={V_AD}" defer></script>'''
     return pagina('autodiagnostico.html', 'Autodiagnóstico · Certeza Operativa',
-                  '7 pasos y 2 minutos para saber qué conviene resolver primero en su negocio. No guardamos sus respuestas.', cuerpo)
+                  '7 pasos y 2 minutos para saber qué conviene resolver primero en tu negocio. No guardamos tus respuestas.', cuerpo)
 
 
 if __name__ == '__main__':

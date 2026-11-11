@@ -30,6 +30,7 @@ PERMITIDAS = [
     ('*', 'con un toque', 'sustantivo, no el imperativo «toque»'),
     ('*', 'necesita tu negocio', 'tercera persona: quien necesita es el negocio'),
     ('catalogo.html', 'cada quien sabe qué le toca y cómo hacerlo', 'tercera persona: se refiere a cada integrante del equipo'),
+    ('soluciones/ia-y-automatizacion.html', 'cuando meta lo active en tu cuenta', 'subjuntivo de tercera persona: quien activa es Meta, no una orden al visitante'),
 ]
 
 
