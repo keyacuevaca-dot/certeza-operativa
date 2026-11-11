@@ -249,7 +249,7 @@ PASOS = [
 SITIO_URL = 'https://keyacuevaca-dot.github.io/certeza-operativa/'
 
 # Identificador del sitio en Umami Cloud (plan gratuito). Vacío: no se carga el contador.
-UMAMI_ID = ''
+UMAMI_ID = '1db46f27-9456-4d55-9273-a58540abc2b4'
 
 # Autodiagnóstico (autodiagnostico.html). Las opciones de los pasos 2 y 3 salen de CINTA y NECESIDADES.
 AUTODIAGNOSTICO = dict(
@@ -285,3 +285,18 @@ AUTODIAGNOSTICO = dict(
     banda_texto='7 pasos para saber qué conviene resolver primero en tu negocio.',
     entrada_cierre='O haz el autodiagnóstico de 2 minutos',
 )
+
+# Descripción corta de cada giro para buscadores y al compartir (A3, D4 B · Kevin, 11-nov-2026). Se le agrega «Negocios de 2 a 250 trabajadores en Nayarit.» (D5 A). Máximo 155 caracteres en total.
+DESC_GIRO = {
+    'alimentos-y-bebidas': 'Te ayudamos a que la caja cuadre, el inventario avise a tiempo y cada turno trabaje igual.',
+    'comercio-y-tiendas': 'Ordenamos tu lista de precios, tu inventario y tu cobranza para que sepas qué tienes y quién te debe.',
+    'distribucion-y-logistica': 'Hacemos visible qué falta entregar y qué falta cobrar, para que el dinero de la ruta llegue completo.',
+    'construccion-e-ingenieria': 'Te ayudamos a saber quién hace qué, para cuándo, y si el dinero alcanza hasta el siguiente pago.',
+    'fabricacion-y-produccion': 'Producir a tiempo es saber qué pedido sigue, cuánto material va en cada lote y quién responde por cada paso.',
+    'automotriz': 'Autos que esperan refacción y presupuestos que cambian: hacemos visible qué reparación sigue y qué la detiene.',
+    'turismo-y-hospitalidad': 'Reservaciones, cobros y pendientes en una sola vista, y cada temporada arranca con el mismo estándar.',
+    'servicios-profesionales': 'Tu agenda es tu inventario: ordenamos citas, cobros y seguimientos para que no se queden pagos sin cobrar.',
+    'reparacion-y-mantenimiento': 'Cada trabajo con su orden, su presupuesto autorizado y su fecha de entrega, y nada se queda sin cobrar.',
+    'campo-y-pesca': 'Te ayudamos a registrar lo que produces, gastas y te pagan, para que sepas cuánto te dejó cada temporada.',
+    'limpieza-y-seguridad': 'Te ayudamos a ver quién está en cada servicio, qué material se usó y qué cliente falta por cobrar.',
+}

@@ -5,7 +5,7 @@ import hashlib, json, math, os, re, unicodedata
 from html import escape as esc
 from urllib.parse import quote
 from escenas import escena, acento as acento_titulo, icono, icono_chip
-from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO
+from contenido import WA_NUM, TEL, PIEZA, PILAR_NOMBRE, INDUSTRIAS, SOLUCIONES, CATALOGO, CINTA, NECESIDADES, FRASE_J, PASOS, SITIO_URL, UMAMI_ID, AUTODIAGNOSTICO, DESC_GIRO
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITIO = SITIO_URL
@@ -387,9 +387,7 @@ def cadena_pasos():
 
 def inicio(base):
     _familias_sin_uso = ''.join(f'''<li class="tarjeta familia"><h3>{esc(f["familia"])}</h3><p class="tl">{esc(f["sub"])}</p><ul>{''.join(f'<li><b>{esc(t["nombre"])}</b><span>{esc(t["promesa"])}</span></li>' for t in f["trabajos"])}</ul></li>''' for f in CATALOGO)
-    caso = [('Cómo estaba', '[POR LLENAR] Giro del negocio y el problema en palabras del dueño, con el número de antes.'),
-            ('Qué se entregó', '[POR LLENAR] El trabajo con precio cerrado y lo que quedó en manos del equipo.'),
-            ('Qué cambió', '[POR LLENAR] El mismo número, medido después, y desde cuándo el equipo lo usa solo.')]
+    # Caso real (B10): no se publica sección ni textos de relleno hasta que el dueño autorice por escrito.
     faq = [('¿Cuánto cuesta?', 'Depende de lo que necesites. Te lo damos por escrito después de la visita y no cambia sin tu autorización.'),
            ('¿Y si no me funciona?', 'El trabajo termina cuando tu equipo lo usa solo, y medimos un número antes y después.'),
            ('¿De quién es lo que entregan?', 'De tu negocio. Todo queda a tu nombre.'),
@@ -428,15 +426,6 @@ def inicio(base):
   <div class="wrap">
     <div class="head"><h2 id="t-como">Cómo trabajamos</h2><p class="como-sub">Siete pasos en cadena. Los tres primeros no te cuestan.</p></div>
     {cadena_pasos()}
-    <p class="nota como-nota">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
-  </div>
-</section>
-
-<!-- Caso real: Kevin quita «hidden» cuando el dueño del caso dé su permiso -->
-<section class="oscuro caso" id="caso" aria-labelledby="t-caso" hidden>
-  <div class="wrap">
-    <div class="head"><h2 id="t-caso">Un caso real</h2></div>
-    <ul class="rejilla">{''.join(f'<li class="tarjeta"><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in caso)}</ul>
   </div>
 </section>
 
@@ -492,7 +481,6 @@ def catalogo():
 <section class="oscuro cat-cierre" aria-labelledby="t-cat-cierre">
   <div class="wrap">
     <div class="cat-info">
-      <div class="cat-dato">{cuadro('reloj')}<h2>Horas útiles</h2><p>Las que dejan algo entregado, registradas con evidencia. No se rebasan sin tu autorización por escrito. Cada trabajo es de 5 horas como mínimo.</p></div>
       <div class="cat-dato">{cuadro('prohibido')}<h2>Lo que no hacemos</h2><ul><li>Contabilidad ni declaraciones.</li><li>Asesoría legal.</li><li>Google Maps suelto: siempre va dentro de un trabajo.</li></ul></div>
     </div>
     <div class="cat-cta" id="empieza">
@@ -503,7 +491,7 @@ def catalogo():
   </div>
 </section>'''
     return pagina('catalogo.html', 'Catálogo de trabajos · Certeza Operativa',
-                  'Catorce trabajos con precio cerrado para micro y pequeños negocios de Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet.',
+                  'Catorce trabajos con precio cerrado para negocios de 2 a 250 trabajadores en Nayarit: cobranza, caja, inventario, cotizaciones y presencia en internet.',
                   cuerpo, barra=menu_simple)
 
 
@@ -563,7 +551,7 @@ def industria(i, k):
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base, href=wa(f'Hola, mi negocio es del giro {i["nombre"]} y quiero platicar con Certeza Operativa.'))}'''
-    return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{i["lead"]} Para micro y pequeños negocios de Nayarit.', cuerpo, imagen=imagen_de(i['slug']))
+    return pagina(f'industrias/{i["slug"]}.html', f'{i["nombre"]} · Certeza Operativa', f'{DESC_GIRO[i["slug"]]} Negocios de 2 a 250 trabajadores en Nayarit.', cuerpo, imagen=imagen_de(i['slug']))
 
 
 def solucion(s, k):
@@ -603,7 +591,7 @@ def servicios():
         return ph(base, [('index.html', 'Inicio'), (None, 'Servicios')], 'Servicios', 'De la primera visita al acompañamiento. Empezar no cuesta y cada trabajo tiene precio cerrado por escrito antes de empezar.', '', 2) + f'''
 <section class="bloque blanco"><div class="wrap">
   <article class="svc" id="empieza"><div><h2>Primera visita sin costo</h2><p class="tl">Y su plan en una hoja, el mismo día.</p></div><div>
-    <ul class="lista2"><li>Primera visita<span>Una visita corta: doce preguntas y un caso real de su negocio, de punta a punta. También platicamos con alguien de su equipo. Hasta 90 minutos en micro y 2 horas en pequeña.</span></li><li>Plan en una hoja<span>El mismo día de la visita. Trae el problema en sus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
+    <ul class="lista2"><li>Primera visita<span>Una visita corta: doce preguntas y un caso real de su negocio, de punta a punta. También platicamos con alguien de su equipo.</span></li><li>Plan en una hoja<span>El mismo día de la visita. Trae el problema en sus palabras, dos o tres hechos y una acción gratis para hoy. También el siguiente paso con precio cerrado y fecha, y la lista corta de papeles.</span></li></ul>
     </div></article>
   <article class="svc" id="trabajos"><div><h2>Trabajos con precio cerrado</h2><p class="tl">Cada trabajo tiene precio cerrado y un número que medimos antes y después. Se arma con piezas de Orden, Visibilidad y Control.</p><p style="margin-top:18px"><a class="link" href="{base}catalogo.html">Vea el catálogo completo</a></p></div><div><ul class="lista2"><li>Orden<span>Precios a la vista, tareas por escrito y un responsable para cada pendiente.</span></li><li>Visibilidad<span>Saber cada semana cómo va el negocio, en una sola vista.</span></li><li>Control<span>Que la caja cuadre y los cobros no se olviden.</span></li></ul></div></article>
   <article class="svc" id="pagina-web"><div><h2>Página web</h2><p class="tl">Elija por lo que quiere que haga su cliente al entrar: escribirle, conocerlo o pedirle cotización. Las tres incluyen su dominio propio conectado y publicado, un botón de WhatsApp con mensaje listo y un diseño que se ve bien en el celular. Hay versión con más extras; se la explicamos en la primera visita.</p></div><div class="webs">{web}</div></article>
@@ -613,23 +601,23 @@ def servicios():
     <ul class="lista2"><li>Prueba con un caso real<span>Lo usamos con usted una semana o un cierre real, y ajustamos.</span></li><li>Capacitación<span>Para que usted y su equipo lo usen sin nosotros.</span></li><li>Extras cuando hacen falta<span>Más secciones, más productos o su perfil en Google Maps.</span></li></ul></div></article>
 </div></section>
 {cta(base)}'''
-    return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Primera visita sin costo, trabajos con precio cerrado, página web, documentos con Canva y acompañamiento para micro y pequeños negocios de Nayarit.', cuerpo, extra_head=NOINDEX)
+    return pagina('servicios.html', 'Servicios · Certeza Operativa', 'Primera visita sin costo, trabajos con precio cerrado, página web, documentos con Canva y acompañamiento para negocios de 2 a 250 trabajadores en Nayarit.', cuerpo, extra_head=NOINDEX)
 
 
 def nosotros():
     def cuerpo(base):
-        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Para micro y pequeños negocios · Sede en Tepic, Nayarit.', 3, tema='nosotros', cta=WA_COTIZA) + f'''
+        return ph(base, [('index.html', 'Inicio'), (None, 'Nosotros')], 'Cómo lo hacemos', 'Somos claros: medimos, proponemos y adaptamos herramientas sencillas a tu operación. Tú verificas cada resultado.', 'Para negocios de 2 a 250 trabajadores · Sede en Tepic, Nayarit.', 3, tema='nosotros', cta=WA_COTIZA) + f'''
 <section class="bloque blanco" id="como"><div class="wrap">
   <div class="head"><h2>Medimos antes de proponer.</h2><p class="sub">No llegamos con una receta. Primero vemos un caso real de tu negocio y después proponemos lo mínimo que resuelve el problema.</p></div>
   {cadena_pasos()}
 </div></section>
 <section class="bloque" id="esperar"><div class="wrap dos">
   <div class="head"><h2>Lo que puedes esperar.</h2><p class="sub">Compromisos que quedan por escrito.</p></div>
-  <ul class="lista2"><li>Las horas útiles autorizadas no se rebasan<span>Sin tu autorización por escrito.</span></li><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan y se cotizan por escrito antes de hacerlos.</span></li><li>Lo que entregamos queda a nombre de tu negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
+  <ul class="lista2"><li>Cada bloque de trabajo queda registrado<span>Con fecha y evidencia; puedes pedir el registro.</span></li><li>Los cambios después de aprobar<span>Se acuerdan y se cotizan por escrito antes de hacerlos.</span></li><li>Lo que entregamos queda a nombre de tu negocio<span>Así lo dejamos por escrito antes de empezar.</span></li></ul>
 </div></section>
 <section class="bloque blanco" id="quien"><div class="wrap dos">
   <div class="head"><h2>Quién te atiende.</h2><p class="sub">Sede en Tepic, Nayarit. Atendemos por WhatsApp y, cuando hace falta, en tu negocio.</p></div>
-  <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3>Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende micro y pequeños negocios de Tepic y Nayarit.</p></div></div>
+  <div class="persona"><span class="av"><svg viewBox="0 0 175 133" aria-hidden="true"><use href="#mark"/></svg></span><div><h3>Kevin Yammil Cueva Cardona</h3><p>Fundador de Certeza Operativa, con formación en Ingeniería Civil. Hoy atiende negocios de 2 a 250 trabajadores en Tepic y Nayarit.</p></div></div>
 </div></section>
 {banda_autodiagnostico(base)}
 {cta(base)}'''

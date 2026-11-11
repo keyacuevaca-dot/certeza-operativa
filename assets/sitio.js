@@ -114,6 +114,7 @@
   /* --- Contador (Umami Cloud): eventos sin datos de la persona; si Umami no cargó, no pasa nada --- */
   function evento(n, d) { try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(n, d); } catch (e) {} }
   function lugar(a) {
+    if (a.closest('.wa-fija')) return 'boton-fijo';
     if (a.closest('.hero')) return 'portada';
     if (a.closest('.ph')) return 'encabezado';
     if (a.closest('header.site')) return 'barra';

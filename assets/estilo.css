@@ -225,6 +225,7 @@ html.menu-abierto .menu-velo { opacity: 1; visibility: visible; transition: opac
 .tr-incluye > summary::-webkit-details-marker { display: none; }
 /* Cierre: dos datos con ícono y un solo botón */
 .cat-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.cat-info > .cat-dato:only-child { grid-column: 1 / -1; }
 .cat-dato { display: grid; align-content: start; gap: 16px; padding: 32px; border-radius: 20px; background: var(--petroleo-2); border: 1px solid var(--linea-oscura); }
 .cat-dato h2 { margin: 4px 0 0; font-family: var(--sans); font-size: 22px; line-height: 1.2; }
 .cat-dato p, .cat-dato li { margin: 0; font-size: 16px; color: var(--texto-claro-2); }
