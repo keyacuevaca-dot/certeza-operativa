@@ -69,10 +69,20 @@ section { padding: var(--banda) 0; }
 .oscuro .btn.ghost:hover { border-color: var(--texto-claro); background: rgba(241, 243, 245, .08); }
 .btn.small { padding: 10px 20px; font-size: 15px; }
 /* Botón único de WhatsApp: gris claro, letra Bitter (referencia elegida por Kevin) */
-.btn.wa, .oscuro .btn.wa { background: #CBD3DD; color: #25303B; border: 1px solid #919AA4; border-radius: 8px; font-family: Bitter, Georgia, serif; font-weight: 500; font-size: 18px; min-height: 52px; padding: 13px 32px; }
-.btn.wa:hover { background: #DCE2E9; border-color: #6F7A86; }
-.oscuro .btn.wa:focus-visible { outline-color: #CBD3DD; }
+.btn.wa, .oscuro .btn.wa { background: #28B7B5; color: #1E2328; border: 1px solid #1D5E5D; border-radius: 8px; font-family: Bitter, Georgia, serif; font-weight: 500; font-size: 18px; min-height: 52px; padding: 13px 32px; }
+.btn.wa:hover { background: #50C8C6; border-color: #1D5E5D; }
+.oscuro .btn.wa:focus-visible { outline-color: #28B7B5; }
 .btn .ic-wa { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+/* A6: franja de contacto móvil. Espacio reservado al final y al navegar por anclas. */
+.wa-fija { display: none; }
+@media (max-width: 760px) {
+  html { scroll-padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .wa-fija { display: flex; position: fixed; z-index: 50; bottom: 0; left: 0; right: 0; justify-content: center; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #1E2328; border-top: 1px solid #404449; }
+  .wa-fija .btn.wa { width: 100%; max-width: 440px; }
+  .menu-abierto .wa-fija, .pie-visible .wa-fija { visibility: hidden; pointer-events: none; }
+}
 .actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .link { font-weight: 600; color: var(--turquesa-hondo); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .oscuro .link { color: var(--turquesa); }

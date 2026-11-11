@@ -11,7 +11,7 @@
     burger.setAttribute('aria-label', on ? 'Cerrar menú' : 'Abrir menú');
     panel.classList.toggle('open', on);
     document.documentElement.classList.toggle('menu-abierto', on);
-    ['main', 'footer', '.skip'].forEach(function (s) { var n = $(s); if (n) n.inert = on; });
+    ['main', 'footer', '.skip', '.wa-fija'].forEach(function (s) { var n = $(s); if (n) n.inert = on; });
     if (on) { var a = $('a', panel); if (a) a.focus({ preventScroll: true }); }
   }
   if (burger && panel) {
@@ -21,6 +21,14 @@
       if (e.key === 'Escape' && panel.classList.contains('open')) { abrir(false); burger.focus(); }
     });
     $$('a', panel).forEach(function (a) { a.addEventListener('click', function () { abrir(false); }); });
+  }
+
+  /* A6: al llegar al pie, los contactos normales quedan libres del botón fijo. */
+  var pie = $('footer');
+  if (pie && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      document.documentElement.classList.toggle('pie-visible', entries[0].isIntersecting);
+    }).observe(pie);
   }
 
   /* --- Aparición al bajar: encabezados de sección y tarjetas (una tras otra), una sola vez.

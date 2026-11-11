@@ -90,9 +90,9 @@ def social(extra=False):
 
 
 def boton_wa(href=None):
-    # Botón de WhatsApp del cierre de cada página. Estilo «wa»: gris claro, letra Bitter, sin ícono.
-    # En los encabezados va además «Cotiza sin costo» (decisión de Kevin), como en inicio.
-    return f'<a class="btn wa" href="{href or WA_PRO}">Escríbenos por WhatsApp</a>'
+    # W4 B / D6 B: botón turquesa y «Cotiza sin costo» (Kevin, 11-nov-2026).
+    destino = WA_COTIZA if href in (None, WA_PRO, WA_PLATICA, WA_INFO) else href
+    return f'<a class="btn wa" href="{destino}">Cotiza sin costo</a>'
 
 
 IMAGEN_GENERAL = ('assets/compartir.jpg', 'Certeza Operativa: Evoluciona tu negocio. Dos personas revisan en un monitor un esquema de mejora de un negocio.')
@@ -205,7 +205,7 @@ def menu(base, actual):
     return _barra(base, actual)
 
 
-def pie(base):
+def pie(base, pagina_origen):
     # Cierre de página: solo el imagotipo y los contactos, centrados
     return f'''<footer>
   <div class="wrap pie">
@@ -213,6 +213,11 @@ def pie(base):
     {social(True)}
   </div>
 </footer>
+<div class="wa-fija">
+  <a class="btn wa" href="{wa(f'Hola, estoy viendo {pagina_origen} en Certeza Operativa y quiero una cotización sin costo para mi negocio.')}" aria-label="Cotiza sin costo por WhatsApp">
+    <svg class="ic-wa" viewBox="0 0 24 24" aria-hidden="true"><use href="#s-wa"/></svg>Cotiza sin costo
+  </a>
+</div>
 <script src="{base}assets/sitio.js?v={V_JS}" defer></script>
 </body>
 </html>
@@ -221,7 +226,8 @@ def pie(base):
 
 def pagina(ruta, titulo, desc, cuerpo, extra_head='', barra=None, imagen=None):
     base = '../' * ruta.count('/')
-    html = head(titulo, desc, ruta, base, extra_head, imagen) + sprite() + (barra(base) if barra else menu(base, ruta)) + '<main id="contenido">\n' + cuerpo(base) + '\n</main>\n' + pie(base)
+    origen = 'Inicio' if ruta == 'index.html' else titulo.removesuffix(' · Certeza Operativa')
+    html = head(titulo, desc, ruta, base, extra_head, imagen) + sprite() + (barra(base) if barra else menu(base, ruta)) + '<main id="contenido">\n' + cuerpo(base) + '\n</main>\n' + pie(base, origen)
     dst = os.path.join(RAIZ, ruta)
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     open(dst, 'w', encoding='utf-8').write(html)
