@@ -29,6 +29,7 @@ PERMITIDAS = [
     ('*', 'a un toque', 'sustantivo («WhatsApp a un toque»), no el imperativo «toque»'),
     ('*', 'con un toque', 'sustantivo, no el imperativo «toque»'),
     ('*', 'necesita tu negocio', 'tercera persona: quien necesita es el negocio'),
+    ('catalogo.html', 'cada quien sabe qué le toca y cómo hacerlo', 'tercera persona: se refiere a cada integrante del equipo'),
 ]
 
 

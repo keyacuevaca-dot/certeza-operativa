@@ -456,7 +456,7 @@ def catalogo():
     # Misma lógica que la portada: botones que saltan a cada familia, tarjetas parejas con ícono en cuadro,
     # franja del autodiagnóstico y un solo botón al final. Las tarjetas no se levantan: no llevan a otra página.
     def trabajo(t):
-        a = ancla(t['nombre'])
+        a = t.get('id', ancla(t['nombre']))
         puntos = ''.join(f'<li>{esc(x)}</li>' for x in t['puntos'])
         # «Qué incluye» abierto por omisión; en celular sitio.js lo pliega (en escritorio siempre se ve)
         return (f'<li class="trabajo" id="{a}"><div class="tr-cab">{cuadro(ICONO_TRABAJO.get(a, "lista"))}<p class="gancho">{esc(t["gancho"])}</p></div>'
@@ -471,8 +471,8 @@ def catalogo():
 <section class="oscuro cat-intro" aria-labelledby="t-cat">
   <div class="wrap">
     <p class="cat-pastilla">Catálogo de trabajos</p>
-    <h1 id="t-cat">Elija lo que <span class="acento">necesita</span> su negocio</h1>
-    <p class="lead">Catorce trabajos con <span class="resalte">precio cerrado</span>. Cada uno empieza por el problema que usted ya conoce y termina cuando su equipo lo usa solo.</p>
+    <h1 id="t-cat">Elige lo que <span class="acento">necesita</span> tu negocio</h1>
+    <p class="lead">Catorce trabajos con <span class="resalte">precio cerrado</span>. Cada uno empieza por el problema que tú ya conoces y termina cuando tu equipo lo usa solo.</p>
     <nav class="cat-nav" aria-label="Familias de trabajos"><ul>{nav}</ul></nav>
   </div>
 </section>
@@ -486,12 +486,12 @@ def catalogo():
 <section class="oscuro cat-cierre" aria-labelledby="t-cat-cierre">
   <div class="wrap">
     <div class="cat-info">
-      <div class="cat-dato">{cuadro('reloj')}<h2>Horas útiles</h2><p>Las que dejan algo entregado, registradas con evidencia. No se rebasan sin su autorización por escrito. Cada trabajo es de 5 horas como mínimo.</p></div>
+      <div class="cat-dato">{cuadro('reloj')}<h2>Horas útiles</h2><p>Las que dejan algo entregado, registradas con evidencia. No se rebasan sin tu autorización por escrito. Cada trabajo es de 5 horas como mínimo.</p></div>
       <div class="cat-dato">{cuadro('prohibido')}<h2>Lo que no hacemos</h2><ul><li>Contabilidad ni declaraciones.</li><li>Asesoría legal.</li><li>Google Maps suelto: siempre va dentro de un trabajo.</li></ul></div>
     </div>
     <div class="cat-cta" id="empieza">
-      <h2 id="t-cat-cierre">Empiece sin costo</h2>
-      <p>La primera plática y la visita no cuestan. Le damos el precio cerrado por escrito después de la visita.</p>
+      <h2 id="t-cat-cierre">Empieza sin costo</h2>
+      <p>La primera plática y la visita no cuestan. Te damos el precio cerrado por escrito después de la visita.</p>
       <div class="actions"><a class="btn wa" href="{WA_COTIZA}">Cotiza sin costo</a></div>
     </div>
   </div>

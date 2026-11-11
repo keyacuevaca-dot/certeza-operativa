@@ -184,7 +184,7 @@ SOLUCIONES = [
                       ('Piezas para redes', 'Publicaciones, historias, menús y flyers con su marca.'),
                       ('Calendario mensual', 'Qué se publica, cuándo y para qué. Usted lo aprueba antes de publicar.'),
                       ('Campañas en Facebook e Instagram', 'Las armamos y las medimos. Usted autoriza el monto y lo paga directo a Meta.'),
-                      ('Que lo encuentren en Google', 'Ficha de Google Maps optimizada, reseñas y textos de su página pensados para su zona.'),
+                      ('Que lo encuentren en Google', 'Perfil de Google Maps optimizado, reseñas y textos de su página pensados para su zona.'),
                       ('Seguimiento automático a clientes', 'Mensajes de WhatsApp Business para cotizaciones sin respuesta y clientes que no regresan.')],
          mide=('Clientes que le escriben', 'Contamos cuántos clientes le escriben por semana antes de empezar y después de un mes. La meta la fijamos con usted.'),
          no_incluye='No pagamos ni adelantamos publicidad, no publicamos nada sin su aprobación, no respondemos los mensajes del día a día y no prometemos seguidores ni ventas. Sus cuentas quedan a su nombre. La página web está en el catálogo, en «Que te encuentren».'),
