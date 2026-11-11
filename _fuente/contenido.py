@@ -1,6 +1,6 @@
 # Contenido del sitio. Todo lo que se publica sale de aquí: si cambia un texto, se cambia aquí
 # y se vuelve a generar con `python _fuente/construir.py`.
-# Reglas: sin cifras, clientes ni testimonios inventados; trato de usted; sin precios ni tarifa por hora;
+# Reglas: sin cifras, clientes ni testimonios inventados; trato de tú, en confianza, salvo lo muy serio (decisión de Kevin, 11-nov-2026); sin precios ni tarifa por hora;
 # sin vocabulario interno (se escribe «primera visita sin costo», «plan en una hoja», «punto de partida medido»,
 # «trabajo con precio cerrado» y «mejora medida antes y después»).
 import json, os
@@ -187,7 +187,7 @@ SOLUCIONES = [
                       ('Que lo encuentren en Google', 'Ficha de Google Maps optimizada, reseñas y textos de su página pensados para su zona.'),
                       ('Seguimiento automático a clientes', 'Mensajes de WhatsApp Business para cotizaciones sin respuesta y clientes que no regresan.')],
          mide=('Clientes que le escriben', 'Contamos cuántos clientes le escriben por semana antes de empezar y después de un mes. La meta la fijamos con usted.'),
-         no_incluye='No pagamos ni adelantamos publicidad, no publicamos nada sin su aprobación, no respondemos los mensajes del día a día y no prometemos seguidores ni ventas. Sus cuentas quedan a su nombre. La página web está en el catálogo, en «Que lo encuentren».'),
+         no_incluye='No pagamos ni adelantamos publicidad, no publicamos nada sin su aprobación, no respondemos los mensajes del día a día y no prometemos seguidores ni ventas. Sus cuentas quedan a su nombre. La página web está en el catálogo, en «Que te encuentren».'),
     dict(slug='ia-y-automatizacion', nombre='IA y automatización', tl='Menos trabajo a mano.',
          lead='Contestar lo mismo, pasar datos de un papel a otro y acordarse de cobrar quita horas. Configuramos herramientas que ya existen para que esas tareas salgan solas y usted solo revise.',
          voces=['Contesto las mismas preguntas todo el día.', 'Paso a la computadora lo que anotamos en papel.', 'Se me olvida cobrar o pedir a tiempo.'],
@@ -200,21 +200,21 @@ SOLUCIONES = [
          no_incluye='No desarrollamos programas propios ni programación a la medida: usamos herramientas que ya existen. La IA no decide sola: precios, descuentos y respuestas delicadas los revisa usted. Las cuentas y licencias quedan a su nombre.'),
 ]
 
-# Sección «¿Qué necesita su negocio?» de inicio
+# Sección «¿Qué necesita tu negocio?» de inicio
 NECESIDADES = [
     # (título, texto, enlace, ícono)
-    ('Cobros y caja', 'Quién le debe, cuánto, y cierres que cuadran.', 'soluciones/control.html', 'monedas'),
-    ('Equipo y procesos', 'Quién hace qué y cómo, aunque usted no esté.', 'catalogo.html#su-negocio-camina-sin-usted', 'organigrama'),
+    ('Cobros y caja', 'Quién te debe, cuánto, y cierres que cuadran.', 'soluciones/control.html', 'monedas'),
+    ('Equipo y procesos', 'Quién hace qué y cómo, aunque tú no estés.', 'catalogo.html#su-negocio-camina-sin-usted', 'organigrama'),
     ('Inventario y compras', 'Existencias a la vista y pedidos antes de que falte.', 'catalogo.html#inventario-bajo-control', 'caja'),
     ('Precios y cotizaciones', 'Lista de precios y cotizaciones sin errores.', 'catalogo.html#cotice-sin-errores', 'etiqueta'),
     ('Contador en orden', 'Ingresos, gastos y comprobantes de cada mes.', 'catalogo.html#llegue-ordenado-al-contador', 'carpeta'),
-    ('Números del dueño', 'Cuánto entra, cuánto sale y si le alcanza.', 'soluciones/visibilidad.html', 'grafica'),
+    ('Números del dueño', 'Cuánto entra, cuánto sale y si te alcanza.', 'soluciones/visibilidad.html', 'grafica'),
     ('Presencia digital', 'Página, Google Maps y redes, con WhatsApp a un toque.', 'catalogo.html#f2', 'navegador'),
     ('Marketing digital', 'Marca, publicaciones y campañas con un objetivo medible.', 'soluciones/marketing-digital.html', 'megafono'),
     ('IA y automatización', 'Respuestas, recordatorios y documentos con menos trabajo a mano.', 'soluciones/ia-y-automatizacion.html', 'chip'),
 ]
 
-# Frase entre la cinta y «¿Qué necesita su negocio?» (sustituye a «¿Le pasa esto?»).
+# Frase entre la cinta y «¿Qué necesita tu negocio?» (sustituye a «¿Le pasa esto?»).
 # Combinación elegida por Kevin en el configurador: J · T5 · R3 · C1 · A3 · F2 · S3 · íconos.
 FRASE_J = dict(
     antes='Más',
@@ -222,10 +222,10 @@ FRASE_J = dict(
     despues='menos sorpresas.',
     resultados=[
         # (título, texto, ícono de ICONOS_FJ). Textos pulidos, elegidos por Kevin.
-        ('Tiempo', 'No tiene que resolver lo mismo todos los días.', 'reloj'),
+        ('Tiempo', 'No tienes que resolver lo mismo todos los días.', 'reloj'),
         ('Tranquilidad', 'Cada peso con rastro: nada se pierde.', 'corazon'),
-        ('Claridad', 'Anticipe compras, cobros y pagos.', 'red'),
-        ('Rumbo', 'Su crecimiento, visible y a su alcance.', 'crece'),
+        ('Claridad', 'Anticipa compras, cobros y pagos.', 'red'),
+        ('Rumbo', 'Tu crecimiento, visible y a tu alcance.', 'crece'),
     ],
 )
 
@@ -233,13 +233,13 @@ FRASE_J = dict(
 PASOS = [
     ('Sin costo', 'tramo-gratis', [
         ('Diagnóstico breve', '15 minutos, por WhatsApp o llamada.'),
-        ('Análisis contextual', 'Vemos un caso real, con su perspectiva.'),
-        ('Precio cerrado por escrito', 'Acuerdo de extremo a extremo, y con su autorización.'),
+        ('Análisis contextual', 'Vemos un caso real, con tu perspectiva.'),
+        ('Precio cerrado por escrito', 'Acuerdo de extremo a extremo, y con tu autorización.'),
     ]),
     ('El trabajo', 'tramo-trabajo', [
-        ('Instalamos', 'Las herramientas, a nombre de su negocio.'),
-        ('Adaptamos', 'A la forma en que trabaja su equipo.'),
-        ('Capacitamos', 'Hasta que su equipo lo usa solo.'),
+        ('Instalamos', 'Las herramientas, a nombre de tu negocio.'),
+        ('Adaptamos', 'A la forma en que trabaja tu equipo.'),
+        ('Capacitamos', 'Hasta que tu equipo lo usa solo.'),
         ('Damos soporte', 'Seguimiento de cerca hasta que esté listo.'),
     ]),
 ]
@@ -280,8 +280,8 @@ AUTODIAGNOSTICO = dict(
     sin_js='Para hacer el autodiagnóstico, active JavaScript o escríbanos por WhatsApp.',
     mensaje=['Hola, hice el autodiagnóstico de su página.', 'Giro: {giro}', 'Personas: {personas}', 'Quiero resolver primero: {primero}',
              'También me salió: {lista}', 'Para cuándo: {cuando}', 'Presupuesto: {presupuesto}', 'Prefiero que me contacten por: {contacto}'],
-    entrada_boton='Haga el autodiagnóstico',
+    entrada_boton='Haz el autodiagnóstico',
     banda_titulo='Autodiagnóstico de 2 minutos',
-    banda_texto='7 pasos para saber qué conviene resolver primero en su negocio.',
-    entrada_cierre='O haga el autodiagnóstico de 2 minutos',
+    banda_texto='7 pasos para saber qué conviene resolver primero en tu negocio.',
+    entrada_cierre='O haz el autodiagnóstico de 2 minutos',
 )

@@ -25,7 +25,11 @@ TEL_NUM = re.sub(r'\D', '', TEL)
 IMAGEN = ('.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.avif')
 
 # Frases que no cuentan como trato aunque coincidan: ('ruta o *', 'frase en minúsculas', 'motivo').
-PERMITIDAS = []
+PERMITIDAS = [
+    ('*', 'a un toque', 'sustantivo («WhatsApp a un toque»), no el imperativo «toque»'),
+    ('*', 'con un toque', 'sustantivo, no el imperativo «toque»'),
+    ('*', 'necesita tu negocio', 'tercera persona: quien necesita es el negocio'),
+]
 
 
 def rx(*partes):

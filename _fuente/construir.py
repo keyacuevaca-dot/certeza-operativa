@@ -92,7 +92,7 @@ def social(extra=False):
 def boton_wa(href=None):
     # Botón de WhatsApp del cierre de cada página. Estilo «wa»: gris claro, letra Bitter, sin ícono.
     # En los encabezados va además «Cotiza sin costo» (decisión de Kevin), como en inicio.
-    return f'<a class="btn wa" href="{href or WA_PRO}">Escríbanos por WhatsApp</a>'
+    return f'<a class="btn wa" href="{href or WA_PRO}">Escríbenos por WhatsApp</a>'
 
 
 IMAGEN_GENERAL = ('assets/compartir.jpg', 'Certeza Operativa: Evoluciona tu negocio. Dos personas revisan en un monitor un esquema de mejora de un negocio.')
@@ -172,8 +172,8 @@ def _menu_bloques(base):
         ('Qué resolvemos', '', [(f'{base}catalogo.html#f{k}', f['familia']) for k, f in enumerate(CATALOGO)] + [(f'{base}catalogo.html', 'Catálogo completo')]),
         ('Industrias', 'mp-ind', [(f'{base}industrias/{i["slug"]}.html', i['nombre']) for i in INDUSTRIAS]),
         ('Cómo trabajamos', '', [(f'{pre}#como', 'Primera visita sin costo'), (f'{base}nosotros.html#como', 'Cómo lo hacemos'),
-                                 (f'{base}nosotros.html#esperar', 'Lo que puede esperar'), (f'{base}nosotros.html#quien', 'Quién le atiende')]),
-        ('Preguntas', 'mp-pie', [(f'{pre}#preguntas', 'Preguntas frecuentes'), (WA_PRO, 'Escríbanos por WhatsApp')]),
+                                 (f'{base}nosotros.html#esperar', 'Lo que puedes esperar'), (f'{base}nosotros.html#quien', 'Quién te atiende')]),
+        ('Preguntas', 'mp-pie', [(f'{pre}#preguntas', 'Preguntas frecuentes'), (WA_PRO, 'Escríbenos por WhatsApp')]),
     ]
 
 
@@ -384,16 +384,16 @@ def inicio(base):
     caso = [('Cómo estaba', '[POR LLENAR] Giro del negocio y el problema en palabras del dueño, con el número de antes.'),
             ('Qué se entregó', '[POR LLENAR] El trabajo con precio cerrado y lo que quedó en manos del equipo.'),
             ('Qué cambió', '[POR LLENAR] El mismo número, medido después, y desde cuándo el equipo lo usa solo.')]
-    faq = [('¿Cuánto cuesta?', 'Depende de lo que necesite. Se lo damos por escrito después de la visita y no cambia sin su autorización.'),
-           ('¿Y si no me funciona?', 'El trabajo termina cuando su equipo lo usa solo, y medimos un número antes y después.'),
-           ('¿De quién es lo que entregan?', 'De su negocio. Todo queda a su nombre.'),
+    faq = [('¿Cuánto cuesta?', 'Depende de lo que necesites. Te lo damos por escrito después de la visita y no cambia sin tu autorización.'),
+           ('¿Y si no me funciona?', 'El trabajo termina cuando tu equipo lo usa solo, y medimos un número antes y después.'),
+           ('¿De quién es lo que entregan?', 'De tu negocio. Todo queda a tu nombre.'),
            ('¿Atienden fuera de Tepic?', 'Atendemos negocios de Nayarit por WhatsApp; la visita se acuerda en la primera plática.')]
     return f'''
 <section class="oscuro hero" aria-labelledby="t-hero">
   <img class="hero-foto" src="{base}assets/encabezado.webp" srcset="{base}assets/encabezado-1200.webp 1200w, {base}assets/encabezado.webp 2400w" sizes="100vw" width="2400" height="1351" fetchpriority="high" alt="Dos personas revisan en un monitor un esquema de las etapas de un negocio: orden, visibilidad, control y mejora continua.">
   <div class="wrap">
     <div class="hero-txt">
-      <p class="kicker anim" style="--i:0">Para negocios de 2 a 250 trabajadores.</p>
+      <p class="kicker anim" style="--i:0">Orden. Visibilidad. Control.<br>Para negocios de 2 a 250 trabajadores.</p>
       <h1 id="t-hero" class="anim" style="--i:1"><span class="acento">Evoluciona</span> <span>tu negocio</span></h1>
       <p class="hero-pregunta anim" style="--i:2">¿Transformas o te conformas?</p>
       <p class="lead anim" style="--i:3">Vemos cómo trabajas hoy, te decimos qué se te está yendo y lo resolvemos con herramientas sencillas que tu equipo usa solo.</p>
@@ -410,9 +410,9 @@ def inicio(base):
 
 <section class="oscuro" id="que" aria-labelledby="t-que">
   <div class="wrap">
-    <div class="head"><h2 id="t-que">¿Qué necesita su negocio?</h2></div>
+    <div class="head"><h2 id="t-que">¿Qué necesita tu negocio?</h2></div>
     <ul class="necesidades">{''.join(f'<li>{tarjeta_necesidad(base, n)}</li>' for n in NECESIDADES)}</ul>
-    <p class="que-pie"><a class="btn ghost" href="{base}catalogo.html">Vea el catálogo completo</a></p>
+    <p class="que-pie"><a class="btn ghost" href="{base}catalogo.html">Ver el catálogo completo</a></p>
   </div>
 </section>
 
@@ -420,7 +420,7 @@ def inicio(base):
 
 <section class="claro" id="como" aria-labelledby="t-como">
   <div class="wrap">
-    <div class="head"><h2 id="t-como">Cómo trabajamos</h2><p class="como-sub">Siete pasos en cadena. Los tres primeros no le cuestan.</p></div>
+    <div class="head"><h2 id="t-como">Cómo trabajamos</h2><p class="como-sub">Siete pasos en cadena. Los tres primeros no te cuestan.</p></div>
     {cadena_pasos()}
     <p class="nota como-nota">Horas útiles: las que dejan algo entregado. Cada bloque de trabajo queda registrado con evidencia.</p>
   </div>
@@ -443,7 +443,7 @@ def inicio(base):
 
 <section class="oscuro cierre" id="empieza" aria-labelledby="t-empieza">
   <div class="wrap">
-    <h2 id="t-empieza">Empiece con una plática de 15 minutos</h2>
+    <h2 id="t-empieza">Empieza con una plática de 15 minutos</h2>
     <div class="actions">{boton_wa(href=WA_PLATICA)}</div>
     <p class="cierre-alt"><a class="link" href="{base}autodiagnostico.html">{esc(AUTODIAGNOSTICO['entrada_cierre'])}</a></p>
     <p class="nota">Certeza Operativa · WhatsApp 311 446 9363 · Tepic, Nayarit</p>
@@ -526,7 +526,7 @@ def ph(base, migas, h1, lead, tipos='', variante=0, tema=None, cta=None):
 </section>'''
 
 
-def cta(base, titulo='Empiece con una plática de 15 minutos, sin costo.', href=WA_PLATICA):
+def cta(base, titulo='Empieza con una plática de 15 minutos, sin costo.', href=WA_PLATICA):
     return f'''<section class="oscuro cta-band"><div class="wrap"><h2>{esc(titulo)}</h2><div class="actions">{boton_wa(href=href)}</div></div></section>'''
 
 
