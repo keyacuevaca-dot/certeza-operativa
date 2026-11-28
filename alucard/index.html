@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.add("js")</script>
 <title>ALUCARD · Aluminio, herrajes y herramienta con precio · Tuxpan, Nayarit</title>
-<meta name="description" content="Catálogo de ALUCARD «La Escondida» en Tuxpan, Nayarit: perfiles de aluminio, herrajes y herramienta con precio y existencias. Remate a precio de proveedor. Pedido por WhatsApp.">
+<meta name="description" content="Catálogo de ALUCARD «La Escondida» en Tuxpan, Nayarit: perfiles de aluminio, herrajes y herramienta con precio y existencias. Remate a precio de proveedor, lotes para taller y cotización a la medida para casa y obra. Pedido por WhatsApp.">
 <meta name="theme-color" content="#172126">
 <link rel="canonical" href="https://keyacuevaca-dot.github.io/certeza-operativa/alucard/">
 <link rel="icon" type="image/svg+xml" href="assets/icono-alucard.svg">
@@ -359,6 +359,41 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
 .stp button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:20px;line-height:1;display:grid;place-items:center}
 .stp .plus{background:var(--btn);color:#fff;border-color:var(--btn)}
 .stp output{min-width:2em;text-align:center;font:700 16px "Barlow Semi Condensed",sans-serif}
+/* entradas por tipo de cliente */
+.ways{background:var(--dark);padding:0 0 10px}
+.ways .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.way{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:64px;padding:8px 8px 8px 10px;border-radius:12px;border:1px solid #34444c;background:#1f2c32;color:#fff;text-align:left;line-height:1.15}
+.way:hover{border-color:#f77b22}
+.way .ico{width:18px;height:18px;color:#f77b22}
+.way b{display:block;font:600 15.5px/1.1 "Barlow Semi Condensed",sans-serif;letter-spacing:.01em}
+.way small{display:block;font-size:11.5px;color:#aebbc1;line-height:1.2;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.way span{display:block;max-width:100%}
+@media(min-width:760px){.ways{padding-bottom:16px}.ways .wrap{gap:12px}.way{flex-direction:row;align-items:center;gap:12px;padding:12px 16px;min-height:68px}.way .ico{width:28px;height:28px}.way b{font-size:20px}.way small{font-size:13px}}
+/* cotización por WhatsApp */
+.fld{width:100%;height:46px;border:1.5px solid var(--line);border-radius:12px;background:var(--soft);padding:0 12px;font-size:16px}
+.fld:focus,.panel textarea:focus{border-color:var(--acc);outline:none;background:var(--bg)}
+.panel textarea.err{border-color:var(--promo)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{min-height:42px;padding:0 14px;border-radius:21px;border:1.5px solid var(--line);background:var(--card);font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:7px}
+.seg button[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset;font-weight:600}
+.seg i{width:18px;height:18px;border-radius:50%;border:1px solid var(--line);flex:none}
+.fine{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+/* lotes para taller */
+.lot{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-top:12px;overflow:hidden}
+.lot-h{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center;padding:12px}
+.lot-art{background:var(--soft);border-radius:10px;aspect-ratio:11/8;display:grid;place-items:center;overflow:hidden}
+.lot-art svg{width:100%;height:100%}
+.lot h3{font:700 20px/1.1 "Barlow Semi Condensed",sans-serif;margin:0}
+.lot .m{font-size:13px;color:var(--muted);margin:2px 0 5px}
+.lot .p{font:700 23px/1 "Barlow Semi Condensed",sans-serif;color:var(--promo)}
+.lot .p small{font:500 12px Inter,sans-serif;color:var(--muted);margin-left:5px}
+.lot-b{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px 12px}
+.lot-b .ghost,.lot-b .big{margin:0;min-height:44px;height:44px;font-size:14.5px;border-radius:22px}
+.lot-l{border-top:1px solid var(--line);padding:2px 12px 8px}
+.lot-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:600;line-height:1.25}
+.lot-r:last-child{border-bottom:0}
+.lot-r small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.lot-r b{font:700 16px "Barlow Semi Condensed",sans-serif;white-space:nowrap}
 /* zoom */
 .zoom{position:fixed;inset:0;z-index:45;background:#0b0f11;display:none;flex-direction:column;color:#fff}
 .zoom.show{display:flex}
@@ -393,6 +428,9 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
   <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18M4 12h16"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M5 21V6l7-3v18M12 10l7 2v9M3 21h18"/><path d="M8.5 9v.01M8.5 13v.01M8.5 17v.01M15.5 15v.01M15.5 18v.01"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4h8.5L21 13.5 13.5 21z"/><circle cx="7.5" cy="8" r="1.4"/></symbol>
   <symbol id="h-perfil" viewBox="0 0 48 48"><path d="M8 16l10-6h22l-10 6z"/><path d="M8 16v20h22V16"/><path d="M30 16l10-6v20l-10 6"/><path d="M13 21h12v10H13z"/></symbol>
   <symbol id="h-jal" viewBox="0 0 48 48"><path d="M10 30h28M14 30v-9a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v9"/><path d="M12 30v4M36 30v4"/></symbol>
@@ -437,6 +475,12 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
 <div class="velo" id="velo"></div>
 <nav class="menu" id="menu" aria-label="Menú">
   <div class="menu-head"><svg class="logo-full" viewBox="0 0 498.78 97.94" role="img" aria-label="ALUCARD, aluminios y herrajes"><use href="#logo-completo"/></svg><button class="icon-btn" type="button" data-close aria-label="Cerrar menú"><svg class="ico"><use href="#i-x"/></svg></button></div>
+  <p class="menu-t">¿Qué buscas?</p>
+  <ul>
+    <li><a href="#cotizar" data-way="casa">Puerta o ventana a la medida</a></li>
+    <li><a href="#lotes" data-way="taller">Lotes para taller</a></li>
+    <li><a href="#obra" data-way="obra">Cotización para obra</a></li>
+  </ul>
   <p class="menu-t">Catálogo</p>
   <div id="menuCats"></div>
   <p class="menu-t">La tienda</p>
@@ -459,6 +503,13 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
       <p class="lead"><b id="nEx">0</b> productos con existencia<span class="wide"> en Tuxpan, Nayarit. Arma tu pedido y mándalo por WhatsApp</span><span class="narrow"> · Pedido por WhatsApp</span></p>
     </div>
   </section>
+  <nav class="ways" aria-label="¿Qué buscas?">
+    <div class="wrap">
+      <button class="way" type="button" data-way="casa"><svg class="ico" aria-hidden="true"><use href="#i-window"/></svg><span><b>Para mi casa</b><small>Puerta o ventana</small></span></button>
+      <button class="way" type="button" data-way="taller"><svg class="ico" aria-hidden="true"><use href="#i-wrench"/></svg><span><b>Tengo taller</b><small>Lotes en remate</small></span></button>
+      <button class="way" type="button" data-way="obra"><svg class="ico" aria-hidden="true"><use href="#i-build"/></svg><span><b>Tengo obra</b><small>Cotiza por volumen</small></span></button>
+    </div>
+  </nav>
   <button class="remate" id="remBanner" type="button" data-umami-event="alucard-remate-franja"><span class="remate-in"><svg class="ico" aria-hidden="true"><use href="#i-tag"/></svg><span><b>REMATE: <span id="nRem">0</span> productos</b>A precio de proveedor o con descuento<span class="wide">, hasta agotar existencias</span></span><i>Ver</i></span></button>
 
   <section id="catalogo" aria-label="Catálogo">
@@ -511,6 +562,8 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
       <details><summary>¿Qué es el remate?</summary><p>Es material que la tienda quiere mover: va a precio de proveedor o con descuento, desde el 27 de noviembre de 2026 y hasta agotar existencias. En cada pieza ves cuánto queda; el precio de remate aplica a lo que hay en tienda.</p></details>
       <details><summary>¿Los precios están actualizados?</summary><p>Son los precios de la tienda al 26 de noviembre de 2026 y pueden cambiar. Antes de cobrar te confirmamos el total por WhatsApp.</p></details>
       <details><summary>¿Las existencias son de hoy?</summary><p>Son las que había en la tienda el 26 de noviembre de 2026. «Sobre pedido» quiere decir que ese día no había. Si pides más de lo que hay, te decimos por WhatsApp cuándo llega el resto.</p></details>
+      <details><summary>¿Venden por lote a talleres?</summary><p>Sí. En «Tengo taller» está el material en remate, junto por línea y color. Puedes llevarte el lote completo o solo los tramos que ocupes, al mismo precio de remate.</p></details>
+      <details><summary>¿Cotizan puertas y ventanas a la medida, o para una obra?</summary><p>Sí. En «Para mi casa» o en «Tengo obra» nos dices qué necesitas, las medidas y el color, y te contestamos por WhatsApp con la cotización. Pedirla no te compromete a comprar.</p></details>
       <details><summary>¿Venden medio tramo?</summary><p>Sí. Los perfiles se venden por tramo completo, normalmente de 6.10 m, y por medio tramo.</p></details>
       <details><summary>¿Puedo pedir medidas o piezas específicas?</summary><p>Agrega la pieza y escribe las medidas en los comentarios del pedido. Te decimos por WhatsApp si se puede.</p></details>
       <details><summary>¿Mandar el pedido me obliga a comprar?</summary><p>No. Tu pedido llega por WhatsApp y queda firme cuando te contestamos con existencia, total y forma de pago.</p></details>
@@ -547,7 +600,7 @@ textarea{width:100%;min-height:72px;border:1.5px solid var(--line);border-radius
       <p>Perfiles de aluminio, herrajes y herramienta en Tuxpan, Nayarit. Arma tu pedido y te confirmamos existencia y total por WhatsApp.</p>
     </div>
     <div><h3>Catálogo</h3><ul><li><a href="#catalogo" data-rem-go>Remate</a></li><li><a href="#catalogo" data-cat="Perfiles">Perfiles</a></li><li><a href="#catalogo" data-cat="Herrajes">Herrajes</a></li><li><a href="#catalogo" data-cat="Herramienta">Herramienta</a></li></ul></div>
-    <div><h3>Ayuda</h3><ul><li><a href="#como-comprar">Cómo comprar</a></li><li><a href="#preguntas">Preguntas frecuentes</a></li></ul></div>
+    <div><h3>Ayuda</h3><ul><li><a href="#cotizar" data-way="casa">Puerta o ventana a la medida</a></li><li><a href="#lotes" data-way="taller">Lotes para taller</a></li><li><a href="#obra" data-way="obra">Cotización para obra</a></li><li><a href="#como-comprar">Cómo comprar</a></li><li><a href="#preguntas">Preguntas frecuentes</a></li></ul></div>
     <div><h3>Contacto</h3><ul><li><a href="https://wa.me/523232828267" data-umami-event="alucard-whatsapp-pie">WhatsApp (323) 282 82 67</a></li><li><a href="tel:+523232828267" data-umami-event="alucard-llamar-pie">Llamar (323) 282 82 67</a></li><li>Calle Amado Nervo #305 Sur, Tuxpan, Nayarit</li></ul></div>
   </div>
   <div class="wrap foot-legal">ALUCARD «La Escondida» · Precios en pesos mexicanos y existencias al 26 de noviembre de 2026; pueden cambiar · Remate desde el 27 de noviembre de 2026 y hasta agotar existencias · Tramo: normalmente 6.10 m · Dibujos ilustrativos: el producto real puede variar.</div>
@@ -958,6 +1011,62 @@ function orderSheet() {
   if (top_() !== "sheet") openL("sheet");
 }
 
+/* ---------- entradas: casa, taller y obra ---------- */
+function sheetOpen(hash) { if (top_() === "sheet") setHash(hash); else if (top_() === "menu") swapL("sheet", hash); else openL("sheet", hash); panel.scrollTop = 0; }
+const SIN_LOTE = new Set([399]);   // clave con precio por confirmar: se vende por pieza, no entra a los lotes
+const lq = x => Math.floor(x.v[3] / step(x.t.u) + 1e-9) * step(x.t.u);
+const LOTES = [["Línea 3\"", "Madera"], ["Línea 3\"", "Champagne"], ["Puerta batiente 1 3/4\"", "Madera"], ["Línea 3\"", "Blanco"]].map(([s, c], i) => {
+  const items = [];
+  T.forEach(t => { if (t.f.c === "Perfiles" && t.s === s) t.v.forEach(v => { const x = {t, v}; if (v[6] === c && v[5] && v[2] && lq(x) > 0 && !SIN_LOTE.has(v[1])) items.push(x); }); });
+  items.sort((a, b) => b.v[3] - a.v[3] || a.t.id - b.t.id);
+  return {i, s, c, items, q: r2(items.reduce((n, x) => n + lq(x), 0)), total: r2(items.reduce((n, x) => n + x.v[2] * lq(x), 0))};
+}).filter(l => l.items.length).sort((a, b) => b.total - a.total);
+let lotSee = -1;
+function lotsSheet() {
+  B.ctx = "lots";
+  panel.innerHTML = `<button class="close" type="button" data-close aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button><h2 id="sTitle">Lotes para taller</h2><div class="sub2">Material en remate, junto por línea y color. Llévate el lote completo o solo los tramos que ocupes, al mismo precio. Existencias al 26-nov, hasta agotar.</div>${LOTES.map(l => {
+    const full = l.items.every(x => { const it = inCart(x.v[1]); return it && it.q >= lq(x); }), see = lotSee === l.i;
+    return `<article class="lot"><div class="lot-h"><div class="lot-art">${tramo([l.c])}</div><div><h3>${esc(l.s)} · ${esc(l.c)}</h3><p class="m">${l.items.length} ${l.items.length === 1 ? "perfil" : "perfiles"} · ${fq(l.q)} tramos</p><div class="p">${mx(l.total)}<small>el lote completo</small></div></div></div><div class="lot-b"><button class="ghost" type="button" data-lot-see="${l.i}" aria-expanded="${see}">${see ? "Ocultar piezas" : "Ver piezas"}</button><button class="big" type="button" data-lot-add="${l.i}">${full ? "Lote en tu pedido ✓" : "Agregar lote"}</button></div>${see ? `<div class="lot-l">${l.items.map(x => `<div class="lot-r"><span>${esc(x.t.n)}<small>${fq(lq(x))} ${unitQ(x.t.u, lq(x))} × ${mx(x.v[2])} · clave ${x.v[1]}</small></span><b>${mx(r2(x.v[2] * lq(x)))}</b></div>`).join("")}</div>` : ""}</article>`; }).join("")}<button class="ghost go" type="button" data-lot-rem style="margin-top:14px">Ver todo el remate: ${N_REM} productos ›</button><p class="fine">Precios en pesos por tramo, normalmente de ${TRAMO_M.toFixed(2)} m. Antes de cobrar te confirmamos existencia, total y forma de pago por WhatsApp.</p>`;
+}
+function openLots() {
+  lotSee = -1; lotsSheet();
+  panel.onclick = e => {
+    const s = e.target.closest("[data-lot-see]"), a = e.target.closest("[data-lot-add]");
+    if (s) { const i = +s.dataset.lotSee; lotSee = lotSee === i ? -1 : i; lotsSheet(); const b = panel.querySelector(`[data-lot-see="${i}"]`); if (b) { try { b.focus({preventScroll: true}); } catch (er) {} } }
+    else if (a) { const l = LOTES.find(o => o.i === +a.dataset.lotAdd); l.items.forEach(x => setQty(x.v[1], lq(x))); track("alucard-lote-agregar", {lote: l.s + " " + l.c}); lotsSheet(); toast("Lote agregado: en tu pedido puedes quitar o cambiar tramos", true); }
+    else if (e.target.closest("[data-lot-rem]")) { closeL(); setRem(true); goTo("#catalogo"); }
+  };
+  panel.oninput = null;
+  sheetOpen("lotes");
+}
+const COLORES = ["Blanco", "Natural", "Negro", "Champagne", "Madera", "Aún no sé"];
+const QF = {
+  casa: {hash: "cotizar", h: "Puerta o ventana a la medida", sub: "Dinos qué necesitas y te mandamos la cotización por WhatsApp.", hola: "Hola ALUCARD, quiero cotizar a la medida:", fin: "¿Me pasan precio y fecha de entrega?",
+    campos: [["que", "¿Qué necesitas?", "seg", ["Ventana", "Puerta", "Mosquitero", "Cancel de baño", "Otro"], "Qué necesito"], ["med", "Medidas (ancho × alto) y cuántas piezas", "area", "Ej. 2 ventanas de 1.20 × 1.00 m y 1 puerta de 0.90 × 2.10 m", "Medidas y piezas"], ["color", "Color", "color", COLORES, "Color"], ["inst", "¿La quieres instalada?", "seg", ["Sí, instalada", "No, paso por ella"], "Instalación"], ["quien", "Tu nombre y dónde es (colonia o localidad)", "text", "Ej. Juan, colonia Centro, Tuxpan", "Nombre y lugar"]],
+    v: {que: "Ventana", med: "", color: "", inst: "", quien: ""}},
+  obra: {hash: "obra", h: "Cotización para obra", sub: "Para constructoras, contratistas y encargados de obra. Dinos qué lleva la obra y te cotizamos por volumen.", hola: "Hola ALUCARD, quiero una cotización para obra:", fin: "¿Me pasan precio por volumen y tiempo de entrega?", tip: "Si tienes plano o lista de la obra, mándalo por WhatsApp después de enviar esta solicitud. ",
+    campos: [["que", "¿Qué necesitas?", "seg", ["Ventanas y puertas hechas", "Material por tramo", "Las dos cosas"], "Qué necesito"], ["lugar", "Obra y lugar", "text", "Ej. 6 casas en Tuxpan", "Obra y lugar"], ["med", "Piezas o vanos con sus medidas", "area", "Ej. 12 ventanas de 1.50 × 1.20 m y 6 puertas de 0.90 × 2.10 m", "Piezas y medidas"], ["color", "Color", "color", COLORES, "Color"], ["fecha", "¿Para cuándo lo ocupas?", "text", "Ej. primera quincena de enero", "Para cuándo"], ["fact", "¿Necesitas factura?", "seg", ["Sí", "No"], "Factura"], ["quien", "Tu nombre y empresa", "text", "Ej. Ing. Pérez, Constructora…", "Nombre y empresa"]],
+    v: {que: "Ventanas y puertas hechas", lugar: "", med: "", color: "", fecha: "", fact: "", quien: ""}}
+};
+function quoteMsg(k) { const f = QF[k]; return f.hola + "\n" + f.campos.filter(c => String(f.v[c[0]]).trim()).map(c => `• ${c[4]}: ${String(f.v[c[0]]).trim()}`).join("\n") + "\n" + f.fin; }
+function openQuote(k) {
+  const f = QF[k]; B.ctx = "quote";
+  panel.innerHTML = `<button class="close" type="button" data-close aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button><h2 id="sTitle">${f.h}</h2><div class="sub2">${f.sub}</div>${f.campos.map(([id, lbl, tipo, extra]) => {
+    if (tipo === "seg" || tipo === "color") return `<span class="lbl" id="l-${id}">${lbl}</span><div class="seg" role="group" aria-labelledby="l-${id}">${extra.map(o => `<button type="button" data-set="${id}" data-val="${esc(o)}" aria-pressed="${f.v[id] === o}">${tipo === "color" && sw(o) ? `<i style="background:${sw(o)}"></i>` : ""}${esc(o)}</button>`).join("")}</div>`;
+    if (tipo === "area") return `<label class="lbl" for="f-${id}">${lbl}</label><textarea id="f-${id}" data-in="${id}" placeholder="${esc(extra)}">${esc(f.v[id])}</textarea>`;
+    return `<label class="lbl" for="f-${id}">${lbl}</label><input class="fld" id="f-${id}" data-in="${id}" type="text" autocomplete="off" placeholder="${esc(extra)}" value="${esc(f.v[id])}">`; }).join("")}<button class="big wa" type="button" data-quote><svg class="ico"><use href="#i-wa"/></svg>Pedir cotización por WhatsApp</button><div class="row2"><button class="ghost" type="button" data-qcopy><svg class="ico"><use href="#i-copy"/></svg>Copiar</button><a class="ghost" href="tel:+523232828267" data-umami-event="alucard-llamar-cotizacion"><svg class="ico"><use href="#i-phone"/></svg>Llamar</a></div><p class="fine">${f.tip || ""}Pedir la cotización no te compromete a comprar. Precio y fecha de entrega se confirman por WhatsApp.</p>`;
+  const falta = () => { if (f.v.med.trim()) return false; const m = panel.querySelector("#f-med"); m.classList.add("err"); toast("Escribe las medidas y cuántas piezas necesitas"); try { m.focus(); } catch (er) {} return true; };
+  panel.onclick = e => {
+    const s = e.target.closest("[data-set]");
+    if (s) { const id = s.dataset.set, val = s.dataset.val; f.v[id] = f.v[id] === val && id !== "que" ? "" : val; panel.querySelectorAll(`[data-set="${id}"]`).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.val === f.v[id]))); }
+    else if (e.target.closest("[data-quote]")) { if (falta()) return; track("alucard-cotizacion-enviada", {tipo: k, que: f.v.que}); location.href = `https://wa.me/${WA}?text=${encodeURIComponent(quoteMsg(k))}`; }
+    else if (e.target.closest("[data-qcopy]")) { if (falta()) return; copy(quoteMsg(k)).then(ok => toast(ok ? "Cotización copiada: pégala en WhatsApp o Messenger" : "No se pudo copiar")); track("alucard-cotizacion-copiada", {tipo: k}); }
+  };
+  panel.oninput = e => { const id = e.target.dataset.in; if (id) { f.v[id] = e.target.value; e.target.classList.remove("err"); } };
+  sheetOpen(f.hash);
+}
+function openWay(k) { track("alucard-entrada", {tipo: k}); if (k === "taller") openLots(); else if (QF[k]) openQuote(k); }
+
 /* ---------- eventos generales ---------- */
 document.addEventListener("click", e => {
   const t = e.target;
@@ -965,6 +1074,7 @@ document.addEventListener("click", e => {
   if (t.closest("[data-open-order]")) { $("#toast").classList.remove("show"); if (top_() === "menu" || top_() === "zoom") return; orderSheet(); return; }
   if (t.closest("[data-close]") || t === velo) { closeL(); return; }
   if (t.closest("#burger")) { openL("menu"); return; }
+  const wy = t.closest("[data-way]"); if (wy) { e.preventDefault(); $("#toast").classList.remove("show"); openWay(wy.dataset.way); return; }
   if (t.closest("#page") || t.closest("#zoom") || t.closest("#panel")) return;
   const fa = t.closest("[data-fam]");
   if (fa) { e.preventDefault(); const f = F.find(x => x.id === fa.dataset.fam); if (f) openFam(f, null, null, top_() === "menu"); return; }
@@ -1000,7 +1110,8 @@ $("#totop").addEventListener("click", () => window.scrollTo(0, 0));
 let ticking = false;
 window.addEventListener("scroll", () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { $("#totop").classList.toggle("show", window.scrollY > 1400); ticking = false; }); }, {passive: true});
 function fromHash(h) {
-  let m;
+  let m; const wh = {"#cotizar": "casa", "#lotes": "taller", "#obra": "obra"}[h];
+  if (wh) { try { history.replaceState({d: 0}, "", BASE); } catch (e) {} openWay(wh); return true; }
   if (h === "#remate") { try { history.replaceState({d: 0}, "", BASE); } catch (e) {} setRem(true); goTo("#catalogo"); return true; }
   if ((m = h.match(/^#p-(\d+)$/)) && V[+m[1]]) { const {t, v} = V[+m[1]]; try { history.replaceState({d: 0}, "", BASE); } catch (e) {} openFam(t.f, t, v); return true; }
   if ((m = h.match(/^#f-(.+?)(?:-(\d+))?$/))) { const f = F.find(x => x.id === m[1]); if (!f) return false; const hit = m[2] && V[+m[2]] && V[+m[2]].t.f === f ? V[+m[2]] : null; try { history.replaceState({d: 0}, "", BASE); } catch (e) {} openFam(f, hit ? hit.t : null, hit ? hit.v : null); return true; }
